@@ -1,0 +1,27 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-breadcrumb",
+  "type": "registry:component",
+  "title": "PfBreadcrumb",
+  "description": "PfBreadcrumb source component migrated from potato-template.",
+  "dependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-breadcrumb/PfBreadcrumb.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-breadcrumb/PfBreadcrumb.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-breadcrumb/PfBreadcrumb.vue"
+    },
+    {
+      "path": "src/components/pf-breadcrumb/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-breadcrumb/index.ts"
+    }
+  ]
+}

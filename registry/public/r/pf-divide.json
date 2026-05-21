@@ -1,0 +1,29 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-divide",
+  "type": "registry:component",
+  "title": "PfDivide",
+  "description": "PfDivide source component migrated from potato-template.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-divide/PfDivide.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-divide/PfDivide.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-divide/PfDivide.vue",
+      "content": "<script setup lang=\"ts\">\nconst props = withDefaults(\n  defineProps<{\n    vertical?: boolean\n  }>(),\n  {\n    vertical: false,\n  },\n)\n</script>\n\n<template>\n  <div :class=\"vertical ? 'h-full w-px bg-border' : 'w-full h-px bg-border'\"></div>\n</template>\n\n<style scoped></style>\n"
+    },
+    {
+      "path": "src/components/pf-divide/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-divide/index.ts",
+      "content": "export { default as PfDivide } from './PfDivide.vue'\n"
+    }
+  ]
+}

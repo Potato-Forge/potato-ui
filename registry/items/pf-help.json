@@ -1,0 +1,28 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-help",
+  "type": "registry:component",
+  "title": "PfHelp",
+  "description": "PfHelp source component migrated from potato-template.",
+  "dependencies": [],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme",
+    "pf-tooltip"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-help/PfHelp.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-help/PfHelp.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-help/PfHelp.vue"
+    },
+    {
+      "path": "src/components/pf-help/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-help/index.ts"
+    }
+  ]
+}

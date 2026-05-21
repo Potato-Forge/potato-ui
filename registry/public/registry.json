@@ -1,0 +1,448 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry.json",
+  "name": "pf-ui",
+  "homepage": "https://github.com/potato-forge/potato-ui",
+  "items": [
+    {
+      "name": "pf-breadcrumb",
+      "type": "registry:component",
+      "title": "PfBreadcrumb",
+      "description": "PfBreadcrumb source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-breadcrumb/PfBreadcrumb.vue"
+      }
+    },
+    {
+      "name": "pf-button",
+      "type": "registry:component",
+      "title": "PfButton",
+      "description": "Pf-owned button with semantic variants, sizes, icon support, and prefix/suffix slots.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "reka-ui"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-button/PfButton.vue",
+        "docsRoute": "/components/button"
+      }
+    },
+    {
+      "name": "pf-card",
+      "type": "registry:component",
+      "title": "PfCard",
+      "description": "PfCard source component migrated from potato-template.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-card/PfCard.vue"
+      }
+    },
+    {
+      "name": "pf-checkbox",
+      "type": "registry:component",
+      "title": "PfCheckbox",
+      "description": "Small Pf checkbox support component used by PfTree.",
+      "dependencies": [
+        "@vueuse/core",
+        "reka-ui",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-checkbox/PfCheckbox.vue"
+      }
+    },
+    {
+      "name": "pf-color-picker",
+      "type": "registry:component",
+      "title": "PfColorPicker",
+      "description": "PfColorPicker source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-button",
+        "pf-help",
+        "pf-icons",
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-color-picker/PfColorPicker.vue"
+      }
+    },
+    {
+      "name": "pf-config-provider",
+      "type": "registry:component",
+      "title": "PfConfigProvider",
+      "description": "PfConfigProvider source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-config-provider/PfConfigProvider.vue"
+      }
+    },
+    {
+      "name": "pf-data-table",
+      "type": "registry:component",
+      "title": "PfDataTable",
+      "description": "PfDataTable source component migrated from potato-template.",
+      "dependencies": [
+        "@iconify/vue",
+        "@tanstack/vue-query",
+        "date-fns",
+        "vxe-table"
+      ],
+      "registryDependencies": [
+        "pf-form",
+        "pf-icons",
+        "pf-modal",
+        "pf-runtime-support",
+        "pf-theme",
+        "pf-toast",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-data-table/PfDataTable.vue"
+      }
+    },
+    {
+      "name": "pf-divide",
+      "type": "registry:component",
+      "title": "PfDivide",
+      "description": "PfDivide source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-divide/PfDivide.vue"
+      }
+    },
+    {
+      "name": "pf-empty",
+      "type": "registry:component",
+      "title": "PfEmpty",
+      "description": "PfEmpty source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-empty/PfEmpty.vue"
+      }
+    },
+    {
+      "name": "pf-form",
+      "type": "registry:component",
+      "title": "PfForm",
+      "description": "PfForm source component migrated from potato-template.",
+      "dependencies": [
+        "@iconify/vue",
+        "@tanstack/vue-form",
+        "@tanstack/zod-form-adapter",
+        "@vuepic/vue-datepicker",
+        "date-fns",
+        "zod"
+      ],
+      "registryDependencies": [
+        "pf-checkbox",
+        "pf-help",
+        "pf-icons",
+        "pf-runtime-support",
+        "pf-switch",
+        "pf-theme",
+        "pf-upload"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-form/PfForm.vue"
+      }
+    },
+    {
+      "name": "pf-help",
+      "type": "registry:component",
+      "title": "PfHelp",
+      "description": "PfHelp source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme",
+        "pf-tooltip"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-help/PfHelp.vue"
+      }
+    },
+    {
+      "name": "pf-icon-picker",
+      "type": "registry:component",
+      "title": "PfIconPicker",
+      "description": "PfIconPicker source component migrated from potato-template.",
+      "dependencies": [
+        "@iconify/vue"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-icon-picker/PfIconPicker.vue"
+      }
+    },
+    {
+      "name": "pf-icons",
+      "type": "registry:style",
+      "title": "Pf Icons",
+      "description": "UnoCSS icon preset configuration for Tabler classes and the Potato Forge icon collection.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "meta": {
+        "sourceEntry": "src/foundations/pf-icons/index.ts",
+        "docsRoute": "/foundation/icons"
+      }
+    },
+    {
+      "name": "pf-img",
+      "type": "registry:component",
+      "title": "PfImg",
+      "description": "PfImg source component migrated from potato-template.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-img/PfImg.vue"
+      }
+    },
+    {
+      "name": "pf-loading",
+      "type": "registry:component",
+      "title": "PfLoading",
+      "description": "PfLoading source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-text",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-loading/PfLoading.vue"
+      }
+    },
+    {
+      "name": "pf-modal",
+      "type": "registry:component",
+      "title": "PfModal",
+      "description": "PfModal source component migrated from potato-template.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-modal/PfModal.vue"
+      }
+    },
+    {
+      "name": "pf-runtime-support",
+      "type": "registry:lib",
+      "title": "Pf Runtime Support",
+      "description": "Shared Pf utility, theme settings, and lightweight stores required by advanced components.",
+      "dependencies": [
+        "clsx",
+        "pinia",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/lib/utils.ts"
+      }
+    },
+    {
+      "name": "pf-sidebar",
+      "type": "registry:component",
+      "title": "PfSidebar",
+      "description": "PfSidebar source component migrated from potato-template.",
+      "dependencies": [
+        "@iconify/vue"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-sidebar/PfSidebar.vue"
+      }
+    },
+    {
+      "name": "pf-switch",
+      "type": "registry:component",
+      "title": "PfSwitch",
+      "description": "PfSwitch source component migrated from potato-template.",
+      "dependencies": [
+        "@vueuse/core",
+        "clsx",
+        "reka-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-switch/PfSwitch.vue"
+      }
+    },
+    {
+      "name": "pf-text",
+      "type": "registry:component",
+      "title": "PfText",
+      "description": "PfText source component migrated from potato-template.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-text/PfText.vue"
+      }
+    },
+    {
+      "name": "pf-theme",
+      "type": "registry:style",
+      "title": "Pf Theme",
+      "description": "Pf semantic theme tokens, dark mode variables, radius tokens, and UnoCSS shortcuts.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "meta": {
+        "sourceEntry": "src/foundations/pf-theme/index.ts",
+        "docsRoute": "/foundation/theme"
+      }
+    },
+    {
+      "name": "pf-toast",
+      "type": "registry:component",
+      "title": "PfToast",
+      "description": "PfToast source component migrated from potato-template.",
+      "dependencies": [
+        "lucide-vue-next",
+        "vue-sonner"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-toast/PfToast.vue"
+      }
+    },
+    {
+      "name": "pf-tooltip",
+      "type": "registry:component",
+      "title": "PfTooltip",
+      "description": "Tooltip component and plugin backed by vue-tippy and tippy.js.",
+      "dependencies": [
+        "vue-tippy",
+        "tippy.js"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-tooltip/PfTooltip.vue",
+        "docsRoute": "/components/tooltip"
+      }
+    },
+    {
+      "name": "pf-tree",
+      "type": "registry:component",
+      "title": "PfTree",
+      "description": "Tree component backed by he-tree with chooseable, checkable, draggable, slots, exposed methods, and dynamic icons.",
+      "dependencies": [
+        "@he-tree/vue",
+        "@iconify/vue"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons",
+        "pf-checkbox"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-tree/PfTree.vue",
+        "docsRoute": "/components/tree"
+      }
+    },
+    {
+      "name": "pf-upload",
+      "type": "registry:component",
+      "title": "PfUpload",
+      "description": "PfUpload source component migrated from potato-template.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme",
+        "pf-toast"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-upload/PfUpload.vue"
+      }
+    },
+    {
+      "name": "ui-primitives",
+      "type": "registry:lib",
+      "title": "UI Primitives",
+      "description": "Internal shadcn-vue primitives required by selected Pf components.",
+      "dependencies": [
+        "@radix-icons/vue",
+        "@vueuse/core",
+        "class-variance-authority",
+        "clsx",
+        "lucide-vue-next",
+        "reka-ui",
+        "tailwind-merge",
+        "vee-validate",
+        "vue-sonner"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/ui"
+      }
+    }
+  ]
+}

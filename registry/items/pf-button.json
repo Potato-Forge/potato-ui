@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-button",
+  "type": "registry:component",
+  "title": "PfButton",
+  "description": "Pf-owned button with semantic variants, sizes, icon support, and prefix/suffix slots.",
+  "dependencies": ["class-variance-authority", "clsx", "tailwind-merge", "reka-ui"],
+  "registryDependencies": ["pf-theme", "pf-icons"],
+  "meta": {
+    "sourceEntry": "src/components/pf-button/PfButton.vue",
+    "docsRoute": "/components/button"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-button/PfButton.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-button/PfButton.vue"
+    },
+    {
+      "path": "src/components/pf-button/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-button/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

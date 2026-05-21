@@ -1,0 +1,29 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-checkbox",
+  "type": "registry:component",
+  "title": "PfCheckbox",
+  "description": "Small Pf checkbox support component used by PfTree.",
+  "dependencies": ["@vueuse/core", "reka-ui", "clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme", "pf-icons"],
+  "meta": {
+    "sourceEntry": "src/components/pf-checkbox/PfCheckbox.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-checkbox/PfCheckbox.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-checkbox/PfCheckbox.vue"
+    },
+    {
+      "path": "src/components/pf-checkbox/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-checkbox/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-tree",
+  "type": "registry:component",
+  "title": "PfTree",
+  "description": "Tree component backed by he-tree with chooseable, checkable, draggable, slots, exposed methods, and dynamic icons.",
+  "dependencies": ["@he-tree/vue", "@iconify/vue"],
+  "registryDependencies": ["pf-theme", "pf-icons", "pf-checkbox"],
+  "meta": {
+    "sourceEntry": "src/components/pf-tree/PfTree.vue",
+    "docsRoute": "/components/tree"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-tree/PfTree.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-tree/PfTree.vue"
+    },
+    {
+      "path": "src/components/pf-tree/PfTreeCheckbox.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-tree/PfTreeCheckbox.vue"
+    },
+    {
+      "path": "src/components/pf-tree/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tree/index.ts"
+    },
+    {
+      "path": "src/components/pf-tree/types/PfTreeProps.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tree/types/PfTreeProps.types.ts"
+    }
+  ]
+}

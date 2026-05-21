@@ -1,0 +1,42 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-modal",
+  "type": "registry:component",
+  "title": "PfModal",
+  "description": "PfModal source component migrated from potato-template.",
+  "dependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-modal/PfModal.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-modal/PfModal.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-modal/PfModal.vue"
+    },
+    {
+      "path": "src/components/pf-modal/PfModalProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-modal/PfModalProvider.vue"
+    },
+    {
+      "path": "src/components/pf-modal/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-modal/index.ts"
+    },
+    {
+      "path": "src/components/pf-modal/modal.store.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-modal/modal.store.ts"
+    },
+    {
+      "path": "src/components/pf-modal/usePfModal.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-modal/usePfModal.ts"
+    }
+  ]
+}

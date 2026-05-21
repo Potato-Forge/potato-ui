@@ -1,0 +1,12 @@
+.tippy-box[data-theme~='pf-tooltip'] {
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 14px 32px hsl(var(--foreground) / 0.16);
+}
+
+.tippy-box[data-theme~='pf-tooltip'] > .tippy-content {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}

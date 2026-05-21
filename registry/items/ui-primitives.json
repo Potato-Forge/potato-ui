@@ -1,0 +1,667 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-primitives",
+  "type": "registry:lib",
+  "title": "UI Primitives",
+  "description": "Internal shadcn-vue primitives required by selected Pf components.",
+  "dependencies": [
+    "@radix-icons/vue",
+    "@vueuse/core",
+    "class-variance-authority",
+    "clsx",
+    "lucide-vue-next",
+    "reka-ui",
+    "tailwind-merge",
+    "vee-validate",
+    "vue-sonner"
+  ],
+  "registryDependencies": [
+    "pf-theme",
+    "pf-icons"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/ui"
+  },
+  "files": [
+    {
+      "path": "src/components/ui/avatar/Avatar.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/avatar/Avatar.vue"
+    },
+    {
+      "path": "src/components/ui/avatar/AvatarFallback.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/avatar/AvatarFallback.vue"
+    },
+    {
+      "path": "src/components/ui/avatar/AvatarImage.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/avatar/AvatarImage.vue"
+    },
+    {
+      "path": "src/components/ui/avatar/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/avatar/index.ts"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/Breadcrumb.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/Breadcrumb.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbEllipsis.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbEllipsis.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbItem.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbLink.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbLink.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbList.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbList.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbPage.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbPage.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbSeparator.vue"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/breadcrumb/index.ts"
+    },
+    {
+      "path": "src/components/ui/button/Button.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/button/Button.vue"
+    },
+    {
+      "path": "src/components/ui/button/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/button/index.ts"
+    },
+    {
+      "path": "src/components/ui/card/Card.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/Card.vue"
+    },
+    {
+      "path": "src/components/ui/card/CardContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardContent.vue"
+    },
+    {
+      "path": "src/components/ui/card/CardDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardDescription.vue"
+    },
+    {
+      "path": "src/components/ui/card/CardFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardFooter.vue"
+    },
+    {
+      "path": "src/components/ui/card/CardHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardHeader.vue"
+    },
+    {
+      "path": "src/components/ui/card/CardTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardTitle.vue"
+    },
+    {
+      "path": "src/components/ui/card/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/card/index.ts"
+    },
+    {
+      "path": "src/components/ui/checkbox/Checkbox.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/checkbox/Checkbox.vue"
+    },
+    {
+      "path": "src/components/ui/checkbox/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/checkbox/index.ts"
+    },
+    {
+      "path": "src/components/ui/collapsible/Collapsible.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/collapsible/Collapsible.vue"
+    },
+    {
+      "path": "src/components/ui/collapsible/CollapsibleContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/collapsible/CollapsibleContent.vue"
+    },
+    {
+      "path": "src/components/ui/collapsible/CollapsibleTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/collapsible/CollapsibleTrigger.vue"
+    },
+    {
+      "path": "src/components/ui/collapsible/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/collapsible/index.ts"
+    },
+    {
+      "path": "src/components/ui/dialog/Dialog.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/Dialog.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogClose.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogClose.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogContent.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogDescription.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogFooter.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogHeader.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogScrollContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogScrollContent.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogTitle.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogTrigger.vue"
+    },
+    {
+      "path": "src/components/ui/dialog/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/dialog/index.ts"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenu.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenu.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuContent.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuGroup.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuItem.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuLabel.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuRadioGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuRadioGroup.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuRadioItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuRadioItem.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSeparator.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuShortcut.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuShortcut.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSub.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSub.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSubContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSubContent.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSubTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSubTrigger.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuTrigger.vue"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/dropdown-menu/index.ts"
+    },
+    {
+      "path": "src/components/ui/field/Field.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/Field.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldContent.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldDescription.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldError.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldError.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldGroup.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldLabel.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldLegend.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldLegend.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldSeparator.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldSet.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldSet.vue"
+    },
+    {
+      "path": "src/components/ui/field/FieldTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldTitle.vue"
+    },
+    {
+      "path": "src/components/ui/field/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/field/index.ts"
+    },
+    {
+      "path": "src/components/ui/form/FormControl.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormControl.vue"
+    },
+    {
+      "path": "src/components/ui/form/FormDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormDescription.vue"
+    },
+    {
+      "path": "src/components/ui/form/FormItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormItem.vue"
+    },
+    {
+      "path": "src/components/ui/form/FormLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormLabel.vue"
+    },
+    {
+      "path": "src/components/ui/form/FormMessage.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormMessage.vue"
+    },
+    {
+      "path": "src/components/ui/form/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/form/index.ts"
+    },
+    {
+      "path": "src/components/ui/form/injectionKeys.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/form/injectionKeys.ts"
+    },
+    {
+      "path": "src/components/ui/form/useFormField.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/form/useFormField.ts"
+    },
+    {
+      "path": "src/components/ui/input/Input.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/input/Input.vue"
+    },
+    {
+      "path": "src/components/ui/input/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/input/index.ts"
+    },
+    {
+      "path": "src/components/ui/label/Label.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/label/Label.vue"
+    },
+    {
+      "path": "src/components/ui/label/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/label/index.ts"
+    },
+    {
+      "path": "src/components/ui/loader/GlobalLoadingOverlay.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/loader/GlobalLoadingOverlay.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/Pagination.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/Pagination.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationContent.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationEllipsis.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationEllipsis.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationFirst.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationFirst.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationItem.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationLast.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationLast.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationNext.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationNext.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationPrevious.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationPrevious.vue"
+    },
+    {
+      "path": "src/components/ui/pagination/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/pagination/index.ts"
+    },
+    {
+      "path": "src/components/ui/separator/Separator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/separator/Separator.vue"
+    },
+    {
+      "path": "src/components/ui/separator/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/separator/index.ts"
+    },
+    {
+      "path": "src/components/ui/sheet/Sheet.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/Sheet.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetClose.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetClose.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetContent.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetDescription.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetFooter.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetHeader.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetTitle.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetTrigger.vue"
+    },
+    {
+      "path": "src/components/ui/sheet/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sheet/index.ts"
+    },
+    {
+      "path": "src/components/ui/sidebar/Sidebar.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/Sidebar.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarContent.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarFooter.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroup.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroupAction.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroupAction.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroupContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroupContent.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroupLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroupLabel.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarHeader.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarInput.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarInput.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarInset.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarInset.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenu.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenu.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuAction.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuAction.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuBadge.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuBadge.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuButton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuButton.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuButtonChild.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuButtonChild.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuItem.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSkeleton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSkeleton.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSub.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSub.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSubButton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSubButton.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSubItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSubItem.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarProvider.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarRail.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarRail.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarSeparator.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarTrigger.vue"
+    },
+    {
+      "path": "src/components/ui/sidebar/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sidebar/index.ts"
+    },
+    {
+      "path": "src/components/ui/sidebar/utils.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sidebar/utils.ts"
+    },
+    {
+      "path": "src/components/ui/skeleton/Skeleton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/skeleton/Skeleton.vue"
+    },
+    {
+      "path": "src/components/ui/skeleton/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/skeleton/index.ts"
+    },
+    {
+      "path": "src/components/ui/sonner/Sonner.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sonner/Sonner.vue"
+    },
+    {
+      "path": "src/components/ui/sonner/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sonner/index.ts"
+    },
+    {
+      "path": "src/components/ui/switch/Switch.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/switch/Switch.vue"
+    },
+    {
+      "path": "src/components/ui/switch/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/switch/index.ts"
+    }
+  ]
+}

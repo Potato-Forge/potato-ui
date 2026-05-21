@@ -1,0 +1,48 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-modal",
+  "type": "registry:component",
+  "title": "PfModal",
+  "description": "PfModal source component migrated from potato-template.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-modal/PfModal.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-modal/PfModal.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-modal/PfModal.vue",
+      "content": "<script setup lang=\"ts\">\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from '@/components/ui/dialog'\nimport { useSlots } from 'vue'\n\nconst props = withDefaults(\n  defineProps<{\n    open?: boolean\n    title?: string\n    description?: string\n    positiveText?: string\n    negativeText?: string\n    positiveLoading?: boolean\n  }>(),\n  {\n    title: '',\n    description: '',\n    positiveText: '确认',\n    negativeText: '取消',\n    positiveLoading: false,\n  },\n)\n\nconst emits = defineEmits<{\n  (event: 'positive-click'): void\n  (event: 'negative-click'): void\n  (event: 'update:open', value: boolean): void\n}>()\n\nconst slots = useSlots()\n\nconst hasTriggerSlot = computed(() => Boolean(slots.trigger))\nconst hasDescription = computed(() => Boolean(slots.description) || Boolean(props.description))\n\nconst handlePositiveClick = () => {\n  emits('positive-click')\n}\n\nconst handleNegativeClick = () => {\n  emits('negative-click')\n}\n\nconst modalOpen = computed({\n  get() {\n    return props.open || false\n  },\n  set(v) {\n    emits('update:open', v)\n  },\n})\n</script>\n\n<template>\n  <Dialog v-model:open=\"modalOpen\" class=\"text-foreground\">\n    <DialogTrigger v-if=\"hasTriggerSlot\" as-child>\n      <slot name=\"trigger\"></slot>\n    </DialogTrigger>\n\n    <DialogContent :aria-describedby=\"hasDescription ? undefined : 'undefined'\">\n      <DialogHeader>\n        <DialogTitle>\n          <slot name=\"title\">\n            <pf-text class=\"text-foreground\">{{ props.title }}</pf-text>\n          </slot>\n        </DialogTitle>\n        <DialogDescription v-if=\"hasDescription\">\n          <slot name=\"description\"\n            ><pf-text class=\"text-foreground\">{{ props.description }}</pf-text></slot\n          >\n        </DialogDescription>\n      </DialogHeader>\n\n      <slot></slot>\n\n      <DialogFooter>\n        <slot name=\"footer\">\n          <pf-button variant=\"outline\" @click=\"handleNegativeClick\">{{\n            props.negativeText\n          }}</pf-button>\n          <pf-button :disabled=\"props.positiveLoading\" @click=\"handlePositiveClick\">{{\n            props.positiveLoading ? '处理中...' : props.positiveText\n          }}</pf-button>\n        </slot>\n      </DialogFooter>\n    </DialogContent>\n  </Dialog>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-modal/PfModalProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-modal/PfModalProvider.vue",
+      "content": "<script setup lang=\"ts\">\nimport PfModal from './PfModal.vue'\nimport {\n  runModalNegative,\n  runModalPositive,\n  setModalOpen,\n  resolveModal,\n  useModalState,\n} from './modal.store'\n\nconst modalState = useModalState()\n\nconst handleOpenChange = (id: number, open: boolean) => {\n  if (open) {\n    setModalOpen(id, true)\n    return\n  }\n  resolveModal(id, false)\n}\n</script>\n\n<template>\n  <Teleport to=\"body\">\n    <template v-for=\"modal in modalState.modals\" :key=\"modal.id\">\n      <PfModal\n        :open=\"modal.open\"\n        :title=\"modal.title\"\n        :description=\"modal.description\"\n        :positive-text=\"modal.positiveText\"\n        :negative-text=\"modal.negativeText\"\n        :positive-loading=\"modal.positiveLoading\"\n        @update:open=\"(value) => handleOpenChange(modal.id, value)\"\n        @positive-click=\"runModalPositive(modal.id)\"\n        @negative-click=\"runModalNegative(modal.id)\"\n      />\n    </template>\n  </Teleport>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-modal/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-modal/index.ts",
+      "content": "import { createVNode, render, type App } from 'vue'\nimport PfModalProvider from './PfModalProvider.vue'\n\nexport { default as PfModal } from './PfModal.vue'\nexport { default as PfModalProvider } from './PfModalProvider.vue'\nexport { usePfModal } from './usePfModal'\n\nlet mounted = false\n\nconst mountProvider = () => {\n  if (mounted || typeof document === 'undefined') {\n    return\n  }\n\n  const el = document.createElement('div')\n  el.id = 'pf-modal-provider-root'\n  document.body.appendChild(el)\n\n  const vnode = createVNode(PfModalProvider)\n  render(vnode, el)\n  mounted = true\n}\n\nexport const pfModalPlugin = (app: App) => {\n  app.component('PfModalProvider', PfModalProvider)\n  mountProvider()\n}\n"
+    },
+    {
+      "path": "src/components/pf-modal/modal.store.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-modal/modal.store.ts",
+      "content": "import { reactive } from 'vue'\n\nexport interface PfModalOpenOptions {\n  title?: string\n  description?: string\n  positiveText?: string\n  negativeText?: string\n  onPositive?: () => void | Promise<void>\n  onNegative?: () => void | Promise<void>\n}\n\nexport interface PfModalRecord extends PfModalOpenOptions {\n  id: number\n  open: boolean\n  positiveLoading: boolean\n  resolve: (value: boolean) => void\n}\n\nconst modalState = reactive({\n  modals: [] as PfModalRecord[],\n  seed: 0,\n})\n\nconst findModal = (id: number) => {\n  return modalState.modals.find((item) => item.id === id)\n}\n\nexport const openModal = (options: PfModalOpenOptions = {}) => {\n  return new Promise<boolean>((resolve) => {\n    const id = ++modalState.seed\n    modalState.modals.push({\n      id,\n      open: true,\n      positiveLoading: false,\n      resolve,\n      ...options,\n    })\n  })\n}\n\nexport const setModalOpen = (id: number, open: boolean) => {\n  const modal = findModal(id)\n  if (!modal) {\n    return\n  }\n  modal.open = open\n}\n\nexport const resolveModal = (id: number, result: boolean) => {\n  const modal = findModal(id)\n  if (!modal) {\n    return\n  }\n\n  modal.resolve(result)\n  const index = modalState.modals.findIndex((item) => item.id === id)\n  if (index !== -1) {\n    modalState.modals.splice(index, 1)\n  }\n}\n\nexport const runModalPositive = async (id: number) => {\n  const modal = findModal(id)\n  if (!modal) {\n    return\n  }\n\n  try {\n    modal.positiveLoading = true\n    await modal.onPositive?.()\n    resolveModal(id, true)\n  } finally {\n    const latest = findModal(id)\n    if (latest) {\n      latest.positiveLoading = false\n    }\n  }\n}\n\nexport const runModalNegative = async (id: number) => {\n  const modal = findModal(id)\n  if (!modal) {\n    return\n  }\n\n  await modal.onNegative?.()\n  resolveModal(id, false)\n}\n\nexport const closeAllModals = () => {\n  const closing = [...modalState.modals]\n  modalState.modals = []\n  closing.forEach((item) => item.resolve(false))\n}\n\nexport const useModalState = () => {\n  return modalState\n}\n"
+    },
+    {
+      "path": "src/components/pf-modal/usePfModal.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-modal/usePfModal.ts",
+      "content": "import type { PfModalOpenOptions } from './modal.store'\nimport { closeAllModals, openModal } from './modal.store'\n\nexport const usePfModal = () => {\n  const open = (options: PfModalOpenOptions = {}) => {\n    return openModal(options)\n  }\n\n  const confirm = (options: PfModalOpenOptions = {}) => {\n    return open(options)\n  }\n\n  const closeAll = () => {\n    closeAllModals()\n  }\n\n  return {\n    open,\n    confirm,\n    closeAll,\n  }\n}\n"
+    }
+  ]
+}

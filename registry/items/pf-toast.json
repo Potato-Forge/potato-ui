@@ -1,0 +1,35 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-toast",
+  "type": "registry:component",
+  "title": "PfToast",
+  "description": "PfToast source component migrated from potato-template.",
+  "dependencies": [
+    "lucide-vue-next",
+    "vue-sonner"
+  ],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-toast/PfToast.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-toast/PfToastProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-toast/PfToastProvider.vue"
+    },
+    {
+      "path": "src/components/pf-toast/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-toast/index.ts"
+    },
+    {
+      "path": "src/components/pf-toast/usePfToast.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-toast/usePfToast.ts"
+    }
+  ]
+}

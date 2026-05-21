@@ -1,0 +1,41 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-upload",
+  "type": "registry:component",
+  "title": "PfUpload",
+  "description": "PfUpload source component migrated from potato-template.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme",
+    "pf-toast"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-upload/PfUpload.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-upload/PfUpload.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-upload/PfUpload.types.ts"
+    },
+    {
+      "path": "src/components/pf-upload/PfUpload.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-upload/PfUpload.vue"
+    },
+    {
+      "path": "src/components/pf-upload/PfUploadToast.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-upload/PfUploadToast.vue"
+    },
+    {
+      "path": "src/components/pf-upload/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-upload/index.ts"
+    }
+  ]
+}

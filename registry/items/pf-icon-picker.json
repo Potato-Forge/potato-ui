@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-icon-picker",
+  "type": "registry:component",
+  "title": "PfIconPicker",
+  "description": "PfIconPicker source component migrated from potato-template.",
+  "dependencies": [
+    "@iconify/vue"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-icon-picker/PfIconPicker.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-icon-picker/PfIconPicker.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-icon-picker/PfIconPicker.vue"
+    },
+    {
+      "path": "src/components/pf-icon-picker/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-icon-picker/index.ts"
+    }
+  ]
+}

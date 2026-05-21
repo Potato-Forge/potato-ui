@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-switch",
+  "type": "registry:component",
+  "title": "PfSwitch",
+  "description": "PfSwitch source component migrated from potato-template.",
+  "dependencies": [
+    "@vueuse/core",
+    "clsx",
+    "reka-ui",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-switch/PfSwitch.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-switch/PfSwitch.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-switch/PfSwitch.vue"
+    },
+    {
+      "path": "src/components/pf-switch/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-switch/index.ts"
+    }
+  ]
+}

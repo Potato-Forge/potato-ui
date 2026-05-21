@@ -1,0 +1,32 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-card",
+  "type": "registry:component",
+  "title": "PfCard",
+  "description": "PfCard source component migrated from potato-template.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-card/PfCard.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-card/PfCard.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-card/PfCard.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<{\n    shadow?: boolean\n    border?: boolean\n    class?: HTMLAttributes['class']\n  }>(),\n  {\n    shadow: false,\n    border: true,\n    class: '',\n  },\n)\n\nconst cardClass = computed(() => {\n  const baseClass = 'rounded-lg bg-card text-card-foreground flex flex-col'\n  const shadowClass = props.shadow ? 'shadow' : ''\n  const borderClass = props.border ? 'border border-border' : ''\n  return cn(baseClass, shadowClass, borderClass, props.class)\n})\n\nconst slots = useSlots()\nconst hasHeader = computed(() => !!(slots.header || slots['header-action']))\n</script>\n\n<template>\n  <div :class=\"cardClass\">\n    <!-- header -->\n    <div\n      v-if=\"hasHeader\"\n      class=\"w-full flex items-center justify-between px-4 py-3 border-b border-border\"\n    >\n      <slot name=\"header\"> </slot>\n      <!-- header action -->\n      <div class=\"flex items-center gap-2\">\n        <slot name=\"header-action\"> </slot>\n      </div>\n    </div>\n\n    <!-- body -->\n    <div class=\"w-full flex-1 min-h-0 flex flex-col\">\n      <slot name=\"default\"> </slot>\n    </div>\n\n    <!-- footer -->\n    <div class=\"w-full flex items-center\">\n      <slot name=\"footer\"></slot>\n    </div>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-card/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-card/index.ts",
+      "content": "export { default as PfCard } from './PfCard.vue'\n"
+    }
+  ]
+}

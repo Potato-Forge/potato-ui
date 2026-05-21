@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-divide",
+  "type": "registry:component",
+  "title": "PfDivide",
+  "description": "PfDivide source component migrated from potato-template.",
+  "dependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-divide/PfDivide.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-divide/PfDivide.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-divide/PfDivide.vue"
+    },
+    {
+      "path": "src/components/pf-divide/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-divide/index.ts"
+    }
+  ]
+}

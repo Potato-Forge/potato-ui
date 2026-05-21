@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-empty",
+  "type": "registry:component",
+  "title": "PfEmpty",
+  "description": "PfEmpty source component migrated from potato-template.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-empty/PfEmpty.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-empty/PfEmpty.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-empty/PfEmpty.vue",
+      "content": "<script setup lang=\"ts\">\nconst props = defineProps<{\n  title?: string\n  description?: string\n}>()\n</script>\n\n<template>\n  <div class=\"w-full h-full flex flex-col gap-6 justify-center items-center\">\n    <!-- Icon Slot -->\n    <slot name=\"icon\">\n      <div class=\"i-tabler-box-seam text-primary text-4xl\"></div>\n    </slot>\n    <pf-text as=\"h3\" class=\"text-muted-foreground\">{{ props.title }}</pf-text>\n    <pf-text as=\"p\" class=\"text-muted-foreground\">{{ props.description }}</pf-text>\n\n    <!-- action slot -->\n    <div>\n      <slot name=\"action\"></slot>\n    </div>\n  </div>\n</template>\n\n<style scoped></style>\n"
+    },
+    {
+      "path": "src/components/pf-empty/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-empty/index.ts",
+      "content": "export { default as PfEmpty } from './PfEmpty.vue'\n"
+    }
+  ]
+}

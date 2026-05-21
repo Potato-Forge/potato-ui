@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-breadcrumb",
+  "type": "registry:component",
+  "title": "PfBreadcrumb",
+  "description": "PfBreadcrumb source component migrated from potato-template.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-breadcrumb/PfBreadcrumb.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-breadcrumb/PfBreadcrumb.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-breadcrumb/PfBreadcrumb.vue",
+      "content": "<script setup lang=\"ts\">\nimport {\n  Breadcrumb,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from '@/components/ui/breadcrumb'\n\nconst props = defineProps<{\n  list: any[]\n  labelKey?: string\n  hrefKey?: string\n}>()\n</script>\n\n<template>\n  <Breadcrumb>\n    <BreadcrumbList>\n      <template v-for=\"(item, index) in list\" :key=\"item.id ?? item.name ?? index\">\n        <BreadcrumbItem>\n          <BreadcrumbLink v-if=\"index < list.length - 1\" :href=\"item[props.hrefKey || 'href']\">\n            {{ item[props.labelKey || 'name'] }}\n          </BreadcrumbLink>\n          <BreadcrumbPage v-else>\n            {{ item[props.labelKey || 'name'] }}\n          </BreadcrumbPage>\n        </BreadcrumbItem>\n\n        <BreadcrumbSeparator v-if=\"index < list.length - 1\" />\n      </template>\n    </BreadcrumbList>\n  </Breadcrumb>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-breadcrumb/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-breadcrumb/index.ts",
+      "content": "export { default as PfBreadcrumb } from './PfBreadcrumb.vue'\n"
+    }
+  ]
+}

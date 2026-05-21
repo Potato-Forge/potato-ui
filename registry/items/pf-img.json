@@ -1,0 +1,35 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-img",
+  "type": "registry:component",
+  "title": "PfImg",
+  "description": "PfImg source component migrated from potato-template.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-img/PfImg.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-img/PfImg.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-img/PfImg.types.ts"
+    },
+    {
+      "path": "src/components/pf-img/PfImg.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-img/PfImg.vue"
+    },
+    {
+      "path": "src/components/pf-img/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-img/index.ts"
+    }
+  ]
+}

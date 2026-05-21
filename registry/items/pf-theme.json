@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-theme",
+  "type": "registry:style",
+  "title": "Pf Theme",
+  "description": "Pf semantic theme tokens, dark mode variables, radius tokens, and UnoCSS shortcuts.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "meta": {
+    "sourceEntry": "src/foundations/pf-theme/index.ts",
+    "docsRoute": "/foundation/theme"
+  },
+  "files": [
+    {
+      "path": "src/foundations/pf-theme/index.ts",
+      "type": "registry:file",
+      "target": "src/foundations/pf-theme/index.ts"
+    },
+    {
+      "path": "src/foundations/pf-theme/pf-theme.css",
+      "type": "registry:file",
+      "target": "src/foundations/pf-theme/pf-theme.css"
+    }
+  ]
+}

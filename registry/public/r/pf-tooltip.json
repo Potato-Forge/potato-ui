@@ -1,0 +1,51 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-tooltip",
+  "type": "registry:component",
+  "title": "PfTooltip",
+  "description": "Tooltip component and plugin backed by vue-tippy and tippy.js.",
+  "dependencies": [
+    "vue-tippy",
+    "tippy.js"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-tooltip/PfTooltip.vue",
+    "docsRoute": "/components/tooltip"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-tooltip/PfTooltip.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-tooltip/PfTooltip.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Tippy } from 'vue-tippy'\nimport 'tippy.js/dist/tippy.css'\nimport 'tippy.js/animations/shift-away.css'\nimport './style/themes.css'\nimport type { PfTooltipProps } from './pfTooltip.types'\n\nconst props = withDefaults(defineProps<PfTooltipProps>(), {\n  placement: 'top',\n  delay: () => [200, 0],\n  interactive: false,\n  trigger: 'mouseenter focus',\n})\n</script>\n\n<template>\n  <Tippy\n    :placement=\"props.placement\"\n    :delay=\"props.delay\"\n    :interactive=\"props.interactive\"\n    animation=\"shift-away\"\n    theme=\"pf-tooltip\"\n    :trigger=\"props.trigger\"\n  >\n    <slot />\n\n    <template #content>\n      <slot name=\"content\">\n        {{ content }}\n      </slot>\n    </template>\n  </Tippy>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-tooltip/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/index.ts",
+      "content": "export { pfTooltipPlugin } from './pfTooltipDirective'\nexport { setDefaultProps as setPfTooltipProps } from 'vue-tippy'\nexport { default as PfTooltip } from './PfTooltip.vue'\nexport type { PfTooltipProps } from './pfTooltip.types'\n"
+    },
+    {
+      "path": "src/components/pf-tooltip/pfTooltip.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/pfTooltip.types.ts",
+      "content": "export interface PfTooltipProps {\n  content?: string\n  placement?: 'top' | 'bottom' | 'left' | 'right'\n  delay?: [number, number]\n  interactive?: boolean\n  trigger?: string\n}\n"
+    },
+    {
+      "path": "src/components/pf-tooltip/pfTooltipDirective.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/pfTooltipDirective.ts",
+      "content": "import type { App } from 'vue'\nimport VueTippy from 'vue-tippy'\nimport 'tippy.js/dist/tippy.css'\nimport 'tippy.js/animations/shift-away.css'\nimport './style/themes.css'\n\nexport const pfTooltipPlugin = (app: App) => {\n  app.use(VueTippy, {\n    directive: 'pf-tooltip',\n    component: 'pf-tooltip',\n    componentSingleton: 'pf-tooltip-singleton',\n    defaultProps: {\n      placement: 'top',\n      theme: 'pf-tooltip',\n      animation: 'shift-away',\n      touch: ['hold', 500],\n    },\n  })\n}\n"
+    },
+    {
+      "path": "src/components/pf-tooltip/style/themes.css",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/style/themes.css",
+      "content": ".tippy-box[data-theme~='pf-tooltip'] {\n  background: hsl(var(--foreground));\n  color: hsl(var(--background));\n  border: 1px solid hsl(var(--border));\n  box-shadow: 0 14px 32px hsl(var(--foreground) / 0.16);\n}\n\n.tippy-box[data-theme~='pf-tooltip'] > .tippy-content {\n  padding: 0.25rem 0.5rem;\n  font-size: 0.75rem;\n  line-height: 1rem;\n}\n"
+    }
+  ]
+}

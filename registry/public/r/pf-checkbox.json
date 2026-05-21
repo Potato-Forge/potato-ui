@@ -1,0 +1,41 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-checkbox",
+  "type": "registry:component",
+  "title": "PfCheckbox",
+  "description": "Small Pf checkbox support component used by PfTree.",
+  "dependencies": [
+    "@vueuse/core",
+    "reka-ui",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "pf-icons"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-checkbox/PfCheckbox.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-checkbox/PfCheckbox.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-checkbox/PfCheckbox.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { CheckboxRootEmits, CheckboxRootProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { CheckboxIndicator, CheckboxRoot, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<CheckboxRootProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<CheckboxRootEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <CheckboxRoot\n    v-bind=\"forwarded\"\n    :class=\"\n      cn(\n        'grid place-content-center peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',\n        props.class,\n      )\n    \"\n  >\n    <CheckboxIndicator class=\"grid place-content-center text-current\">\n      <slot>\n        <span v-if=\"props.modelValue === 'indeterminate'\" class=\"i-tabler-minus h-4 w-4\"></span>\n        <span v-else class=\"i-tabler-check h-4 w-4\"></span>\n      </slot>\n    </CheckboxIndicator>\n  </CheckboxRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-checkbox/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-checkbox/index.ts",
+      "content": "export { default as PfCheckbox } from './PfCheckbox.vue'\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n"
+    }
+  ]
+}

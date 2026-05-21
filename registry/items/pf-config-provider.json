@@ -1,0 +1,26 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-config-provider",
+  "type": "registry:component",
+  "title": "PfConfigProvider",
+  "description": "PfConfigProvider source component migrated from potato-template.",
+  "dependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-config-provider/PfConfigProvider.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-config-provider/PfConfigProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-config-provider/PfConfigProvider.vue"
+    },
+    {
+      "path": "src/components/pf-config-provider/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-config-provider/index.ts"
+    }
+  ]
+}

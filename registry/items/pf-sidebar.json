@@ -1,0 +1,35 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-sidebar",
+  "type": "registry:component",
+  "title": "PfSidebar",
+  "description": "PfSidebar source component migrated from potato-template.",
+  "dependencies": [
+    "@iconify/vue"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-sidebar/PfSidebar.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-sidebar/PfSidebar.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-sidebar/PfSidebar.vue"
+    },
+    {
+      "path": "src/components/pf-sidebar/PfSliderbarProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-sidebar/PfSliderbarProvider.vue"
+    },
+    {
+      "path": "src/components/pf-sidebar/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-sidebar/index.ts"
+    }
+  ]
+}

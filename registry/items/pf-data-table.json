@@ -1,0 +1,57 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-data-table",
+  "type": "registry:component",
+  "title": "PfDataTable",
+  "description": "PfDataTable source component migrated from potato-template.",
+  "dependencies": [
+    "@iconify/vue",
+    "@tanstack/vue-query",
+    "date-fns",
+    "vxe-table"
+  ],
+  "registryDependencies": [
+    "pf-form",
+    "pf-icons",
+    "pf-modal",
+    "pf-runtime-support",
+    "pf-theme",
+    "pf-toast",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-data-table/PfDataTable.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-data-table/PfDataTable.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-data-table/PfDataTable.types.ts"
+    },
+    {
+      "path": "src/components/pf-data-table/PfDataTable.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-data-table/PfDataTable.vue"
+    },
+    {
+      "path": "src/components/pf-data-table/PfDataTableDetail.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-data-table/PfDataTableDetail.vue"
+    },
+    {
+      "path": "src/components/pf-data-table/PfDataTableForm.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-data-table/PfDataTableForm.vue"
+    },
+    {
+      "path": "src/components/pf-data-table/PfDataTablePreviewValue.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-data-table/PfDataTablePreviewValue.vue"
+    },
+    {
+      "path": "src/components/pf-data-table/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-data-table/index.ts"
+    }
+  ]
+}

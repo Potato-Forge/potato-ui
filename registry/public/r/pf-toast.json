@@ -1,0 +1,39 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-toast",
+  "type": "registry:component",
+  "title": "PfToast",
+  "description": "PfToast source component migrated from potato-template.",
+  "dependencies": [
+    "lucide-vue-next",
+    "vue-sonner"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-toast/PfToast.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-toast/PfToastProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-toast/PfToastProvider.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Toaster } from '@/components/ui/sonner'\nimport 'vue-sonner/style.css'\n</script>\n\n<template>\n  <slot name=\"default\"></slot>\n  <Toaster\n    position=\"top-center\"\n    :close-button=\"false\"\n    close-button-position=\"top-left\"\n    :rich-colors=\"false\"\n    theme=\"system\"\n    ref=\"toaster\"\n  />\n</template>\n\n<style scoped></style>\n"
+    },
+    {
+      "path": "src/components/pf-toast/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-toast/index.ts",
+      "content": "export { default as PfToastProvider } from './PfToastProvider.vue'\n\nexport * from './usePfToast'\n"
+    },
+    {
+      "path": "src/components/pf-toast/usePfToast.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-toast/usePfToast.ts",
+      "content": "import { toast } from 'vue-sonner'\nimport { h } from 'vue'\nimport { LightbulbIcon, ShieldAlertIcon } from 'lucide-vue-next'\nimport type { ExternalToast } from 'vue-sonner'\n\ntype ToastTypes = 'success' | 'error' | 'info' | 'warning'\ntype ToastArgsResult = {\n  message: unknown\n  options?: ExternalToast\n}\n\nconst normalizeToastArgs = (\n  arg1: unknown,\n  arg2?: unknown,\n  arg3?: unknown,\n): ToastArgsResult | null => {\n  if (typeof arg1 === 'object' && arg1 !== null) {\n    return { message: arg1 }\n  }\n\n  if (typeof arg1 === 'string' && arg2 === undefined) {\n    return { message: arg1 }\n  }\n\n  if (typeof arg1 === 'string' && typeof arg2 === 'string' && arg3 === undefined) {\n    return { message: arg1, options: { description: arg2 } }\n  }\n\n  if (typeof arg1 === 'string' && typeof arg2 === 'object' && arg2 !== null) {\n    return { message: arg1, options: arg2 as ExternalToast }\n  }\n\n  if (\n    typeof arg1 === 'string' &&\n    typeof arg2 === 'string' &&\n    typeof arg3 === 'object' &&\n    arg3 !== null\n  ) {\n    return {\n      message: arg1,\n      options: { description: arg2, ...(arg3 as ExternalToast) },\n    }\n  }\n\n  return null\n}\n\nconst createToastHandler = (type: ToastTypes) => {\n  return (arg1: unknown, arg2?: unknown, arg3?: unknown) => {\n    // negative toast report\n    if (type === 'error' || type === 'warning') {\n      const logger = type === 'error' ? console.error : console.warn\n      logger(`[PF-TOAST] ${type.toUpperCase()}`, arg1, arg2, arg3)\n    }\n\n    const normalized = normalizeToastArgs(arg1, arg2, arg3)\n    if (!normalized) {\n      console.warn('Invalid arguments for toast:', arg1, arg2, arg3)\n      return\n    }\n\n    toast[type](normalized.message as never, normalized.options)\n  }\n}\n\nconst TIP_TOAST_OPTIONS: ExternalToast = {\n  class: '!border-tip !bg-tip !text-tip-foreground',\n  descriptionClass: '!text-tip-foreground/85',\n  icon: h(LightbulbIcon, { class: 'size-4 !text-tip-foreground' }),\n}\n\nconst RISK_TOAST_OPTIONS: ExternalToast = {\n  class: '!border-risk !bg-risk !text-risk-foreground',\n  descriptionClass: '!text-risk-foreground/85',\n  icon: h(ShieldAlertIcon, { class: 'size-4 !text-risk-foreground' }),\n}\n\nconst createCustomToastHandler = (variant: 'tip' | 'risk') => {\n  return (arg1: unknown, arg2?: unknown, arg3?: unknown) => {\n    const normalized = normalizeToastArgs(arg1, arg2, arg3)\n    if (!normalized) {\n      console.warn('Invalid arguments for toast:', arg1, arg2, arg3)\n      return\n    }\n\n    const preset = variant === 'tip' ? TIP_TOAST_OPTIONS : RISK_TOAST_OPTIONS\n    const options = {\n      ...preset,\n      ...(normalized.options || {}),\n      class: [preset.class, normalized.options?.class].filter(Boolean).join(' '),\n      descriptionClass: [preset.descriptionClass, normalized.options?.descriptionClass]\n        .filter(Boolean)\n        .join(' '),\n      icon: normalized.options?.icon ?? preset.icon,\n    }\n\n    if (variant === 'risk') {\n      console.warn('[PF-TOAST] RISK', arg1, arg2, arg3)\n    }\n\n    toast.message(normalized.message as never, options)\n  }\n}\n\nexport const pfToast = {\n  success: createToastHandler('success'),\n  error: createToastHandler('error'),\n  info: createToastHandler('info'),\n  warning: createToastHandler('warning'),\n  tip: createCustomToastHandler('tip'),\n  risk: createCustomToastHandler('risk'),\n  toast, // 直接暴露原始的toast函数，供特殊需求使用\n}\n"
+    }
+  ]
+}

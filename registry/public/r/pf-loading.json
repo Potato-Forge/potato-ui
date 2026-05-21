@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-loading",
+  "type": "registry:component",
+  "title": "PfLoading",
+  "description": "PfLoading source component migrated from potato-template.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-text",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-loading/PfLoading.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-loading/PfLoading.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-loading/PfLoading.vue",
+      "content": "<script setup lang=\"ts\">\nimport PfText from '../pf-text/PfText.vue'\n\nconst props = withDefaults(\n  defineProps<{\n    loading: boolean\n    text?: string\n    blockInteraction?: boolean\n  }>(),\n  {\n    text: '加载中...',\n    blockInteraction: true,\n  },\n)\n</script>\n\n<template>\n  <div class=\"relative w-full h-full\">\n    <!-- loading -->\n    <div\n      v-if=\"props.loading\"\n      class=\"absolute inset-0 z-50 flex h-full w-full flex-col items-center justify-center gap-4 bg-background/80 backdrop-blur-sm\"\n      :class=\"props.blockInteraction ? 'pointer-events-auto' : 'pointer-events-none'\"\n    >\n      <div\n        class=\"h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent\"\n      ></div>\n      <PfText class=\"text-primary\">{{ props.text }}</PfText>\n    </div>\n    <!-- content -->\n    <slot />\n  </div>\n</template>\n\n<style scoped></style>\n"
+    },
+    {
+      "path": "src/components/pf-loading/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-loading/index.ts",
+      "content": "export { default as PfLoading } from './PfLoading.vue'\n"
+    }
+  ]
+}

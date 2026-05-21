@@ -1,0 +1,29 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-card",
+  "type": "registry:component",
+  "title": "PfCard",
+  "description": "PfCard source component migrated from potato-template.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-card/PfCard.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-card/PfCard.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-card/PfCard.vue"
+    },
+    {
+      "path": "src/components/pf-card/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-card/index.ts"
+    }
+  ]
+}

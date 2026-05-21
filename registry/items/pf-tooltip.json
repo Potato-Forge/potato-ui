@@ -1,0 +1,40 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-tooltip",
+  "type": "registry:component",
+  "title": "PfTooltip",
+  "description": "Tooltip component and plugin backed by vue-tippy and tippy.js.",
+  "dependencies": ["vue-tippy", "tippy.js"],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-tooltip/PfTooltip.vue",
+    "docsRoute": "/components/tooltip"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-tooltip/PfTooltip.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-tooltip/PfTooltip.vue"
+    },
+    {
+      "path": "src/components/pf-tooltip/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/index.ts"
+    },
+    {
+      "path": "src/components/pf-tooltip/pfTooltip.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/pfTooltip.types.ts"
+    },
+    {
+      "path": "src/components/pf-tooltip/pfTooltipDirective.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/pfTooltipDirective.ts"
+    },
+    {
+      "path": "src/components/pf-tooltip/style/themes.css",
+      "type": "registry:file",
+      "target": "src/components/pf-tooltip/style/themes.css"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-color-picker",
+  "type": "registry:component",
+  "title": "PfColorPicker",
+  "description": "PfColorPicker source component migrated from potato-template.",
+  "dependencies": [],
+  "registryDependencies": [
+    "pf-button",
+    "pf-help",
+    "pf-icons",
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-color-picker/PfColorPicker.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-color-picker/PfColorPicker.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-color-picker/PfColorPicker.vue"
+    },
+    {
+      "path": "src/components/pf-color-picker/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-color-picker/index.ts"
+    }
+  ]
+}

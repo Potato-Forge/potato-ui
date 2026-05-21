@@ -1,0 +1,33 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-text",
+  "type": "registry:component",
+  "title": "PfText",
+  "description": "PfText source component migrated from potato-template.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-text/PfText.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-text/PfText.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-text/PfText.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, useAttrs } from 'vue'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'a' | 'div' | 'blockquote' | 'kbd' | 'code'\n  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'caption' | 'link' | 'code' | 'kbd'\n  href?: string\n  truncate?: boolean | number\n  weight?: 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'\n  dimmed?: boolean\n  prefixLine?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  as: 'div',\n})\n\nconst attrs = useAttrs()\n\nconst isExternal = computed(() => props.href?.startsWith('http'))\nconst isAnchor = computed(() => props.href?.startsWith('#'))\n\nconst variantClasses = {\n  // Heading 1: Manrope ExtraBold / 3.5rem / Tracking-tight\n  h1: 'font-headline text-4xl md:text-[3.5rem] font-extrabold leading-none tracking-tight text-foreground',\n  // Heading 2: Manrope Bold / 2.5rem\n  h2: 'font-headline text-3xl md:text-4xl font-bold leading-tight text-foreground',\n  // Heading 3: Manrope Bold / 1.75rem\n  h3: 'font-headline text-2xl md:text-[1.75rem] font-bold leading-tight text-foreground',\n  // Heading 4: Manrope Bold / 1.25rem\n  h4: 'font-headline text-xl md:text-[1.25rem] font-bold leading-tight text-foreground',\n  // Body: Inter / 1rem / Leading-relaxed\n  body: 'font-body text-base leading-relaxed text-foreground',\n  // Caption: Inter / 0.75rem\n  caption: 'font-body text-xs text-muted-foreground italic',\n  // Link: Primary Color / Underline Offset\n  link: 'text-primary font-medium underline underline-offset-4 decoration-2 hover:opacity-80 transition-opacity inline-flex items-center gap-1 cursor-pointer',\n  // Code: Mono / Muted Surface\n  code: 'font-mono text-sm bg-muted px-2 py-1 rounded-md text-primary',\n  // Kbd: Keyboard Action Style\n  kbd: 'px-2.5 py-1.5 rounded-lg bg-background border border-border shadow-sm text-xs font-bold text-foreground inline-block mx-0.5',\n}\n\n// 权重覆盖映射\nconst weightClasses = {\n  normal: 'font-normal',\n  medium: 'font-medium',\n  semibold: 'font-semibold',\n  bold: 'font-bold',\n  extrabold: 'font-extrabold',\n}\n\nconst inferredVariant = computed<NonNullable<Props['variant']>>(() => {\n  if (props.as === 'h1') return 'h1'\n  if (props.as === 'h2') return 'h2'\n  if (props.as === 'h3') return 'h3'\n  if (props.as === 'h4') return 'h4'\n  if (props.as === 'a') return 'link'\n  if (props.as === 'kbd') return 'kbd'\n  if (props.as === 'code') return 'code'\n  return 'body'\n})\n\nconst resolvedVariant = computed(() => props.variant ?? inferredVariant.value)\n\nconst truncateClass = computed(() => {\n  if (typeof props.truncate === 'number') return 'pf-text-clamp'\n  return props.truncate ? 'truncate' : ''\n})\n\nconst truncateStyle = computed(() => {\n  if (typeof props.truncate === 'number') {\n    return { '--pf-line-clamp': String(props.truncate) }\n  }\n  return undefined\n})\n\nconst externalClass = computed(() => (attrs.class as string) || '')\n\nconst rootAttrs = computed(() => {\n  const { class: _, ...rest } = attrs as Record<string, unknown>\n  return rest\n})\n</script>\n\n<template>\n  <component\n    :is=\"as\"\n    v-bind=\"rootAttrs\"\n    :href=\"as === 'a' ? href : undefined\"\n    :target=\"isExternal ? '_blank' : undefined\"\n    :rel=\"isExternal ? 'noopener noreferrer' : undefined\"\n    :style=\"truncateStyle\"\n    :class=\"\n      cn(\n        'pf-text-root antialiased flex items-stretch',\n        variantClasses[resolvedVariant],\n        props.weight && weightClasses[props.weight],\n        props.dimmed && 'text-muted-foreground',\n        truncateClass,\n        externalClass,\n      )\n    \"\n  >\n    <!-- prefix line -->\n    <span v-if=\"props.prefixLine\" class=\"w-2 bg-primary rounded-full mr-2\"></span>\n\n    <slot name=\"prefix\" />\n\n    <slot />\n\n    <template v-if=\"as === 'a' || resolvedVariant === 'link'\">\n      <span v-if=\"isExternal\" class=\"i-tabler-external-link text-[1em]\">open_in_new</span>\n      <span v-else-if=\"isAnchor\" class=\"i-tabler-link text-[1em]\">link</span>\n    </template>\n  </component>\n</template>\n\n<style scoped>\n.pf-text-root {\n  /* 优化大标题排版均衡 */\n  text-wrap: balance;\n  word-break: break-word;\n}\n\n/* 针对 Blockquote 的特殊处理 */\nblockquote.pf-text-root {\n  @apply rounded-r-lg border-l-4 border-primary/35 bg-muted/40 pl-6 py-2 italic;\n}\n\n.pf-text-clamp {\n  display: -webkit-box;\n  -webkit-line-clamp: var(--pf-line-clamp);\n  line-clamp: var(--pf-line-clamp);\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n</style>\n"
+    },
+    {
+      "path": "src/components/pf-text/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-text/index.ts",
+      "content": "export { default as PfText } from './PfText.vue'\n"
+    }
+  ]
+}

@@ -1,0 +1,796 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "ui-primitives",
+  "type": "registry:lib",
+  "title": "UI Primitives",
+  "description": "Internal shadcn-vue primitives required by selected Pf components.",
+  "dependencies": [
+    "@radix-icons/vue",
+    "@vueuse/core",
+    "class-variance-authority",
+    "clsx",
+    "lucide-vue-next",
+    "reka-ui",
+    "tailwind-merge",
+    "vee-validate",
+    "vue-sonner"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "pf-icons"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/ui"
+  },
+  "files": [
+    {
+      "path": "src/components/ui/avatar/Avatar.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/avatar/Avatar.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport type { AvatarVariants } from '.'\nimport { AvatarRoot } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { avatarVariant } from '.'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: HTMLAttributes['class']\n    size?: AvatarVariants['size']\n    shape?: AvatarVariants['shape']\n  }>(),\n  {\n    size: 'sm',\n    shape: 'circle',\n  },\n)\n</script>\n\n<template>\n  <AvatarRoot :class=\"cn(avatarVariant({ size, shape }), props.class)\">\n    <slot />\n  </AvatarRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/avatar/AvatarFallback.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/avatar/AvatarFallback.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { AvatarFallbackProps } from 'reka-ui'\nimport { AvatarFallback } from 'reka-ui'\n\nconst props = defineProps<AvatarFallbackProps>()\n</script>\n\n<template>\n  <AvatarFallback v-bind=\"props\">\n    <slot />\n  </AvatarFallback>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/avatar/AvatarImage.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/avatar/AvatarImage.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { AvatarImageProps } from 'reka-ui'\nimport { AvatarImage } from 'reka-ui'\n\nconst props = defineProps<AvatarImageProps>()\n</script>\n\n<template>\n  <AvatarImage v-bind=\"props\" class=\"h-full w-full object-cover\">\n    <slot />\n  </AvatarImage>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/avatar/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/avatar/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\nimport { cva } from 'class-variance-authority'\n\nexport { default as Avatar } from './Avatar.vue'\nexport { default as AvatarFallback } from './AvatarFallback.vue'\nexport { default as AvatarImage } from './AvatarImage.vue'\n\nexport const avatarVariant = cva(\n  'inline-flex items-center justify-center font-normal text-foreground select-none shrink-0 bg-secondary overflow-hidden',\n  {\n    variants: {\n      size: {\n        sm: 'h-10 w-10 text-xs',\n        base: 'h-16 w-16 text-2xl',\n        lg: 'h-32 w-32 text-5xl',\n      },\n      shape: {\n        circle: 'rounded-full',\n        square: 'rounded-md',\n      },\n    },\n  },\n)\n\nexport type AvatarVariants = VariantProps<typeof avatarVariant>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/Breadcrumb.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/Breadcrumb.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <nav aria-label=\"breadcrumb\" :class=\"props.class\">\n    <slot />\n  </nav>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbEllipsis.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbEllipsis.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\nimport { DotsHorizontalIcon } from '@radix-icons/vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <span\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', props.class)\"\n  >\n    <slot>\n      <DotsHorizontalIcon class=\"h-4 w-4\" />\n    </slot>\n    <span class=\"sr-only\">More</span>\n  </span>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbItem.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <li :class=\"cn('inline-flex items-center gap-1.5', props.class)\">\n    <slot />\n  </li>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbLink.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbLink.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(defineProps<PrimitiveProps & { class?: HTMLAttributes['class'] }>(), {\n  as: 'a',\n})\n</script>\n\n<template>\n  <Primitive\n    :as=\"as\"\n    :as-child=\"asChild\"\n    :class=\"cn('transition-colors hover:text-foreground', props.class)\"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbList.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbList.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <ol\n    :class=\"\n      cn(\n        'flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </ol>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbPage.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbPage.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <span\n    role=\"link\"\n    aria-disabled=\"true\"\n    aria-current=\"page\"\n    :class=\"cn('font-normal text-foreground', props.class)\"\n  >\n    <slot />\n  </span>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/BreadcrumbSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/breadcrumb/BreadcrumbSeparator.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\n\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <li role=\"presentation\" aria-hidden=\"true\" :class=\"cn('[&>svg]:size-3.5', props.class)\">\n    <slot>\n      <div class=\"i-tabler-chevron-right\" />\n    </slot>\n  </li>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/breadcrumb/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/breadcrumb/index.ts",
+      "content": "export { default as Breadcrumb } from './Breadcrumb.vue'\nexport { default as BreadcrumbEllipsis } from './BreadcrumbEllipsis.vue'\nexport { default as BreadcrumbItem } from './BreadcrumbItem.vue'\nexport { default as BreadcrumbLink } from './BreadcrumbLink.vue'\nexport { default as BreadcrumbList } from './BreadcrumbList.vue'\nexport { default as BreadcrumbPage } from './BreadcrumbPage.vue'\nexport { default as BreadcrumbSeparator } from './BreadcrumbSeparator.vue'\n"
+    },
+    {
+      "path": "src/components/ui/button/Button.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/button/Button.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { ButtonVariants } from '.'\nimport { computed } from 'vue'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '.'\n\ntype SemanticButtonType = NonNullable<ButtonVariants['type']>\n\nexport interface Props extends PrimitiveProps {\n  variant?: ButtonVariants['variant']\n  type?: SemanticButtonType | 'waring' | 'button' | 'submit' | 'reset'\n  // Backward compatibility for previous color API.\n  color?: SemanticButtonType | 'waring'\n  size?: ButtonVariants['size']\n  class?: HTMLAttributes['class']\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  as: 'button',\n})\n\nconst semanticTypeSet = new Set(['primary', 'success', 'info', 'warning', 'error'])\n\nconst normalizeSemanticType = (value?: string): SemanticButtonType | undefined => {\n  if (!value) return undefined\n  if (value === 'waring') return 'warning'\n  return semanticTypeSet.has(value) ? (value as SemanticButtonType) : undefined\n}\n\nconst buttonVisualType = computed<SemanticButtonType | undefined>(\n  () =>\n    normalizeSemanticType(props.type as string | undefined) ?? normalizeSemanticType(props.color),\n)\n\nconst nativeButtonType = computed<'button' | 'submit' | 'reset' | undefined>(() => {\n  const rawType = props.type\n  return rawType === 'button' || rawType === 'submit' || rawType === 'reset' ? rawType : undefined\n})\n</script>\n\n<template>\n  <Primitive\n    data-slot=\"button\"\n    :as=\"as\"\n    :as-child=\"asChild\"\n    :type=\"nativeButtonType\"\n    :class=\"cn(buttonVariants({ variant, type: buttonVisualType, size }), props.class)\"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/button/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/button/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\nimport { cva } from 'class-variance-authority'\n\nexport { default as Button } from './Button.vue'\n\nexport const buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n  {\n    variants: {\n      variant: {\n        default: '',\n        destructive:\n          'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',\n        outline:\n          'border bg-background shadow-xs dark:bg-input/30 dark:border-input dark:hover:bg-input/50',\n        secondary: 'border',\n        ghost: '',\n        link: 'underline-offset-4 hover:underline',\n      },\n      type: {\n        primary: '',\n        success: '',\n        info: '',\n        warning: '',\n        error: '',\n      },\n      size: {\n        default: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        tiny: 'h-6 rounded-sm px-2 has-[>svg]:px-1.5 text-xs',\n        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 text-sm',\n        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4 text-lg',\n        icon: 'size-9',\n        'icon-tiny': 'size-6',\n        'icon-sm': 'size-8',\n        'icon-lg': 'size-10',\n      },\n    },\n    compoundVariants: [\n      // solid\n      {\n        variant: 'default',\n        type: 'primary',\n        class: 'bg-primary text-primary-foreground hover:bg-primary/90',\n      },\n      {\n        variant: 'default',\n        type: 'success',\n        class: 'bg-success text-success-foreground hover:bg-success/90',\n      },\n      { variant: 'default', type: 'info', class: 'bg-info text-info-foreground hover:bg-info/90' },\n      {\n        variant: 'default',\n        type: 'warning',\n        class: 'bg-warning text-warning-foreground hover:bg-warning/90',\n      },\n      {\n        variant: 'default',\n        type: 'error',\n        class: 'bg-error text-error-foreground hover:bg-error/90',\n      },\n\n      // outline\n      {\n        variant: 'outline',\n        type: 'primary',\n        class:\n          'text-primary border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/30',\n      },\n      {\n        variant: 'outline',\n        type: 'success',\n        class:\n          'text-success border-success/35 hover:bg-success/10 hover:text-success focus-visible:ring-success/20 dark:focus-visible:ring-success/30',\n      },\n      {\n        variant: 'outline',\n        type: 'info',\n        class:\n          'text-info border-info/35 hover:bg-info/10 hover:text-info focus-visible:ring-info/20 dark:focus-visible:ring-info/30',\n      },\n      {\n        variant: 'outline',\n        type: 'warning',\n        class:\n          'text-warning border-warning/35 hover:bg-warning/12 hover:text-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/30',\n      },\n      {\n        variant: 'outline',\n        type: 'error',\n        class:\n          'text-error border-error/35 hover:bg-error/10 hover:text-error focus-visible:ring-error/20 dark:focus-visible:ring-error/30',\n      },\n\n      // soft/secondary: use visible tinted background\n      {\n        variant: 'secondary',\n        type: 'primary',\n        class:\n          'bg-primary/16 text-primary border-primary/18 hover:bg-primary/24 focus-visible:ring-primary/20 dark:bg-primary/24 dark:border-primary/20 dark:hover:bg-primary/32',\n      },\n      {\n        variant: 'secondary',\n        type: 'success',\n        class:\n          'bg-success/16 text-success border-success/18 hover:bg-success/24 focus-visible:ring-success/20 dark:bg-success/24 dark:border-success/20 dark:hover:bg-success/32',\n      },\n      {\n        variant: 'secondary',\n        type: 'info',\n        class:\n          'bg-info/16 text-info border-info/18 hover:bg-info/24 focus-visible:ring-info/20 dark:bg-info/24 dark:border-info/20 dark:hover:bg-info/32',\n      },\n      {\n        variant: 'secondary',\n        type: 'warning',\n        class:\n          'bg-warning/16 text-warning border-warning/18 hover:bg-warning/24 focus-visible:ring-warning/20 dark:bg-warning/24 dark:border-warning/20 dark:hover:bg-warning/32',\n      },\n      {\n        variant: 'secondary',\n        type: 'error',\n        class:\n          'bg-error/16 text-error border-error/18 hover:bg-error/24 focus-visible:ring-error/20 dark:bg-error/24 dark:border-error/20 dark:hover:bg-error/32',\n      },\n\n      // ghost: keep background clean; only hover tint\n      {\n        variant: 'ghost',\n        type: 'primary',\n        class: 'text-primary hover:bg-primary/12 hover:text-primary',\n      },\n      {\n        variant: 'ghost',\n        type: 'success',\n        class: 'text-success hover:bg-success/12 hover:text-success',\n      },\n      { variant: 'ghost', type: 'info', class: 'text-info hover:bg-info/12 hover:text-info' },\n      {\n        variant: 'ghost',\n        type: 'warning',\n        class: 'text-warning hover:bg-warning/12 hover:text-warning',\n      },\n      { variant: 'ghost', type: 'error', class: 'text-error hover:bg-error/12 hover:text-error' },\n\n      // link\n      { variant: 'link', type: 'primary', class: 'text-primary' },\n      { variant: 'link', type: 'success', class: 'text-success' },\n      { variant: 'link', type: 'info', class: 'text-info' },\n      { variant: 'link', type: 'warning', class: 'text-warning' },\n      { variant: 'link', type: 'error', class: 'text-error' },\n    ],\n    defaultVariants: {\n      variant: 'default',\n      type: 'primary',\n      size: 'default',\n    },\n  },\n)\nexport type ButtonVariants = VariantProps<typeof buttonVariants>\n"
+    },
+    {
+      "path": "src/components/ui/card/Card.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/Card.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('rounded-xl border bg-card text-card-foreground shadow', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/card/CardContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('p-6 pt-0', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/card/CardDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <p :class=\"cn('text-sm text-muted-foreground', props.class)\">\n    <slot />\n  </p>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/card/CardFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex items-center p-6 pt-0', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/card/CardHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col gap-y-1.5 p-6', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/card/CardTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/card/CardTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <h3 :class=\"cn('font-semibold leading-none tracking-tight', props.class)\">\n    <slot />\n  </h3>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/card/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/card/index.ts",
+      "content": "export { default as Card } from './Card.vue'\nexport { default as CardContent } from './CardContent.vue'\nexport { default as CardDescription } from './CardDescription.vue'\nexport { default as CardFooter } from './CardFooter.vue'\nexport { default as CardHeader } from './CardHeader.vue'\nexport { default as CardTitle } from './CardTitle.vue'\n"
+    },
+    {
+      "path": "src/components/ui/checkbox/Checkbox.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/checkbox/Checkbox.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { CheckboxRootEmits, CheckboxRootProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { CheckIcon } from '@radix-icons/vue'\nimport { CheckboxIndicator, CheckboxRoot, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<CheckboxRootProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<CheckboxRootEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <CheckboxRoot\n    v-bind=\"forwarded\"\n    :class=\"\n      cn(\n        'grid place-content-center peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',\n        props.class,\n      )\n    \"\n  >\n    <CheckboxIndicator class=\"grid place-content-center text-current\">\n      <slot>\n        <CheckIcon class=\"h-4 w-4\" />\n      </slot>\n    </CheckboxIndicator>\n  </CheckboxRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/checkbox/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/checkbox/index.ts",
+      "content": "export { default as Checkbox } from './Checkbox.vue'\n"
+    },
+    {
+      "path": "src/components/ui/collapsible/Collapsible.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/collapsible/Collapsible.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { CollapsibleRootEmits, CollapsibleRootProps } from 'reka-ui'\nimport { CollapsibleRoot, useForwardPropsEmits } from 'reka-ui'\n\nconst props = defineProps<CollapsibleRootProps>()\nconst emits = defineEmits<CollapsibleRootEmits>()\n\nconst forwarded = useForwardPropsEmits(props, emits)\n</script>\n\n<template>\n  <CollapsibleRoot v-slot=\"{ open }\" v-bind=\"forwarded\">\n    <slot :open=\"open\" />\n  </CollapsibleRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/collapsible/CollapsibleContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/collapsible/CollapsibleContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { CollapsibleContentProps } from 'reka-ui'\nimport { CollapsibleContent } from 'reka-ui'\n\nconst props = defineProps<CollapsibleContentProps>()\n</script>\n\n<template>\n  <CollapsibleContent\n    v-bind=\"props\"\n    class=\"overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down\"\n  >\n    <slot />\n  </CollapsibleContent>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/collapsible/CollapsibleTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/collapsible/CollapsibleTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { CollapsibleTriggerProps } from 'reka-ui'\nimport { CollapsibleTrigger } from 'reka-ui'\n\nconst props = defineProps<CollapsibleTriggerProps>()\n</script>\n\n<template>\n  <CollapsibleTrigger v-bind=\"props\">\n    <slot />\n  </CollapsibleTrigger>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/collapsible/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/collapsible/index.ts",
+      "content": "export { default as Collapsible } from './Collapsible.vue'\nexport { default as CollapsibleContent } from './CollapsibleContent.vue'\nexport { default as CollapsibleTrigger } from './CollapsibleTrigger.vue'\n"
+    },
+    {
+      "path": "src/components/ui/dialog/Dialog.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/Dialog.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogRootEmits, DialogRootProps } from 'reka-ui'\nimport { DialogRoot, useForwardPropsEmits } from 'reka-ui'\n\nconst props = defineProps<DialogRootProps>()\nconst emits = defineEmits<DialogRootEmits>()\n\nconst forwarded = useForwardPropsEmits(props, emits)\n</script>\n\n<template>\n  <DialogRoot v-bind=\"forwarded\">\n    <slot />\n  </DialogRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogClose.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogClose.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogCloseProps } from 'reka-ui'\nimport { DialogClose } from 'reka-ui'\n\nconst props = defineProps<DialogCloseProps>()\n</script>\n\n<template>\n  <DialogClose v-bind=\"props\">\n    <slot />\n  </DialogClose>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogContentEmits, DialogContentProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { Cross2Icon } from '@radix-icons/vue'\nimport {\n  DialogClose,\n  DialogContent,\n  DialogOverlay,\n  DialogPortal,\n  useForwardPropsEmits,\n} from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<DialogContentEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DialogPortal>\n    <DialogOverlay\n      class=\"fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    />\n    <DialogContent\n      v-bind=\"forwarded\"\n      :class=\"\n        cn(\n          'fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border bg-background text-foreground p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg',\n          props.class,\n        )\n      \"\n    >\n      <slot />\n\n      <DialogClose\n        class=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground\"\n      >\n        <Cross2Icon class=\"w-4 h-4\" />\n        <span class=\"sr-only\">Close</span>\n      </DialogClose>\n    </DialogContent>\n  </DialogPortal>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogDescriptionProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DialogDescription, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwardedProps = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <DialogDescription\n    v-bind=\"forwardedProps\"\n    :class=\"cn('text-sm text-muted-foreground', props.class)\"\n  >\n    <slot />\n  </DialogDescription>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: HTMLAttributes['class'] }>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-x-2', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col gap-y-1.5 text-center sm:text-left', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogScrollContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogScrollContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogContentEmits, DialogContentProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { Cross2Icon } from '@radix-icons/vue'\nimport {\n  DialogClose,\n  DialogContent,\n  DialogOverlay,\n  DialogPortal,\n  useForwardPropsEmits,\n} from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<DialogContentEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DialogPortal>\n    <DialogOverlay\n      class=\"fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    >\n      <DialogContent\n        :class=\"\n          cn(\n            'relative z-50 grid w-full max-w-lg my-8 gap-4 border border-border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full',\n            props.class,\n          )\n        \"\n        v-bind=\"forwarded\"\n        @pointer-down-outside=\"\n          (event) => {\n            const originalEvent = event.detail.originalEvent\n            const target = originalEvent.target as HTMLElement\n            if (\n              originalEvent.offsetX > target.clientWidth ||\n              originalEvent.offsetY > target.clientHeight\n            ) {\n              event.preventDefault()\n            }\n          }\n        \"\n      >\n        <slot />\n\n        <DialogClose\n          class=\"absolute top-4 right-4 p-0.5 transition-colors rounded-md hover:bg-secondary\"\n        >\n          <Cross2Icon class=\"w-4 h-4\" />\n          <span class=\"sr-only\">Close</span>\n        </DialogClose>\n      </DialogContent>\n    </DialogOverlay>\n  </DialogPortal>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogTitleProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DialogTitle, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DialogTitleProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwardedProps = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <DialogTitle\n    v-bind=\"forwardedProps\"\n    :class=\"cn('text-lg font-semibold leading-none tracking-tight', props.class)\"\n  >\n    <slot />\n  </DialogTitle>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/DialogTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dialog/DialogTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogTriggerProps } from 'reka-ui'\nimport { DialogTrigger } from 'reka-ui'\n\nconst props = defineProps<DialogTriggerProps>()\n</script>\n\n<template>\n  <DialogTrigger v-bind=\"props\">\n    <slot />\n  </DialogTrigger>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dialog/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/dialog/index.ts",
+      "content": "export { default as Dialog } from './Dialog.vue'\nexport { default as DialogClose } from './DialogClose.vue'\nexport { default as DialogContent } from './DialogContent.vue'\nexport { default as DialogDescription } from './DialogDescription.vue'\nexport { default as DialogFooter } from './DialogFooter.vue'\nexport { default as DialogHeader } from './DialogHeader.vue'\nexport { default as DialogScrollContent } from './DialogScrollContent.vue'\nexport { default as DialogTitle } from './DialogTitle.vue'\nexport { default as DialogTrigger } from './DialogTrigger.vue'\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenu.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenu.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuRootEmits, DropdownMenuRootProps } from 'reka-ui'\nimport { DropdownMenuRoot, useForwardPropsEmits } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuRootProps>()\nconst emits = defineEmits<DropdownMenuRootEmits>()\n\nconst forwarded = useForwardPropsEmits(props, emits)\n</script>\n\n<template>\n  <DropdownMenuRoot v-bind=\"forwarded\">\n    <slot />\n  </DropdownMenuRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuCheckboxItemEmits, DropdownMenuCheckboxItemProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { CheckIcon } from '@radix-icons/vue'\nimport { DropdownMenuCheckboxItem, DropdownMenuItemIndicator, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DropdownMenuCheckboxItemProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<DropdownMenuCheckboxItemEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DropdownMenuCheckboxItem\n    v-bind=\"forwarded\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        props.class,\n      )\n    \"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <DropdownMenuItemIndicator>\n        <CheckIcon class=\"w-4 h-4\" />\n      </DropdownMenuItemIndicator>\n    </span>\n    <slot />\n  </DropdownMenuCheckboxItem>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuContentEmits, DropdownMenuContentProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DropdownMenuContent, DropdownMenuPortal, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<DropdownMenuContentProps & { class?: HTMLAttributes['class'] }>(),\n  {\n    sideOffset: 4,\n  },\n)\nconst emits = defineEmits<DropdownMenuContentEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DropdownMenuPortal>\n    <DropdownMenuContent\n      v-bind=\"forwarded\"\n      :class=\"\n        cn(\n          'z-50 min-w-32 overflow-hidden rounded-md border border-border  bg-popover  text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',\n          props.class,\n        )\n      \"\n    >\n      <slot />\n    </DropdownMenuContent>\n  </DropdownMenuPortal>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuGroupProps } from 'reka-ui'\nimport { DropdownMenuGroup } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuGroupProps>()\n</script>\n\n<template>\n  <DropdownMenuGroup v-bind=\"props\">\n    <slot />\n  </DropdownMenuGroup>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuItemProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DropdownMenuItem, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  DropdownMenuItemProps & { class?: HTMLAttributes['class']; inset?: boolean }\n>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwardedProps = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <DropdownMenuItem\n    v-bind=\"forwardedProps\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center rounded-sm gap-2 px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0',\n        inset && 'pl-8',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </DropdownMenuItem>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuLabel.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuLabelProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DropdownMenuLabel, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  DropdownMenuLabelProps & { class?: HTMLAttributes['class']; inset?: boolean }\n>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwardedProps = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <DropdownMenuLabel\n    v-bind=\"forwardedProps\"\n    :class=\"cn('px-2 py-1.5 text-sm font-semibold', inset && 'pl-8', props.class)\"\n  >\n    <slot />\n  </DropdownMenuLabel>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuRadioGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuRadioGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuRadioGroupEmits, DropdownMenuRadioGroupProps } from 'reka-ui'\nimport { DropdownMenuRadioGroup, useForwardPropsEmits } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuRadioGroupProps>()\nconst emits = defineEmits<DropdownMenuRadioGroupEmits>()\n\nconst forwarded = useForwardPropsEmits(props, emits)\n</script>\n\n<template>\n  <DropdownMenuRadioGroup v-bind=\"forwarded\">\n    <slot />\n  </DropdownMenuRadioGroup>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuRadioItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuRadioItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuRadioItemEmits, DropdownMenuRadioItemProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DotFilledIcon } from '@radix-icons/vue'\nimport { DropdownMenuItemIndicator, DropdownMenuRadioItem, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DropdownMenuRadioItemProps & { class?: HTMLAttributes['class'] }>()\n\nconst emits = defineEmits<DropdownMenuRadioItemEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DropdownMenuRadioItem\n    v-bind=\"forwarded\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        props.class,\n      )\n    \"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <DropdownMenuItemIndicator>\n        <DotFilledIcon class=\"h-4 w-4 fill-current\" />\n      </DropdownMenuItemIndicator>\n    </span>\n    <slot />\n  </DropdownMenuRadioItem>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuSeparatorProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DropdownMenuSeparator } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  DropdownMenuSeparatorProps & {\n    class?: HTMLAttributes['class']\n  }\n>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <DropdownMenuSeparator\n    v-bind=\"delegatedProps\"\n    :class=\"cn('-mx-1 my-1 h-px bg-muted', props.class)\"\n  />\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuShortcut.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuShortcut.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <span :class=\"cn('ml-auto text-xs tracking-widest opacity-60', props.class)\">\n    <slot />\n  </span>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSub.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSub.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuSubEmits, DropdownMenuSubProps } from 'reka-ui'\nimport { DropdownMenuSub, useForwardPropsEmits } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuSubProps>()\nconst emits = defineEmits<DropdownMenuSubEmits>()\n\nconst forwarded = useForwardPropsEmits(props, emits)\n</script>\n\n<template>\n  <DropdownMenuSub v-bind=\"forwarded\">\n    <slot />\n  </DropdownMenuSub>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSubContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSubContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuSubContentEmits, DropdownMenuSubContentProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DropdownMenuSubContent, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DropdownMenuSubContentProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<DropdownMenuSubContentEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DropdownMenuSubContent\n    v-bind=\"forwarded\"\n    :class=\"\n      cn(\n        'z-50 min-w-32 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </DropdownMenuSubContent>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuSubTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuSubTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuSubTriggerProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { ChevronRightIcon } from '@radix-icons/vue'\nimport { DropdownMenuSubTrigger, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DropdownMenuSubTriggerProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwardedProps = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <DropdownMenuSubTrigger\n    v-bind=\"forwardedProps\"\n    :class=\"\n      cn(\n        'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n    <ChevronRightIcon class=\"ml-auto h-4 w-4\" />\n  </DropdownMenuSubTrigger>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/DropdownMenuTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/dropdown-menu/DropdownMenuTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DropdownMenuTriggerProps } from 'reka-ui'\nimport { DropdownMenuTrigger, useForwardProps } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuTriggerProps>()\n\nconst forwardedProps = useForwardProps(props)\n</script>\n\n<template>\n  <DropdownMenuTrigger class=\"outline-none\" v-bind=\"forwardedProps\">\n    <slot />\n  </DropdownMenuTrigger>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/dropdown-menu/index.ts",
+      "content": "export { default as DropdownMenu } from './DropdownMenu.vue'\n\nexport { default as DropdownMenuCheckboxItem } from './DropdownMenuCheckboxItem.vue'\nexport { default as DropdownMenuContent } from './DropdownMenuContent.vue'\nexport { default as DropdownMenuGroup } from './DropdownMenuGroup.vue'\nexport { default as DropdownMenuItem } from './DropdownMenuItem.vue'\nexport { default as DropdownMenuLabel } from './DropdownMenuLabel.vue'\nexport { default as DropdownMenuRadioGroup } from './DropdownMenuRadioGroup.vue'\nexport { default as DropdownMenuRadioItem } from './DropdownMenuRadioItem.vue'\nexport { default as DropdownMenuSeparator } from './DropdownMenuSeparator.vue'\nexport { default as DropdownMenuShortcut } from './DropdownMenuShortcut.vue'\nexport { default as DropdownMenuSub } from './DropdownMenuSub.vue'\nexport { default as DropdownMenuSubContent } from './DropdownMenuSubContent.vue'\nexport { default as DropdownMenuSubTrigger } from './DropdownMenuSubTrigger.vue'\nexport { default as DropdownMenuTrigger } from './DropdownMenuTrigger.vue'\nexport { DropdownMenuPortal } from 'reka-ui'\n"
+    },
+    {
+      "path": "src/components/ui/field/Field.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/Field.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport type { FieldVariants } from '.'\nimport { cn } from '@/lib/utils'\nimport { fieldVariants } from '.'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n  orientation?: FieldVariants['orientation']\n}>()\n</script>\n\n<template>\n  <div\n    role=\"group\"\n    data-slot=\"field\"\n    :data-orientation=\"orientation\"\n    :class=\"cn(fieldVariants({ orientation }), props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"field-content\"\n    :class=\"cn('group/field-content flex flex-1 flex-col gap-1.5 leading-snug', props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <p\n    data-slot=\"field-description\"\n    :class=\"\n      cn(\n        'text-muted-foreground text-sm leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance',\n        'last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5',\n        '[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </p>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldError.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldError.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n  errors?: Array<{ message?: string } | undefined>\n}>()\n\nconst content = computed(() => {\n  if (!props.errors || props.errors.length === 0) return null\n\n  if (props.errors.length === 1 && props.errors[0]?.message) {\n    return props.errors[0].message\n  }\n\n  return props.errors.some((e) => e?.message) ? props.errors : null\n})\n</script>\n\n<template>\n  <div\n    v-if=\"$slots.default || content\"\n    role=\"alert\"\n    data-slot=\"field-error\"\n    :class=\"cn('text-destructive text-sm font-normal', props.class)\"\n  >\n    <slot v-if=\"$slots.default\" />\n\n    <template v-else-if=\"typeof content === 'string'\">\n      {{ content }}\n    </template>\n\n    <ul v-else-if=\"Array.isArray(content)\" class=\"ml-4 flex list-disc flex-col gap-1\">\n      <li v-for=\"(error, index) in content\" :key=\"index\">\n        {{ error?.message }}\n      </li>\n    </ul>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"field-group\"\n    :class=\"\n      cn(\n        'group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-group]:gap-3 [&>[data-slot=field-group]]:gap-4',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldLabel.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Label } from '@/components/ui/label'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <Label\n    data-slot=\"field-label\"\n    :class=\"\n      cn(\n        'group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50',\n        'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border [&_>[data-slot=field]]:p-3',\n        'has-[[data-state=checked]]:bg-primary/5 has-[[data-state=checked]]:border-primary dark:has-[[data-state=checked]]:bg-primary/10',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </Label>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldLegend.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldLegend.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n  variant?: 'legend' | 'label'\n}>()\n</script>\n\n<template>\n  <legend\n    data-slot=\"field-legend\"\n    :data-variant=\"variant\"\n    :class=\"\n      cn(\n        'mb-3 font-medium',\n        'data-[variant=legend]:text-base',\n        'data-[variant=label]:text-sm',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </legend>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Separator } from '@/components/ui/separator'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"field-separator\"\n    :data-content=\"!!$slots.default\"\n    :class=\"\n      cn('relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2', props.class)\n    \"\n  >\n    <Separator class=\"absolute inset-0 top-1/2\" />\n    <span\n      v-if=\"$slots.default\"\n      class=\"bg-background text-muted-foreground relative mx-auto block w-fit px-2\"\n      data-slot=\"field-separator-content\"\n    >\n      <slot />\n    </span>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldSet.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldSet.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <fieldset\n    data-slot=\"field-set\"\n    :class=\"\n      cn(\n        'flex flex-col gap-6',\n        'has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </fieldset>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/FieldTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/field/FieldTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"field-label\"\n    :class=\"\n      cn(\n        'flex w-fit items-center gap-2 text-sm leading-snug font-medium group-data-[disabled=true]/field:opacity-50',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/field/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/field/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\nimport { cva } from 'class-variance-authority'\n\nexport const fieldVariants = cva(\n  'group/field flex w-full gap-3 data-[invalid=true]:text-destructive',\n  {\n    variants: {\n      orientation: {\n        vertical: ['flex-col [&>*]:w-full [&>.sr-only]:w-auto'],\n        horizontal: [\n          'flex-row items-center',\n          '[&>[data-slot=field-label]]:flex-auto',\n          'has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px',\n        ],\n        responsive: [\n          'flex-col [&>*]:w-full [&>.sr-only]:w-auto @md/field-group:flex-row @md/field-group:items-center @md/field-group:[&>*]:w-auto',\n          '@md/field-group:[&>[data-slot=field-label]]:flex-auto',\n          '@md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px',\n        ],\n      },\n    },\n    defaultVariants: {\n      orientation: 'vertical',\n    },\n  },\n)\n\nexport type FieldVariants = VariantProps<typeof fieldVariants>\n\nexport { default as Field } from './Field.vue'\nexport { default as FieldContent } from './FieldContent.vue'\nexport { default as FieldDescription } from './FieldDescription.vue'\nexport { default as FieldError } from './FieldError.vue'\nexport { default as FieldGroup } from './FieldGroup.vue'\nexport { default as FieldLabel } from './FieldLabel.vue'\nexport { default as FieldLegend } from './FieldLegend.vue'\nexport { default as FieldSeparator } from './FieldSeparator.vue'\nexport { default as FieldSet } from './FieldSet.vue'\nexport { default as FieldTitle } from './FieldTitle.vue'\n"
+    },
+    {
+      "path": "src/components/ui/form/FormControl.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormControl.vue",
+      "content": "<script lang=\"ts\" setup>\nimport { Slot } from 'reka-ui'\nimport { useFormField } from './useFormField'\n\nconst { error, formItemId, formDescriptionId, formMessageId } = useFormField()\n</script>\n\n<template>\n  <Slot\n    :id=\"formItemId\"\n    :aria-describedby=\"!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`\"\n    :aria-invalid=\"!!error\"\n  >\n    <slot />\n  </Slot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/form/FormDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormDescription.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { useFormField } from './useFormField'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n\nconst { formDescriptionId } = useFormField()\n</script>\n\n<template>\n  <p :id=\"formDescriptionId\" :class=\"cn('text-sm text-muted-foreground', props.class)\">\n    <slot />\n  </p>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/form/FormItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormItem.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { HTMLAttributes } from 'vue'\nimport { useId } from 'reka-ui'\nimport { provide } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { FORM_ITEM_INJECTION_KEY } from './injectionKeys'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n\nconst id = useId()\nprovide(FORM_ITEM_INJECTION_KEY, id)\n</script>\n\n<template>\n  <div :class=\"cn('space-y-2', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/form/FormLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormLabel.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { LabelProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Label } from '@/components/ui/label'\nimport { useFormField } from './useFormField'\n\nconst props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()\n\nconst { error, formItemId } = useFormField()\n</script>\n\n<template>\n  <Label :class=\"cn(error && 'text-destructive', props.class)\" :for=\"formItemId\">\n    <slot />\n  </Label>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/form/FormMessage.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/form/FormMessage.vue",
+      "content": "<script lang=\"ts\" setup>\nimport { ErrorMessage } from 'vee-validate'\nimport { toValue } from 'vue'\nimport { useFormField } from './useFormField'\n\nconst { name, formMessageId } = useFormField()\n</script>\n\n<template>\n  <ErrorMessage\n    :id=\"formMessageId\"\n    as=\"p\"\n    :name=\"toValue(name)\"\n    class=\"text-[0.8rem] font-medium text-destructive\"\n  />\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/form/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/form/index.ts",
+      "content": "export { default as FormControl } from './FormControl.vue'\nexport { default as FormDescription } from './FormDescription.vue'\nexport { default as FormItem } from './FormItem.vue'\nexport { default as FormLabel } from './FormLabel.vue'\nexport { default as FormMessage } from './FormMessage.vue'\nexport { FORM_ITEM_INJECTION_KEY } from './injectionKeys'\nexport { Form, Field as FormField, FieldArray as FormFieldArray } from 'vee-validate'\n"
+    },
+    {
+      "path": "src/components/ui/form/injectionKeys.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/form/injectionKeys.ts",
+      "content": "import type { InjectionKey } from 'vue'\n\nexport const FORM_ITEM_INJECTION_KEY = Symbol() as InjectionKey<string>\n"
+    },
+    {
+      "path": "src/components/ui/form/useFormField.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/form/useFormField.ts",
+      "content": "import { FieldContextKey } from 'vee-validate'\nimport { computed, inject } from 'vue'\nimport { FORM_ITEM_INJECTION_KEY } from './injectionKeys'\n\nexport function useFormField() {\n  const fieldContext = inject(FieldContextKey)\n  const fieldItemContext = inject(FORM_ITEM_INJECTION_KEY)\n\n  if (!fieldContext) throw new Error('useFormField should be used within <FormField>')\n\n  const { name, errorMessage: error, meta } = fieldContext\n  const id = fieldItemContext\n\n  const fieldState = {\n    valid: computed(() => meta.valid),\n    isDirty: computed(() => meta.dirty),\n    isTouched: computed(() => meta.touched),\n    error,\n  }\n\n  return {\n    id,\n    name,\n    formItemId: `${id}-form-item`,\n    formDescriptionId: `${id}-form-item-description`,\n    formMessageId: `${id}-form-item-message`,\n    ...fieldState,\n  }\n}\n"
+    },
+    {
+      "path": "src/components/ui/input/Input.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/input/Input.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { useVModel } from '@vueuse/core'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  defaultValue?: string | number\n  modelValue?: string | number\n  class?: HTMLAttributes['class']\n}>()\n\nconst emits = defineEmits<{\n  (e: 'update:modelValue', payload: string | number): void\n}>()\n\nconst modelValue = useVModel(props, 'modelValue', emits, {\n  passive: true,\n  defaultValue: props.defaultValue,\n})\n</script>\n\n<template>\n  <input\n    v-model=\"modelValue\"\n    :class=\"\n      cn(\n        'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground  transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',\n        props.class,\n      )\n    \"\n  />\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/input/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/input/index.ts",
+      "content": "export { default as Input } from './Input.vue'\n"
+    },
+    {
+      "path": "src/components/ui/label/Label.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/label/Label.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { LabelProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { Label } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <Label\n    v-bind=\"delegatedProps\"\n    :class=\"\n      cn(\n        'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </Label>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/label/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/label/index.ts",
+      "content": "export { default as Label } from './Label.vue'\n"
+    },
+    {
+      "path": "src/components/ui/loader/GlobalLoadingOverlay.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/loader/GlobalLoadingOverlay.vue",
+      "content": "<script setup lang=\"ts\">\nimport useGlobalLoadingStore from '@/store/globalLoadingStore'\n\nconst loadingStore = useGlobalLoadingStore()\nconst letters = 'LOADING'.split('')\n</script>\n\n<template>\n  <Transition name=\"global-loading-fade\">\n    <div\n      v-if=\"loadingStore.isLoading\"\n      class=\"global-loading-overlay\"\n      aria-live=\"polite\"\n      aria-busy=\"true\"\n    >\n      <div class=\"wrapper-grid\" role=\"status\" aria-label=\"正在加载中\">\n        <div v-for=\"(letter, index) in letters\" :key=\"`${letter}-${index}`\" class=\"cube\">\n          <div class=\"face face-front\">{{ letter }}</div>\n          <div class=\"face face-back\"></div>\n          <div class=\"face face-right\"></div>\n          <div class=\"face face-left\"></div>\n          <div class=\"face face-top\"></div>\n          <div class=\"face face-bottom\"></div>\n        </div>\n      </div>\n    </div>\n  </Transition>\n</template>\n\n<style>\n.global-loading-overlay {\n  position: fixed;\n  inset: 0;\n  z-index: 2000;\n  display: grid;\n  place-items: center;\n  backdrop-filter: blur(4px);\n  background: hsl(var(--background) / 0.82);\n  transition: background-color 0.3s ease;\n}\n\n.dark .global-loading-overlay {\n  background: hsl(var(--background) / 0.96);\n}\n</style>\n\n<style scoped>\n.global-loading-fade-enter-active,\n.global-loading-fade-leave-active {\n  transition: opacity 0.2s ease;\n}\n\n.global-loading-fade-enter-from,\n.global-loading-fade-leave-to {\n  opacity: 0;\n}\n</style>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/Pagination.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/Pagination.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationRootEmits, PaginationRootProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { PaginationRoot, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  PaginationRootProps & {\n    class?: HTMLAttributes['class']\n  }\n>()\nconst emits = defineEmits<PaginationRootEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <PaginationRoot\n    v-slot=\"slotProps\"\n    data-slot=\"pagination\"\n    v-bind=\"forwarded\"\n    :class=\"cn('mx-auto flex w-full justify-center', props.class)\"\n  >\n    <slot v-bind=\"slotProps\" />\n  </PaginationRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationListProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { PaginationList } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<PaginationListProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <PaginationList\n    v-slot=\"slotProps\"\n    data-slot=\"pagination-content\"\n    v-bind=\"delegatedProps\"\n    :class=\"cn('flex flex-row items-center gap-1', props.class)\"\n  >\n    <slot v-bind=\"slotProps\" />\n  </PaginationList>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationEllipsis.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationEllipsis.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationEllipsisProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DotsHorizontalIcon } from '@radix-icons/vue'\nimport { PaginationEllipsis } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<PaginationEllipsisProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <PaginationEllipsis\n    data-slot=\"pagination-ellipsis\"\n    v-bind=\"delegatedProps\"\n    :class=\"cn('flex size-9 items-center justify-center', props.class)\"\n  >\n    <slot>\n      <DotsHorizontalIcon class=\"size-4\" />\n      <span class=\"sr-only\">More pages</span>\n    </slot>\n  </PaginationEllipsis>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationFirst.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationFirst.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationFirstProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { ButtonVariants } from '@/components/ui/button'\nimport { reactiveOmit } from '@vueuse/core'\nimport { ChevronLeftIcon } from 'lucide-vue-next'\nimport { PaginationFirst, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '@/components/ui/button'\n\nconst props = withDefaults(\n  defineProps<\n    PaginationFirstProps & {\n      size?: ButtonVariants['size']\n      class?: HTMLAttributes['class']\n    }\n  >(),\n  {\n    size: 'default',\n  },\n)\n\nconst delegatedProps = reactiveOmit(props, 'class', 'size')\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <PaginationFirst\n    data-slot=\"pagination-first\"\n    :class=\"cn(buttonVariants({ variant: 'ghost', size }), 'gap-1 px-2.5 sm:pr-2.5', props.class)\"\n    v-bind=\"forwarded\"\n  >\n    <slot>\n      <ChevronLeftIcon />\n      <span class=\"hidden sm:block\">First</span>\n    </slot>\n  </PaginationFirst>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationListItemProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { ButtonVariants } from '@/components/ui/button'\nimport { reactiveOmit } from '@vueuse/core'\nimport { PaginationListItem } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '@/components/ui/button'\n\nconst props = withDefaults(\n  defineProps<\n    PaginationListItemProps & {\n      size?: ButtonVariants['size']\n      class?: HTMLAttributes['class']\n      isActive?: boolean\n    }\n  >(),\n  {\n    size: 'icon',\n  },\n)\n\nconst delegatedProps = reactiveOmit(props, 'class', 'size', 'isActive')\n</script>\n\n<template>\n  <PaginationListItem\n    data-slot=\"pagination-item\"\n    v-bind=\"delegatedProps\"\n    :class=\"\n      cn(\n        buttonVariants({\n          variant: isActive ? 'outline' : 'ghost',\n          size,\n        }),\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </PaginationListItem>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationLast.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationLast.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationLastProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { ButtonVariants } from '@/components/ui/button'\nimport { reactiveOmit } from '@vueuse/core'\nimport { ChevronRightIcon } from 'lucide-vue-next'\nimport { PaginationLast, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '@/components/ui/button'\n\nconst props = withDefaults(\n  defineProps<\n    PaginationLastProps & {\n      size?: ButtonVariants['size']\n      class?: HTMLAttributes['class']\n    }\n  >(),\n  {\n    size: 'default',\n  },\n)\n\nconst delegatedProps = reactiveOmit(props, 'class', 'size')\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <PaginationLast\n    data-slot=\"pagination-last\"\n    :class=\"cn(buttonVariants({ variant: 'ghost', size }), 'gap-1 px-2.5 sm:pr-2.5', props.class)\"\n    v-bind=\"forwarded\"\n  >\n    <slot>\n      <span class=\"hidden sm:block\">Last</span>\n      <ChevronRightIcon />\n    </slot>\n  </PaginationLast>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationNext.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationNext.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationNextProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { ButtonVariants } from '@/components/ui/button'\nimport { reactiveOmit } from '@vueuse/core'\nimport { ChevronRightIcon } from 'lucide-vue-next'\nimport { PaginationNext, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '@/components/ui/button'\n\nconst props = withDefaults(\n  defineProps<\n    PaginationNextProps & {\n      size?: ButtonVariants['size']\n      class?: HTMLAttributes['class']\n    }\n  >(),\n  {\n    size: 'default',\n  },\n)\n\nconst delegatedProps = reactiveOmit(props, 'class', 'size')\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <PaginationNext\n    data-slot=\"pagination-next\"\n    :class=\"cn(buttonVariants({ variant: 'ghost', size }), 'gap-1 px-2.5 sm:pr-2.5', props.class)\"\n    v-bind=\"forwarded\"\n  >\n    <slot>\n      <span class=\"hidden sm:block\">Next</span>\n      <ChevronRightIcon />\n    </slot>\n  </PaginationNext>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/PaginationPrevious.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/pagination/PaginationPrevious.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PaginationPrevProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { ButtonVariants } from '@/components/ui/button'\nimport { reactiveOmit } from '@vueuse/core'\nimport { ChevronLeftIcon } from 'lucide-vue-next'\nimport { PaginationPrev, useForwardProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '@/components/ui/button'\n\nconst props = withDefaults(\n  defineProps<\n    PaginationPrevProps & {\n      size?: ButtonVariants['size']\n      class?: HTMLAttributes['class']\n    }\n  >(),\n  {\n    size: 'default',\n  },\n)\n\nconst delegatedProps = reactiveOmit(props, 'class', 'size')\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <PaginationPrev\n    data-slot=\"pagination-previous\"\n    :class=\"cn(buttonVariants({ variant: 'ghost', size }), 'gap-1 px-2.5 sm:pr-2.5', props.class)\"\n    v-bind=\"forwarded\"\n  >\n    <slot>\n      <ChevronLeftIcon />\n      <span class=\"hidden sm:block\">Previous</span>\n    </slot>\n  </PaginationPrev>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/pagination/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/pagination/index.ts",
+      "content": "export { default as Pagination } from './Pagination.vue'\nexport { default as PaginationContent } from './PaginationContent.vue'\nexport { default as PaginationEllipsis } from './PaginationEllipsis.vue'\nexport { default as PaginationFirst } from './PaginationFirst.vue'\nexport { default as PaginationItem } from './PaginationItem.vue'\nexport { default as PaginationLast } from './PaginationLast.vue'\nexport { default as PaginationNext } from './PaginationNext.vue'\nexport { default as PaginationPrevious } from './PaginationPrevious.vue'\n"
+    },
+    {
+      "path": "src/components/ui/separator/Separator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/separator/Separator.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { SeparatorProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { Separator } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(defineProps<SeparatorProps & { class?: HTMLAttributes['class'] }>(), {\n  orientation: 'horizontal',\n  decorative: true,\n})\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <Separator\n    v-bind=\"delegatedProps\"\n    :class=\"\n      cn(\n        'shrink-0 bg-border',\n        props.orientation === 'horizontal' ? 'h-px w-full' : 'w-px h-full',\n        props.class,\n      )\n    \"\n  />\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/separator/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/separator/index.ts",
+      "content": "export { default as Separator } from './Separator.vue'\n"
+    },
+    {
+      "path": "src/components/ui/sheet/Sheet.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/Sheet.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogRootEmits, DialogRootProps } from 'reka-ui'\nimport { DialogRoot, useForwardPropsEmits } from 'reka-ui'\n\nconst props = defineProps<DialogRootProps>()\nconst emits = defineEmits<DialogRootEmits>()\n\nconst forwarded = useForwardPropsEmits(props, emits)\n</script>\n\n<template>\n  <DialogRoot v-bind=\"forwarded\">\n    <slot />\n  </DialogRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetClose.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetClose.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogCloseProps } from 'reka-ui'\nimport { DialogClose } from 'reka-ui'\n\nconst props = defineProps<DialogCloseProps>()\n</script>\n\n<template>\n  <DialogClose v-bind=\"props\">\n    <slot />\n  </DialogClose>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogContentEmits, DialogContentProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { SheetVariants } from '.'\nimport { reactiveOmit } from '@vueuse/core'\nimport { Cross2Icon } from '@radix-icons/vue'\nimport {\n  DialogClose,\n  DialogContent,\n  DialogOverlay,\n  DialogPortal,\n  useForwardPropsEmits,\n} from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { sheetVariants } from '.'\n\ninterface SheetContentProps extends DialogContentProps {\n  class?: HTMLAttributes['class']\n  side?: SheetVariants['side']\n}\n\ndefineOptions({\n  inheritAttrs: false,\n})\n\nconst props = defineProps<SheetContentProps>()\n\nconst emits = defineEmits<DialogContentEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class', 'side')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <DialogPortal>\n    <DialogOverlay\n      class=\"fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    />\n    <DialogContent\n      :class=\"cn(sheetVariants({ side }), props.class)\"\n      v-bind=\"{ ...forwarded, ...$attrs }\"\n    >\n      <slot />\n\n      <DialogClose\n        class=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary\"\n      >\n        <Cross2Icon class=\"w-4 h-4\" />\n      </DialogClose>\n    </DialogContent>\n  </DialogPortal>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetDescription.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogDescriptionProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DialogDescription } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <DialogDescription\n    :class=\"cn('text-sm text-muted-foreground', props.class)\"\n    v-bind=\"delegatedProps\"\n  >\n    <slot />\n  </DialogDescription>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: HTMLAttributes['class'] }>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-x-2', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: HTMLAttributes['class'] }>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col gap-y-2 text-center sm:text-left', props.class)\">\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetTitle.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogTitleProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { DialogTitle } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<DialogTitleProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n</script>\n\n<template>\n  <DialogTitle\n    :class=\"cn('text-lg font-semibold text-foreground', props.class)\"\n    v-bind=\"delegatedProps\"\n  >\n    <slot />\n  </DialogTitle>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/SheetTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sheet/SheetTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { DialogTriggerProps } from 'reka-ui'\nimport { DialogTrigger } from 'reka-ui'\n\nconst props = defineProps<DialogTriggerProps>()\n</script>\n\n<template>\n  <DialogTrigger v-bind=\"props\">\n    <slot />\n  </DialogTrigger>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sheet/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sheet/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\nimport { cva } from 'class-variance-authority'\n\nexport { default as Sheet } from './Sheet.vue'\nexport { default as SheetClose } from './SheetClose.vue'\nexport { default as SheetContent } from './SheetContent.vue'\nexport { default as SheetDescription } from './SheetDescription.vue'\nexport { default as SheetFooter } from './SheetFooter.vue'\nexport { default as SheetHeader } from './SheetHeader.vue'\nexport { default as SheetTitle } from './SheetTitle.vue'\nexport { default as SheetTrigger } from './SheetTrigger.vue'\n\nexport const sheetVariants = cva(\n  'fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',\n  {\n    variants: {\n      side: {\n        top: 'inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',\n        bottom:\n          'inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',\n        left: 'inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm',\n        right:\n          'inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',\n      },\n    },\n    defaultVariants: {\n      side: 'right',\n    },\n  },\n)\n\nexport type SheetVariants = VariantProps<typeof sheetVariants>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/Sidebar.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/Sidebar.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { SidebarProps } from '.'\nimport { cn } from '@/lib/utils'\nimport { Sheet, SheetContent } from '@/components/ui/sheet'\nimport SheetDescription from '@/components/ui/sheet/SheetDescription.vue'\nimport SheetHeader from '@/components/ui/sheet/SheetHeader.vue'\nimport SheetTitle from '@/components/ui/sheet/SheetTitle.vue'\nimport { SIDEBAR_WIDTH_MOBILE, useSidebar } from './utils'\n\ndefineOptions({\n  inheritAttrs: false,\n})\n\nconst props = withDefaults(defineProps<SidebarProps>(), {\n  side: 'left',\n  variant: 'sidebar',\n  collapsible: 'offcanvas',\n})\n\nconst { isMobile, state, openMobile, setOpenMobile } = useSidebar()\n</script>\n\n<template>\n  <div\n    v-if=\"collapsible === 'none'\"\n    data-slot=\"sidebar\"\n    :class=\"\n      cn('bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col', props.class)\n    \"\n    v-bind=\"$attrs\"\n  >\n    <slot />\n  </div>\n\n  <Sheet v-else-if=\"isMobile\" :open=\"openMobile\" v-bind=\"$attrs\" @update:open=\"setOpenMobile\">\n    <SheetContent\n      data-sidebar=\"sidebar\"\n      data-slot=\"sidebar\"\n      data-mobile=\"true\"\n      :side=\"side\"\n      class=\"bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden\"\n      :style=\"{\n        '--sidebar-width': SIDEBAR_WIDTH_MOBILE,\n      }\"\n    >\n      <SheetHeader class=\"sr-only\">\n        <SheetTitle>Sidebar</SheetTitle>\n        <SheetDescription>Displays the mobile sidebar.</SheetDescription>\n      </SheetHeader>\n      <div class=\"flex h-full w-full flex-col\">\n        <slot />\n      </div>\n    </SheetContent>\n  </Sheet>\n\n  <div\n    v-else\n    class=\"group peer text-sidebar-foreground hidden md:block\"\n    data-slot=\"sidebar\"\n    :data-state=\"state\"\n    :data-collapsible=\"state === 'collapsed' ? collapsible : ''\"\n    :data-variant=\"variant\"\n    :data-side=\"side\"\n  >\n    <!-- This is what handles the sidebar gap on desktop  -->\n    <div\n      :class=\"\n        cn(\n          'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',\n          'group-data-[collapsible=offcanvas]:w-0',\n          'group-data-[side=right]:rotate-180',\n          variant === 'floating' || variant === 'inset'\n            ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]'\n            : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',\n        )\n      \"\n    />\n    <div\n      :class=\"\n        cn(\n          'relative inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',\n          side === 'left'\n            ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'\n            : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',\n          // Adjust the padding for floating and inset variants.\n          variant === 'floating' || variant === 'inset'\n            ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'\n            : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l',\n          props.class,\n        )\n      \"\n      v-bind=\"$attrs\"\n    >\n      <div\n        data-sidebar=\"sidebar\"\n        class=\"bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm\"\n      >\n        <slot />\n      </div>\n    </div>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-content\"\n    data-sidebar=\"content\"\n    :class=\"\n      cn(\n        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarFooter.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-footer\"\n    data-sidebar=\"footer\"\n    :class=\"cn('flex flex-col gap-2 p-2', props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-group\"\n    data-sidebar=\"group\"\n    :class=\"cn('relative flex w-full min-w-0 flex-col p-2', props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroupAction.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroupAction.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  PrimitiveProps & {\n    class?: HTMLAttributes['class']\n  }\n>()\n</script>\n\n<template>\n  <Primitive\n    data-slot=\"sidebar-group-action\"\n    data-sidebar=\"group-action\"\n    :as=\"as\"\n    :as-child=\"asChild\"\n    :class=\"\n      cn(\n        'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',\n        'after:absolute after:-inset-2 md:after:hidden',\n        'group-data-[collapsible=icon]:hidden',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroupContent.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroupContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-group-content\"\n    data-sidebar=\"group-content\"\n    :class=\"cn('w-full text-sm', props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarGroupLabel.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarGroupLabel.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  PrimitiveProps & {\n    class?: HTMLAttributes['class']\n  }\n>()\n</script>\n\n<template>\n  <Primitive\n    data-slot=\"sidebar-group-label\"\n    data-sidebar=\"group-label\"\n    :as=\"as\"\n    :as-child=\"asChild\"\n    :class=\"\n      cn(\n        'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',\n        'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarHeader.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-header\"\n    data-sidebar=\"header\"\n    :class=\"cn('flex flex-col gap-2 p-2', props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarInput.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarInput.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Input } from '@/components/ui/input'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <Input\n    data-slot=\"sidebar-input\"\n    data-sidebar=\"input\"\n    :class=\"cn('bg-background h-8 w-full shadow-none', props.class)\"\n  >\n    <slot />\n  </Input>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarInset.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarInset.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <main\n    data-slot=\"sidebar-inset\"\n    :class=\"\n      cn(\n        'bg-background relative flex w-full flex-1 flex-col',\n        'md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </main>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenu.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenu.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <ul\n    data-slot=\"sidebar-menu\"\n    data-sidebar=\"menu\"\n    :class=\"cn('flex w-full min-w-0 flex-col gap-1', props.class)\"\n  >\n    <slot />\n  </ul>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuAction.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuAction.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<\n    PrimitiveProps & {\n      showOnHover?: boolean\n      class?: HTMLAttributes['class']\n    }\n  >(),\n  {\n    as: 'button',\n  },\n)\n</script>\n\n<template>\n  <Primitive\n    data-slot=\"sidebar-menu-action\"\n    data-sidebar=\"menu-action\"\n    :class=\"\n      cn(\n        'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',\n        'after:absolute after:-inset-2 md:after:hidden',\n        'peer-data-[size=sm]/menu-button:top-1',\n        'peer-data-[size=default]/menu-button:top-1.5',\n        'peer-data-[size=lg]/menu-button:top-2.5',\n        'group-data-[collapsible=icon]:hidden',\n        showOnHover &&\n          'peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0',\n        props.class,\n      )\n    \"\n    :as=\"as\"\n    :as-child=\"asChild\"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuBadge.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuBadge.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-menu-badge\"\n    data-sidebar=\"menu-badge\"\n    :class=\"\n      cn(\n        'text-sidebar-foreground pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums select-none',\n        'peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground',\n        'peer-data-[size=sm]/menu-button:top-1',\n        'peer-data-[size=default]/menu-button:top-1.5',\n        'peer-data-[size=lg]/menu-button:top-2.5',\n        'group-data-[collapsible=icon]:hidden',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuButton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuButton.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { Component, Ref } from 'vue'\nimport type { SidebarMenuButtonProps } from './SidebarMenuButtonChild.vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport SidebarMenuButtonChild from './SidebarMenuButtonChild.vue'\nimport { useSidebar } from './utils'\nimport { ref } from 'vue'\n\ndefineOptions({\n  inheritAttrs: false,\n})\n\nconst props = withDefaults(\n  defineProps<\n    SidebarMenuButtonProps & {\n      tooltip?: string | Component\n    }\n  >(),\n  {\n    as: 'button',\n    variant: 'default',\n    size: 'default',\n  },\n)\n\nlet isMobile: Ref<boolean>, state: Ref<string>\ntry {\n  const sidebar = useSidebar()\n  isMobile = sidebar.isMobile\n  state = sidebar.state\n} catch {\n  isMobile = ref(false)\n  state = ref('collapsed')\n}\n\nconst delegatedProps = reactiveOmit(props, 'tooltip')\n</script>\n\n<template>\n  <SidebarMenuButtonChild v-if=\"!tooltip\" v-bind=\"{ ...delegatedProps, ...$attrs }\">\n    <slot />\n  </SidebarMenuButtonChild>\n\n  <PfTooltip v-else placement=\"right\" :disabled=\"state !== 'collapsed' || isMobile\">\n    <SidebarMenuButtonChild v-bind=\"{ ...delegatedProps, ...$attrs }\">\n      <slot />\n    </SidebarMenuButtonChild>\n\n    <template #content>\n      <template v-if=\"typeof tooltip === 'string'\">\n        {{ tooltip }}\n      </template>\n      <component :is=\"tooltip\" v-else />\n    </template>\n  </PfTooltip>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuButtonChild.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuButtonChild.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport type { SidebarMenuButtonVariants } from '.'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { sidebarMenuButtonVariants } from '.'\n\nexport interface SidebarMenuButtonProps extends PrimitiveProps {\n  variant?: SidebarMenuButtonVariants['variant']\n  size?: SidebarMenuButtonVariants['size']\n  isActive?: boolean\n  class?: HTMLAttributes['class']\n}\n\nconst props = withDefaults(defineProps<SidebarMenuButtonProps>(), {\n  as: 'button',\n  variant: 'default',\n  size: 'default',\n})\n</script>\n\n<template>\n  <Primitive\n    data-slot=\"sidebar-menu-button\"\n    data-sidebar=\"menu-button\"\n    :data-size=\"size\"\n    :data-active=\"isActive\"\n    :class=\"cn(sidebarMenuButtonVariants({ variant, size }), props.class)\"\n    :as=\"as\"\n    :as-child=\"asChild\"\n    v-bind=\"$attrs\"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <li\n    data-slot=\"sidebar-menu-item\"\n    data-sidebar=\"menu-item\"\n    :class=\"cn('group/menu-item relative', props.class)\"\n  >\n    <slot />\n  </li>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSkeleton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSkeleton.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Skeleton } from '@/components/ui/skeleton'\n\nconst props = defineProps<{\n  showIcon?: boolean\n  class?: HTMLAttributes['class']\n}>()\n\nconst width = computed(() => {\n  return `${Math.floor(Math.random() * 40) + 50}%`\n})\n</script>\n\n<template>\n  <div\n    data-slot=\"sidebar-menu-skeleton\"\n    data-sidebar=\"menu-skeleton\"\n    :class=\"cn('flex h-8 items-center gap-2 rounded-md px-2', props.class)\"\n  >\n    <Skeleton v-if=\"showIcon\" class=\"size-4 rounded-md\" data-sidebar=\"menu-skeleton-icon\" />\n\n    <Skeleton\n      class=\"h-4 max-w-(--skeleton-width) flex-1\"\n      data-sidebar=\"menu-skeleton-text\"\n      :style=\"{ '--skeleton-width': width }\"\n    />\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSub.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSub.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <ul\n    data-slot=\"sidebar-menu-sub\"\n    data-sidebar=\"menu-badge\"\n    :class=\"\n      cn(\n        'border-border ml-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l pl-2.5 py-0.5',\n        'group-data-[collapsible=icon]:hidden',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </ul>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSubButton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSubButton.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { PrimitiveProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { Primitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<\n    PrimitiveProps & {\n      size?: 'sm' | 'md'\n      isActive?: boolean\n      class?: HTMLAttributes['class']\n    }\n  >(),\n  {\n    as: 'a',\n    size: 'md',\n  },\n)\n</script>\n\n<template>\n  <Primitive\n    data-slot=\"sidebar-menu-sub-button\"\n    data-sidebar=\"menu-sub-button\"\n    :as=\"as\"\n    :as-child=\"asChild\"\n    :data-size=\"size\"\n    :data-active=\"isActive\"\n    :class=\"\n      cn(\n        'whitespace-nowrap text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',\n        'data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground',\n        size === 'sm' && 'text-xs',\n        size === 'md' && 'text-sm',\n        'group-data-[collapsible=icon]:hidden',\n        props.class,\n      )\n    \"\n  >\n    <slot />\n  </Primitive>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarMenuSubItem.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarMenuSubItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <li\n    data-slot=\"sidebar-menu-sub-item\"\n    data-sidebar=\"menu-sub-item\"\n    :class=\"cn('group/menu-sub-item relative', props.class)\"\n  >\n    <slot />\n  </li>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarProvider.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarProvider.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes, Ref } from 'vue'\nimport { defaultDocument, useEventListener, useMediaQuery, useVModel } from '@vueuse/core'\nimport { TooltipProvider } from 'reka-ui'\nimport { computed, ref } from 'vue'\nimport { cn } from '@/lib/utils'\nimport {\n  provideSidebarContext,\n  SIDEBAR_COOKIE_MAX_AGE,\n  SIDEBAR_COOKIE_NAME,\n  SIDEBAR_KEYBOARD_SHORTCUT,\n  SIDEBAR_WIDTH,\n  SIDEBAR_WIDTH_ICON,\n} from './utils'\n\nconst props = withDefaults(\n  defineProps<{\n    defaultOpen?: boolean\n    open?: boolean\n    class?: HTMLAttributes['class']\n  }>(),\n  {\n    defaultOpen: !defaultDocument?.cookie.includes(`${SIDEBAR_COOKIE_NAME}=false`),\n    open: undefined,\n  },\n)\n\nconst emits = defineEmits<{\n  'update:open': [open: boolean]\n}>()\n\nconst isMobile = useMediaQuery('(max-width: 768px)')\nconst openMobile = ref(false)\n\nconst open = useVModel(props, 'open', emits, {\n  defaultValue: props.defaultOpen ?? false,\n  passive: (props.open === undefined) as false,\n}) as Ref<boolean>\n\nfunction setOpen(value: boolean) {\n  open.value = value // emits('update:open', value)\n\n  // This sets the cookie to keep the sidebar state.\n  document.cookie = `${SIDEBAR_COOKIE_NAME}=${open.value}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`\n}\n\nfunction setOpenMobile(value: boolean) {\n  openMobile.value = value\n}\n\n// Helper to toggle the sidebar.\nfunction toggleSidebar() {\n  return isMobile.value ? setOpenMobile(!openMobile.value) : setOpen(!open.value)\n}\n\nuseEventListener('keydown', (event: KeyboardEvent) => {\n  if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {\n    event.preventDefault()\n    toggleSidebar()\n  }\n})\n\n// We add a state so that we can do data-state=\"expanded\" or \"collapsed\".\n// This makes it easier to style the sidebar with Tailwind classes.\nconst state = computed(() => (open.value ? 'expanded' : 'collapsed'))\n\nprovideSidebarContext({\n  state,\n  open,\n  setOpen,\n  isMobile,\n  openMobile,\n  setOpenMobile,\n  toggleSidebar,\n})\n</script>\n\n<template>\n  <TooltipProvider :delay-duration=\"0\">\n    <div\n      data-slot=\"sidebar-wrapper\"\n      :style=\"{\n        '--sidebar-width': SIDEBAR_WIDTH,\n        '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,\n      }\"\n      :class=\"\n        cn(\n          'group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-0 w-full',\n          props.class,\n        )\n      \"\n      v-bind=\"$attrs\"\n    >\n      <slot />\n    </div>\n  </TooltipProvider>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarRail.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarRail.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { useSidebar } from './utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n\nconst { toggleSidebar } = useSidebar()\n</script>\n\n<template>\n  <button\n    data-sidebar=\"rail\"\n    data-slot=\"sidebar-rail\"\n    aria-label=\"Toggle Sidebar\"\n    :tabindex=\"-1\"\n    title=\"Toggle Sidebar\"\n    :class=\"\n      cn(\n        'hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex',\n        'in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize',\n        '[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize',\n        'hover:group-data-[collapsible=offcanvas]:bg-sidebar group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full',\n        '[[data-side=left][data-collapsible=offcanvas]_&]:-right-2',\n        '[[data-side=right][data-collapsible=offcanvas]_&]:-left-2',\n        props.class,\n      )\n    \"\n    @click=\"toggleSidebar\"\n  >\n    <slot />\n  </button>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarSeparator.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Separator } from '@/components/ui/separator'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <Separator\n    data-slot=\"sidebar-separator\"\n    data-sidebar=\"separator\"\n    :class=\"cn('bg-sidebar-border mx-2 w-auto', props.class)\"\n  >\n    <slot />\n  </Separator>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/SidebarTrigger.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sidebar/SidebarTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { PanelLeft } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\nimport { Button } from '@/components/ui/button'\nimport { useSidebar } from './utils'\n\nconst props = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n\nconst { toggleSidebar } = useSidebar()\n</script>\n\n<template>\n  <Button\n    data-sidebar=\"trigger\"\n    data-slot=\"sidebar-trigger\"\n    variant=\"ghost\"\n    size=\"icon\"\n    :class=\"cn('h-7 w-7', props.class)\"\n    @click=\"toggleSidebar\"\n  >\n    <PanelLeft />\n    <span class=\"sr-only\">Toggle Sidebar</span>\n  </Button>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sidebar/index.ts",
+      "content": "import type { VariantProps } from 'class-variance-authority'\nimport type { HTMLAttributes } from 'vue'\nimport { cva } from 'class-variance-authority'\n\nexport interface SidebarProps {\n  side?: 'left' | 'right'\n  variant?: 'sidebar' | 'floating' | 'inset'\n  collapsible?: 'offcanvas' | 'icon' | 'none'\n  class?: HTMLAttributes['class']\n}\n\nexport { default as Sidebar } from './Sidebar.vue'\nexport { default as SidebarContent } from './SidebarContent.vue'\nexport { default as SidebarFooter } from './SidebarFooter.vue'\nexport { default as SidebarGroup } from './SidebarGroup.vue'\nexport { default as SidebarGroupAction } from './SidebarGroupAction.vue'\nexport { default as SidebarGroupContent } from './SidebarGroupContent.vue'\nexport { default as SidebarGroupLabel } from './SidebarGroupLabel.vue'\nexport { default as SidebarHeader } from './SidebarHeader.vue'\nexport { default as SidebarInput } from './SidebarInput.vue'\nexport { default as SidebarInset } from './SidebarInset.vue'\nexport { default as SidebarMenu } from './SidebarMenu.vue'\nexport { default as SidebarMenuAction } from './SidebarMenuAction.vue'\nexport { default as SidebarMenuBadge } from './SidebarMenuBadge.vue'\nexport { default as SidebarMenuButton } from './SidebarMenuButton.vue'\nexport { default as SidebarMenuItem } from './SidebarMenuItem.vue'\nexport { default as SidebarMenuSkeleton } from './SidebarMenuSkeleton.vue'\nexport { default as SidebarMenuSub } from './SidebarMenuSub.vue'\nexport { default as SidebarMenuSubButton } from './SidebarMenuSubButton.vue'\nexport { default as SidebarMenuSubItem } from './SidebarMenuSubItem.vue'\nexport { default as SidebarProvider } from './SidebarProvider.vue'\nexport { default as SidebarRail } from './SidebarRail.vue'\nexport { default as SidebarSeparator } from './SidebarSeparator.vue'\nexport { default as SidebarTrigger } from './SidebarTrigger.vue'\n\nexport { useSidebar } from './utils'\n\nexport const sidebarMenuButtonVariants = cva(\n  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',\n  {\n    variants: {\n      variant: {\n        default: 'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',\n        outline:\n          'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]',\n      },\n      size: {\n        default: 'h-8 text-sm',\n        sm: 'h-7 text-xs',\n        lg: 'h-12 text-sm group-data-[collapsible=icon]:p-0!',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'default',\n    },\n  },\n)\n\nexport type SidebarMenuButtonVariants = VariantProps<typeof sidebarMenuButtonVariants>\n"
+    },
+    {
+      "path": "src/components/ui/sidebar/utils.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sidebar/utils.ts",
+      "content": "import type { ComputedRef, Ref } from 'vue'\nimport { createContext } from 'reka-ui'\n\nexport const SIDEBAR_COOKIE_NAME = 'sidebar_state'\nexport const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7\nexport const SIDEBAR_WIDTH = '16rem'\nexport const SIDEBAR_WIDTH_MOBILE = '18rem'\nexport const SIDEBAR_WIDTH_ICON = '3rem'\nexport const SIDEBAR_KEYBOARD_SHORTCUT = 'b'\n\nexport const [useSidebar, provideSidebarContext] = createContext<{\n  state: ComputedRef<'expanded' | 'collapsed'>\n  open: Ref<boolean>\n  setOpen: (value: boolean) => void\n  isMobile: Ref<boolean>\n  openMobile: Ref<boolean>\n  setOpenMobile: (value: boolean) => void\n  toggleSidebar: () => void\n}>('Sidebar')\n"
+    },
+    {
+      "path": "src/components/ui/skeleton/Skeleton.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/skeleton/Skeleton.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\ninterface SkeletonProps {\n  class?: HTMLAttributes['class']\n}\n\nconst props = defineProps<SkeletonProps>()\n</script>\n\n<template>\n  <div :class=\"cn('animate-pulse rounded-md bg-primary/10', props.class)\" />\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/skeleton/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/skeleton/index.ts",
+      "content": "export { default as Skeleton } from './Skeleton.vue'\n"
+    },
+    {
+      "path": "src/components/ui/sonner/Sonner.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/sonner/Sonner.vue",
+      "content": "<script lang=\"ts\" setup>\nimport type { ToasterProps } from 'vue-sonner'\nimport { reactiveOmit } from '@vueuse/core'\nimport {\n  BellIcon,\n  CircleCheckIcon,\n  InfoIcon,\n  Loader2Icon,\n  OctagonXIcon,\n  XIcon,\n} from 'lucide-vue-next'\nimport { Toaster as Sonner } from 'vue-sonner'\n\nconst props = defineProps<ToasterProps>()\nconst delegatedProps = reactiveOmit(props, 'toastOptions')\n</script>\n\n<template>\n  <Sonner\n    class=\"toaster group\"\n    :toast-options=\"{\n      classes: {\n        toast: 'group toast group-[.toaster]:shadow-lg',\n        default:\n          'group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border',\n        description: 'group-[.toast]:text-current opacity-85',\n        actionButton:\n          'group-[.toast]:bg-current group-[.toast]:text-background group-[.toast]:border-transparent',\n        cancelButton:\n          'group-[.toast]:bg-transparent group-[.toast]:text-current group-[.toast]:border-current/20 hover:group-[.toast]:bg-current/10',\n        closeButton:\n          'group-[.toast]:bg-transparent group-[.toast]:text-current group-[.toast]:border-transparent hover:group-[.toast]:bg-current/10',\n        success:\n          'group-[.toaster]:border-success group-[.toaster]:bg-success group-[.toaster]:text-success-foreground',\n        info: 'group-[.toaster]:border-info group-[.toaster]:bg-info group-[.toaster]:text-info-foreground',\n        warning:\n          'group-[.toaster]:border-warning group-[.toaster]:bg-warning group-[.toaster]:text-warning-foreground',\n        error:\n          'group-[.toaster]:border-destructive group-[.toaster]:bg-destructive group-[.toaster]:text-destructive-foreground',\n        icon: 'group-[.toast]:text-current',\n      },\n    }\"\n    v-bind=\"delegatedProps\"\n  >\n    <template #success-icon>\n      <CircleCheckIcon class=\"size-4\" />\n    </template>\n    <template #info-icon>\n      <InfoIcon class=\"size-4\" />\n    </template>\n    <template #warning-icon>\n      <BellIcon class=\"size-4\" />\n    </template>\n    <template #error-icon>\n      <OctagonXIcon class=\"size-4\" />\n    </template>\n    <template #loading-icon>\n      <div>\n        <Loader2Icon class=\"size-4 animate-spin\" />\n      </div>\n    </template>\n    <template #close-icon>\n      <XIcon class=\"size-4\" />\n    </template>\n  </Sonner>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/sonner/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/sonner/index.ts",
+      "content": "export { default as Toaster } from './Sonner.vue'\n"
+    },
+    {
+      "path": "src/components/ui/switch/Switch.vue",
+      "type": "registry:component",
+      "target": "src/components/ui/switch/Switch.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { SwitchRootEmits, SwitchRootProps } from 'reka-ui'\nimport type { HTMLAttributes } from 'vue'\nimport { reactiveOmit } from '@vueuse/core'\nimport { SwitchRoot, SwitchThumb, useForwardPropsEmits } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<SwitchRootProps & { class?: HTMLAttributes['class'] }>()\n\nconst emits = defineEmits<SwitchRootEmits>()\n\nconst delegatedProps = reactiveOmit(props, 'class')\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <SwitchRoot\n    v-bind=\"forwarded\"\n    :class=\"\n      cn(\n        'peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',\n        props.class,\n      )\n    \"\n  >\n    <SwitchThumb\n      :class=\"\n        cn(\n          'pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0',\n        )\n      \"\n    >\n      <slot name=\"thumb\" />\n    </SwitchThumb>\n  </SwitchRoot>\n</template>\n"
+    },
+    {
+      "path": "src/components/ui/switch/index.ts",
+      "type": "registry:file",
+      "target": "src/components/ui/switch/index.ts",
+      "content": "export { default as Switch } from './Switch.vue'\n"
+    }
+  ]
+}

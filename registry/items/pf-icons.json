@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-icons",
+  "type": "registry:style",
+  "title": "Pf Icons",
+  "description": "UnoCSS icon preset configuration for Tabler classes and the Potato Forge icon collection.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "meta": {
+    "sourceEntry": "src/foundations/pf-icons/index.ts",
+    "docsRoute": "/foundation/icons"
+  },
+  "files": [
+    {
+      "path": "src/foundations/pf-icons/index.ts",
+      "type": "registry:file",
+      "target": "src/foundations/pf-icons/index.ts"
+    },
+    {
+      "path": "src/assets/potato-forge.svg",
+      "type": "registry:file",
+      "target": "src/assets/potato-forge.svg"
+    }
+  ]
+}

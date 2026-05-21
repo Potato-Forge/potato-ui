@@ -1,0 +1,69 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-form",
+  "type": "registry:component",
+  "title": "PfForm",
+  "description": "PfForm source component migrated from potato-template.",
+  "dependencies": [
+    "@iconify/vue",
+    "@tanstack/vue-form",
+    "@tanstack/zod-form-adapter",
+    "@vuepic/vue-datepicker",
+    "date-fns",
+    "zod"
+  ],
+  "registryDependencies": [
+    "pf-checkbox",
+    "pf-help",
+    "pf-icons",
+    "pf-runtime-support",
+    "pf-switch",
+    "pf-theme",
+    "pf-upload"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-form/PfForm.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-form/PfForm.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-form/PfForm.types.ts"
+    },
+    {
+      "path": "src/components/pf-form/PfForm.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-form/PfForm.vue"
+    },
+    {
+      "path": "src/components/pf-form/components/PfFormItem.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-form/components/PfFormItem.vue"
+    },
+    {
+      "path": "src/components/pf-form/components/PfFormItemDatetime.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-form/components/PfFormItemDatetime.vue"
+    },
+    {
+      "path": "src/components/pf-form/components/PfFormItemOptions.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-form/components/PfFormItemOptions.vue"
+    },
+    {
+      "path": "src/components/pf-form/components/PfFormItemText.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-form/components/PfFormItemText.vue"
+    },
+    {
+      "path": "src/components/pf-form/components/PfFormItemToggle.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-form/components/PfFormItemToggle.vue"
+    },
+    {
+      "path": "src/components/pf-form/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-form/index.ts"
+    }
+  ]
+}

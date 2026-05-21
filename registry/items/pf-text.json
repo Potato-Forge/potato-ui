@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-text",
+  "type": "registry:component",
+  "title": "PfText",
+  "description": "PfText source component migrated from potato-template.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-text/PfText.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-text/PfText.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-text/PfText.vue"
+    },
+    {
+      "path": "src/components/pf-text/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-text/index.ts"
+    }
+  ]
+}

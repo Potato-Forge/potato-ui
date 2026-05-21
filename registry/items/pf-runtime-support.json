@@ -1,0 +1,40 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-runtime-support",
+  "type": "registry:lib",
+  "title": "Pf Runtime Support",
+  "description": "Shared Pf utility, theme settings, and lightweight stores required by advanced components.",
+  "dependencies": [
+    "clsx",
+    "pinia",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/lib/utils.ts"
+  },
+  "files": [
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    },
+    {
+      "path": "src/lib/theme-settings.ts",
+      "type": "registry:file",
+      "target": "src/lib/theme-settings.ts"
+    },
+    {
+      "path": "src/store/systemStore.ts",
+      "type": "registry:file",
+      "target": "src/store/systemStore.ts"
+    },
+    {
+      "path": "src/store/globalLoadingStore.ts",
+      "type": "registry:file",
+      "target": "src/store/globalLoadingStore.ts"
+    }
+  ]
+}

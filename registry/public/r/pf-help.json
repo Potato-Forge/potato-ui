@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-help",
+  "type": "registry:component",
+  "title": "PfHelp",
+  "description": "PfHelp source component migrated from potato-template.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme",
+    "pf-tooltip"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-help/PfHelp.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-help/PfHelp.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-help/PfHelp.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { JSX } from 'vue/jsx-runtime'\nimport { PfTooltip } from '../pf-tooltip'\n\nconst props = defineProps<{\n  content?: string | Component | (() => VNode | JSX.Element)\n  position?: 'top' | 'bottom' | 'left' | 'right'\n}>()\n</script>\n\n<template>\n  <PfTooltip :position=\"props.position || 'top'\">\n    <div\n      class=\"i-tabler-help text-muted-foreground/50 cursor-help leading-none -translate-y-1px text-xs\"\n    ></div>\n\n    <template #content>\n      <slot name=\"content\">\n        <span v-if=\"typeof props.content === 'string'\">{{ props.content }}</span>\n        <component v-else :is=\"props.content\" />\n      </slot>\n    </template>\n  </PfTooltip>\n</template>\n\n<style scoped></style>\n"
+    },
+    {
+      "path": "src/components/pf-help/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-help/index.ts",
+      "content": "export { default as PfHelp } from './PfHelp.vue'\n"
+    }
+  ]
+}
