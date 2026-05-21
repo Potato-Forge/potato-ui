@@ -1,3 +1,5 @@
+import { VueQueryPlugin } from '@tanstack/vue-query'
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
@@ -5,4 +7,7 @@ import './foundations/pf-theme/pf-theme.css'
 import './docs/styles.css'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(createPinia())
+app.use(VueQueryPlugin)
+app.mount('#app')
