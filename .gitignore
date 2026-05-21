@@ -3,6 +3,7 @@ dist/
 .vite/
 .DS_Store
 *.log
-docs/
+/docs/
+.ai
 
 *.tsbuildinfo

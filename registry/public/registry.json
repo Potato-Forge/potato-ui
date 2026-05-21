@@ -147,6 +147,7 @@
       "dependencies": [],
       "registryDependencies": [
         "pf-icons",
+        "pf-text",
         "pf-theme"
       ],
       "meta": {

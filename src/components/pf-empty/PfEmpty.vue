@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import PfText from '../pf-text/PfText.vue'
+
 const props = defineProps<{
   title?: string
   description?: string
@@ -11,8 +13,8 @@ const props = defineProps<{
     <slot name="icon">
       <div class="i-tabler-box-seam text-primary text-4xl"></div>
     </slot>
-    <pf-text as="h3" class="text-muted-foreground">{{ props.title }}</pf-text>
-    <pf-text as="p" class="text-muted-foreground">{{ props.description }}</pf-text>
+    <PfText as="h3" class="text-muted-foreground">{{ props.title }}</PfText>
+    <PfText as="p" class="text-muted-foreground">{{ props.description }}</PfText>
 
     <!-- action slot -->
     <div>

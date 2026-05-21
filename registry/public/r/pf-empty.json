@@ -8,6 +8,7 @@
   "devDependencies": [],
   "registryDependencies": [
     "pf-icons",
+    "pf-text",
     "pf-theme"
   ],
   "meta": {
@@ -18,7 +19,7 @@
       "path": "src/components/pf-empty/PfEmpty.vue",
       "type": "registry:component",
       "target": "src/components/pf-empty/PfEmpty.vue",
-      "content": "<script setup lang=\"ts\">\nconst props = defineProps<{\n  title?: string\n  description?: string\n}>()\n</script>\n\n<template>\n  <div class=\"w-full h-full flex flex-col gap-6 justify-center items-center\">\n    <!-- Icon Slot -->\n    <slot name=\"icon\">\n      <div class=\"i-tabler-box-seam text-primary text-4xl\"></div>\n    </slot>\n    <pf-text as=\"h3\" class=\"text-muted-foreground\">{{ props.title }}</pf-text>\n    <pf-text as=\"p\" class=\"text-muted-foreground\">{{ props.description }}</pf-text>\n\n    <!-- action slot -->\n    <div>\n      <slot name=\"action\"></slot>\n    </div>\n  </div>\n</template>\n\n<style scoped></style>\n"
+      "content": "<script setup lang=\"ts\">\nimport PfText from '../pf-text/PfText.vue'\n\nconst props = defineProps<{\n  title?: string\n  description?: string\n}>()\n</script>\n\n<template>\n  <div class=\"w-full h-full flex flex-col gap-6 justify-center items-center\">\n    <!-- Icon Slot -->\n    <slot name=\"icon\">\n      <div class=\"i-tabler-box-seam text-primary text-4xl\"></div>\n    </slot>\n    <PfText as=\"h3\" class=\"text-muted-foreground\">{{ props.title }}</PfText>\n    <PfText as=\"p\" class=\"text-muted-foreground\">{{ props.description }}</PfText>\n\n    <!-- action slot -->\n    <div>\n      <slot name=\"action\"></slot>\n    </div>\n  </div>\n</template>\n\n<style scoped></style>\n"
     },
     {
       "path": "src/components/pf-empty/index.ts",
