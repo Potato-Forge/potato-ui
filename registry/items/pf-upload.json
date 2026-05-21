@@ -11,7 +11,9 @@
   "registryDependencies": [
     "pf-icons",
     "pf-theme",
-    "pf-toast"
+    "pf-toast",
+    "pf-button",
+    "pf-img"
   ],
   "meta": {
     "sourceEntry": "src/components/pf-upload/PfUpload.vue"

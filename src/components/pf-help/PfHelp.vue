@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Component, VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import { PfTooltip } from '../pf-tooltip'
 

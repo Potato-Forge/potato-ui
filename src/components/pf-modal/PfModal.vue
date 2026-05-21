@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useSlots } from 'vue'
+import PfText from '../pf-text/PfText.vue'
+import PfButton from '../pf-button/PfButton.vue'
 import {
   Dialog,
   DialogContent,
@@ -8,8 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { useSlots } from 'vue'
-
 const props = withDefaults(
   defineProps<{
     open?: boolean

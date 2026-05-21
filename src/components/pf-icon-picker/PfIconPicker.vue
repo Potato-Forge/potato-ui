@@ -7,6 +7,9 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Icon } from '@iconify/vue'
+import PfText from '../pf-text/PfText.vue'
+import PfLoading from '../pf-loading/PfLoading.vue'
+import PfEmpty from '../pf-empty/PfEmpty.vue'
 
 // ── Props & Emits ──────────────────────────────────────────────
 const props = withDefaults(

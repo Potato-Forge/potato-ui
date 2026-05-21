@@ -10,7 +10,8 @@
     "pf-help",
     "pf-icons",
     "pf-theme",
-    "ui-primitives"
+    "ui-primitives",
+    "pf-text"
   ],
   "meta": {
     "sourceEntry": "src/components/pf-color-picker/PfColorPicker.vue"

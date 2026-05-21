@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
+import PfText from '../pf-text/PfText.vue'
 import { PfButton } from '@/components/pf-button'
 import { PfHelp } from '@/components/pf-help'
 

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
+import PfButton from '../pf-button/PfButton.vue'
+import PfImg from '../pf-img/PfImg.vue'
 import { pfToast } from '@/components/pf-toast'
 import type { PfUploadFileItem, PfUploadProps } from './PfUpload.types'
 import PfUploadToast from './PfUploadToast.vue'
