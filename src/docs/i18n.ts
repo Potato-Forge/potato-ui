@@ -15,6 +15,16 @@ type MessageKey =
   | 'nav.text'
   | 'nav.switch'
   | 'nav.breadcrumb'
+  | 'nav.checkbox'
+  | 'nav.colorPicker'
+  | 'nav.configProvider'
+  | 'nav.help'
+  | 'nav.iconPicker'
+  | 'nav.img'
+  | 'nav.modal'
+  | 'nav.sidebar'
+  | 'nav.toast'
+  | 'nav.upload'
   | 'nav.theme'
   | 'nav.icons'
   | 'theme.mode'
@@ -73,6 +83,107 @@ type MessageKey =
   | 'themePage.description'
   | 'iconsPage.title'
   | 'iconsPage.description'
+  | 'checkbox.indeterminateState'
+  | 'checkbox.api.modelValue'
+  | 'checkbox.api.class'
+  | 'colorPicker.default'
+  | 'colorPicker.withSwatches'
+  | 'colorPicker.hideContrast'
+  | 'colorPicker.api.modelValue'
+  | 'colorPicker.api.format'
+  | 'colorPicker.api.swatches'
+  | 'colorPicker.api.hideContrast'
+  | 'colorPicker.api.hideDefaults'
+  | 'colorPicker.api.disabled'
+  | 'colorPicker.api.slot'
+  | 'colorPicker.api.emits'
+  | 'configProvider.wrapped'
+  | 'configProvider.api.slot'
+  | 'help.whatIsThis'
+  | 'help.richContent'
+  | 'help.richTitle'
+  | 'help.richBody'
+  | 'help.simpleUsage'
+  | 'help.slotUsage'
+  | 'help.api.position'
+  | 'help.api.slot'
+  | 'iconPicker.customTrigger'
+  | 'iconPicker.api.slot'
+  | 'img.loading'
+  | 'img.error'
+  | 'img.api.fallbackSrc'
+  | 'img.api.preview'
+  | 'img.api.previewSrcList'
+  | 'img.api.objectFit'
+  | 'img.api.aspectRatio'
+  | 'img.api.rounded'
+  | 'img.api.loading'
+  | 'img.api.error'
+  | 'img.api.slots'
+  | 'modal.basicTitle'
+  | 'modal.basicDescription'
+  | 'modal.openBasic'
+  | 'modal.bodyContent'
+  | 'modal.confirmTitle'
+  | 'modal.confirm'
+  | 'modal.cancel'
+  | 'modal.openConfirm'
+  | 'modal.confirmBody'
+  | 'modal.deleteTitle'
+  | 'modal.deleteBtn'
+  | 'modal.deleteBody'
+  | 'modal.pluginUsage'
+  | 'modal.confirmAction'
+  | 'modal.areYouSure'
+  | 'modal.api.description'
+  | 'modal.api.positiveText'
+  | 'modal.api.negativeText'
+  | 'modal.api.positiveLoading'
+  | 'modal.api.emits'
+  | 'modal.api.composable'
+  | 'sidebar.dashboard'
+  | 'sidebar.overview'
+  | 'sidebar.analytics'
+  | 'sidebar.settings'
+  | 'sidebar.profile'
+  | 'sidebar.security'
+  | 'sidebar.help'
+  | 'sidebar.api.typeNote'
+  | 'toast.successMsg'
+  | 'toast.errorTitle'
+  | 'toast.errorDesc'
+  | 'toast.infoMsg'
+  | 'toast.warningMsg'
+  | 'toast.tip'
+  | 'toast.tipMsg'
+  | 'toast.risk'
+  | 'toast.riskMsg'
+  | 'toast.operationSuccess'
+  | 'toast.operationFailed'
+  | 'toast.pleaseRetry'
+  | 'toast.newUpdate'
+  | 'toast.unsavedChanges'
+  | 'toast.proTip'
+  | 'toast.securityAlert'
+  | 'toast.withOptions'
+  | 'toast.saved'
+  | 'toast.api.success'
+  | 'toast.api.error'
+  | 'toast.api.info'
+  | 'toast.api.warning'
+  | 'toast.api.tip'
+  | 'toast.api.risk'
+  | 'toast.api.provider'
+  | 'upload.dragMode'
+  | 'upload.buttonMode'
+  | 'upload.galleryMode'
+  | 'upload.withHandler'
+  | 'upload.api.modelValue'
+  | 'upload.api.trigger'
+  | 'upload.api.listType'
+  | 'upload.api.maxFiles'
+  | 'upload.api.uploadHandler'
+  | 'upload.api.emits'
   | 'card.description'
   | 'card.withHeader'
   | 'card.contentGoesHere'
@@ -154,6 +265,84 @@ type MessageKey =
   | 'breadcrumb.api.list'
   | 'breadcrumb.api.labelKey'
   | 'breadcrumb.api.hrefKey'
+  | 'checkbox.description'
+  | 'checkbox.basicUsage'
+  | 'checkbox.checked'
+  | 'checkbox.unchecked'
+  | 'checkbox.disabled'
+  | 'checkbox.withLabel'
+  | 'checkbox.api.checked'
+  | 'checkbox.api.disabled'
+  | 'checkbox.api.value'
+  | 'checkbox.api.id'
+  | 'checkbox.api.slots'
+  | 'colorPicker.description'
+  | 'colorPicker.basicUsage'
+  | 'colorPicker.selectColor'
+  | 'colorPicker.currentColor'
+  | 'colorPicker.api.color'
+  | 'colorPicker.api.colors'
+  | 'colorPicker.api.showAlpha'
+  | 'configProvider.description'
+  | 'configProvider.basicUsage'
+  | 'configProvider.api.theme'
+  | 'configProvider.api.locale'
+  | 'help.description'
+  | 'help.basicUsage'
+  | 'help.clickForHelp'
+  | 'help.helpContent'
+  | 'help.api.content'
+  | 'help.api.placement'
+  | 'help.api.icon'
+  | 'iconPicker.description'
+  | 'iconPicker.basicUsage'
+  | 'iconPicker.searchIcons'
+  | 'iconPicker.selectedIcon'
+  | 'iconPicker.api.modelValue'
+  | 'iconPicker.api.searchable'
+  | 'iconPicker.api.columns'
+  | 'img.description'
+  | 'img.basicUsage'
+  | 'img.lazyLoad'
+  | 'img.api.src'
+  | 'img.api.alt'
+  | 'img.api.lazy'
+  | 'img.api.fit'
+  | 'modal.description'
+  | 'modal.basicUsage'
+  | 'modal.openModal'
+  | 'modal.closeModal'
+  | 'modal.modalTitle'
+  | 'modal.modalContent'
+  | 'modal.api.open'
+  | 'modal.api.title'
+  | 'modal.api.size'
+  | 'modal.api.slots'
+  | 'sidebar.description'
+  | 'sidebar.basicUsage'
+  | 'sidebar.menuItem'
+  | 'sidebar.collapse'
+  | 'sidebar.api.items'
+  | 'sidebar.api.collapsible'
+  | 'sidebar.api.slots'
+  | 'toast.description'
+  | 'toast.basicUsage'
+  | 'toast.success'
+  | 'toast.error'
+  | 'toast.warning'
+  | 'toast.info'
+  | 'toast.showToast'
+  | 'toast.api.message'
+  | 'toast.api.type'
+  | 'toast.api.duration'
+  | 'upload.description'
+  | 'upload.basicUsage'
+  | 'upload.dragDrop'
+  | 'upload.selectFile'
+  | 'upload.api.accept'
+  | 'upload.api.multiple'
+  | 'upload.api.maxSize'
+  | 'upload.api.slots'
 
 const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.components': { en: 'Components', zh: '组件' },
@@ -168,6 +357,16 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.text': { en: 'Text', zh: '文本' },
   'nav.switch': { en: 'Switch', zh: '开关' },
   'nav.breadcrumb': { en: 'Breadcrumb', zh: '面包屑' },
+  'nav.checkbox': { en: 'Checkbox', zh: '多选框' },
+  'nav.colorPicker': { en: 'Color Picker', zh: '颜色选择器' },
+  'nav.configProvider': { en: 'Config Provider', zh: '全局配置' },
+  'nav.help': { en: 'Help', zh: '帮助' },
+  'nav.iconPicker': { en: 'Icon Picker', zh: '图标选择器' },
+  'nav.img': { en: 'Img', zh: '图片' },
+  'nav.modal': { en: 'Modal', zh: '模态框' },
+  'nav.sidebar': { en: 'Sidebar', zh: '侧边栏' },
+  'nav.toast': { en: 'Toast', zh: '消息提示' },
+  'nav.upload': { en: 'Upload', zh: '上传' },
   'nav.theme': { en: 'Theme', zh: '主题' },
   'nav.icons': { en: 'Icons', zh: '图标' },
   'theme.mode': { en: 'Theme mode', zh: '主题模式' },
@@ -343,6 +542,220 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'breadcrumb.api.list': { en: 'Array of route items with label and href keys.', zh: '路由条目数组，包含 label 和 href 键。' },
   'breadcrumb.api.labelKey': { en: 'Object key for the display text. Default: "name".', zh: '显示文本的对象键名。默认："name"。' },
   'breadcrumb.api.hrefKey': { en: 'Object key for the link URL. Default: "href".', zh: '链接 URL 的对象键名。默认："href"。' },
+  'checkbox.description': {
+    en: 'Checkbox component with label support, disabled state, and two-way binding.',
+    zh: '多选框组件，支持标签文本、禁用状态和双向绑定。',
+  },
+  'checkbox.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'checkbox.checked': { en: 'Checked', zh: '已选中' },
+  'checkbox.unchecked': { en: 'Unchecked', zh: '未选中' },
+  'checkbox.disabled': { en: 'Disabled', zh: '禁用' },
+  'checkbox.withLabel': { en: 'With Label', zh: '带标签' },
+  'checkbox.api.checked': { en: 'Two-way bound checked state.', zh: '双向绑定的选中状态。' },
+  'checkbox.api.disabled': { en: 'Disable the checkbox.', zh: '禁用多选框。' },
+  'checkbox.api.value': { en: 'Value emitted when checked.', zh: '选中时发出的值。' },
+  'checkbox.api.id': { en: 'HTML id attribute.', zh: 'HTML id 属性。' },
+  'checkbox.api.slots': { en: 'Custom label content.', zh: '自定义标签内容。' },
+  'colorPicker.description': {
+    en: 'Color picker component supporting preset palettes, alpha channel, and two-way binding.',
+    zh: '颜色选择器组件，支持预设色板、透明度通道和双向绑定。',
+  },
+  'colorPicker.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'colorPicker.selectColor': { en: 'Select a color', zh: '选择颜色' },
+  'colorPicker.currentColor': { en: 'Current: {color}', zh: '当前：{color}' },
+  'colorPicker.api.color': { en: 'Two-way bound color value.', zh: '双向绑定的颜色值。' },
+  'colorPicker.api.colors': { en: 'Array of preset colors to display.', zh: '预设颜色数组。' },
+  'colorPicker.api.showAlpha': { en: 'Show alpha channel slider.', zh: '显示透明度滑块。' },
+  'configProvider.description': {
+    en: 'Global configuration provider for theme, locale, and shared settings across the app.',
+    zh: '全局配置提供者，用于在应用内共享主题、语言等设置。',
+  },
+  'configProvider.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'configProvider.api.theme': { en: 'Theme configuration object.', zh: '主题配置对象。' },
+  'configProvider.api.locale': { en: 'Locale override for child components.', zh: '子组件的语言覆盖。' },
+  'help.description': {
+    en: 'Help tooltip component providing contextual guidance with icon trigger.',
+    zh: '帮助提示组件，通过图标触发提供上下文指导。',
+  },
+  'help.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'help.clickForHelp': { en: 'Click for help', zh: '点击获取帮助' },
+  'help.helpContent': { en: 'This is a helpful tip to guide users.', zh: '这是一条引导用户的有用提示。' },
+  'help.api.content': { en: 'Help text or HTML content.', zh: '帮助文本或 HTML 内容。' },
+  'help.api.placement': { en: 'Tooltip placement relative to the trigger.', zh: '提示相对于触发器的位置。' },
+  'help.api.icon': { en: 'Custom icon class for the help trigger.', zh: '帮助触发器的自定义图标类。' },
+  'iconPicker.description': {
+    en: 'Icon picker component with search, grid layout, and two-way binding for selecting icons.',
+    zh: '图标选择器组件，支持搜索、网格布局和双向绑定选择图标。',
+  },
+  'iconPicker.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'iconPicker.searchIcons': { en: 'Search icons...', zh: '搜索图标...' },
+  'iconPicker.selectedIcon': { en: 'Selected: {icon}', zh: '已选：{icon}' },
+  'iconPicker.api.modelValue': { en: 'Two-way bound selected icon name.', zh: '双向绑定的已选图标名称。' },
+  'iconPicker.api.searchable': { en: 'Enable icon search input.', zh: '启用图标搜索输入。' },
+  'iconPicker.api.columns': { en: 'Number of columns in the icon grid.', zh: '图标网格的列数。' },
+  'img.description': {
+    en: 'Image component with lazy loading, object-fit control, and fallback placeholder.',
+    zh: '图片组件，支持懒加载、对象适配控制和占位回退。',
+  },
+  'img.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'img.lazyLoad': { en: 'Lazy Load', zh: '懒加载' },
+  'img.api.src': { en: 'Image source URL.', zh: '图片源 URL。' },
+  'img.api.alt': { en: 'Alt text for accessibility.', zh: '无障碍替代文本。' },
+  'img.api.lazy': { en: 'Enable native lazy loading.', zh: '启用原生懒加载。' },
+  'img.api.fit': { en: 'CSS object-fit value.', zh: 'CSS object-fit 值。' },
+  'modal.description': {
+    en: 'Modal dialog component with overlay, title, content slots, and keyboard accessibility.',
+    zh: '模态对话框组件，支持遮罩、标题、内容插槽和键盘无障碍访问。',
+  },
+  'modal.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'modal.openModal': { en: 'Open Modal', zh: '打开模态框' },
+  'modal.closeModal': { en: 'Close', zh: '关闭' },
+  'modal.modalTitle': { en: 'Modal Title', zh: '模态框标题' },
+  'modal.modalContent': {
+    en: 'This is the modal content. Click the backdrop or close button to dismiss.',
+    zh: '这是模态框内容。点击背景遮罩或关闭按钮可关闭。',
+  },
+  'modal.api.open': { en: 'Two-way bound visibility state.', zh: '双向绑定的可见状态。' },
+  'modal.api.title': { en: 'Header title text.', zh: '头部标题文本。' },
+  'modal.api.size': { en: 'Modal width preset.', zh: '模态框宽度预设。' },
+  'modal.api.slots': { en: 'Header, body, and footer content areas.', zh: '头部、主体和底部内容区域。' },
+  'sidebar.description': {
+    en: 'Sidebar navigation component with collapsible sections, menu items, and slot customization.',
+    zh: '侧边栏导航组件，支持可折叠区域、菜单项和插槽自定义。',
+  },
+  'sidebar.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'sidebar.menuItem': { en: 'Menu Item', zh: '菜单项' },
+  'sidebar.collapse': { en: 'Collapse', zh: '收起' },
+  'sidebar.api.items': { en: 'Array of sidebar menu items.', zh: '侧边栏菜单项数组。' },
+  'sidebar.api.collapsible': { en: 'Allow sidebar to be collapsed.', zh: '允许侧边栏收起。' },
+  'sidebar.api.slots': { en: 'Custom header, footer, and item rendering.', zh: '自定义头部、底部和项目渲染。' },
+  'toast.description': {
+    en: 'Toast notification component supporting success, error, warning, and info types with auto-dismiss.',
+    zh: '消息提示组件，支持成功、错误、警告和信息类型，可自动关闭。',
+  },
+  'toast.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'toast.success': { en: 'Operation successful!', zh: '操作成功！' },
+  'toast.error': { en: 'Something went wrong.', zh: '出了点问题。' },
+  'toast.warning': { en: 'Please check your input.', zh: '请检查你的输入。' },
+  'toast.info': { en: 'Here is some information.', zh: '这是一条信息。' },
+  'toast.showToast': { en: 'Show Toast', zh: '显示提示' },
+  'toast.api.message': { en: 'Toast message content.', zh: '提示消息内容。' },
+  'toast.api.type': { en: 'Toast variant type.', zh: '提示变体类型。' },
+  'toast.api.duration': { en: 'Auto-dismiss duration in milliseconds.', zh: '自动关闭持续时间（毫秒）。' },
+  'upload.description': {
+    en: 'File upload component with drag-and-drop, file type filtering, and multi-file support.',
+    zh: '文件上传组件，支持拖拽上传、文件类型过滤和多文件上传。',
+  },
+  'upload.basicUsage': { en: 'Basic Usage', zh: '基础用法' },
+  'upload.dragDrop': { en: 'Drag & Drop files here', zh: '拖拽文件到此处' },
+  'upload.selectFile': { en: 'Select File', zh: '选择文件' },
+  'upload.api.accept': { en: 'Accepted file MIME types or extensions.', zh: '接受的文件 MIME 类型或扩展名。' },
+  'upload.api.multiple': { en: 'Allow selecting multiple files.', zh: '允许多文件选择。' },
+  'upload.api.maxSize': { en: 'Maximum file size in bytes.', zh: '最大文件大小（字节）。' },
+  'upload.api.slots': { en: 'Custom upload trigger and file list rendering.', zh: '自定义上传触发器和文件列表渲染。' },
+
+  'checkbox.indeterminateState': { en: 'Indeterminate', zh: '半选状态' },
+  'checkbox.api.modelValue': { en: 'Two-way bound checked state.', zh: '双向绑定的选中状态。' },
+  'checkbox.api.class': { en: 'Additional CSS classes.', zh: '额外的 CSS 类。' },
+  'colorPicker.default': { en: 'Default', zh: '默认' },
+  'colorPicker.withSwatches': { en: 'With custom swatches', zh: '带自定义色板' },
+  'colorPicker.hideContrast': { en: 'Hide contrast ratio', zh: '隐藏对比度' },
+  'colorPicker.api.modelValue': { en: 'HEX color string.', zh: 'HEX 颜色字符串。' },
+  'colorPicker.api.format': { en: 'Display format: hex, hsl, or rgb.', zh: '显示格式：hex、hsl 或 rgb。' },
+  'colorPicker.api.swatches': { en: 'Extra swatch colors.', zh: '额外的色板颜色。' },
+  'colorPicker.api.hideContrast': { en: 'Hide the contrast ratio panel.', zh: '隐藏对比度面板。' },
+  'colorPicker.api.hideDefaults': { en: 'Hide the default swatches.', zh: '隐藏默认色板。' },
+  'colorPicker.api.disabled': { en: 'Disable the picker.', zh: '禁用颜色选择器。' },
+  'colorPicker.api.slot': { en: 'Custom trigger slot.', zh: '自定义触发器插槽。' },
+  'colorPicker.api.emits': { en: 'Emits update:modelValue and valueChange.', zh: '触发 update:modelValue 和 valueChange 事件。' },
+  'configProvider.wrapped': { en: 'Wrapped content', zh: '被包裹的内容' },
+  'configProvider.api.slot': { en: 'The wrapped content.', zh: '被包裹的内容。' },
+  'help.whatIsThis': { en: 'What is this?', zh: '这是什么？' },
+  'help.richContent': { en: 'Rich content', zh: '富文本内容' },
+  'help.richTitle': { en: 'More Details', zh: '更多详情' },
+  'help.richBody': { en: 'You can put custom HTML content here.', zh: '你可以在这里放入自定义 HTML 内容。' },
+  'help.simpleUsage': { en: 'Simple string content', zh: '简单字符串内容' },
+  'help.slotUsage': { en: 'Rich content via slot', zh: '通过插槽使用富文本内容' },
+  'help.api.position': { en: 'Tooltip position relative to trigger.', zh: '提示相对于触发器的位置。' },
+  'help.api.slot': { en: 'Custom content slot.', zh: '自定义内容插槽。' },
+  'iconPicker.customTrigger': { en: 'Custom trigger button', zh: '自定义触发按钮' },
+  'iconPicker.api.slot': { en: 'Custom trigger slot.', zh: '自定义触发器插槽。' },
+  'img.loading': { en: 'Loading...', zh: '加载中...' },
+  'img.error': { en: 'Failed to load', zh: '加载失败' },
+  'img.api.fallbackSrc': { en: 'Fallback image URL when src fails.', zh: '加载失败时使用的回退图片地址。' },
+  'img.api.preview': { en: 'Enable click-to-preview with viewerjs.', zh: '启用点击预览（使用 viewerjs）。' },
+  'img.api.previewSrcList': { en: 'Additional preview images for gallery.', zh: '预览图库中的额外图片。' },
+  'img.api.objectFit': { en: 'CSS object-fit value.', zh: 'CSS object-fit 属性值。' },
+  'img.api.aspectRatio': { en: 'Fixed aspect ratio.', zh: '固定宽高比。' },
+  'img.api.rounded': { en: 'Apply rounded corners.', zh: '应用圆角样式。' },
+  'img.api.loading': { en: 'Loading placeholder text.', zh: '加载占位文本。' },
+  'img.api.error': { en: 'Error placeholder text.', zh: '错误占位文本。' },
+  'img.api.slots': { en: 'Custom loading and error slots.', zh: '自定义加载和错误状态插槽。' },
+  'modal.basicTitle': { en: 'Basic Modal', zh: '基础模态框' },
+  'modal.basicDescription': { en: 'This is a basic modal with title and description.', zh: '这是一个带标题和描述的基础模态框。' },
+  'modal.openBasic': { en: 'Open Basic Modal', zh: '打开基础模态框' },
+  'modal.bodyContent': { en: 'Modal body content goes here.', zh: '模态框正文内容放在这里。' },
+  'modal.confirmTitle': { en: 'Confirm Action', zh: '确认操作' },
+  'modal.confirm': { en: 'Confirm', zh: '确认' },
+  'modal.cancel': { en: 'Cancel', zh: '取消' },
+  'modal.openConfirm': { en: 'Open Confirm Modal', zh: '打开确认模态框' },
+  'modal.confirmBody': { en: 'Are you sure you want to proceed?', zh: '你确定要继续吗？' },
+  'modal.deleteTitle': { en: 'Delete Item', zh: '删除项目' },
+  'modal.deleteBtn': { en: 'Delete', zh: '删除' },
+  'modal.deleteBody': { en: 'This action cannot be undone.', zh: '此操作不可撤销。' },
+  'modal.pluginUsage': { en: 'Plugin / Composable Usage', zh: '插件 / Composable 用法' },
+  'modal.confirmAction': { en: 'Confirm action', zh: '确认操作' },
+  'modal.areYouSure': { en: 'Are you sure?', zh: '确定吗？' },
+  'modal.api.description': { en: 'Supporting text below the title.', zh: '标题下方的辅助说明文字。' },
+  'modal.api.positiveText': { en: 'Label for the confirm button.', zh: '确认按钮的文字。' },
+  'modal.api.negativeText': { en: 'Label for the cancel button.', zh: '取消按钮的文字。' },
+  'modal.api.positiveLoading': { en: 'Show loading state on positive button.', zh: '确认按钮显示加载状态。' },
+  'modal.api.emits': { en: 'positive-click, negative-click, update:open.', zh: 'positive-click、negative-click、update:open。' },
+  'modal.api.composable': { en: 'usePfModal().open / confirm / closeAll for imperative usage.', zh: 'usePfModal().open / confirm / closeAll 用于命令式调用。' },
+  'sidebar.dashboard': { en: 'Dashboard', zh: '仪表盘' },
+  'sidebar.overview': { en: 'Overview', zh: '概览' },
+  'sidebar.analytics': { en: 'Analytics', zh: '分析' },
+  'sidebar.settings': { en: 'Settings', zh: '设置' },
+  'sidebar.profile': { en: 'Profile', zh: '个人资料' },
+  'sidebar.security': { en: 'Security', zh: '安全' },
+  'sidebar.help': { en: 'Help', zh: '帮助' },
+  'sidebar.api.typeNote': { en: 'Each item can nest children recursively for multi-level menus.', zh: '每个条目可以递归嵌套子项，实现多级菜单。' },
+  'toast.successMsg': { en: 'Operation completed!', zh: '操作完成！' },
+  'toast.errorTitle': { en: 'Operation failed', zh: '操作失败' },
+  'toast.errorDesc': { en: 'Please try again later.', zh: '请稍后重试。' },
+  'toast.infoMsg': { en: 'Here is some information.', zh: '这是一条信息。' },
+  'toast.warningMsg': { en: 'Please check your input.', zh: '请检查你的输入。' },
+  'toast.tip': { en: 'Tip', zh: '提示' },
+  'toast.tipMsg': { en: 'This is a helpful tip.', zh: '这是一条引导用户的有用提示。' },
+  'toast.risk': { en: 'Risk', zh: '风险' },
+  'toast.riskMsg': { en: 'Security alert!', zh: '安全警告！' },
+  'toast.operationSuccess': { en: 'Operation successful!', zh: '操作成功！' },
+  'toast.operationFailed': { en: 'Operation failed', zh: '操作失败' },
+  'toast.pleaseRetry': { en: 'Please try again.', zh: '请重试。' },
+  'toast.newUpdate': { en: 'New update available', zh: '有新版本可用' },
+  'toast.unsavedChanges': { en: 'You have unsaved changes.', zh: '你有未保存的更改。' },
+  'toast.proTip': { en: 'Pro tip: use keyboard shortcuts.', zh: '小技巧：使用键盘快捷键。' },
+  'toast.securityAlert': { en: 'Security alert!', zh: '安全警告！' },
+  'toast.withOptions': { en: 'With options', zh: '带选项' },
+  'toast.saved': { en: 'Saved!', zh: '已保存！' },
+  'toast.api.success': { en: 'Green success notification.', zh: '绿色成功通知。' },
+  'toast.api.error': { en: 'Red error notification.', zh: '红色错误通知。' },
+  'toast.api.info': { en: 'Blue info notification.', zh: '蓝色信息通知。' },
+  'toast.api.warning': { en: 'Yellow warning notification.', zh: '黄色警告通知。' },
+  'toast.api.tip': { en: 'Tip-styled notification with lightbulb icon.', zh: '灯泡图标的提示样式通知。' },
+  'toast.api.risk': { en: 'Risk-styled notification with shield icon.', zh: '盾牌图标的风险样式通知。' },
+  'toast.api.provider': { en: 'PfToastProvider mounts the Toaster instance.', zh: 'PfToastProvider 挂载 Toaster 实例。' },
+  'upload.dragMode': { en: 'Drag-and-drop mode', zh: '拖拽上传模式' },
+  'upload.buttonMode': { en: 'Button trigger mode', zh: '按钮触发模式' },
+  'upload.galleryMode': { en: 'Gallery mode', zh: '图库模式' },
+  'upload.withHandler': { en: 'With custom upload handler', zh: '带自定义上传处理器' },
+  'upload.api.modelValue': { en: 'Two-way bound file list.', zh: '双向绑定的文件列表。' },
+  'upload.api.trigger': { en: 'Upload trigger style.', zh: '上传触发方式。' },
+  'upload.api.listType': { en: 'File list display style.', zh: '文件列表显示样式。' },
+  'upload.api.maxFiles': { en: 'Maximum number of files.', zh: '最大文件数量。' },
+  'upload.api.uploadHandler': { en: 'Custom upload function with progress and abort support.', zh: '自定义上传函数，支持进度和取消。' },
+  'upload.api.emits': { en: 'change, remove, error events.', zh: 'change、remove、error 事件。' },
+
 }
 
 const getInitialLocale = (): Locale => {

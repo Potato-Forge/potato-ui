@@ -3,15 +3,25 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BreadcrumbPage from './docs/pages/BreadcrumbPage.vue'
 import ButtonPage from './docs/pages/ButtonPage.vue'
 import CardPage from './docs/pages/CardPage.vue'
+import CheckboxPage from './docs/pages/CheckboxPage.vue'
+import ColorPickerPage from './docs/pages/ColorPickerPage.vue'
+import ConfigProviderPage from './docs/pages/ConfigProviderPage.vue'
 import DividePage from './docs/pages/DividePage.vue'
 import EmptyPage from './docs/pages/EmptyPage.vue'
+import HelpPage from './docs/pages/HelpPage.vue'
+import IconPickerPage from './docs/pages/IconPickerPage.vue'
 import IconsPage from './docs/pages/IconsPage.vue'
+import ImgPage from './docs/pages/ImgPage.vue'
 import LoadingPage from './docs/pages/LoadingPage.vue'
+import ModalPage from './docs/pages/ModalPage.vue'
+import SidebarPage from './docs/pages/SidebarPage.vue'
 import SwitchPage from './docs/pages/SwitchPage.vue'
 import TextPage from './docs/pages/TextPage.vue'
 import ThemePage from './docs/pages/ThemePage.vue'
+import ToastPage from './docs/pages/ToastPage.vue'
 import TooltipPage from './docs/pages/TooltipPage.vue'
 import TreePage from './docs/pages/TreePage.vue'
+import UploadPage from './docs/pages/UploadPage.vue'
 import { locale, localeOptions, setLocale, t } from './docs/i18n'
 
 type ThemeMode = 'system' | 'light' | 'dark'
@@ -20,13 +30,23 @@ const routes = {
   '/components/breadcrumb': BreadcrumbPage,
   '/components/button': ButtonPage,
   '/components/card': CardPage,
+  '/components/checkbox': CheckboxPage,
+  '/components/color-picker': ColorPickerPage,
+  '/components/config-provider': ConfigProviderPage,
   '/components/divide': DividePage,
   '/components/empty': EmptyPage,
+  '/components/help': HelpPage,
+  '/components/icon-picker': IconPickerPage,
+  '/components/img': ImgPage,
   '/components/loading': LoadingPage,
+  '/components/modal': ModalPage,
+  '/components/sidebar': SidebarPage,
   '/components/switch': SwitchPage,
   '/components/text': TextPage,
+  '/components/toast': ToastPage,
   '/components/tooltip': TooltipPage,
   '/components/tree': TreePage,
+  '/components/upload': UploadPage,
   '/foundation/theme': ThemePage,
   '/foundation/icons': IconsPage,
 } as const
@@ -37,14 +57,23 @@ const navGroups = [
     links: [
       { path: '/components/button', label: 'nav.button' },
       { path: '/components/card', label: 'nav.card' },
-      { path: '/components/text', label: 'nav.text' },
-      { path: '/components/switch', label: 'nav.switch' },
-      { path: '/components/breadcrumb', label: 'nav.breadcrumb' },
+      { path: '/components/checkbox', label: 'nav.checkbox' },
+      { path: '/components/color-picker', label: 'nav.colorPicker' },
+      { path: '/components/config-provider', label: 'nav.configProvider' },
       { path: '/components/divide', label: 'nav.divide' },
       { path: '/components/empty', label: 'nav.empty' },
+      { path: '/components/help', label: 'nav.help' },
+      { path: '/components/icon-picker', label: 'nav.iconPicker' },
+      { path: '/components/img', label: 'nav.img' },
       { path: '/components/loading', label: 'nav.loading' },
+      { path: '/components/modal', label: 'nav.modal' },
+      { path: '/components/sidebar', label: 'nav.sidebar' },
+      { path: '/components/switch', label: 'nav.switch' },
+      { path: '/components/text', label: 'nav.text' },
+      { path: '/components/toast', label: 'nav.toast' },
       { path: '/components/tooltip', label: 'nav.tooltip' },
       { path: '/components/tree', label: 'nav.tree' },
+      { path: '/components/upload', label: 'nav.upload' },
     ],
   },
   {
