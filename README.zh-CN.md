@@ -43,17 +43,11 @@ pnpm build
 pnpm registry:build
 ```
 
-## 分发模式
+## 分发方式
 
-Pf-UI 组件通过 registry item 分发：
+Pf-UI 组件作为注册表项（registry items）进行分发。组件及其依赖被逻辑分组，以便轻松安装到使用方项目的源码目录中。
 
-```bash
-pnpm dlx shadcn-vue@latest add <pf-ui-registry-url>/r/pf-button.json
-```
-
-该命令应将组件源码复制到使用方项目中，并仅安装该组件所需的 npm 依赖。
-
-生成后的 registry 产物输出到：
+生成后的注册表（registry）产物存放在：
 
 ```txt
 registry/public/registry.json
@@ -109,16 +103,13 @@ scripts/
   build-registry.ts
 ```
 
-## 文档目标
+## 组件文档
 
-项目应提供一个 Web 文档站点，按组件页面覆盖以下内容：
+项目内置了一个 Web 文档站点，为各个组件提供以下说明：
 
-- 安装命令
-- 基础用法
-- 代码示例
-- Props、emits、slots 与暴露方法
-- 依赖项
+- 安装步骤
+- 基础用法与代码示例
+- Props、Emits、Slots 与暴露方法
+- 关联依赖项
 - 源码入口
-- 对简单组件，必要时提供可直接复制的示例
-
-当前设计决策与下一轮接手上下文见 `docs/pf-ui-architecture.md`、`docs/component-registry-plan.md` 和 `docs/codex-handoff.md`。
+- 常见场景下可直接复制的简单用例

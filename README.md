@@ -43,15 +43,9 @@ pnpm build
 pnpm registry:build
 ```
 
-## Distribution Model
+## Distribution
 
-Pf-UI components are delivered through registry items:
-
-```bash
-pnpm dlx shadcn-vue@latest add <pf-ui-registry-url>/r/pf-button.json
-```
-
-The command should copy component source code into the consuming project and install only the npm dependencies required by that component.
+Pf-UI components are distributed as registry items. The components and their required `npm` dependencies are grouped logically so they can be easily installed into a consuming project's source tree.
 
 Generated registry payloads are emitted to:
 
@@ -109,16 +103,13 @@ scripts/
   build-registry.ts
 ```
 
-## Documentation Goal
+## Documentation
 
-The project should include a web documentation site with component pages covering:
+The project provides a web documentation site that covers the following for each component:
 
-- Installation command
-- Basic usage
-- Code examples
+- Installation steps
+- Basic usage and code examples
 - Props, emits, slots, and exposed methods
-- Dependencies
+- Associated dependencies
 - Source entry points
-- Copy-paste examples for simple components where useful
-
-See `docs/pf-ui-architecture.md`, `docs/component-registry-plan.md`, and `docs/codex-handoff.md` for the current decisions and next-thread startup context.
+- Copy-paste examples for simpler components
