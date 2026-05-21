@@ -1,5 +1,7 @@
 # Pf-UI
 
+[中文说明](./README.zh-CN.md)
+
 Pf-UI is a source-distributed Vue 3 component registry for the Potato Forge / Potato Template ecosystem.
 
 It follows the same broad idea as shadcn: components are installed into the consuming project's source tree instead of being used as a traditional runtime UI package from `node_modules`. The goal is to keep components easy to inspect, customize, fork, and evolve across Potato-series templates.
