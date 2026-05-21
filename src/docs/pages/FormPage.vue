@@ -1,5 +1,37 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import PfForm from '@/components/pf-form/PfForm.vue'
 import { t } from '../i18n'
+
+const submitted = ref<Record<string, any> | null>(null)
+const lastChanged = ref<Record<string, any> | null>(null)
+
+const demoConfig = [
+  { name: 'Name', key: 'name', type: 'text' as const, rules: { required: '必填' } },
+  { name: 'Email', key: 'email', type: 'text' as const,
+    rules: { pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: '邮箱格式不正确' } } },
+  {
+    name: 'Role', key: 'role', type: 'options' as const,
+    config: {
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
+        { label: 'Viewer', value: 'viewer' },
+      ],
+    },
+  },
+  { name: 'Active', key: 'active', type: 'toggle' as const, default: true },
+  { name: 'Birthday', key: 'birthday', type: 'date' as const },
+]
+
+const handleSubmit = async (data: Record<string, any>) => {
+  submitted.value = { ...data }
+  await new Promise((r) => setTimeout(r, 400))
+}
+
+const handleChange = (data: Record<string, any>) => {
+  lastChanged.value = { ...data }
+}
 </script>
 
 <template>
@@ -15,35 +47,41 @@ import { t } from '../i18n'
     </section>
 
     <section class="section">
-      <h2>{{ t('formPage.overview') }}</h2>
-      <p>{{ t('formPage.overviewDesc') }}</p>
-      <ul class="list-disc pl-5 space-y-1 text-sm">
-        <li>{{ t('formPage.feature.tanstack') }}</li>
-        <li>{{ t('formPage.feature.zod') }}</li>
-        <li>{{ t('formPage.feature.types') }}</li>
-        <li>{{ t('formPage.feature.modes') }}</li>
-        <li>{{ t('formPage.feature.conditional') }}</li>
-      </ul>
+      <h2>{{ t('section.preview') }}</h2>
+      <div class="preview" style="flex-direction: column; align-items: stretch; max-width: 560px;">
+        <PfForm
+          :form-config="demoConfig"
+          form-mode="create"
+          :columns-per-row="2"
+          :on-submit="handleSubmit"
+          :on-change="handleChange"
+        />
+      </div>
+      <div v-if="submitted" style="margin-top: 16px; padding: 12px; background: hsl(var(--muted)); border-radius: 8px;" class="text-sm">
+        <strong>Submitted:</strong>
+        <pre style="margin: 4px 0 0; font-size: 11px;">{{ JSON.stringify(submitted, null, 2) }}</pre>
+      </div>
+      <div v-if="lastChanged && !submitted" style="margin-top: 8px;" class="text-xs text-muted-foreground">
+        {{ lastChanged.name || '...' }} | {{ lastChanged.role || '...' }}
+      </div>
     </section>
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
       <pre class="code">const formConfig = [
-  { name: '{{ t('formPage.example.name') }}', key: 'name', type: 'text',
-    rules: { required: true } },
-  { name: '{{ t('formPage.example.email') }}', key: 'email', type: 'text',
-    rules: { required: true,
-      pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: 'Invalid email' } } },
-  { name: '{{ t('formPage.example.role') }}', key: 'role', type: 'options',
+  { name: 'Name', key: 'name', type: 'text', rules: { required: '必填' } },
+  { name: 'Email', key: 'email', type: 'text',
+    rules: { pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: '邮箱格式不正确' } } },
+  { name: 'Role', key: 'role', type: 'options',
     config: { options: [{ label: 'Admin', value: 'admin' }] } },
-  { name: '{{ t('formPage.example.active') }}', key: 'active', type: 'toggle', default: true },
-  { name: '{{ t('formPage.example.birthday') }}', key: 'birthday', type: 'date', edit: false },
+  { name: 'Active', key: 'active', type: 'toggle', default: true },
+  { name: 'Birthday', key: 'birthday', type: 'date' },
 ]
 
 &lt;PfForm
   :form-config="formConfig"
-  :form-data="existingData"
-  form-mode="edit"
+  form-mode="create"
+  :columns-per-row="2"
   :on-submit="handleSubmit"
 /&gt;</pre>
     </section>
@@ -78,7 +116,7 @@ import { t } from '../i18n'
           <tr><td>onChange</td><td>(data) => void</td><td>{{ t('formPage.api.onChange') }}</td></tr>
         </tbody>
       </table>
-      <h4>PfFormFieldRules</h4>
+      <h3>PfFormFieldRules</h3>
       <pre class="code mt-2">interface PfFormFieldRules {
   required?: boolean | string
   min?: number | { value: number; message?: string }
@@ -86,7 +124,7 @@ import { t } from '../i18n'
   pattern?: RegExp | { value: RegExp; message?: string }
   validateOn?: 'change' | 'blur' | 'both'
 }</pre>
-      <h4>PfFormRules</h4>
+      <h3>PfFormRules</h3>
       <pre class="code mt-2">interface PfFormRules {
   schema?: ZodType
   onBlur?: (payload) => PfFormValidationResult | Promise

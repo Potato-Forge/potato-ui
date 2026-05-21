@@ -372,6 +372,7 @@ type MessageKey =
   | 'dataTable.api.emitCreated'
   | 'dataTable.api.emitUpdated'
   | 'dataTable.api.emitDeleted'
+  | 'dataTable.demoHint'
   | 'formPage.description'
   | 'formPage.overview'
   | 'formPage.overviewDesc'
@@ -739,6 +740,7 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'dataTable.api.emitCreated': { en: 'Emitted after a record is created.', zh: '记录创建后触发。' },
   'dataTable.api.emitUpdated': { en: 'Emitted after a record is updated.', zh: '记录更新后触发。' },
   'dataTable.api.emitDeleted': { en: 'Emitted after a record is deleted.', zh: '记录删除后触发。' },
+  'dataTable.demoHint': { en: 'This demo uses in-memory mock data. Try searching, creating, editing, and deleting rows — everything works without a server.', zh: '此演示使用内存模拟数据。你可以尝试搜索、新增、编辑和删除行——无需后端即可体验完整 CRUD。' },
   'formPage.description': { en: 'Dynamic form generator powered by @tanstack/vue-form with zod validation, supporting 7 field types with config-driven rendering.', zh: '基于 @tanstack/vue-form 的动态表单生成器，支持 zod 校验和 7 种字段类型的配置驱动渲染。' },
   'formPage.overview': { en: 'Overview', zh: '概览' },
   'formPage.overviewDesc': { en: 'PfForm generates complete forms from a configuration array. Each form field is defined by its type, key, and optional rules. The form supports create/edit modes with field-level filtering and conditional visibility.', zh: 'PfForm 从配置数组生成完整表单。每个表单字段由其类型、键和可选规则定义。表单支持新增/编辑模式，具有字段级过滤和条件可见性。' },
