@@ -25,6 +25,8 @@ type MessageKey =
   | 'nav.sidebar'
   | 'nav.toast'
   | 'nav.upload'
+  | 'nav.dataTable'
+  | 'nav.form'
   | 'nav.theme'
   | 'nav.icons'
   | 'theme.mode'
@@ -343,6 +345,60 @@ type MessageKey =
   | 'upload.api.multiple'
   | 'upload.api.maxSize'
   | 'upload.api.slots'
+  | 'dataTable.description'
+  | 'dataTable.overview'
+  | 'dataTable.overviewDesc'
+  | 'dataTable.feature.crud'
+  | 'dataTable.feature.tanstack'
+  | 'dataTable.feature.query'
+  | 'dataTable.feature.container'
+  | 'dataTable.feature.action'
+  | 'dataTable.example.name'
+  | 'dataTable.example.status'
+  | 'dataTable.example.email'
+  | 'dataTable.api.columns'
+  | 'dataTable.api.rowKey'
+  | 'dataTable.api.containerMode'
+  | 'dataTable.api.listQuery'
+  | 'dataTable.api.create'
+  | 'dataTable.api.update'
+  | 'dataTable.api.delete'
+  | 'dataTable.api.detail'
+  | 'dataTable.api.formRules'
+  | 'dataTable.api.hideActions'
+  | 'dataTable.api.actionColumn'
+  | 'dataTable.api.autoFetch'
+  | 'dataTable.api.emitQuery'
+  | 'dataTable.api.emitCreated'
+  | 'dataTable.api.emitUpdated'
+  | 'dataTable.api.emitDeleted'
+  | 'formPage.description'
+  | 'formPage.overview'
+  | 'formPage.overviewDesc'
+  | 'formPage.feature.tanstack'
+  | 'formPage.feature.zod'
+  | 'formPage.feature.types'
+  | 'formPage.feature.modes'
+  | 'formPage.feature.conditional'
+  | 'formPage.fieldTypes'
+  | 'formPage.type.component'
+  | 'formPage.type.config'
+  | 'formPage.type.textDesc'
+  | 'formPage.type.textConfig'
+  | 'formPage.type.optionsDesc'
+  | 'formPage.type.iconConfig'
+  | 'formPage.example.name'
+  | 'formPage.example.email'
+  | 'formPage.example.role'
+  | 'formPage.example.active'
+  | 'formPage.example.birthday'
+  | 'formPage.api.formConfig'
+  | 'formPage.api.formData'
+  | 'formPage.api.formMode'
+  | 'formPage.api.columnsPerRow'
+  | 'formPage.api.formRules'
+  | 'formPage.api.onSubmit'
+  | 'formPage.api.onChange'
 
 const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.components': { en: 'Components', zh: '组件' },
@@ -367,6 +423,8 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.sidebar': { en: 'Sidebar', zh: '侧边栏' },
   'nav.toast': { en: 'Toast', zh: '消息提示' },
   'nav.upload': { en: 'Upload', zh: '上传' },
+  'nav.dataTable': { en: 'Data Table', zh: '数据表格' },
+  'nav.form': { en: 'Form', zh: '表单' },
   'nav.theme': { en: 'Theme', zh: '主题' },
   'nav.icons': { en: 'Icons', zh: '图标' },
   'theme.mode': { en: 'Theme mode', zh: '主题模式' },
@@ -653,6 +711,62 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'upload.api.multiple': { en: 'Allow selecting multiple files.', zh: '允许多文件选择。' },
   'upload.api.maxSize': { en: 'Maximum file size in bytes.', zh: '最大文件大小（字节）。' },
   'upload.api.slots': { en: 'Custom upload trigger and file list rendering.', zh: '自定义上传触发器和文件列表渲染。' },
+
+  'dataTable.description': { en: 'Full-featured CRUD data table built on vxe-table with tanstack-query, supporting search, create, edit, delete, and detail views.', zh: '基于 vxe-table 和 tanstack-query 的全功能 CRUD 数据表格，支持搜索、新增、编辑、删除和详情查看。' },
+  'dataTable.overview': { en: 'Overview', zh: '概览' },
+  'dataTable.overviewDesc': { en: 'PfDataTable is the most complex component in the library. It integrates form-based query, vxe-table rendering, tanstack-query caching, and drawer/modal-based CRUD forms into a single declarative API.', zh: 'PfDataTable 是组件库中最复杂的组件。它将表单查询、vxe-table 渲染、tanstack-query 缓存和抽屉/模态框 CRUD 表单集成到一个声明式 API 中。' },
+  'dataTable.feature.crud': { en: 'Built-in create, read, update, delete operations', zh: '内置增删改查操作' },
+  'dataTable.feature.tanstack': { en: '@tanstack/vue-query powered caching and refetching', zh: '@tanstack/vue-query 驱动的缓存和刷新' },
+  'dataTable.feature.query': { en: 'Form-based query area with per-column searchable fields', zh: '基于表单的查询区域，支持每列的搜索字段' },
+  'dataTable.feature.container': { en: 'Drawer (Sheet) or Modal container for create/edit forms', zh: '抽屉（Sheet）或模态框作为新增/编辑表单容器' },
+  'dataTable.feature.action': { en: 'Configurable action column with custom width, alignment, and layout', zh: '可配置的操作列，支持自定义宽度、对齐和布局' },
+  'dataTable.example.name': { en: 'Name', zh: '名称' },
+  'dataTable.example.status': { en: 'Status', zh: '状态' },
+  'dataTable.example.email': { en: 'Email', zh: '邮箱' },
+  'dataTable.api.columns': { en: 'Column definitions using PfDataTableItem type.', zh: '使用 PfDataTableItem 类型的列定义。' },
+  'dataTable.api.rowKey': { en: 'Unique row identifier. Default: "id".', zh: '行的唯一标识符。默认："id"。' },
+  'dataTable.api.containerMode': { en: 'Form container: drawer (Sheet) or modal (Dialog).', zh: '表单容器：drawer（Sheet）或 modal（Dialog）。' },
+  'dataTable.api.listQuery': { en: 'Async function to fetch table rows.', zh: '异步函数，用于获取表格行数据。' },
+  'dataTable.api.create': { en: 'Async function to create a new record.', zh: '异步函数，用于创建新记录。' },
+  'dataTable.api.update': { en: 'Async function to update an existing record.', zh: '异步函数，用于更新已有记录。' },
+  'dataTable.api.delete': { en: 'Async function to delete a record.', zh: '异步函数，用于删除记录。' },
+  'dataTable.api.detail': { en: 'Async function to fetch record detail.', zh: '异步函数，用于获取记录详情。' },
+  'dataTable.api.formRules': { en: 'Form validation rules for create/edit forms.', zh: '新增/编辑表单的校验规则。' },
+  'dataTable.api.hideActions': { en: 'Hide individual CRUD action buttons.', zh: '单独隐藏增删改查操作按钮。' },
+  'dataTable.api.actionColumn': { en: 'Configure the action column appearance.', zh: '配置操作列的外观。' },
+  'dataTable.api.autoFetch': { en: 'Auto-fetch on mount. Default: true.', zh: '挂载时自动拉取数据。默认：true。' },
+  'dataTable.api.emitQuery': { en: 'Emitted when the query form is submitted.', zh: '查询表单提交时触发。' },
+  'dataTable.api.emitCreated': { en: 'Emitted after a record is created.', zh: '记录创建后触发。' },
+  'dataTable.api.emitUpdated': { en: 'Emitted after a record is updated.', zh: '记录更新后触发。' },
+  'dataTable.api.emitDeleted': { en: 'Emitted after a record is deleted.', zh: '记录删除后触发。' },
+  'formPage.description': { en: 'Dynamic form generator powered by @tanstack/vue-form with zod validation, supporting 7 field types with config-driven rendering.', zh: '基于 @tanstack/vue-form 的动态表单生成器，支持 zod 校验和 7 种字段类型的配置驱动渲染。' },
+  'formPage.overview': { en: 'Overview', zh: '概览' },
+  'formPage.overviewDesc': { en: 'PfForm generates complete forms from a configuration array. Each form field is defined by its type, key, and optional rules. The form supports create/edit modes with field-level filtering and conditional visibility.', zh: 'PfForm 从配置数组生成完整表单。每个表单字段由其类型、键和可选规则定义。表单支持新增/编辑模式，具有字段级过滤和条件可见性。' },
+  'formPage.feature.tanstack': { en: '@tanstack/vue-form for performant form state management', zh: '@tanstack/vue-form 高性能表单状态管理' },
+  'formPage.feature.zod': { en: 'Optional zod schema validation on submit', zh: '可选的 zod schema 提交时校验' },
+  'formPage.feature.types': { en: '7 field types: text, datetime, date, time, options, toggle, icon, upload', zh: '7 种字段类型：text、datetime、date、time、options、toggle、icon、upload' },
+  'formPage.feature.modes': { en: 'create/edit modes with per-field visibility control', zh: '新增/编辑模式，支持逐字段可见性控制' },
+  'formPage.feature.conditional': { en: 'Conditional field visibility via visibleIf', zh: '通过 visibleIf 实现条件字段可见性' },
+  'formPage.fieldTypes': { en: 'Field Types', zh: '字段类型' },
+  'formPage.type.component': { en: 'Component', zh: '组件' },
+  'formPage.type.config': { en: 'Config', zh: '配置' },
+  'formPage.type.textDesc': { en: 'Text input', zh: '文本输入' },
+  'formPage.type.textConfig': { en: 'No extra config needed', zh: '无需额外配置' },
+  'formPage.type.optionsDesc': { en: 'Select / Combobox / Checkbox group', zh: '下拉选择 / 组合框 / 复选框组' },
+  'formPage.type.iconConfig': { en: 'No extra config needed', zh: '无需额外配置' },
+  'formPage.example.name': { en: 'Name', zh: '姓名' },
+  'formPage.example.email': { en: 'Email', zh: '邮箱' },
+  'formPage.example.role': { en: 'Role', zh: '角色' },
+  'formPage.example.active': { en: 'Active', zh: '激活' },
+  'formPage.example.birthday': { en: 'Birthday', zh: '生日' },
+  'formPage.api.formConfig': { en: 'Array of PfFormConfigItem defining each field.', zh: 'PfFormConfigItem 数组，定义每个字段。' },
+  'formPage.api.formData': { en: 'Initial form values for edit mode.', zh: '编辑模式下的初始表单值。' },
+  'formPage.api.formMode': { en: 'Form mode: create shows all fields, edit filters by edit flag.', zh: '表单模式：create 显示所有字段，edit 根据 edit 标记过滤。' },
+  'formPage.api.columnsPerRow': { en: 'Number of form columns per row. Default: 1.', zh: '每行表单列数。默认：1。' },
+  'formPage.api.formRules': { en: 'Form-level validation rules (zod schema + custom handlers).', zh: '表单级校验规则（zod schema + 自定义处理器）。' },
+  'formPage.api.onSubmit': { en: 'Submit handler receiving validated form data.', zh: '提交处理函数，接收校验后的表单数据。' },
+  'formPage.api.onChange': { en: 'Called on every form value change.', zh: '每次表单值变化时调用。' },
+
 
   'checkbox.indeterminateState': { en: 'Indeterminate', zh: '半选状态' },
   'checkbox.api.modelValue': { en: 'Two-way bound checked state.', zh: '双向绑定的选中状态。' },

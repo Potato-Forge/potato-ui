@@ -6,8 +6,10 @@ import CardPage from './docs/pages/CardPage.vue'
 import CheckboxPage from './docs/pages/CheckboxPage.vue'
 import ColorPickerPage from './docs/pages/ColorPickerPage.vue'
 import ConfigProviderPage from './docs/pages/ConfigProviderPage.vue'
+import DataTablePage from './docs/pages/DataTablePage.vue'
 import DividePage from './docs/pages/DividePage.vue'
 import EmptyPage from './docs/pages/EmptyPage.vue'
+import FormPage from './docs/pages/FormPage.vue'
 import HelpPage from './docs/pages/HelpPage.vue'
 import IconPickerPage from './docs/pages/IconPickerPage.vue'
 import IconsPage from './docs/pages/IconsPage.vue'
@@ -33,8 +35,10 @@ const routes = {
   '/components/checkbox': CheckboxPage,
   '/components/color-picker': ColorPickerPage,
   '/components/config-provider': ConfigProviderPage,
+  '/components/data-table': DataTablePage,
   '/components/divide': DividePage,
   '/components/empty': EmptyPage,
+  '/components/form': FormPage,
   '/components/help': HelpPage,
   '/components/icon-picker': IconPickerPage,
   '/components/img': ImgPage,
@@ -60,8 +64,10 @@ const navGroups = [
       { path: '/components/checkbox', label: 'nav.checkbox' },
       { path: '/components/color-picker', label: 'nav.colorPicker' },
       { path: '/components/config-provider', label: 'nav.configProvider' },
+      { path: '/components/data-table', label: 'nav.dataTable' },
       { path: '/components/divide', label: 'nav.divide' },
       { path: '/components/empty', label: 'nav.empty' },
+      { path: '/components/form', label: 'nav.form' },
       { path: '/components/help', label: 'nav.help' },
       { path: '/components/icon-picker', label: 'nav.iconPicker' },
       { path: '/components/img', label: 'nav.img' },
