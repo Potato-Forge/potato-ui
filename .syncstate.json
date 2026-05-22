@@ -1,0 +1,11 @@
+{
+  "last_sync": "2026-05-22T08:23:17.409788+00:00",
+  "synced_agents": [
+    "claude",
+    "codex",
+    "cursor",
+    "hermes",
+    "openclaw"
+  ],
+  "entry_hash": "23367b6ba669abe7"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "ai-memory-vendor",
+  "version": "0.1.0",
+  "installedAt": "2026-05-22",
+  "description": "Project-independent .ai memory protocol assets for future extraction into a reusable starter kit.",
+  "projectIndependent": true,
+  "files": [
+    "README.md",
+    "protocol.md",
+    "entry-contract.md",
+    "logging.md",
+    "privacy.md"
+  ]
+}

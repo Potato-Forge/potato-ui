@@ -3,7 +3,7 @@ dist/
 .vite/
 .DS_Store
 *.log
+__pycache__/
 /docs/
-.ai
 
 *.tsbuildinfo
