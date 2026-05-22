@@ -14,12 +14,17 @@
   ],
   "registryDependencies": [
     "pf-checkbox",
+    "pf-date-picker",
     "pf-help",
+    "pf-icon-picker",
     "pf-icons",
     "pf-runtime-support",
     "pf-switch",
+    "pf-text",
     "pf-theme",
-    "pf-upload"
+    "pf-tooltip",
+    "pf-upload",
+    "ui-primitives"
   ],
   "meta": {
     "sourceEntry": "src/components/pf-form/PfForm.vue"

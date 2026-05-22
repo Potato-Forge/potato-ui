@@ -13,7 +13,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-card.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-card.json</PfCode>
     </section>
 
     <section class="section">
@@ -42,7 +42,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfCard&gt;
+      <PfCode>&lt;PfCard&gt;
   &lt;template #header&gt;{{ t('card.title') }}&lt;/template&gt;
   &lt;template #header-action&gt;
     &lt;PfButton variant="ghost" size="icon-sm" icon="i-tabler-dots" /&gt;
@@ -51,7 +51,7 @@ import { t } from '../i18n'
   &lt;template #footer&gt;
     &lt;PfButton variant="ghost" class="w-full"&gt;{{ t('card.viewMore') }}&lt;/PfButton&gt;
   &lt;/template&gt;
-&lt;/PfCard&gt;</pre>
+&lt;/PfCard&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -69,7 +69,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">clsx, tailwind-merge, pf-theme</pre>
+      <PfCode>clsx, tailwind-merge, pf-theme</PfCode>
     </section>
   </article>
 </template>

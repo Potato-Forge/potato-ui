@@ -18,7 +18,7 @@ const isConfirmOpen = ref(false)
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-modal.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-modal.json</PfCode>
     </section>
 
     <section class="section">
@@ -55,7 +55,7 @@ const isConfirmOpen = ref(false)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfModal
+      <PfCode>&lt;PfModal
   v-model:open="isOpen"
   title="{{ t('modal.deleteTitle') }}"
   positive-text="{{ t('modal.confirm') }}"
@@ -76,7 +76,7 @@ const modal = usePfModal()
 const confirmed = await modal.confirm({
   title: '{{ t('modal.confirmAction') }}',
   description: '{{ t('modal.areYouSure') }}',
-})</pre>
+})</PfCode>
     </section>
 
     <section class="section">
@@ -99,7 +99,7 @@ const confirmed = await modal.confirm({
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-theme, ui-primitives (dialog)</pre>
+      <PfCode>pf-theme, ui-primitives (dialog)</PfCode>
     </section>
   </article>
 </template>

@@ -1,6 +1,6 @@
 # Known Issues & Technical Debt
 
-## 已解决 (Sprint 1-4)
+## 已解决 (Sprint 1-4 + 依赖 Import 修复)
 
 - ✅ KI-003: PfButton/UIButton variant 重复 — 确认非问题，两者完整且等效
 - ✅ KI-009: PfEmpty 缺少 PfText 导入 (Sprint 1)
@@ -9,6 +9,8 @@
 - ✅ KI-012: PfUpload 跨组件 import 缺失 (Sprint 4)
 - ✅ KI-013: PfColorPicker 跨组件 import 缺失 (Sprint 4)
 - ✅ KI-014: PfIconPicker 跨组件 import 缺失 (Sprint 4)
+- ✅ KI-015: PfFormItem/PfForm/PfDataTableForm 缺失子组件 import (Input, FieldError, Label, PfIconPicker, PfText, PfTooltip, PfUpload, PfForm, PfButton, PfFormItemToggle) — 当前项目内 Vue fallback 渲染为原生 HTML 导致 docs 展示异常；registry 安装时彻底不可用
+- ✅ KI-016: PfDataTable.vue 主组件仍缺少 PfButton/PfCard/PfLoading/PfEmpty/PfForm 显式 import，导致操作区按钮在 registry/docs 场景中显示异常；已补齐并同步 registry 依赖。PfForm 内部日期时间选择器已抽离为独立 PfDatePicker。
 
 ## 待处理
 

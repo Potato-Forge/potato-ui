@@ -14,7 +14,7 @@ const selectedIcon = ref<string | null>(null)
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-icon-picker.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-icon-picker.json</PfCode>
     </section>
 
     <section class="section">
@@ -26,11 +26,11 @@ const selectedIcon = ref<string | null>(null)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfIconPicker v-model="selectedIcon"&gt;
+      <PfCode>&lt;PfIconPicker v-model="selectedIcon"&gt;
   &lt;template #trigger&gt;
     &lt;!-- {{ t('iconPicker.customTrigger') }} --&gt;
   &lt;/template&gt;
-&lt;/PfIconPicker&gt;</pre>
+&lt;/PfIconPicker&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -46,7 +46,7 @@ const selectedIcon = ref<string | null>(null)
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">@iconify/vue, pf-theme, pf-icons, ui-primitives (dropdown-menu, input)</pre>
+      <PfCode>@iconify/vue, pf-theme, pf-icons, ui-primitives (dropdown-menu, input)</PfCode>
     </section>
   </article>
 </template>

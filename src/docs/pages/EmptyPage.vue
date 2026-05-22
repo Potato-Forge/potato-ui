@@ -13,7 +13,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-empty.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-empty.json</PfCode>
     </section>
 
     <section class="section">
@@ -32,7 +32,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfEmpty
+      <PfCode>&lt;PfEmpty
   title="{{ t('empty.noResults') }}"
   description="{{ t('empty.tryAdjusting') }}"
 &gt;
@@ -42,7 +42,7 @@ import { t } from '../i18n'
   &lt;template #action&gt;
     &lt;PfButton variant="outline"&gt;{{ t('empty.clearFilters') }}&lt;/PfButton&gt;
   &lt;/template&gt;
-&lt;/PfEmpty&gt;</pre>
+&lt;/PfEmpty&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -59,7 +59,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-theme, pf-icons, pf-text</pre>
+      <PfCode>pf-theme, pf-icons, pf-text</PfCode>
     </section>
   </article>
 </template>

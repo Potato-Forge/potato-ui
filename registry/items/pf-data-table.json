@@ -11,10 +11,15 @@
     "vxe-table"
   ],
   "registryDependencies": [
+    "pf-button",
+    "pf-card",
+    "pf-empty",
     "pf-form",
     "pf-icons",
+    "pf-loading",
     "pf-modal",
     "pf-runtime-support",
+    "pf-text",
     "pf-theme",
     "pf-toast",
     "ui-primitives"

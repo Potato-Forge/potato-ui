@@ -13,7 +13,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-toast.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-toast.json</PfCode>
     </section>
 
     <section class="section">
@@ -42,7 +42,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">import { pfToast } from '@/components/pf-toast'
+      <PfCode>import { pfToast } from '@/components/pf-toast'
 
 pfToast.success('{{ t('toast.operationSuccess') }}')
 pfToast.error('{{ t('toast.operationFailed') }}', '{{ t('toast.pleaseRetry') }}')
@@ -55,7 +55,7 @@ pfToast.risk('{{ t('toast.securityAlert') }}')
 pfToast.success('{{ t('toast.saved') }}', {
   duration: 3000,
   position: 'bottom-right',
-})</pre>
+})</PfCode>
     </section>
 
     <section class="section">
@@ -76,7 +76,7 @@ pfToast.success('{{ t('toast.saved') }}', {
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">vue-sonner, lucide-vue-next, pf-theme, ui-primitives (sonner)</pre>
+      <PfCode>vue-sonner, lucide-vue-next, pf-theme, ui-primitives (sonner)</PfCode>
     </section>
   </article>
 </template>

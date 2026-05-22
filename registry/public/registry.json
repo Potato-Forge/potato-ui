@@ -73,6 +73,24 @@
       }
     },
     {
+      "name": "pf-code",
+      "type": "registry:component",
+      "title": "PfCode",
+      "description": "Shiki-powered code display block with optional title, language label, and copy action.",
+      "dependencies": [
+        "clsx",
+        "shiki",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-code/PfCode.vue"
+      }
+    },
+    {
       "name": "pf-color-picker",
       "type": "registry:component",
       "title": "PfColorPicker",
@@ -115,16 +133,39 @@
         "vxe-table"
       ],
       "registryDependencies": [
+        "pf-button",
+        "pf-card",
+        "pf-empty",
         "pf-form",
         "pf-icons",
+        "pf-loading",
         "pf-modal",
         "pf-runtime-support",
+        "pf-text",
         "pf-theme",
         "pf-toast",
         "ui-primitives"
       ],
       "meta": {
         "sourceEntry": "src/components/pf-data-table/PfDataTable.vue"
+      }
+    },
+    {
+      "name": "pf-date-picker",
+      "type": "registry:component",
+      "title": "PfDatePicker",
+      "description": "Standalone Pf date, time, and datetime picker extracted from PfForm.",
+      "dependencies": [
+        "@vuepic/vue-datepicker",
+        "date-fns"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-runtime-support",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-date-picker/PfDatePicker.vue"
       }
     },
     {
@@ -170,12 +211,17 @@
       ],
       "registryDependencies": [
         "pf-checkbox",
+        "pf-date-picker",
         "pf-help",
+        "pf-icon-picker",
         "pf-icons",
         "pf-runtime-support",
         "pf-switch",
+        "pf-text",
         "pf-theme",
-        "pf-upload"
+        "pf-tooltip",
+        "pf-upload",
+        "ui-primitives"
       ],
       "meta": {
         "sourceEntry": "src/components/pf-form/PfForm.vue"

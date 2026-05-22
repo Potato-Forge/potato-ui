@@ -17,7 +17,7 @@ const indeterminate = ref<'indeterminate' | boolean>('indeterminate')
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-checkbox.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-checkbox.json</PfCode>
     </section>
 
     <section class="section">
@@ -40,9 +40,9 @@ const indeterminate = ref<'indeterminate' | boolean>('indeterminate')
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfCheckbox v-model:model-value="checked" /&gt;
+      <PfCode>&lt;PfCheckbox v-model:model-value="checked" /&gt;
 &lt;PfCheckbox v-model:model-value="indeterminate" /&gt;
-&lt;PfCheckbox disabled /&gt;</pre>
+&lt;PfCheckbox disabled /&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -60,7 +60,7 @@ const indeterminate = ref<'indeterminate' | boolean>('indeterminate')
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">reka-ui, @vueuse/core, clsx, tailwind-merge, pf-theme, pf-icons</pre>
+      <PfCode>reka-ui, @vueuse/core, clsx, tailwind-merge, pf-theme, pf-icons</PfCode>
     </section>
   </article>
 </template>

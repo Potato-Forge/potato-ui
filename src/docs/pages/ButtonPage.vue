@@ -12,7 +12,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-button.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-button.json</PfCode>
     </section>
 
     <section class="section">
@@ -39,7 +39,7 @@ import { t } from '../i18n'
       </div>
       <div>
         <h2>{{ t('section.usage') }}</h2>
-        <pre class="code">&lt;PfButton icon="i-tabler-sparkles"&gt;{{ t('button.create') }}&lt;/PfButton&gt;</pre>
+        <PfCode>&lt;PfButton icon="i-tabler-sparkles"&gt;{{ t('button.create') }}&lt;/PfButton&gt;</PfCode>
       </div>
     </section>
 
@@ -59,7 +59,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">reka-ui, class-variance-authority, clsx, tailwind-merge</pre>
+      <PfCode>reka-ui, class-variance-authority, clsx, tailwind-merge</PfCode>
     </section>
   </article>
 </template>

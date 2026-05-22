@@ -12,7 +12,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-text.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-text.json</PfCode>
     </section>
 
     <section class="section">
@@ -33,11 +33,11 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfText as="h1"&gt;{{ t('text.heading') }}&lt;/PfText&gt;
+      <PfCode>&lt;PfText as="h1"&gt;{{ t('text.heading') }}&lt;/PfText&gt;
 &lt;PfText variant="body" weight="semibold"&gt;{{ t('text.boldBody') }}&lt;/PfText&gt;
 &lt;PfText truncate&gt;{{ t('text.longText') }}&lt;/PfText&gt;
 &lt;PfText :truncate="2"&gt;{{ t('text.clampedText') }}&lt;/PfText&gt;
-&lt;PfText prefixLine dimmed&gt;{{ t('text.withPrefix') }}&lt;/PfText&gt;</pre>
+&lt;PfText prefixLine dimmed&gt;{{ t('text.withPrefix') }}&lt;/PfText&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -58,7 +58,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">clsx, tailwind-merge, pf-theme</pre>
+      <PfCode>clsx, tailwind-merge, pf-theme</PfCode>
     </section>
   </article>
 </template>

@@ -20,11 +20,11 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">import { createPfIconsPreset } from '@/foundations/pf-icons'
+      <PfCode>import { createPfIconsPreset } from '@/foundations/pf-icons'
 
 export default defineConfig({
   presets: [createPfIconsPreset()],
-})</pre>
+})</PfCode>
     </section>
   </article>
 </template>

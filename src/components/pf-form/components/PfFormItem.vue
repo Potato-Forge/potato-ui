@@ -2,8 +2,16 @@
 import { format } from 'date-fns'
 import type { PfFormConfigItem } from '../PfForm.types'
 import type { PfUploadFileItem } from '@/components/pf-upload'
+import PfIconPicker from '@/components/pf-icon-picker/PfIconPicker.vue'
+import PfText from '@/components/pf-text/PfText.vue'
+import PfTooltip from '@/components/pf-tooltip/PfTooltip.vue'
+import PfUpload from '@/components/pf-upload/PfUpload.vue'
+import { Input } from '@/components/ui/input'
+import { FieldError } from '@/components/ui/field'
+
 import PfFormItemDatetime from './PfFormItemDatetime.vue'
 import PfFormItemText from './PfFormItemText.vue'
+import PfFormItemToggle from './PfFormItemToggle.vue'
 import PfFormItemOptions from './PfFormItemOptions.vue'
 
 const props = defineProps<{
@@ -84,6 +92,19 @@ const uploadModelValue = computed<PfUploadFileItem[]>(() => {
   if (!Array.isArray(props.modelValue)) return []
   return props.modelValue as PfUploadFileItem[]
 })
+
+const getDateDisplayFormat = (type: 'date' | 'time' | 'datetime') => {
+  if (type === 'date') return 'yyyy-MM-dd'
+  if (type === 'time') return 'HH:mm:ss'
+  return 'yyyy-MM-dd HH:mm:ss'
+}
+
+const formatDateValue = (value: unknown, type: 'date' | 'time' | 'datetime') => {
+  if (!value) return ''
+  const date = value instanceof Date ? value : new Date(value as string | number)
+  if (Number.isNaN(date.getTime())) return String(value)
+  return format(date, getDateDisplayFormat(type))
+}
 </script>
 
 <template>
@@ -105,20 +126,22 @@ const uploadModelValue = computed<PfUploadFileItem[]>(() => {
       </template>
     </template>
 
-    <!-- type:datetime -->
-    <template v-else-if="config.type === 'datetime'">
+    <!-- type:datetime/date/time -->
+    <template v-else-if="config.type === 'datetime' || config.type === 'date' || config.type === 'time'">
       <!-- read -->
       <template v-if="config.readonly">
-        <pf-form-item-text>{{
-          format(new Date(props.modelValue), 'yyyy-MM-dd HH:mm:ss')
-        }}</pf-form-item-text>
+        <pf-form-item-text>{{ formatDateValue(props.modelValue, config.type) }}</pf-form-item-text>
       </template>
       <!-- write -->
       <template v-else>
         <pf-form-item-datetime
+          :type="config.type"
           :format="config.config?.format"
+          :range="config.config?.range"
           :model-value="props.modelValue"
+          :disabled="config.disabled"
           @update:model-value="handleChangeAndBlur"
+          @blur="handleBlur"
         ></pf-form-item-datetime>
       </template>
     </template>

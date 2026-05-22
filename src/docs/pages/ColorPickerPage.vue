@@ -17,7 +17,7 @@ const hslColor = ref('#3B82F6')
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-color-picker.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-color-picker.json</PfCode>
     </section>
 
     <section class="section">
@@ -36,7 +36,7 @@ const hslColor = ref('#3B82F6')
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfColorPicker v-model="color" format="hex" /&gt;
+      <PfCode>&lt;PfColorPicker v-model="color" format="hex" /&gt;
 
 &lt;!-- {{ t('colorPicker.withSwatches') }} --&gt;
 &lt;PfColorPicker
@@ -45,7 +45,7 @@ const hslColor = ref('#3B82F6')
 /&gt;
 
 &lt;!-- {{ t('colorPicker.hideContrast') }} --&gt;
-&lt;PfColorPicker v-model="color" :hide-contrast-ratio="true" /&gt;</pre>
+&lt;PfColorPicker v-model="color" :hide-contrast-ratio="true" /&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -67,7 +67,7 @@ const hslColor = ref('#3B82F6')
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-button, pf-help, pf-theme, pf-icons, ui-primitives (dropdown-menu, input)</pre>
+      <PfCode>pf-button, pf-help, pf-theme, pf-icons, ui-primitives (dropdown-menu, input)</PfCode>
     </section>
   </article>
 </template>

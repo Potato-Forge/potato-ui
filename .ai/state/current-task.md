@@ -24,3 +24,6 @@ Phase 2 候选任务（待人类决策）:
 - ✅ Sprint 2: 10 个中等组件文档 (commit: f9262f3)
 - ✅ Sprint 1: 7 个简单组件文档 + KI-009 (commit: 9ba6ee7)
 - ✅ `.ai` vendor 分层：入口瘦身、通用协议落地、状态漂移修正
+- ✅ KI-015: 依赖 Import 修复 — PfFormItem/PfForm/PfDataTableForm 补全子组件 import；Registry 依赖链修正
+- ✅ KI-016: PfDataTable 主组件显式 import 修复；PfDatePicker 从 PfForm 内部日期时间输入中抽离为独立 registry item
+- ✅ PfCode: 文档代码展示组件抽离，docs 页面代码块统一替换，PfDataTable 示例高度调高

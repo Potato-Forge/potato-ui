@@ -12,7 +12,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-img.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-img.json</PfCode>
     </section>
 
     <section class="section">
@@ -42,7 +42,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfImg
+      <PfCode>&lt;PfImg
   src="/path/to/image.jpg"
   alt="Description"
   :preview="true"
@@ -52,7 +52,7 @@ import { t } from '../i18n'
   fallback-src="/fallback.jpg"
   loading-text="{{ t('img.loading') }}"
   error-text="{{ t('img.error') }}"
-/&gt;</pre>
+/&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -77,7 +77,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">v-viewer, viewerjs, clsx, tailwind-merge, pf-icons, pf-theme</pre>
+      <PfCode>v-viewer, viewerjs, clsx, tailwind-merge, pf-icons, pf-theme</PfCode>
     </section>
   </article>
 </template>

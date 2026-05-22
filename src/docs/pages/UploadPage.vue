@@ -12,7 +12,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-upload.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-upload.json</PfCode>
     </section>
 
     <section class="section">
@@ -24,7 +24,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;!-- {{ t('upload.dragMode') }} --&gt;
+      <PfCode>&lt;!-- {{ t('upload.dragMode') }} --&gt;
 &lt;PfUpload trigger="drag" :max-files="5" :max-size="20 * 1024 * 1024" /&gt;
 
 &lt;!-- {{ t('upload.buttonMode') }} --&gt;
@@ -41,7 +41,7 @@ import { t } from '../i18n'
     onProgress(100)
     return { remoteUrl: 'https://...' }
   }"
-/&gt;</pre>
+/&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -64,7 +64,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-img, pf-button, pf-toast, clsx, tailwind-merge, pf-icons, pf-theme</pre>
+      <PfCode>pf-img, pf-button, pf-toast, clsx, tailwind-merge, pf-icons, pf-theme</PfCode>
     </section>
   </article>
 </template>

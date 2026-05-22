@@ -19,7 +19,7 @@ const choosen = ref<string | number | null>('button')
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-tree.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-tree.json</PfCode>
     </section>
 
     <section class="section two-column">
@@ -67,7 +67,7 @@ const choosen = ref<string | number | null>('button')
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">@he-tree/vue, @iconify/vue, pf-checkbox</pre>
+      <PfCode>@he-tree/vue, @iconify/vue, pf-checkbox</PfCode>
     </section>
   </article>
 </template>

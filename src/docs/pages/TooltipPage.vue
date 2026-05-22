@@ -13,7 +13,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-tooltip.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-tooltip.json</PfCode>
     </section>
 
     <section class="section">
@@ -34,15 +34,15 @@ import { t } from '../i18n'
     <section class="section two-column">
       <div>
         <h2>{{ t('tooltip.componentUsage') }}</h2>
-        <pre class="code">&lt;PfTooltip content="{{ t('tooltip.saveChanges') }}"&gt;
+        <PfCode>&lt;PfTooltip content="{{ t('tooltip.saveChanges') }}"&gt;
   &lt;PfButton&gt;{{ t('tooltip.save') }}&lt;/PfButton&gt;
-&lt;/PfTooltip&gt;</pre>
+&lt;/PfTooltip&gt;</PfCode>
       </div>
       <div>
         <h2>{{ t('tooltip.pluginUsage') }}</h2>
-        <pre class="code">import { pfTooltipPlugin } from '@/components/pf-tooltip'
+        <PfCode>import { pfTooltipPlugin } from '@/components/pf-tooltip'
 
-app.use(pfTooltipPlugin)</pre>
+app.use(pfTooltipPlugin)</PfCode>
       </div>
     </section>
 
@@ -62,7 +62,7 @@ app.use(pfTooltipPlugin)</pre>
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">vue-tippy, tippy.js</pre>
+      <PfCode>vue-tippy, tippy.js</PfCode>
     </section>
   </article>
 </template>

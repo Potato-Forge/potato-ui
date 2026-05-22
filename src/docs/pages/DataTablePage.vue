@@ -101,13 +101,13 @@ const columns: PfDataTableItem[] = [
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-data-table.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-data-table.json</PfCode>
     </section>
 
     <section class="section">
       <h2>{{ t('section.preview') }}</h2>
       <p class="text-sm text-muted-foreground mb-3">{{ t('dataTable.demoHint') }}</p>
-      <div class="preview" style="flex-direction: column; align-items: stretch;">
+      <div class="preview data-table-preview">
         <PfDataTable
           :columns="columns"
           :list-query="listQuery"
@@ -123,7 +123,7 @@ const columns: PfDataTableItem[] = [
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">import { PfDataTable } from '@/components/pf-data-table'
+      <PfCode>import { PfDataTable } from '@/components/pf-data-table'
 
 const columns: PfDataTableItem[] = [
   { name: 'Name', key: 'name', type: 'text',
@@ -143,7 +143,7 @@ const columns: PfDataTableItem[] = [
   :delete="deleteUser"
   :detail="getUserDetail"
   row-key="id"
-/&gt;</pre>
+/&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -180,8 +180,20 @@ const columns: PfDataTableItem[] = [
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">vxe-table, @tanstack/vue-query, @iconify/vue, date-fns,
-pf-form, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives</pre>
+      <PfCode>vxe-table, @tanstack/vue-query, @iconify/vue, date-fns,
+pf-form, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives</PfCode>
     </section>
   </article>
 </template>
+
+<style scoped>
+.data-table-preview {
+  min-height: 620px;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.data-table-preview :deep(.pf-data-table-vxe) {
+  min-height: 360px;
+}
+</style>

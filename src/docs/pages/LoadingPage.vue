@@ -17,7 +17,7 @@ const isLoading = ref(true)
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-loading.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-loading.json</PfCode>
     </section>
 
     <section class="section">
@@ -39,9 +39,9 @@ const isLoading = ref(true)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfLoading :loading="isLoading" text="{{ t('loading.loadingText') }}"&gt;
+      <PfCode>&lt;PfLoading :loading="isLoading" text="{{ t('loading.loadingText') }}"&gt;
   &lt;div class="p-4"&gt;{{ t('loading.yourContent') }}&lt;/div&gt;
-&lt;/PfLoading&gt;</pre>
+&lt;/PfLoading&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -59,7 +59,7 @@ const isLoading = ref(true)
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-theme, pf-text</pre>
+      <PfCode>pf-theme, pf-text</PfCode>
     </section>
   </article>
 </template>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { PfFormRules } from '@/components/pf-form/PfForm.types'
 import type { PfDataTableItem } from './PfDataTable.types'
+import PfForm from '@/components/pf-form/PfForm.vue'
+import PfButton from '@/components/pf-button/PfButton.vue'
+import PfText from '@/components/pf-text/PfText.vue'
 
 const props = withDefaults(
   defineProps<{

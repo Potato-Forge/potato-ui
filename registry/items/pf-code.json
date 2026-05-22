@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-code",
+  "type": "registry:component",
+  "title": "PfCode",
+  "description": "Shiki-powered code display block with optional title, language label, and copy action.",
+  "dependencies": [
+    "clsx",
+    "shiki",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-code/PfCode.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-code/PfCode.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-code/PfCode.vue"
+    },
+    {
+      "path": "src/components/pf-code/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-code/index.ts"
+    }
+  ]
+}

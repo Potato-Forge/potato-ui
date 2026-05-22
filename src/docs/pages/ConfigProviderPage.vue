@@ -13,7 +13,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-config-provider.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-config-provider.json</PfCode>
     </section>
 
     <section class="section">
@@ -27,9 +27,9 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfConfigProvider&gt;
+      <PfCode>&lt;PfConfigProvider&gt;
   &lt;YourApp /&gt;
-&lt;/PfConfigProvider&gt;</pre>
+&lt;/PfConfigProvider&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -44,7 +44,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-theme</pre>
+      <PfCode>pf-theme</PfCode>
     </section>
   </article>
 </template>

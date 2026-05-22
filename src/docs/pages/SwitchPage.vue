@@ -16,7 +16,7 @@ const checked = ref(false)
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-switch.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-switch.json</PfCode>
     </section>
 
     <section class="section">
@@ -29,9 +29,9 @@ const checked = ref(false)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;PfSwitch v-model:checked="enabled" /&gt;
+      <PfCode>&lt;PfSwitch v-model:checked="enabled" /&gt;
 &lt;PfSwitch v-model:checked="enabled" disabled /&gt;
-&lt;PfSwitch v-model:checked="enabled" :id="'toggle'" /&gt;</pre>
+&lt;PfSwitch v-model:checked="enabled" :id="'toggle'" /&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -50,7 +50,7 @@ const checked = ref(false)
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">reka-ui, @vueuse/core, clsx, tailwind-merge, pf-theme</pre>
+      <PfCode>reka-ui, @vueuse/core, clsx, tailwind-merge, pf-theme</PfCode>
     </section>
   </article>
 </template>

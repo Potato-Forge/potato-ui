@@ -13,7 +13,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-help.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-help.json</PfCode>
     </section>
 
     <section class="section">
@@ -39,7 +39,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">&lt;!-- {{ t('help.simpleUsage') }} --&gt;
+      <PfCode>&lt;!-- {{ t('help.simpleUsage') }} --&gt;
 &lt;PfHelp content="{{ t('help.helpContent') }}" /&gt;
 
 &lt;!-- {{ t('help.slotUsage') }} --&gt;
@@ -47,7 +47,7 @@ import { t } from '../i18n'
   &lt;template #content&gt;
     &lt;strong&gt;{{ t('help.richTitle') }}&lt;/strong&gt;
   &lt;/template&gt;
-&lt;/PfHelp&gt;</pre>
+&lt;/PfHelp&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -64,7 +64,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-tooltip, pf-icons, pf-theme</pre>
+      <PfCode>pf-tooltip, pf-icons, pf-theme</PfCode>
     </section>
   </article>
 </template>

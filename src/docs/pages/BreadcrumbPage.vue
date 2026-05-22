@@ -18,7 +18,7 @@ const breadcrumbList = [
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-breadcrumb.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-breadcrumb.json</PfCode>
     </section>
 
     <section class="section">
@@ -30,7 +30,7 @@ const breadcrumbList = [
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">const items = [
+      <PfCode>const items = [
   { name: '{{ t('breadcrumb.home') }}', href: '/' },
   { name: '{{ t('breadcrumb.settings') }}', href: '/settings' },
   { name: '{{ t('breadcrumb.profile') }}' },
@@ -39,7 +39,7 @@ const breadcrumbList = [
 &lt;PfBreadcrumb :list="items" /&gt;
 
 &lt;!-- {{ t('breadcrumb.customKeys') }} --&gt;
-&lt;PfBreadcrumb :list="items" label-key="title" href-key="url" /&gt;</pre>
+&lt;PfBreadcrumb :list="items" label-key="title" href-key="url" /&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -56,7 +56,7 @@ const breadcrumbList = [
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">pf-theme, ui-primitives (breadcrumb)</pre>
+      <PfCode>pf-theme, ui-primitives (breadcrumb)</PfCode>
     </section>
   </article>
 </template>

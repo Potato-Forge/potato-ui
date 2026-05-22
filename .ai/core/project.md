@@ -42,11 +42,11 @@
 potato-ui/
 ├── src/
 │   ├── components/
-│   │   ├── pf-button/        # Pf 自有组件（22个）
+│   │   ├── pf-button/        # Pf 自有组件（24个）
 │   │   ├── pf-checkbox/
 │   │   ├── pf-tooltip/
 │   │   ├── pf-tree/
-│   │   ├── ... (共22个pf-*组件)
+│   │   ├── ... (共24个pf-*组件)
 │   │   └── ui/               # shadcn-vue 风格 UI 基元
 │   │       ├── button/
 │   │       ├── dialog/
@@ -59,11 +59,11 @@ potato-ui/
 │   │   ├── utils.ts          # cn() 工具函数
 │   │   └── theme-settings.ts
 │   ├── store/                # Pinia stores
-│   ├── docs/                 # 文档站点页面 (5个)
+│   ├── docs/                 # 文档站点页面 (24个)
 │   ├── App.vue               # 文档站点 SPA
 │   └── index.ts              # 统一导出
 ├── registry/
-│   ├── items/                # 注册清单 (26个 .json)
+│   ├── items/                # 注册清单 (28个 .json)
 │   └── public/               # 构建产物 (供 CLI 消费)
 │       ├── registry.json
 │       └── r/<name>.json
@@ -90,7 +90,7 @@ potato-ui/
 
 ## 当前状态概要
 
-- ✅ 所有 22 个 Pf 组件已从 potato-template 迁移
+- ✅ 所有 22 个 Pf 组件已从 potato-template 迁移，另抽离 PfDatePicker、PfCode 2 个 Pf 组件
 - ✅ Registry 构建系统完成
 - ✅ 文档站点起步（5 个页面：Button、Tooltip、Tree、Theme、Icons）
 - ✅ 16 个 UI 基元组件系列就绪

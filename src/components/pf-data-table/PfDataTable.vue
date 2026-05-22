@@ -7,6 +7,11 @@ import type {
   PfFormFieldRules,
   PfFormRules,
 } from '@/components/pf-form/PfForm.types'
+import PfButton from '@/components/pf-button/PfButton.vue'
+import PfCard from '@/components/pf-card/PfCard.vue'
+import PfEmpty from '@/components/pf-empty/PfEmpty.vue'
+import PfForm from '@/components/pf-form/PfForm.vue'
+import PfLoading from '@/components/pf-loading/PfLoading.vue'
 import { pfToast } from '@/components/pf-toast'
 import { usePfModal } from '@/components/pf-modal/usePfModal'
 import {
@@ -510,8 +515,8 @@ watch(
 
 <template>
   <div class="h-full flex flex-col gap-4 p-4">
-    <pf-card v-if="showQuery" border class="p-4">
-      <pf-form
+    <PfCard v-if="showQuery" border class="p-4">
+      <PfForm
         ref="queryFormRef"
         :form-config="queryFormItems"
         :form-data="defaultQuery"
@@ -520,41 +525,41 @@ watch(
       />
 
       <div class="mt-4 flex items-center justify-end gap-2">
-        <pf-button
+        <PfButton
           icon="i-tabler-search"
           variant="secondary"
           type="info"
           :disabled="isQueryBusy"
           @click="triggerQuery"
         >
-          {{ queryButtonText }}</pf-button
+          {{ queryButtonText }}</PfButton
         >
-        <pf-button
+        <PfButton
           icon="i-tabler-refresh"
           variant="ghost"
           type="warning"
           :disabled="isQueryBusy"
           @click="resetQuery"
-          >{{ resetButtonText }}</pf-button
+          >{{ resetButtonText }}</PfButton
         >
-        <pf-button
+        <PfButton
           icon="i-tabler-plus"
           v-if="!hideCreate"
           :disabled="isTableLoading"
           @click="openCreate"
-          >新增</pf-button
+          >新增</PfButton
         >
       </div>
-    </pf-card>
+    </PfCard>
 
     <div v-else-if="!hideCreate" class="flex items-center justify-end">
-      <pf-button icon="i-tabler-plus" :disabled="isTableLoading" @click="openCreate"
-        >新增</pf-button
+      <PfButton icon="i-tabler-plus" :disabled="isTableLoading" @click="openCreate"
+        >新增</PfButton
       >
     </div>
 
     <div class="min-h-0 flex-1 overflow-hidden rounded-md border border-border">
-      <pf-loading :loading="isTableLoading" text="加载数据中...">
+      <PfLoading :loading="isTableLoading" text="加载数据中...">
         <vxe-table
           class="pf-data-table-vxe"
           :data="tableRows"
@@ -576,7 +581,7 @@ watch(
             :sortable="item.table?.sortable"
           >
             <template #default="{ row }">
-              <pf-data-table-preview-value :item="item" :row-data="row" scene="table" />
+              <PfDataTablePreviewValue :item="item" :row-data="row" scene="table" />
             </template>
           </vxe-column>
 
@@ -590,35 +595,35 @@ watch(
           >
             <template #default="{ row }">
               <div :class="actionButtonsClass">
-                <pf-button
+                <PfButton
                   v-if="!hideDetail"
                   size="tiny"
                   variant="outline"
                   @click="openDetail(row)"
                 >
                   详情
-                </pf-button>
-                <pf-button v-if="!hideEdit" size="tiny" variant="outline" @click="openEdit(row)">
+                </PfButton>
+                <PfButton v-if="!hideEdit" size="tiny" variant="outline" @click="openEdit(row)">
                   编辑
-                </pf-button>
+                </PfButton>
                 <div v-if="!hideDelete">
-                  <pf-button
+                  <PfButton
                     size="tiny"
                     variant="destructive"
                     :disabled="deleteMutation.isPending.value"
                     @click="openDeleteConfirm(row)"
                   >
                     {{ isRowDeleting(row) ? '删除中...' : '删除' }}
-                  </pf-button>
+                  </PfButton>
                 </div>
                 <slot name="extra-actions" :row="row" />
               </div>
             </template>
           </vxe-column>
         </vxe-table>
-      </pf-loading>
+      </PfLoading>
 
-      <pf-empty
+      <PfEmpty
         v-if="!isTableLoading && tableRows.length === 0"
         title="暂无数据"
         description="请调整查询条件后重试"
@@ -633,7 +638,7 @@ watch(
       </SheetHeader>
 
       <div class="min-h-0 flex-1 overflow-auto py-4">
-        <pf-data-table-detail
+        <PfDataTableDetail
           v-if="panelMode === 'detail'"
           :columns="columns"
           :data="detailPayload"
@@ -641,7 +646,7 @@ watch(
           :error="isDetailError ? getErrorMessage(detailError) : null"
         />
 
-        <pf-data-table-form
+        <PfDataTableForm
           v-else-if="panelMode === 'create' || panelMode === 'edit'"
           :columns="columns"
           :mode="panelMode"
@@ -670,7 +675,7 @@ watch(
       </DialogHeader>
 
       <div class="min-h-0 flex-1 overflow-auto">
-        <pf-data-table-detail
+        <PfDataTableDetail
           v-if="panelMode === 'detail'"
           :columns="columns"
           :data="detailPayload"
@@ -678,7 +683,7 @@ watch(
           :error="isDetailError ? getErrorMessage(detailError) : null"
         />
 
-        <pf-data-table-form
+        <PfDataTableForm
           v-else-if="panelMode === 'create' || panelMode === 'edit'"
           :columns="columns"
           :mode="panelMode"

@@ -37,7 +37,7 @@ const demoItems = [
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-sidebar.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-sidebar.json</PfCode>
     </section>
 
     <section class="section">
@@ -49,7 +49,7 @@ const demoItems = [
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">import type { SidebarItem } from '@/components/pf-sidebar'
+      <PfCode>import type { SidebarItem } from '@/components/pf-sidebar'
 
 const items: SidebarItem[] = [
   {
@@ -67,7 +67,7 @@ const items: SidebarItem[] = [
   },
 ]
 
-&lt;PfSidebar :items="items" /&gt;</pre>
+&lt;PfSidebar :items="items" /&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -79,18 +79,18 @@ const items: SidebarItem[] = [
         </tbody>
       </table>
       <p class="mt-4 text-sm text-muted-foreground">{{ t('sidebar.api.typeNote') }}</p>
-      <pre class="code mt-2">interface SidebarItem {
+      <PfCode class="mt-2">interface SidebarItem {
   title: string
   url?: string
   icon?: string
   isActive?: boolean
   items?: SidebarItem[]
-}</pre>
+}</PfCode>
     </section>
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">@iconify/vue, pf-theme, pf-icons, ui-primitives (sidebar, collapsible)</pre>
+      <PfCode>@iconify/vue, pf-theme, pf-icons, ui-primitives (sidebar, collapsible)</PfCode>
     </section>
   </article>
 </template>

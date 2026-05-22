@@ -9,6 +9,8 @@ import type {
   PfFormValidationResult,
 } from './PfForm.types'
 import PfHelp from '../pf-help/PfHelp.vue'
+import PfFormItem from './components/PfFormItem.vue'
+import { Label } from '@/components/ui/label'
 
 const props = defineProps<{
   formConfig: PfFormConfigItem[]
@@ -51,12 +53,15 @@ const initialFormData = (val: Record<string, any> | null | undefined) => {
     const hasValue = val && Object.prototype.hasOwnProperty.call(val, config.key)
     formData[config.key] = hasValue ? val?.[config.key] : (config.default ?? null)
 
-    // handle datetime range transform
-    if (config.type === 'datetime' && config.config?.range) {
-      const [startKey, endKey] = config.config.rangeTransform || [
+    // Date-like range fields are virtual; submit start/end keys instead.
+    if (
+      (config.type === 'datetime' || config.type === 'date' || config.type === 'time') &&
+      config.config?.range
+    ) {
+      const [startKey, endKey] = (config.config.rangeTransform || [
         `${String(config.key)}_start`,
         `${String(config.key)}_end`,
-      ]
+      ]).map(String) as [string, string]
       const rangeValue = formData[config.key]
       formData[startKey] = rangeValue?.[0] ?? null
       formData[endKey] = rangeValue?.[1] ?? null

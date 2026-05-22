@@ -1,0 +1,36 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-date-picker",
+  "type": "registry:component",
+  "title": "PfDatePicker",
+  "description": "Standalone Pf date, time, and datetime picker extracted from PfForm.",
+  "dependencies": [
+    "@vuepic/vue-datepicker",
+    "date-fns"
+  ],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-runtime-support",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-date-picker/PfDatePicker.vue"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-date-picker/PfDatePicker.types.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-date-picker/PfDatePicker.types.ts"
+    },
+    {
+      "path": "src/components/pf-date-picker/PfDatePicker.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-date-picker/PfDatePicker.vue"
+    },
+    {
+      "path": "src/components/pf-date-picker/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-date-picker/index.ts"
+    }
+  ]
+}

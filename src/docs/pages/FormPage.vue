@@ -43,7 +43,7 @@ const handleChange = (data: Record<string, any>) => {
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <pre class="code">pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-form.json</pre>
+      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-form.json</PfCode>
     </section>
 
     <section class="section">
@@ -68,7 +68,7 @@ const handleChange = (data: Record<string, any>) => {
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <pre class="code">const formConfig = [
+      <PfCode>const formConfig = [
   { name: 'Name', key: 'name', type: 'text', rules: { required: '必填' } },
   { name: 'Email', key: 'email', type: 'text',
     rules: { pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: '邮箱格式不正确' } } },
@@ -83,7 +83,7 @@ const handleChange = (data: Record<string, any>) => {
   form-mode="create"
   :columns-per-row="2"
   :on-submit="handleSubmit"
-/&gt;</pre>
+/&gt;</PfCode>
     </section>
 
     <section class="section">
@@ -117,27 +117,27 @@ const handleChange = (data: Record<string, any>) => {
         </tbody>
       </table>
       <h3>PfFormFieldRules</h3>
-      <pre class="code mt-2">interface PfFormFieldRules {
+      <PfCode class="mt-2">interface PfFormFieldRules {
   required?: boolean | string
   min?: number | { value: number; message?: string }
   max?: number | { value: number; message?: string }
   pattern?: RegExp | { value: RegExp; message?: string }
   validateOn?: 'change' | 'blur' | 'both'
-}</pre>
+}</PfCode>
       <h3>PfFormRules</h3>
-      <pre class="code mt-2">interface PfFormRules {
+      <PfCode class="mt-2">interface PfFormRules {
   schema?: ZodType
   onBlur?: (payload) => PfFormValidationResult | Promise
   onSubmit?: (payload) => PfFormValidationResult | Promise
-}</pre>
+}</PfCode>
     </section>
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <pre class="code">@tanstack/vue-form, @tanstack/zod-form-adapter, zod,
+      <PfCode>@tanstack/vue-form, @tanstack/zod-form-adapter, zod,
 @vuepic/vue-datepicker, date-fns, @iconify/vue,
 pf-checkbox, pf-switch, pf-help, pf-upload,
-pf-icons, pf-runtime-support, pf-theme</pre>
+pf-icons, pf-runtime-support, pf-theme</PfCode>
     </section>
   </article>
 </template>
