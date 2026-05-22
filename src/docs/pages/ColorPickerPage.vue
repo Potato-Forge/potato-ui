@@ -1,11 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfColorPicker from '@/components/pf-color-picker/PfColorPicker.vue'
 import PfText from '@/components/pf-text/PfText.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const hexColor = ref('#2F7F6F')
 const hslColor = ref('#3B82F6')
+
+const usageCode = computed(() => dedent`
+  <PfColorPicker v-model="color" format="hex" />
+
+  <!-- ${t('colorPicker.withSwatches')} -->
+  <PfColorPicker
+    v-model="color"
+    :swatches="['#FF0000', '#00FF00', '#0000FF']"
+  />
+
+  <!-- ${t('colorPicker.hideContrast')} -->
+  <PfColorPicker v-model="color" :hide-contrast-ratio="true" />
+`)
 </script>
 
 <template>
@@ -36,16 +50,7 @@ const hslColor = ref('#3B82F6')
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfColorPicker v-model="color" format="hex" /&gt;
-
-&lt;!-- {{ t('colorPicker.withSwatches') }} --&gt;
-&lt;PfColorPicker
-  v-model="color"
-  :swatches="['#FF0000', '#00FF00', '#0000FF']"
-/&gt;
-
-&lt;!-- {{ t('colorPicker.hideContrast') }} --&gt;
-&lt;PfColorPicker v-model="color" :hide-contrast-ratio="true" /&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

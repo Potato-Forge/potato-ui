@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfSwitch from '@/components/pf-switch/PfSwitch.vue'
 import PfText from '@/components/pf-text/PfText.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const checked = ref(false)
+
+const usageCode = computed(() => dedent`
+  <PfSwitch v-model:checked="enabled" />
+  <PfSwitch v-model:checked="enabled" disabled />
+  <PfSwitch v-model:checked="enabled" :id="'toggle'" />
+`)
 </script>
 
 <template>
@@ -29,9 +36,7 @@ const checked = ref(false)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfSwitch v-model:checked="enabled" /&gt;
-&lt;PfSwitch v-model:checked="enabled" disabled /&gt;
-&lt;PfSwitch v-model:checked="enabled" :id="'toggle'" /&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

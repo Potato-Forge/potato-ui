@@ -1,12 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfModal from '@/components/pf-modal/PfModal.vue'
 import PfButton from '@/components/pf-button/PfButton.vue'
 import PfText from '@/components/pf-text/PfText.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const isOpen = ref(false)
 const isConfirmOpen = ref(false)
+
+const usageCode = computed(() => dedent`
+  <PfModal
+    v-model:open="isOpen"
+    title="${t('modal.deleteTitle')}"
+    positive-text="${t('modal.confirm')}"
+    negative-text="${t('modal.cancel')}"
+    @positive-click="handleDelete"
+    @negative-click="isOpen = false"
+  >
+    <template #trigger>
+      <PfButton type="error">${t('modal.deleteBtn')}</PfButton>
+    </template>
+    <p>${t('modal.deleteBody')}</p>
+  </PfModal>
+
+  <!-- ${t('modal.pluginUsage')} -->
+  import { usePfModal } from '@/components/pf-modal'
+
+  const modal = usePfModal()
+  const confirmed = await modal.confirm({
+    title: '${t('modal.confirmAction')}',
+    description: '${t('modal.areYouSure')}',
+  })
+`)
 </script>
 
 <template>
@@ -55,28 +81,7 @@ const isConfirmOpen = ref(false)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfModal
-  v-model:open="isOpen"
-  title="{{ t('modal.deleteTitle') }}"
-  positive-text="{{ t('modal.confirm') }}"
-  negative-text="{{ t('modal.cancel') }}"
-  @positive-click="handleDelete"
-  @negative-click="isOpen = false"
-&gt;
-  &lt;template #trigger&gt;
-    &lt;PfButton type="error"&gt;{{ t('modal.deleteBtn') }}&lt;/PfButton&gt;
-  &lt;/template&gt;
-  &lt;p&gt;{{ t('modal.deleteBody') }}&lt;/p&gt;
-&lt;/PfModal&gt;
-
-&lt;!-- {{ t('modal.pluginUsage') }} --&gt;
-import { usePfModal } from '@/components/pf-modal'
-
-const modal = usePfModal()
-const confirmed = await modal.confirm({
-  title: '{{ t('modal.confirmAction') }}',
-  description: '{{ t('modal.areYouSure') }}',
-})</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

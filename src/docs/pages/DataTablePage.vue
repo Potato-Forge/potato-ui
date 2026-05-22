@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfDataTable from '@/components/pf-data-table/PfDataTable.vue'
 import type { PfDataTableItem } from '@/components/pf-data-table'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
 
 // ── mock data ──────────────────────────────────────────────────
 const seedUsers = [
@@ -90,6 +91,35 @@ const columns: PfDataTableItem[] = [
     table: { width: 90, align: 'center' as const },
   },
 ]
+
+const usageCode = computed(() => dedent`
+  import { PfDataTable } from '@/components/pf-data-table'
+
+  const columns: PfDataTableItem[] = [
+    { name: 'Name', key: 'name', type: 'text',
+      query: true, table: { width: 140, sortable: true } },
+    { name: 'Email', key: 'email', type: 'text',
+      table: { textDisplay: 'ellipsis', tooltip: true } },
+    { name: 'Role', key: 'role', type: 'options',
+      config: { options: [{ label: 'Admin', value: 'admin' }] } },
+    { name: 'Active', key: 'active', type: 'toggle' },
+  ]
+
+  <PfDataTable
+    :columns="columns"
+    :list-query="listQuery"
+    :create="createUser"
+    :update="updateUser"
+    :delete="deleteUser"
+    :detail="getUserDetail"
+    row-key="id"
+  />
+`)
+
+const dependenciesCode = computed(() => dedent`
+  vxe-table, @tanstack/vue-query, @iconify/vue, date-fns,
+  pf-form, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives
+`)
 </script>
 
 <template>
@@ -123,27 +153,7 @@ const columns: PfDataTableItem[] = [
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>import { PfDataTable } from '@/components/pf-data-table'
-
-const columns: PfDataTableItem[] = [
-  { name: 'Name', key: 'name', type: 'text',
-    query: true, table: { width: 140, sortable: true } },
-  { name: 'Email', key: 'email', type: 'text',
-    table: { textDisplay: 'ellipsis', tooltip: true } },
-  { name: 'Role', key: 'role', type: 'options',
-    config: { options: [{ label: 'Admin', value: 'admin' }] } },
-  { name: 'Active', key: 'active', type: 'toggle' },
-]
-
-&lt;PfDataTable
-  :columns="columns"
-  :list-query="listQuery"
-  :create="createUser"
-  :update="updateUser"
-  :delete="deleteUser"
-  :detail="getUserDetail"
-  row-key="id"
-/&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">
@@ -180,8 +190,7 @@ const columns: PfDataTableItem[] = [
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <PfCode>vxe-table, @tanstack/vue-query, @iconify/vue, date-fns,
-pf-form, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives</PfCode>
+      <PfCode :code="dependenciesCode" dedent />
     </section>
   </article>
 </template>

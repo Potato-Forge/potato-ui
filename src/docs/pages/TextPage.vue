@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfText from '@/components/pf-text/PfText.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  <PfText as="h1">${t('text.heading')}</PfText>
+  <PfText variant="body" weight="semibold">${t('text.boldBody')}</PfText>
+  <PfText truncate>${t('text.longText')}</PfText>
+  <PfText :truncate="2">${t('text.clampedText')}</PfText>
+  <PfText prefixLine dimmed>${t('text.withPrefix')}</PfText>
+`)
 </script>
 
 <template>
@@ -33,11 +43,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfText as="h1"&gt;{{ t('text.heading') }}&lt;/PfText&gt;
-&lt;PfText variant="body" weight="semibold"&gt;{{ t('text.boldBody') }}&lt;/PfText&gt;
-&lt;PfText truncate&gt;{{ t('text.longText') }}&lt;/PfText&gt;
-&lt;PfText :truncate="2"&gt;{{ t('text.clampedText') }}&lt;/PfText&gt;
-&lt;PfText prefixLine dimmed&gt;{{ t('text.withPrefix') }}&lt;/PfText&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

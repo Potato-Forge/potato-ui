@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfBreadcrumb from '@/components/pf-breadcrumb/PfBreadcrumb.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const breadcrumbList = [
@@ -7,6 +9,19 @@ const breadcrumbList = [
   { name: t('breadcrumb.components'), href: '#' },
   { name: t('breadcrumb.breadcrumb') },
 ]
+
+const usageCode = computed(() => dedent`
+  const items = [
+    { name: '${t('breadcrumb.home')}', href: '/' },
+    { name: '${t('breadcrumb.settings')}', href: '/settings' },
+    { name: '${t('breadcrumb.profile')}' },
+  ]
+
+  <PfBreadcrumb :list="items" />
+
+  <!-- ${t('breadcrumb.customKeys')} -->
+  <PfBreadcrumb :list="items" label-key="title" href-key="url" />
+`)
 </script>
 
 <template>
@@ -30,16 +45,7 @@ const breadcrumbList = [
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>const items = [
-  { name: '{{ t('breadcrumb.home') }}', href: '/' },
-  { name: '{{ t('breadcrumb.settings') }}', href: '/settings' },
-  { name: '{{ t('breadcrumb.profile') }}' },
-]
-
-&lt;PfBreadcrumb :list="items" /&gt;
-
-&lt;!-- {{ t('breadcrumb.customKeys') }} --&gt;
-&lt;PfBreadcrumb :list="items" label-key="title" href-key="url" /&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

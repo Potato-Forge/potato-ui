@@ -1,7 +1,23 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfEmpty from '@/components/pf-empty/PfEmpty.vue'
 import PfButton from '@/components/pf-button/PfButton.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  <PfEmpty
+    title="${t('empty.noResults')}"
+    description="${t('empty.tryAdjusting')}"
+  >
+    <template #icon>
+      <span class="i-tabler-search-off text-primary text-4xl"></span>
+    </template>
+    <template #action>
+      <PfButton variant="outline">${t('empty.clearFilters')}</PfButton>
+    </template>
+  </PfEmpty>
+`)
 </script>
 
 <template>
@@ -32,17 +48,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfEmpty
-  title="{{ t('empty.noResults') }}"
-  description="{{ t('empty.tryAdjusting') }}"
-&gt;
-  &lt;template #icon&gt;
-    &lt;span class="i-tabler-search-off text-primary text-4xl"&gt;&lt;/span&gt;
-  &lt;/template&gt;
-  &lt;template #action&gt;
-    &lt;PfButton variant="outline"&gt;{{ t('empty.clearFilters') }}&lt;/PfButton&gt;
-  &lt;/template&gt;
-&lt;/PfEmpty&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

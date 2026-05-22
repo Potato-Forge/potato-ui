@@ -1,7 +1,26 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfButton from '@/components/pf-button/PfButton.vue'
 import { pfToast } from '@/components/pf-toast/usePfToast'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  import { pfToast } from '@/components/pf-toast'
+
+  pfToast.success('${t('toast.operationSuccess')}')
+  pfToast.error('${t('toast.operationFailed')}', '${t('toast.pleaseRetry')}')
+  pfToast.info('${t('toast.newUpdate')}')
+  pfToast.warning('${t('toast.unsavedChanges')}')
+  pfToast.tip('${t('toast.proTip')}')
+  pfToast.risk('${t('toast.securityAlert')}')
+
+  // ${t('toast.withOptions')}
+  pfToast.success('${t('toast.saved')}', {
+    duration: 3000,
+    position: 'bottom-right',
+  })
+`)
 </script>
 
 <template>
@@ -42,20 +61,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>import { pfToast } from '@/components/pf-toast'
-
-pfToast.success('{{ t('toast.operationSuccess') }}')
-pfToast.error('{{ t('toast.operationFailed') }}', '{{ t('toast.pleaseRetry') }}')
-pfToast.info('{{ t('toast.newUpdate') }}')
-pfToast.warning('{{ t('toast.unsavedChanges') }}')
-pfToast.tip('{{ t('toast.proTip') }}')
-pfToast.risk('{{ t('toast.securityAlert') }}')
-
-// {{ t('toast.withOptions') }}
-pfToast.success('{{ t('toast.saved') }}', {
-  duration: 3000,
-  position: 'bottom-right',
-})</PfCode>
+      <PfCode :code="usageCode" language="ts" dedent />
     </section>
 
     <section class="section">

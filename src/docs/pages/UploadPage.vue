@@ -1,6 +1,29 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfUpload from '@/components/pf-upload/PfUpload.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  <!-- ${t('upload.dragMode')} -->
+  <PfUpload trigger="drag" :max-files="5" :max-size="20 * 1024 * 1024" />
+
+  <!-- ${t('upload.buttonMode')} -->
+  <PfUpload trigger="button" />
+
+  <!-- ${t('upload.galleryMode')} -->
+  <PfUpload trigger="gallery" list-type="gallery" accept="image/*" />
+
+  <!-- ${t('upload.withHandler')} -->
+  <PfUpload
+    :upload-handler="async ({ file, onProgress }) => {
+      onProgress(50)
+      await myApi.upload(file)
+      onProgress(100)
+      return { remoteUrl: 'https://...' }
+    }"
+  />
+`)
 </script>
 
 <template>
@@ -24,24 +47,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;!-- {{ t('upload.dragMode') }} --&gt;
-&lt;PfUpload trigger="drag" :max-files="5" :max-size="20 * 1024 * 1024" /&gt;
-
-&lt;!-- {{ t('upload.buttonMode') }} --&gt;
-&lt;PfUpload trigger="button" /&gt;
-
-&lt;!-- {{ t('upload.galleryMode') }} --&gt;
-&lt;PfUpload trigger="gallery" list-type="gallery" accept="image/*" /&gt;
-
-&lt;!-- {{ t('upload.withHandler') }} --&gt;
-&lt;PfUpload
-  :upload-handler="async ({ file, onProgress }) => {
-    onProgress(50)
-    await myApi.upload(file)
-    onProgress(100)
-    return { remoteUrl: 'https://...' }
-  }"
-/&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

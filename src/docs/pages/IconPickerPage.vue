@@ -1,8 +1,18 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import PfIconPicker from '@/components/pf-icon-picker/PfIconPicker.vue'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
 
 const selectedIcon = ref<string | null>(null)
+
+const usageCode = computed(() => dedent`
+  <PfIconPicker v-model="selectedIcon">
+    <template #trigger>
+      <!-- ${t('iconPicker.customTrigger')} -->
+    </template>
+  </PfIconPicker>
+`)
 </script>
 
 <template>
@@ -26,11 +36,7 @@ const selectedIcon = ref<string | null>(null)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfIconPicker v-model="selectedIcon"&gt;
-  &lt;template #trigger&gt;
-    &lt;!-- {{ t('iconPicker.customTrigger') }} --&gt;
-  &lt;/template&gt;
-&lt;/PfIconPicker&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

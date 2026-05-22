@@ -1,7 +1,22 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfCard from '@/components/pf-card/PfCard.vue'
 import PfButton from '@/components/pf-button/PfButton.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  <PfCard>
+    <template #header>${t('card.title')}</template>
+    <template #header-action>
+      <PfButton variant="ghost" size="icon-sm" icon="i-tabler-dots" />
+    </template>
+    <div class="p-4">${t('card.content')}</div>
+    <template #footer>
+      <PfButton variant="ghost" class="w-full">${t('card.viewMore')}</PfButton>
+    </template>
+  </PfCard>
+`)
 </script>
 
 <template>
@@ -42,16 +57,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfCard&gt;
-  &lt;template #header&gt;{{ t('card.title') }}&lt;/template&gt;
-  &lt;template #header-action&gt;
-    &lt;PfButton variant="ghost" size="icon-sm" icon="i-tabler-dots" /&gt;
-  &lt;/template&gt;
-  &lt;div class="p-4"&gt;{{ t('card.content') }}&lt;/div&gt;
-  &lt;template #footer&gt;
-    &lt;PfButton variant="ghost" class="w-full"&gt;{{ t('card.viewMore') }}&lt;/PfButton&gt;
-  &lt;/template&gt;
-&lt;/PfCard&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

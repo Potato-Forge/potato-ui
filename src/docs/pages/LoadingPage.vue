@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfLoading from '@/components/pf-loading/PfLoading.vue'
 import PfButton from '@/components/pf-button/PfButton.vue'
 import PfText from '@/components/pf-text/PfText.vue'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
 
 const isLoading = ref(true)
+
+const usageCode = computed(() => dedent`
+  <PfLoading :loading="isLoading" text="${t('loading.loadingText')}">
+    <div class="p-4">${t('loading.yourContent')}</div>
+  </PfLoading>
+`)
 </script>
 
 <template>
@@ -39,9 +46,7 @@ const isLoading = ref(true)
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfLoading :loading="isLoading" text="{{ t('loading.loadingText') }}"&gt;
-  &lt;div class="p-4"&gt;{{ t('loading.yourContent') }}&lt;/div&gt;
-&lt;/PfLoading&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

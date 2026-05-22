@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfDivide from '@/components/pf-divide/PfDivide.vue'
 import PfText from '@/components/pf-text/PfText.vue'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
+
+const usageCode = computed(() => dedent`
+  <!-- ${t('divide.horizontal')} -->
+  <PfDivide />
+
+  <!-- ${t('divide.vertical')} -->
+  <PfDivide vertical />
+`)
 </script>
 
 <template>
@@ -32,11 +42,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;!-- {{ t('divide.horizontal') }} --&gt;
-&lt;PfDivide /&gt;
-
-&lt;!-- {{ t('divide.vertical') }} --&gt;
-&lt;PfDivide vertical /&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

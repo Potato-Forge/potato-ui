@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfButton from '@/components/pf-button/PfButton.vue'
 import PfTooltip from '@/components/pf-tooltip/PfTooltip.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const componentUsageCode = computed(() => dedent`
+  <PfTooltip content="${t('tooltip.saveChanges')}">
+    <PfButton>${t('tooltip.save')}</PfButton>
+  </PfTooltip>
+`)
+
+const pluginUsageCode = computed(() => dedent`
+  import { pfTooltipPlugin } from '@/components/pf-tooltip'
+
+  app.use(pfTooltipPlugin)
+`)
 </script>
 
 <template>
@@ -34,15 +48,11 @@ import { t } from '../i18n'
     <section class="section two-column">
       <div>
         <h2>{{ t('tooltip.componentUsage') }}</h2>
-        <PfCode>&lt;PfTooltip content="{{ t('tooltip.saveChanges') }}"&gt;
-  &lt;PfButton&gt;{{ t('tooltip.save') }}&lt;/PfButton&gt;
-&lt;/PfTooltip&gt;</PfCode>
+        <PfCode :code="componentUsageCode" language="vue" dedent />
       </div>
       <div>
         <h2>{{ t('tooltip.pluginUsage') }}</h2>
-        <PfCode>import { pfTooltipPlugin } from '@/components/pf-tooltip'
-
-app.use(pfTooltipPlugin)</PfCode>
+        <PfCode :code="pluginUsageCode" language="ts" dedent />
       </div>
     </section>
 

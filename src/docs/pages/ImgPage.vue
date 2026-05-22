@@ -1,6 +1,22 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfImg from '@/components/pf-img/PfImg.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  <PfImg
+    src="/path/to/image.jpg"
+    alt="Description"
+    :preview="true"
+    :rounded="true"
+    aspect-ratio="16/9"
+    object-fit="cover"
+    fallback-src="/fallback.jpg"
+    loading-text="${t('img.loading')}"
+    error-text="${t('img.error')}"
+  />
+`)
 </script>
 
 <template>
@@ -42,17 +58,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfImg
-  src="/path/to/image.jpg"
-  alt="Description"
-  :preview="true"
-  :rounded="true"
-  aspect-ratio="16/9"
-  object-fit="cover"
-  fallback-src="/fallback.jpg"
-  loading-text="{{ t('img.loading') }}"
-  error-text="{{ t('img.error') }}"
-/&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

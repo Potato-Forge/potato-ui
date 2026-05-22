@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfForm from '@/components/pf-form/PfForm.vue'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
 
 const submitted = ref<Record<string, any> | null>(null)
 const lastChanged = ref<Record<string, any> | null>(null)
@@ -32,6 +33,50 @@ const handleSubmit = async (data: Record<string, any>) => {
 const handleChange = (data: Record<string, any>) => {
   lastChanged.value = { ...data }
 }
+
+const usageExampleCode = computed(() => dedent`
+  const formConfig = [
+    { name: 'Name', key: 'name', type: 'text', rules: { required: '必填' } },
+    { name: 'Email', key: 'email', type: 'text',
+      rules: { pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: '邮箱格式不正确' } } },
+    { name: 'Role', key: 'role', type: 'options',
+      config: { options: [{ label: 'Admin', value: 'admin' }] } },
+    { name: 'Active', key: 'active', type: 'toggle', default: true },
+    { name: 'Birthday', key: 'birthday', type: 'date' },
+  ]
+
+  <PfForm
+    :form-config="formConfig"
+    form-mode="create"
+    :columns-per-row="2"
+    :on-submit="handleSubmit"
+  />
+`)
+
+const fieldRulesCode = computed(() => dedent`
+  interface PfFormFieldRules {
+    required?: boolean | string
+    min?: number | { value: number; message?: string }
+    max?: number | { value: number; message?: string }
+    pattern?: RegExp | { value: RegExp; message?: string }
+    validateOn?: 'change' | 'blur' | 'both'
+  }
+`)
+
+const formRulesCode = computed(() => dedent`
+  interface PfFormRules {
+    schema?: ZodType
+    onBlur?: (payload) => PfFormValidationResult | Promise
+    onSubmit?: (payload) => PfFormValidationResult | Promise
+  }
+`)
+
+const dependenciesCode = computed(() => dedent`
+  @tanstack/vue-form, @tanstack/zod-form-adapter, zod,
+  @vuepic/vue-datepicker, date-fns, @iconify/vue,
+  pf-checkbox, pf-switch, pf-help, pf-upload,
+  pf-icons, pf-runtime-support, pf-theme
+`)
 </script>
 
 <template>
@@ -68,22 +113,7 @@ const handleChange = (data: Record<string, any>) => {
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>const formConfig = [
-  { name: 'Name', key: 'name', type: 'text', rules: { required: '必填' } },
-  { name: 'Email', key: 'email', type: 'text',
-    rules: { pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: '邮箱格式不正确' } } },
-  { name: 'Role', key: 'role', type: 'options',
-    config: { options: [{ label: 'Admin', value: 'admin' }] } },
-  { name: 'Active', key: 'active', type: 'toggle', default: true },
-  { name: 'Birthday', key: 'birthday', type: 'date' },
-]
-
-&lt;PfForm
-  :form-config="formConfig"
-  form-mode="create"
-  :columns-per-row="2"
-  :on-submit="handleSubmit"
-/&gt;</PfCode>
+      <PfCode :code="usageExampleCode" language="vue" dedent />
     </section>
 
     <section class="section">
@@ -117,27 +147,14 @@ const handleChange = (data: Record<string, any>) => {
         </tbody>
       </table>
       <h3>PfFormFieldRules</h3>
-      <PfCode class="mt-2">interface PfFormFieldRules {
-  required?: boolean | string
-  min?: number | { value: number; message?: string }
-  max?: number | { value: number; message?: string }
-  pattern?: RegExp | { value: RegExp; message?: string }
-  validateOn?: 'change' | 'blur' | 'both'
-}</PfCode>
+      <PfCode :code="fieldRulesCode" language="ts" class="mt-2" dedent />
       <h3>PfFormRules</h3>
-      <PfCode class="mt-2">interface PfFormRules {
-  schema?: ZodType
-  onBlur?: (payload) => PfFormValidationResult | Promise
-  onSubmit?: (payload) => PfFormValidationResult | Promise
-}</PfCode>
+      <PfCode :code="formRulesCode" language="ts" class="mt-2" dedent />
     </section>
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <PfCode>@tanstack/vue-form, @tanstack/zod-form-adapter, zod,
-@vuepic/vue-datepicker, date-fns, @iconify/vue,
-pf-checkbox, pf-switch, pf-help, pf-upload,
-pf-icons, pf-runtime-support, pf-theme</PfCode>
+      <PfCode :code="dependenciesCode" dedent />
     </section>
   </article>
 </template>

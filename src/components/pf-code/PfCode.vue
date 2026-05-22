@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { createHighlighter } from 'shiki'
 import type { HTMLAttributes, VNodeChild } from 'vue'
-import { cn } from '@/lib/utils'
+import { cn, dedentStr } from '@/lib/utils'
 
 type SupportedLanguage =
   | 'ts'
@@ -68,6 +68,7 @@ const props = withDefaults(
     language?: string
     title?: string
     copyable?: boolean
+    dedent?: boolean
     class?: HTMLAttributes['class']
   }>(),
   {
@@ -75,6 +76,7 @@ const props = withDefaults(
     language: '',
     title: '',
     copyable: true,
+    dedent: false,
     class: '',
   },
 )
@@ -99,7 +101,10 @@ const slotToText = (children: VNodeChild): string => {
 }
 
 const resolvedCode = computed(() => {
-  if (props.code) return props.code.trim()
+  if (props.code) {
+    const raw = props.code.trim()
+    return props.dedent ? dedentStr(raw) : raw
+  }
   return slotToText(slots.default?.() ?? []).trim()
 })
 

@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import PfCheckbox from '@/components/pf-checkbox/PfCheckbox.vue'
 import PfText from '@/components/pf-text/PfText.vue'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
 
 const checked = ref(false)
 const indeterminate = ref<'indeterminate' | boolean>('indeterminate')
+
+const usageCode = computed(() => dedent`
+  <PfCheckbox v-model:model-value="checked" />
+  <PfCheckbox v-model:model-value="indeterminate" />
+  <PfCheckbox disabled />
+`)
 </script>
 
 <template>
@@ -40,9 +47,7 @@ const indeterminate = ref<'indeterminate' | boolean>('indeterminate')
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfCheckbox v-model:model-value="checked" /&gt;
-&lt;PfCheckbox v-model:model-value="indeterminate" /&gt;
-&lt;PfCheckbox disabled /&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

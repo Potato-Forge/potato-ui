@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfConfigProvider from '@/components/pf-config-provider/PfConfigProvider.vue'
 import PfText from '@/components/pf-text/PfText.vue'
 import { t } from '../i18n'
+import { dedent } from '@/lib/utils'
+
+const usageCode = computed(() => dedent`
+  <PfConfigProvider>
+    <YourApp />
+  </PfConfigProvider>
+`)
 </script>
 
 <template>
@@ -27,9 +35,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;PfConfigProvider&gt;
-  &lt;YourApp /&gt;
-&lt;/PfConfigProvider&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

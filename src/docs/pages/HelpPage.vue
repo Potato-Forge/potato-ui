@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfHelp from '@/components/pf-help/PfHelp.vue'
 import PfText from '@/components/pf-text/PfText.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const usageCode = computed(() => dedent`
+  <!-- ${t('help.simpleUsage')} -->
+  <PfHelp content="${t('help.helpContent')}" />
+
+  <!-- ${t('help.slotUsage')} -->
+  <PfHelp>
+    <template #content>
+      <strong>${t('help.richTitle')}</strong>
+    </template>
+  </PfHelp>
+`)
 </script>
 
 <template>
@@ -39,15 +53,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>&lt;!-- {{ t('help.simpleUsage') }} --&gt;
-&lt;PfHelp content="{{ t('help.helpContent') }}" /&gt;
-
-&lt;!-- {{ t('help.slotUsage') }} --&gt;
-&lt;PfHelp&gt;
-  &lt;template #content&gt;
-    &lt;strong&gt;{{ t('help.richTitle') }}&lt;/strong&gt;
-  &lt;/template&gt;
-&lt;/PfHelp&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">

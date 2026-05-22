@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import PfSidebar from '@/components/pf-sidebar/PfSidebar.vue'
+import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const demoItems = [
@@ -26,6 +28,38 @@ const demoItems = [
     url: '#',
   },
 ]
+
+const usageCode = computed(() => dedent`
+  import type { SidebarItem } from '@/components/pf-sidebar'
+
+  const items: SidebarItem[] = [
+    {
+      title: '${t('sidebar.dashboard')}',
+      icon: 'layout-dashboard',
+      isActive: true,
+      items: [
+        { title: '${t('sidebar.overview')}', url: '/overview' },
+      ],
+    },
+    {
+      title: '${t('sidebar.help')}',
+      icon: 'help',
+      url: '/help',
+    },
+  ]
+
+  <PfSidebar :items="items" />
+`)
+
+const typesCode = computed(() => dedent`
+  interface SidebarItem {
+    title: string
+    url?: string
+    icon?: string
+    isActive?: boolean
+    items?: SidebarItem[]
+  }
+`)
 </script>
 
 <template>
@@ -49,25 +83,7 @@ const demoItems = [
 
     <section class="section">
       <h2>{{ t('section.usage') }}</h2>
-      <PfCode>import type { SidebarItem } from '@/components/pf-sidebar'
-
-const items: SidebarItem[] = [
-  {
-    title: '{{ t('sidebar.dashboard') }}',
-    icon: 'layout-dashboard',
-    isActive: true,
-    items: [
-      { title: '{{ t('sidebar.overview') }}', url: '/overview' },
-    ],
-  },
-  {
-    title: '{{ t('sidebar.help') }}',
-    icon: 'help',
-    url: '/help',
-  },
-]
-
-&lt;PfSidebar :items="items" /&gt;</PfCode>
+      <PfCode :code="usageCode" language="vue" dedent />
     </section>
 
     <section class="section">
@@ -79,13 +95,7 @@ const items: SidebarItem[] = [
         </tbody>
       </table>
       <p class="mt-4 text-sm text-muted-foreground">{{ t('sidebar.api.typeNote') }}</p>
-      <PfCode class="mt-2">interface SidebarItem {
-  title: string
-  url?: string
-  icon?: string
-  isActive?: boolean
-  items?: SidebarItem[]
-}</PfCode>
+      <PfCode :code="typesCode" language="ts" dedent />
     </section>
 
     <section class="section">
