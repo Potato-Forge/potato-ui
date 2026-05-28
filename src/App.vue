@@ -60,59 +60,59 @@ const navGroups = [
   {
     title: 'nav.general',
     links: [
-      { path: '/components/button', label: 'nav.button' },
-      { path: '/components/card', label: 'nav.card' },
-      { path: '/components/divide', label: 'nav.divide' },
-      { path: '/components/empty', label: 'nav.empty' },
-      { path: '/components/loading', label: 'nav.loading' },
-      { path: '/components/text', label: 'nav.text' },
+      { path: '/components/button', label: 'nav.button', subtitle: 'PfButton' },
+      { path: '/components/card', label: 'nav.card', subtitle: 'PfCard' },
+      { path: '/components/divide', label: 'nav.divide', subtitle: 'PfDivide' },
+      { path: '/components/empty', label: 'nav.empty', subtitle: 'PfEmpty' },
+      { path: '/components/loading', label: 'nav.loading', subtitle: 'PfLoading' },
+      { path: '/components/text', label: 'nav.text', subtitle: 'PfText' },
     ],
   },
   {
     title: 'nav.dataEntry',
     links: [
-      { path: '/components/checkbox', label: 'nav.checkbox' },
-      { path: '/components/color-picker', label: 'nav.colorPicker' },
-      { path: '/components/icon-picker', label: 'nav.iconPicker' },
-      { path: '/components/switch', label: 'nav.switch' },
-      { path: '/components/upload', label: 'nav.upload' },
+      { path: '/components/checkbox', label: 'nav.checkbox', subtitle: 'PfCheckbox' },
+      { path: '/components/color-picker', label: 'nav.colorPicker', subtitle: 'PfColorPicker' },
+      { path: '/components/icon-picker', label: 'nav.iconPicker', subtitle: 'PfIconPicker' },
+      { path: '/components/switch', label: 'nav.switch', subtitle: 'PfSwitch' },
+      { path: '/components/upload', label: 'nav.upload', subtitle: 'PfUpload' },
     ],
   },
   {
     title: 'nav.feedback',
     links: [
-      { path: '/components/help', label: 'nav.help' },
-      { path: '/components/modal', label: 'nav.modal' },
-      { path: '/components/toast', label: 'nav.toast' },
-      { path: '/components/tooltip', label: 'nav.tooltip' },
+      { path: '/components/help', label: 'nav.help', subtitle: 'PfHelp' },
+      { path: '/components/modal', label: 'nav.modal', subtitle: 'PfModal' },
+      { path: '/components/toast', label: 'nav.toast', subtitle: 'PfToast' },
+      { path: '/components/tooltip', label: 'nav.tooltip', subtitle: 'PfTooltip' },
     ],
   },
   {
     title: 'nav.navigation',
     links: [
-      { path: '/components/breadcrumb', label: 'nav.breadcrumb' },
-      { path: '/components/sidebar', label: 'nav.sidebar' },
-      { path: '/components/tree', label: 'nav.tree' },
+      { path: '/components/breadcrumb', label: 'nav.breadcrumb', subtitle: 'PfBreadcrumb' },
+      { path: '/components/sidebar', label: 'nav.sidebar', subtitle: 'PfSidebar' },
+      { path: '/components/tree', label: 'nav.tree', subtitle: 'PfTree' },
     ],
   },
   {
     title: 'nav.media',
     links: [
-      { path: '/components/img', label: 'nav.img' },
+      { path: '/components/img', label: 'nav.img', subtitle: 'PfImg' },
     ],
   },
   {
     title: 'nav.pro',
     links: [
-      { path: '/components/form', label: 'nav.form' },
-      { path: '/components/data-table', label: 'nav.dataTable' },
+      { path: '/components/form', label: 'nav.form', subtitle: 'PfForm' },
+      { path: '/components/data-table', label: 'nav.dataTable', subtitle: 'PfDataTable' },
     ],
   },
   {
     title: 'nav.foundation',
     links: [
-      { path: '/foundation/theme', label: 'nav.theme' },
-      { path: '/foundation/icons', label: 'nav.icons' },
+      { path: '/foundation/theme', label: 'nav.theme', subtitle: '' },
+      { path: '/foundation/icons', label: 'nav.icons', subtitle: '' },
     ],
   },
 ] as const
@@ -252,7 +252,8 @@ const page = computed(() => routes[currentPath.value as keyof typeof routes] ?? 
             :class="{ active: currentPath === link.path }"
             @click="navigate(link.path)"
           >
-            {{ t(link.label) }}
+            <span class="nav-label">{{ t(link.label) }}</span>
+            <span v-if="link.subtitle" class="nav-subtitle">{{ link.subtitle }}</span>
           </button>
         </section>
       </nav>
