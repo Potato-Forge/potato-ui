@@ -1,22 +1,14 @@
-<!--
-  由 scripts/sync-adapters.py 自动生成
-  来源: adapters/claude.md
-  同步时间: 2026-05-26 07:24:36 UTC
-  请勿手动编辑 — 修改 adapters/claude.md 或 .ai/vendor/ 后再运行 sync
--->
-
-# Potato UI — Claude Code Entry
+# {{PROJECT_NAME}} — Claude Code Entry
 
 > Thin key for Claude Code. Read `.ai/` for memory; do not treat this file as a project summary.
 
 ## Hard Constraints
 
-1. Pf components use `Pf<Name>.vue` in `src/components/pf-<name>/`.
-2. UI primitives live in `src/components/ui/<name>/` and do not use the `Pf` prefix.
-3. Internal imports use `@/`; avoid deep relative imports such as `../../../`.
-4. Styling uses `cn()` + UnoCSS semantic tokens + `cva()` variants.
-5. Do not add Tailwind CSS assumptions, `.tsx` files, `export default`, `dist/`, or component bundles.
-6. Run `pnpm typecheck` before commit-like handoff when code changed.
+1. Read `.ai/vendor/behavior.md` before non-trivial coding work.
+2. Keep changes surgical and directly tied to the user request.
+3. Match existing project style and conventions.
+4. Use the project commands documented in `.ai/core/project.md` and `.ai/core/architecture.md`.
+5. Do not write secrets, raw user messages, or private reasoning into tracked `.ai` files.
 
 ## Read First
 
@@ -24,6 +16,7 @@
 2. `.ai/state/handoff.md`
 3. `.ai/core/project.md`
 4. `.ai/core/conventions.md`
+5. `.ai/vendor/behavior.md`
 
 ## Read As Needed
 

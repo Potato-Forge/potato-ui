@@ -35,6 +35,7 @@ environment details.
 ## Files
 
 - `protocol.md` defines the generic lifecycle.
+- `behavior.md` defines coding-agent behavioral guardrails.
 - `entry-contract.md` defines what Agent entry files should and should not do.
 - `logging.md` defines the sanitized log style.
 - `privacy.md` defines the boundary between tracked memory and local memory.
