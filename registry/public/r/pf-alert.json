@@ -1,0 +1,41 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-alert",
+  "type": "registry:component",
+  "title": "PfAlert",
+  "description": "Inline feedback block for contextual info, success, warning, and error messages.",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "pf-icons"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-alert/PfAlert.vue",
+    "docsRoute": "/components/alert"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-alert/PfAlert.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-alert/PfAlert.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { alertVariants } from '.'\nimport type { PfAlertProps } from '.'\n\nconst props = withDefaults(defineProps<PfAlertProps>(), {\n  type: 'info',\n})\n\nconst emit = defineEmits<{\n  close: []\n}>()\n\nconst fallbackIcon = computed(() => {\n  if (props.icon) return props.icon\n  if (props.type === 'success') return 'i-tabler-circle-check'\n  if (props.type === 'warning') return 'i-tabler-alert-triangle'\n  if (props.type === 'error') return 'i-tabler-circle-x'\n  return 'i-tabler-info-circle'\n})\n</script>\n\n<template>\n  <div :class=\"cn(alertVariants({ type }), props.class)\" role=\"alert\">\n    <span :class=\"cn(fallbackIcon, 'mt-0.5 h-5 w-5 shrink-0')\" aria-hidden=\"true\"></span>\n    <div class=\"min-w-0 pr-6\">\n      <div v-if=\"title || $slots.title\" class=\"font-semibold leading-5 text-foreground\">\n        <slot name=\"title\">{{ title }}</slot>\n      </div>\n      <div v-if=\"description || $slots.default\" class=\"mt-1 leading-5 text-muted-foreground\">\n        <slot>{{ description }}</slot>\n      </div>\n    </div>\n    <button\n      v-if=\"closable\"\n      type=\"button\"\n      class=\"absolute right-3 top-3 inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n      aria-label=\"Close\"\n      @click=\"emit('close')\"\n    >\n      <span class=\"i-tabler-x h-4 w-4\"></span>\n    </button>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-alert/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-alert/index.ts",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority'\n\nexport { default as PfAlert } from './PfAlert.vue'\n\nexport const alertVariants = cva(\n  'relative grid w-full min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-lg border p-4 text-sm',\n  {\n    variants: {\n      type: {\n        info: 'border-info/30 bg-info/10 text-info',\n        success: 'border-success/30 bg-success/10 text-success',\n        warning: 'border-warning/30 bg-warning/10 text-warning',\n        error: 'border-error/30 bg-error/10 text-error',\n      },\n    },\n    defaultVariants: {\n      type: 'info',\n    },\n  },\n)\n\nexport type AlertVariants = VariantProps<typeof alertVariants>\n\nexport interface PfAlertProps {\n  type?: AlertVariants['type']\n  title?: string\n  description?: string\n  icon?: string\n  closable?: boolean\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

@@ -4,6 +4,43 @@
   "homepage": "https://github.com/potato-forge/potato-ui",
   "items": [
     {
+      "name": "pf-alert",
+      "type": "registry:component",
+      "title": "PfAlert",
+      "description": "Inline feedback block for contextual info, success, warning, and error messages.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-alert/PfAlert.vue",
+        "docsRoute": "/components/alert"
+      }
+    },
+    {
+      "name": "pf-badge",
+      "type": "registry:component",
+      "title": "PfBadge",
+      "description": "Compact status label for states, tags, and small metadata.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-badge/PfBadge.vue",
+        "docsRoute": "/components/badge"
+      }
+    },
+    {
       "name": "pf-breadcrumb",
       "type": "registry:component",
       "title": "PfBreadcrumb",
@@ -340,6 +377,24 @@
       }
     },
     {
+      "name": "pf-pagination",
+      "type": "registry:component",
+      "title": "PfPagination",
+      "description": "Pagination control for list and table pages with sibling page buttons.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-pagination/PfPagination.vue",
+        "docsRoute": "/components/pagination"
+      }
+    },
+    {
       "name": "pf-radio-group",
       "type": "registry:component",
       "title": "PfRadioGroup",
@@ -425,6 +480,23 @@
       ],
       "meta": {
         "sourceEntry": "src/components/pf-switch/PfSwitch.vue"
+      }
+    },
+    {
+      "name": "pf-tabs",
+      "type": "registry:component",
+      "title": "PfTabs",
+      "description": "Controlled tab switcher for compact page sections and settings surfaces.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-tabs/PfTabs.vue",
+        "docsRoute": "/components/tabs"
       }
     },
     {

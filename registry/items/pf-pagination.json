@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-pagination",
+  "type": "registry:component",
+  "title": "PfPagination",
+  "description": "Pagination control for list and table pages with sibling page buttons.",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme", "pf-icons"],
+  "meta": {
+    "sourceEntry": "src/components/pf-pagination/PfPagination.vue",
+    "docsRoute": "/components/pagination"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-pagination/PfPagination.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-pagination/PfPagination.vue"
+    },
+    {
+      "path": "src/components/pf-pagination/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-pagination/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

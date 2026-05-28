@@ -4,6 +4,8 @@ export type Locale = 'en' | 'zh'
 
 type MessageKey =
   | 'nav.components'
+  | 'nav.alert'
+  | 'nav.badge'
   | 'nav.foundation'
   | 'nav.general'
   | 'nav.dataEntry'
@@ -29,10 +31,12 @@ type MessageKey =
   | 'nav.img'
   | 'nav.input'
   | 'nav.modal'
+  | 'nav.pagination'
   | 'nav.radioGroup'
   | 'nav.select'
   | 'nav.sidebar'
   | 'nav.toast'
+  | 'nav.tabs'
   | 'nav.textarea'
   | 'nav.upload'
   | 'nav.dataTable'
@@ -307,6 +311,33 @@ type MessageKey =
   | 'radioGroup.api.name'
   | 'radioGroup.api.orientation'
   | 'radioGroup.api.disabled'
+  | 'badge.description'
+  | 'badge.api.variant'
+  | 'badge.api.type'
+  | 'badge.api.size'
+  | 'badge.api.dot'
+  | 'alert.description'
+  | 'alert.infoTitle'
+  | 'alert.infoDesc'
+  | 'alert.successTitle'
+  | 'alert.warningTitle'
+  | 'alert.api.type'
+  | 'alert.api.title'
+  | 'alert.api.description'
+  | 'alert.api.closable'
+  | 'alert.api.close'
+  | 'tabs.description'
+  | 'tabs.current'
+  | 'tabs.api.modelValue'
+  | 'tabs.api.items'
+  | 'tabs.api.orientation'
+  | 'tabs.api.slot'
+  | 'pagination.description'
+  | 'pagination.api.modelValue'
+  | 'pagination.api.total'
+  | 'pagination.api.pageSize'
+  | 'pagination.api.siblingCount'
+  | 'pagination.api.change'
   | 'breadcrumb.description'
   | 'breadcrumb.home'
   | 'breadcrumb.components'
@@ -453,6 +484,8 @@ type MessageKey =
 
 const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.components': { en: 'Components', zh: '组件' },
+  'nav.alert': { en: 'Alert', zh: '警告提示' },
+  'nav.badge': { en: 'Badge', zh: '徽标' },
   'nav.foundation': { en: 'Foundation', zh: '基础' },
   'nav.general': { en: 'General', zh: '通用' },
   'nav.dataEntry': { en: 'Data Entry', zh: '数据录入' },
@@ -478,10 +511,12 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.img': { en: 'Img', zh: '图片' },
   'nav.input': { en: 'Input', zh: '输入框' },
   'nav.modal': { en: 'Modal', zh: '模态框' },
+  'nav.pagination': { en: 'Pagination', zh: '分页' },
   'nav.radioGroup': { en: 'Radio Group', zh: '单选组' },
   'nav.select': { en: 'Select', zh: '选择器' },
   'nav.sidebar': { en: 'Sidebar', zh: '侧边栏' },
   'nav.toast': { en: 'Toast', zh: '消息提示' },
+  'nav.tabs': { en: 'Tabs', zh: '标签页' },
   'nav.textarea': { en: 'Textarea', zh: '文本域' },
   'nav.upload': { en: 'Upload', zh: '上传' },
   'nav.dataTable': { en: 'Data Table', zh: '数据表格' },
@@ -687,6 +722,45 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'radioGroup.api.name': { en: 'Native radio group name.', zh: '原生 radio 组 name。' },
   'radioGroup.api.orientation': { en: 'Horizontal or vertical layout.', zh: '水平或垂直布局。' },
   'radioGroup.api.disabled': { en: 'Disable every option.', zh: '禁用全部选项。' },
+  'badge.description': {
+    en: 'Compact status label for states, tags, and small metadata.',
+    zh: '紧凑状态标记，用于状态、标签和小型元信息。',
+  },
+  'badge.api.variant': { en: 'Visual treatment.', zh: '视觉样式。' },
+  'badge.api.type': { en: 'Semantic color.', zh: '语义颜色。' },
+  'badge.api.size': { en: 'Badge dimensions.', zh: '徽标尺寸。' },
+  'badge.api.dot': { en: 'Show a leading status dot.', zh: '显示前置状态点。' },
+  'alert.description': {
+    en: 'Inline feedback block for contextual info, success, warning, and error messages.',
+    zh: '上下文反馈块，用于信息、成功、警告和错误消息。',
+  },
+  'alert.infoTitle': { en: 'Registry component', zh: 'Registry 组件' },
+  'alert.infoDesc': { en: 'Source files are copied into the consumer app.', zh: '源码文件会复制到消费项目中。' },
+  'alert.successTitle': { en: 'Changes saved', zh: '更改已保存' },
+  'alert.warningTitle': { en: 'Review required before publish', zh: '发布前需要审查' },
+  'alert.api.type': { en: 'Semantic feedback type.', zh: '语义反馈类型。' },
+  'alert.api.title': { en: 'Primary alert title.', zh: '提示主标题。' },
+  'alert.api.description': { en: 'Supporting alert description.', zh: '提示辅助说明。' },
+  'alert.api.closable': { en: 'Show close button.', zh: '显示关闭按钮。' },
+  'alert.api.close': { en: 'Emitted when close button is clicked.', zh: '点击关闭按钮时触发。' },
+  'tabs.description': {
+    en: 'Controlled tab switcher for compact page sections and settings surfaces.',
+    zh: '受控标签页切换器，用于紧凑页面区块和设置界面。',
+  },
+  'tabs.current': { en: 'Current tab', zh: '当前标签' },
+  'tabs.api.modelValue': { en: 'Selected tab value.', zh: '选中的标签值。' },
+  'tabs.api.items': { en: 'Tab label/value definitions.', zh: '标签的 label/value 定义。' },
+  'tabs.api.orientation': { en: 'Horizontal or vertical layout.', zh: '水平或垂直布局。' },
+  'tabs.api.slot': { en: 'Receives the selected value.', zh: '接收当前选中值。' },
+  'pagination.description': {
+    en: 'Pagination control for list and table pages with sibling page buttons.',
+    zh: '用于列表和表格页的分页控件，支持相邻页按钮。',
+  },
+  'pagination.api.modelValue': { en: 'Current page number.', zh: '当前页码。' },
+  'pagination.api.total': { en: 'Total item count.', zh: '总条目数。' },
+  'pagination.api.pageSize': { en: 'Items per page.', zh: '每页条目数。' },
+  'pagination.api.siblingCount': { en: 'Visible page buttons around current page.', zh: '当前页两侧可见页码数量。' },
+  'pagination.api.change': { en: 'Emitted after page changes.', zh: '页码变化后触发。' },
   'breadcrumb.description': {
     en: 'Breadcrumb navigation that wraps the ui/breadcrumb primitives for quick list-driven usage.',
     zh: '面包屑导航，封装 ui/breadcrumb 基元以便快速使用数组驱动。',

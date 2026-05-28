@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import AlertPage from './docs/pages/AlertPage.vue'
+import BadgePage from './docs/pages/BadgePage.vue'
 import BreadcrumbPage from './docs/pages/BreadcrumbPage.vue'
 import ButtonPage from './docs/pages/ButtonPage.vue'
 import CardPage from './docs/pages/CardPage.vue'
@@ -17,10 +19,12 @@ import ImgPage from './docs/pages/ImgPage.vue'
 import InputPage from './docs/pages/InputPage.vue'
 import LoadingPage from './docs/pages/LoadingPage.vue'
 import ModalPage from './docs/pages/ModalPage.vue'
+import PaginationPage from './docs/pages/PaginationPage.vue'
 import RadioGroupPage from './docs/pages/RadioGroupPage.vue'
 import SelectPage from './docs/pages/SelectPage.vue'
 import SidebarPage from './docs/pages/SidebarPage.vue'
 import SwitchPage from './docs/pages/SwitchPage.vue'
+import TabsPage from './docs/pages/TabsPage.vue'
 import TextareaPage from './docs/pages/TextareaPage.vue'
 import TextPage from './docs/pages/TextPage.vue'
 import ThemePage from './docs/pages/ThemePage.vue'
@@ -34,6 +38,8 @@ import { locale, localeOptions, setLocale, t } from './docs/i18n'
 type ThemeMode = 'system' | 'light' | 'dark'
 
 const routes = {
+  '/components/alert': AlertPage,
+  '/components/badge': BadgePage,
   '/components/breadcrumb': BreadcrumbPage,
   '/components/button': ButtonPage,
   '/components/card': CardPage,
@@ -50,10 +56,12 @@ const routes = {
   '/components/input': InputPage,
   '/components/loading': LoadingPage,
   '/components/modal': ModalPage,
+  '/components/pagination': PaginationPage,
   '/components/radio-group': RadioGroupPage,
   '/components/select': SelectPage,
   '/components/sidebar': SidebarPage,
   '/components/switch': SwitchPage,
+  '/components/tabs': TabsPage,
   '/components/textarea': TextareaPage,
   '/components/text': TextPage,
   '/components/toast': ToastPage,
@@ -69,6 +77,7 @@ const navGroups = [
     title: 'nav.general',
     links: [
       { path: '/components/button', label: 'nav.button', subtitle: 'PfButton' },
+      { path: '/components/badge', label: 'nav.badge', subtitle: 'PfBadge' },
       { path: '/components/card', label: 'nav.card', subtitle: 'PfCard' },
       { path: '/components/divide', label: 'nav.divide', subtitle: 'PfDivide' },
       { path: '/components/empty', label: 'nav.empty', subtitle: 'PfEmpty' },
@@ -94,6 +103,7 @@ const navGroups = [
     title: 'nav.feedback',
     links: [
       { path: '/components/help', label: 'nav.help', subtitle: 'PfHelp' },
+      { path: '/components/alert', label: 'nav.alert', subtitle: 'PfAlert' },
       { path: '/components/modal', label: 'nav.modal', subtitle: 'PfModal' },
       { path: '/components/toast', label: 'nav.toast', subtitle: 'PfToast' },
       { path: '/components/tooltip', label: 'nav.tooltip', subtitle: 'PfTooltip' },
@@ -103,7 +113,9 @@ const navGroups = [
     title: 'nav.navigation',
     links: [
       { path: '/components/breadcrumb', label: 'nav.breadcrumb', subtitle: 'PfBreadcrumb' },
+      { path: '/components/pagination', label: 'nav.pagination', subtitle: 'PfPagination' },
       { path: '/components/sidebar', label: 'nav.sidebar', subtitle: 'PfSidebar' },
+      { path: '/components/tabs', label: 'nav.tabs', subtitle: 'PfTabs' },
       { path: '/components/tree', label: 'nav.tree', subtitle: 'PfTree' },
     ],
   },

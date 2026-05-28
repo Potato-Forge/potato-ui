@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-alert",
+  "type": "registry:component",
+  "title": "PfAlert",
+  "description": "Inline feedback block for contextual info, success, warning, and error messages.",
+  "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme", "pf-icons"],
+  "meta": {
+    "sourceEntry": "src/components/pf-alert/PfAlert.vue",
+    "docsRoute": "/components/alert"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-alert/PfAlert.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-alert/PfAlert.vue"
+    },
+    {
+      "path": "src/components/pf-alert/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-alert/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

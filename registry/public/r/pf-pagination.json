@@ -1,0 +1,40 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-pagination",
+  "type": "registry:component",
+  "title": "PfPagination",
+  "description": "Pagination control for list and table pages with sibling page buttons.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "pf-icons"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-pagination/PfPagination.vue",
+    "docsRoute": "/components/pagination"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-pagination/PfPagination.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-pagination/PfPagination.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport type { PfPaginationProps } from '.'\n\nconst props = withDefaults(defineProps<PfPaginationProps>(), {\n  modelValue: 1,\n  total: 0,\n  pageSize: 10,\n  siblingCount: 1,\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: number]\n  change: [value: number]\n}>()\n\nconst pageCount = computed(() => Math.max(1, Math.ceil(props.total / props.pageSize)))\nconst currentPage = computed(() => Math.min(Math.max(1, props.modelValue), pageCount.value))\n\nconst pages = computed(() => {\n  const result: (number | 'ellipsis')[] = []\n  const start = Math.max(1, currentPage.value - props.siblingCount)\n  const end = Math.min(pageCount.value, currentPage.value + props.siblingCount)\n\n  result.push(1)\n  if (start > 2) result.push('ellipsis')\n  for (let page = Math.max(2, start); page <= Math.min(pageCount.value - 1, end); page += 1) {\n    result.push(page)\n  }\n  if (end < pageCount.value - 1) result.push('ellipsis')\n  if (pageCount.value > 1) result.push(pageCount.value)\n\n  return result\n})\n\nconst setPage = (page: number) => {\n  const next = Math.min(Math.max(1, page), pageCount.value)\n  if (props.disabled || next === currentPage.value) return\n  emit('update:modelValue', next)\n  emit('change', next)\n}\n</script>\n\n<template>\n  <nav :class=\"cn('flex flex-wrap items-center gap-1', props.class)\" aria-label=\"Pagination\">\n    <button\n      type=\"button\"\n      class=\"inline-flex h-8 min-w-8 items-center justify-center rounded-md border border-border bg-background px-2 text-sm text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50\"\n      :disabled=\"disabled || currentPage <= 1\"\n      @click=\"setPage(currentPage - 1)\"\n    >\n      <span class=\"i-tabler-chevron-left h-4 w-4\"></span>\n    </button>\n    <template v-for=\"(page, index) in pages\" :key=\"`${page}-${index}`\">\n      <span\n        v-if=\"page === 'ellipsis'\"\n        class=\"inline-flex h-8 min-w-8 items-center justify-center text-sm text-muted-foreground\"\n      >\n        ...\n      </span>\n      <button\n        v-else\n        type=\"button\"\n        :aria-current=\"currentPage === page ? 'page' : undefined\"\n        :disabled=\"disabled\"\n        :class=\"\n          cn(\n            'inline-flex h-8 min-w-8 items-center justify-center rounded-md border px-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50',\n            currentPage === page\n              ? 'border-primary bg-primary text-primary-foreground'\n              : 'border-border bg-background text-foreground hover:bg-muted',\n          )\n        \"\n        @click=\"setPage(page)\"\n      >\n        {{ page }}\n      </button>\n    </template>\n    <button\n      type=\"button\"\n      class=\"inline-flex h-8 min-w-8 items-center justify-center rounded-md border border-border bg-background px-2 text-sm text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50\"\n      :disabled=\"disabled || currentPage >= pageCount\"\n      @click=\"setPage(currentPage + 1)\"\n    >\n      <span class=\"i-tabler-chevron-right h-4 w-4\"></span>\n    </button>\n  </nav>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-pagination/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-pagination/index.ts",
+      "content": "export { default as PfPagination } from './PfPagination.vue'\n\nexport interface PfPaginationProps {\n  modelValue?: number\n  total?: number\n  pageSize?: number\n  siblingCount?: number\n  disabled?: boolean\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

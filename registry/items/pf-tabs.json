@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-tabs",
+  "type": "registry:component",
+  "title": "PfTabs",
+  "description": "Controlled tab switcher for compact page sections and settings surfaces.",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-tabs/PfTabs.vue",
+    "docsRoute": "/components/tabs"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-tabs/PfTabs.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-tabs/PfTabs.vue"
+    },
+    {
+      "path": "src/components/pf-tabs/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-tabs/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}
