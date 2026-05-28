@@ -1,4 +1,3 @@
-import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import '@unocss/reset/tailwind.css'
@@ -11,5 +10,4 @@ import PfCode from './components/pf-code/PfCode.vue'
 const app = createApp(App)
 app.component('PfCode', PfCode)
 app.use(createPinia())
-app.use(VueQueryPlugin)
 app.mount('#app')

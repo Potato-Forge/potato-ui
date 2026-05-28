@@ -6,7 +6,6 @@
   "description": "PfDataTable source component migrated from potato-template.",
   "dependencies": [
     "@iconify/vue",
-    "@tanstack/vue-query",
     "date-fns",
     "vxe-table"
   ],

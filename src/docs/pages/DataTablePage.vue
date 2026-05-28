@@ -19,7 +19,7 @@ let nextId = 5
 const delay = (ms = 300) => new Promise((r) => setTimeout(r, ms))
 
 // ── CRUD stubs ─────────────────────────────────────────────────
-const listQuery = async (query: Record<string, any>) => {
+const request = async (query: Record<string, any>) => {
   await delay(200)
   let rows = [...users.value]
   if (query.name) rows = rows.filter((u) => u.name.toLowerCase().includes(String(query.name).toLowerCase()))
@@ -107,17 +107,17 @@ const usageCode = computed(() => dedent`
 
   <PfDataTable
     :columns="columns"
-    :list-query="listQuery"
-    :create="createUser"
-    :update="updateUser"
-    :delete="deleteUser"
-    :detail="getUserDetail"
+    :request="fetchUsers"
+    :create-request="createUser"
+    :update-request="updateUser"
+    :delete-request="deleteUser"
+    :detail-request="getUserDetail"
     row-key="id"
   />
 `)
 
 const dependenciesCode = computed(() => dedent`
-  vxe-table, @tanstack/vue-query, @iconify/vue, date-fns,
+  vxe-table, @iconify/vue, date-fns,
   pf-form, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives
 `)
 </script>
@@ -140,11 +140,11 @@ const dependenciesCode = computed(() => dedent`
       <div class="preview data-table-preview">
         <PfDataTable
           :columns="columns"
-          :list-query="listQuery"
-          :create="create"
-          :update="update"
-          :delete="remove"
-          :detail="detail"
+          :request="request"
+          :create-request="create"
+          :update-request="update"
+          :delete-request="remove"
+          :detail-request="detail"
           row-key="id"
           container-mode="drawer"
         />
@@ -165,11 +165,11 @@ const dependenciesCode = computed(() => dedent`
           <tr><td>columns</td><td>PfDataTableItem[]</td><td>{{ t('dataTable.api.columns') }}</td></tr>
           <tr><td>rowKey</td><td>string</td><td>{{ t('dataTable.api.rowKey') }}</td></tr>
           <tr><td>containerMode</td><td>'drawer' | 'modal'</td><td>{{ t('dataTable.api.containerMode') }}</td></tr>
-          <tr><td>listQuery</td><td>(query) => Promise</td><td>{{ t('dataTable.api.listQuery') }}</td></tr>
-          <tr><td>create</td><td>(payload) => Promise</td><td>{{ t('dataTable.api.create') }}</td></tr>
-          <tr><td>update</td><td>(id, payload) => Promise</td><td>{{ t('dataTable.api.update') }}</td></tr>
-          <tr><td>delete</td><td>(id, rowData) => Promise</td><td>{{ t('dataTable.api.delete') }}</td></tr>
-          <tr><td>detail</td><td>(id) => Promise</td><td>{{ t('dataTable.api.detail') }}</td></tr>
+          <tr><td>request</td><td>(query) => Promise</td><td>{{ t('dataTable.api.request') }}</td></tr>
+          <tr><td>createRequest</td><td>(payload) => Promise</td><td>{{ t('dataTable.api.createRequest') }}</td></tr>
+          <tr><td>updateRequest</td><td>(id, payload) => Promise</td><td>{{ t('dataTable.api.updateRequest') }}</td></tr>
+          <tr><td>deleteRequest</td><td>(id, rowData) => Promise</td><td>{{ t('dataTable.api.deleteRequest') }}</td></tr>
+          <tr><td>detailRequest</td><td>(id) => Promise</td><td>{{ t('dataTable.api.detailRequest') }}</td></tr>
           <tr><td>formRules</td><td>PfFormRules</td><td>{{ t('dataTable.api.formRules') }}</td></tr>
           <tr><td>hideCreate / hideEdit / hideDelete / hideDetail</td><td>boolean</td><td>{{ t('dataTable.api.hideActions') }}</td></tr>
           <tr><td>actionColumn</td><td>PfDataTableActionColumnConfig</td><td>{{ t('dataTable.api.actionColumn') }}</td></tr>

@@ -368,7 +368,7 @@ type MessageKey =
   | 'dataTable.overview'
   | 'dataTable.overviewDesc'
   | 'dataTable.feature.crud'
-  | 'dataTable.feature.tanstack'
+  | 'dataTable.feature.promise'
   | 'dataTable.feature.query'
   | 'dataTable.feature.container'
   | 'dataTable.feature.action'
@@ -378,11 +378,11 @@ type MessageKey =
   | 'dataTable.api.columns'
   | 'dataTable.api.rowKey'
   | 'dataTable.api.containerMode'
-  | 'dataTable.api.listQuery'
-  | 'dataTable.api.create'
-  | 'dataTable.api.update'
-  | 'dataTable.api.delete'
-  | 'dataTable.api.detail'
+  | 'dataTable.api.request'
+  | 'dataTable.api.createRequest'
+  | 'dataTable.api.updateRequest'
+  | 'dataTable.api.deleteRequest'
+  | 'dataTable.api.detailRequest'
   | 'dataTable.api.formRules'
   | 'dataTable.api.hideActions'
   | 'dataTable.api.actionColumn'
@@ -738,11 +738,11 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'upload.api.maxSize': { en: 'Maximum file size in bytes.', zh: '最大文件大小（字节）。' },
   'upload.api.slots': { en: 'Custom upload trigger and file list rendering.', zh: '自定义上传触发器和文件列表渲染。' },
 
-  'dataTable.description': { en: 'Full-featured CRUD data table built on vxe-table with tanstack-query, supporting search, create, edit, delete, and detail views.', zh: '基于 vxe-table 和 tanstack-query 的全功能 CRUD 数据表格，支持搜索、新增、编辑、删除和详情查看。' },
+  'dataTable.description': { en: 'Full-featured CRUD data table built on vxe-table with Promise-driven requests, supporting search, create, edit, delete, and detail views.', zh: '基于 vxe-table 和 Promise 请求函数的全功能 CRUD 数据表格，支持搜索、新增、编辑、删除和详情查看。' },
   'dataTable.overview': { en: 'Overview', zh: '概览' },
-  'dataTable.overviewDesc': { en: 'PfDataTable is the most complex component in the library. It integrates form-based query, vxe-table rendering, tanstack-query caching, and drawer/modal-based CRUD forms into a single declarative API.', zh: 'PfDataTable 是组件库中最复杂的组件。它将表单查询、vxe-table 渲染、tanstack-query 缓存和抽屉/模态框 CRUD 表单集成到一个声明式 API 中。' },
+  'dataTable.overviewDesc': { en: 'PfDataTable is the most complex component in the library. It integrates form-based query, vxe-table rendering, Promise request hooks, and drawer/modal-based CRUD forms into a single declarative API.', zh: 'PfDataTable 是组件库中最复杂的组件。它将表单查询、vxe-table 渲染、Promise 请求入口和抽屉/模态框 CRUD 表单集成到一个声明式 API 中。' },
   'dataTable.feature.crud': { en: 'Built-in create, read, update, delete operations', zh: '内置增删改查操作' },
-  'dataTable.feature.tanstack': { en: '@tanstack/vue-query powered caching and refetching', zh: '@tanstack/vue-query 驱动的缓存和刷新' },
+  'dataTable.feature.promise': { en: 'Promise-based request props without a bundled async-state library', zh: '基于 Promise 的请求 props，不绑定异步状态库' },
   'dataTable.feature.query': { en: 'Form-based query area with per-column searchable fields', zh: '基于表单的查询区域，支持每列的搜索字段' },
   'dataTable.feature.container': { en: 'Drawer (Sheet) or Modal container for create/edit forms', zh: '抽屉（Sheet）或模态框作为新增/编辑表单容器' },
   'dataTable.feature.action': { en: 'Configurable action column with custom width, alignment, and layout', zh: '可配置的操作列，支持自定义宽度、对齐和布局' },
@@ -752,11 +752,11 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'dataTable.api.columns': { en: 'Column definitions using PfDataTableItem type.', zh: '使用 PfDataTableItem 类型的列定义。' },
   'dataTable.api.rowKey': { en: 'Unique row identifier. Default: "id".', zh: '行的唯一标识符。默认："id"。' },
   'dataTable.api.containerMode': { en: 'Form container: drawer (Sheet) or modal (Dialog).', zh: '表单容器：drawer（Sheet）或 modal（Dialog）。' },
-  'dataTable.api.listQuery': { en: 'Async function to fetch table rows.', zh: '异步函数，用于获取表格行数据。' },
-  'dataTable.api.create': { en: 'Async function to create a new record.', zh: '异步函数，用于创建新记录。' },
-  'dataTable.api.update': { en: 'Async function to update an existing record.', zh: '异步函数，用于更新已有记录。' },
-  'dataTable.api.delete': { en: 'Async function to delete a record.', zh: '异步函数，用于删除记录。' },
-  'dataTable.api.detail': { en: 'Async function to fetch record detail.', zh: '异步函数，用于获取记录详情。' },
+  'dataTable.api.request': { en: 'Promise function to fetch table rows from query params.', zh: 'Promise 函数，接收查询参数并返回表格行数据。' },
+  'dataTable.api.createRequest': { en: 'Promise function to create a new record.', zh: 'Promise 函数，用于创建新记录。' },
+  'dataTable.api.updateRequest': { en: 'Promise function to update an existing record.', zh: 'Promise 函数，用于更新已有记录。' },
+  'dataTable.api.deleteRequest': { en: 'Promise function to delete a record.', zh: 'Promise 函数，用于删除记录。' },
+  'dataTable.api.detailRequest': { en: 'Promise function to fetch record detail.', zh: 'Promise 函数，用于获取记录详情。' },
   'dataTable.api.formRules': { en: 'Form validation rules for create/edit forms.', zh: '新增/编辑表单的校验规则。' },
   'dataTable.api.hideActions': { en: 'Hide individual CRUD action buttons.', zh: '单独隐藏增删改查操作按钮。' },
   'dataTable.api.actionColumn': { en: 'Configure the action column appearance.', zh: '配置操作列的外观。' },

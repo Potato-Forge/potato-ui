@@ -122,3 +122,29 @@ export type PfDataTableItem<T = Record<string, any>> = PfFormConfigItem<T> & {
 }
 
 export type PfDataTableContainerMode = 'drawer' | 'modal'
+
+export type PfDataTableQueryParams = Record<string, any>
+export type PfDataTableRow = Record<string, any>
+export type PfDataTableRowId = string | number
+
+export type PfDataTableRequest<T extends PfDataTableRow = PfDataTableRow> = (
+  query: PfDataTableQueryParams,
+) => Promise<T[]>
+
+export type PfDataTableCreateRequest<T extends PfDataTableRow = PfDataTableRow> = (
+  payload: PfDataTableRow,
+) => Promise<T>
+
+export type PfDataTableUpdateRequest<T extends PfDataTableRow = PfDataTableRow> = (
+  id: PfDataTableRowId,
+  payload: PfDataTableRow,
+) => Promise<T>
+
+export type PfDataTableDeleteRequest = (
+  id: PfDataTableRowId,
+  rowData: PfDataTableRow,
+) => Promise<void>
+
+export type PfDataTableDetailRequest<T extends PfDataTableRow = PfDataTableRow> = (
+  id: PfDataTableRowId,
+) => Promise<T>
