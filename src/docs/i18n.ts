@@ -5,6 +5,7 @@ export type Locale = 'en' | 'zh'
 type MessageKey =
   | 'nav.components'
   | 'nav.alert'
+  | 'nav.avatar'
   | 'nav.badge'
   | 'nav.foundation'
   | 'nav.general'
@@ -32,9 +33,11 @@ type MessageKey =
   | 'nav.input'
   | 'nav.modal'
   | 'nav.pagination'
+  | 'nav.progress'
   | 'nav.radioGroup'
   | 'nav.select'
   | 'nav.sidebar'
+  | 'nav.skeleton'
   | 'nav.toast'
   | 'nav.tabs'
   | 'nav.textarea'
@@ -338,6 +341,22 @@ type MessageKey =
   | 'pagination.api.pageSize'
   | 'pagination.api.siblingCount'
   | 'pagination.api.change'
+  | 'progress.description'
+  | 'progress.api.value'
+  | 'progress.api.max'
+  | 'progress.api.size'
+  | 'progress.api.type'
+  | 'progress.api.showLabel'
+  | 'skeleton.description'
+  | 'skeleton.api.rows'
+  | 'skeleton.api.animated'
+  | 'skeleton.api.circle'
+  | 'skeleton.api.class'
+  | 'avatar.description'
+  | 'avatar.api.src'
+  | 'avatar.api.fallback'
+  | 'avatar.api.size'
+  | 'avatar.api.slot'
   | 'breadcrumb.description'
   | 'breadcrumb.home'
   | 'breadcrumb.components'
@@ -485,6 +504,7 @@ type MessageKey =
 const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.components': { en: 'Components', zh: '组件' },
   'nav.alert': { en: 'Alert', zh: '警告提示' },
+  'nav.avatar': { en: 'Avatar', zh: '头像' },
   'nav.badge': { en: 'Badge', zh: '徽标' },
   'nav.foundation': { en: 'Foundation', zh: '基础' },
   'nav.general': { en: 'General', zh: '通用' },
@@ -512,9 +532,11 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.input': { en: 'Input', zh: '输入框' },
   'nav.modal': { en: 'Modal', zh: '模态框' },
   'nav.pagination': { en: 'Pagination', zh: '分页' },
+  'nav.progress': { en: 'Progress', zh: '进度条' },
   'nav.radioGroup': { en: 'Radio Group', zh: '单选组' },
   'nav.select': { en: 'Select', zh: '选择器' },
   'nav.sidebar': { en: 'Sidebar', zh: '侧边栏' },
+  'nav.skeleton': { en: 'Skeleton', zh: '骨架屏' },
   'nav.toast': { en: 'Toast', zh: '消息提示' },
   'nav.tabs': { en: 'Tabs', zh: '标签页' },
   'nav.textarea': { en: 'Textarea', zh: '文本域' },
@@ -761,6 +783,31 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'pagination.api.pageSize': { en: 'Items per page.', zh: '每页条目数。' },
   'pagination.api.siblingCount': { en: 'Visible page buttons around current page.', zh: '当前页两侧可见页码数量。' },
   'pagination.api.change': { en: 'Emitted after page changes.', zh: '页码变化后触发。' },
+  'progress.description': {
+    en: 'Linear progress indicator for upload, processing, and task completion states.',
+    zh: '线性进度指示器，用于上传、处理和任务完成状态。',
+  },
+  'progress.api.value': { en: 'Current progress value.', zh: '当前进度值。' },
+  'progress.api.max': { en: 'Maximum progress value.', zh: '最大进度值。' },
+  'progress.api.size': { en: 'Progress bar thickness.', zh: '进度条粗细。' },
+  'progress.api.type': { en: 'Semantic indicator color.', zh: '语义指示颜色。' },
+  'progress.api.showLabel': { en: 'Show percentage label.', zh: '显示百分比标签。' },
+  'skeleton.description': {
+    en: 'Loading placeholder for text rows, cards, and avatar shapes.',
+    zh: '加载占位组件，用于文本行、卡片和头像形状。',
+  },
+  'skeleton.api.rows': { en: 'Number of placeholder rows.', zh: '占位行数量。' },
+  'skeleton.api.animated': { en: 'Enable pulse animation.', zh: '启用脉冲动画。' },
+  'skeleton.api.circle': { en: 'Render circular placeholder shape.', zh: '渲染圆形占位形状。' },
+  'skeleton.api.class': { en: 'Additional CSS classes.', zh: '额外 CSS 类。' },
+  'avatar.description': {
+    en: 'User or entity avatar with image fallback and fixed size presets.',
+    zh: '用户或实体头像，支持图片失败回退和固定尺寸预设。',
+  },
+  'avatar.api.src': { en: 'Image source URL.', zh: '图片地址。' },
+  'avatar.api.fallback': { en: 'Text fallback when image is missing or fails.', zh: '图片缺失或加载失败时的文本回退。' },
+  'avatar.api.size': { en: 'Avatar dimensions.', zh: '头像尺寸。' },
+  'avatar.api.slot': { en: 'Custom fallback content.', zh: '自定义回退内容。' },
   'breadcrumb.description': {
     en: 'Breadcrumb navigation that wraps the ui/breadcrumb primitives for quick list-driven usage.',
     zh: '面包屑导航，封装 ui/breadcrumb 基元以便快速使用数组驱动。',

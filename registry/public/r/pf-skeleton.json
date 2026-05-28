@@ -1,0 +1,39 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-skeleton",
+  "type": "registry:component",
+  "title": "PfSkeleton",
+  "description": "Loading placeholder for text rows, cards, and avatar shapes.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-skeleton/PfSkeleton.vue",
+    "docsRoute": "/components/skeleton"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-skeleton/PfSkeleton.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-skeleton/PfSkeleton.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\nimport type { PfSkeletonProps } from '.'\n\nconst props = withDefaults(defineProps<PfSkeletonProps>(), {\n  rows: 1,\n  animated: true,\n})\n</script>\n\n<template>\n  <div :class=\"cn('grid w-full min-w-0 gap-2', props.class)\" aria-hidden=\"true\">\n    <span\n      v-for=\"row in rows\"\n      :key=\"row\"\n      :class=\"\n        cn(\n          'block bg-muted',\n          circle ? 'aspect-square rounded-full' : 'h-4 rounded-md',\n          animated && 'animate-pulse',\n          !circle && row === rows && rows > 1 && 'w-2/3',\n        )\n      \"\n    ></span>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-skeleton/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-skeleton/index.ts",
+      "content": "export { default as PfSkeleton } from './PfSkeleton.vue'\n\nexport interface PfSkeletonProps {\n  rows?: number\n  animated?: boolean\n  circle?: boolean\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

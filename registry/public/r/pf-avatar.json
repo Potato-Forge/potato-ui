@@ -1,0 +1,40 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-avatar",
+  "type": "registry:component",
+  "title": "PfAvatar",
+  "description": "User or entity avatar with image fallback and fixed size presets.",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-avatar/PfAvatar.vue",
+    "docsRoute": "/components/avatar"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-avatar/PfAvatar.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-avatar/PfAvatar.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { avatarVariants } from '.'\nimport type { PfAvatarProps } from '.'\n\nconst props = withDefaults(defineProps<PfAvatarProps>(), {\n  size: 'md',\n})\n\nconst failed = ref(false)\n</script>\n\n<template>\n  <span :class=\"cn(avatarVariants({ size }), props.class)\">\n    <img\n      v-if=\"src && !failed\"\n      :src=\"src\"\n      :alt=\"alt || fallback || ''\"\n      class=\"h-full w-full object-cover\"\n      @error=\"failed = true\"\n    />\n    <span v-else class=\"font-medium leading-none\">\n      <slot>{{ fallback }}</slot>\n    </span>\n  </span>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-avatar/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-avatar/index.ts",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority'\n\nexport { default as PfAvatar } from './PfAvatar.vue'\n\nexport const avatarVariants = cva(\n  'inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-muted-foreground ring-1 ring-border',\n  {\n    variants: {\n      size: {\n        sm: 'h-8 w-8 text-xs',\n        md: 'h-10 w-10 text-sm',\n        lg: 'h-12 w-12 text-base',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n    },\n  },\n)\n\nexport type AvatarVariants = VariantProps<typeof avatarVariants>\n\nexport interface PfAvatarProps {\n  src?: string\n  alt?: string\n  fallback?: string\n  size?: AvatarVariants['size']\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

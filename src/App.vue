@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import AlertPage from './docs/pages/AlertPage.vue'
+import AvatarPage from './docs/pages/AvatarPage.vue'
 import BadgePage from './docs/pages/BadgePage.vue'
 import BreadcrumbPage from './docs/pages/BreadcrumbPage.vue'
 import ButtonPage from './docs/pages/ButtonPage.vue'
@@ -20,9 +21,11 @@ import InputPage from './docs/pages/InputPage.vue'
 import LoadingPage from './docs/pages/LoadingPage.vue'
 import ModalPage from './docs/pages/ModalPage.vue'
 import PaginationPage from './docs/pages/PaginationPage.vue'
+import ProgressPage from './docs/pages/ProgressPage.vue'
 import RadioGroupPage from './docs/pages/RadioGroupPage.vue'
 import SelectPage from './docs/pages/SelectPage.vue'
 import SidebarPage from './docs/pages/SidebarPage.vue'
+import SkeletonPage from './docs/pages/SkeletonPage.vue'
 import SwitchPage from './docs/pages/SwitchPage.vue'
 import TabsPage from './docs/pages/TabsPage.vue'
 import TextareaPage from './docs/pages/TextareaPage.vue'
@@ -39,6 +42,7 @@ type ThemeMode = 'system' | 'light' | 'dark'
 
 const routes = {
   '/components/alert': AlertPage,
+  '/components/avatar': AvatarPage,
   '/components/badge': BadgePage,
   '/components/breadcrumb': BreadcrumbPage,
   '/components/button': ButtonPage,
@@ -57,9 +61,11 @@ const routes = {
   '/components/loading': LoadingPage,
   '/components/modal': ModalPage,
   '/components/pagination': PaginationPage,
+  '/components/progress': ProgressPage,
   '/components/radio-group': RadioGroupPage,
   '/components/select': SelectPage,
   '/components/sidebar': SidebarPage,
+  '/components/skeleton': SkeletonPage,
   '/components/switch': SwitchPage,
   '/components/tabs': TabsPage,
   '/components/textarea': TextareaPage,
@@ -82,6 +88,8 @@ const navGroups = [
       { path: '/components/divide', label: 'nav.divide', subtitle: 'PfDivide' },
       { path: '/components/empty', label: 'nav.empty', subtitle: 'PfEmpty' },
       { path: '/components/loading', label: 'nav.loading', subtitle: 'PfLoading' },
+      { path: '/components/progress', label: 'nav.progress', subtitle: 'PfProgress' },
+      { path: '/components/skeleton', label: 'nav.skeleton', subtitle: 'PfSkeleton' },
       { path: '/components/text', label: 'nav.text', subtitle: 'PfText' },
     ],
   },
@@ -122,6 +130,7 @@ const navGroups = [
   {
     title: 'nav.media',
     links: [
+      { path: '/components/avatar', label: 'nav.avatar', subtitle: 'PfAvatar' },
       { path: '/components/img', label: 'nav.img', subtitle: 'PfImg' },
     ],
   },

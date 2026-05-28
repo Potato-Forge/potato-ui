@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-skeleton",
+  "type": "registry:component",
+  "title": "PfSkeleton",
+  "description": "Loading placeholder for text rows, cards, and avatar shapes.",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-skeleton/PfSkeleton.vue",
+    "docsRoute": "/components/skeleton"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-skeleton/PfSkeleton.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-skeleton/PfSkeleton.vue"
+    },
+    {
+      "path": "src/components/pf-skeleton/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-skeleton/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

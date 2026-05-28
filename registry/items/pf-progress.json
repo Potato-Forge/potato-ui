@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-progress",
+  "type": "registry:component",
+  "title": "PfProgress",
+  "description": "Linear progress indicator for upload, processing, and task completion states.",
+  "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-progress/PfProgress.vue",
+    "docsRoute": "/components/progress"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-progress/PfProgress.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-progress/PfProgress.vue"
+    },
+    {
+      "path": "src/components/pf-progress/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-progress/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

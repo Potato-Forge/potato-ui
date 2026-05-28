@@ -23,6 +23,24 @@
       }
     },
     {
+      "name": "pf-avatar",
+      "type": "registry:component",
+      "title": "PfAvatar",
+      "description": "User or entity avatar with image fallback and fixed size presets.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-avatar/PfAvatar.vue",
+        "docsRoute": "/components/avatar"
+      }
+    },
+    {
       "name": "pf-badge",
       "type": "registry:component",
       "title": "PfBadge",
@@ -395,6 +413,24 @@
       }
     },
     {
+      "name": "pf-progress",
+      "type": "registry:component",
+      "title": "PfProgress",
+      "description": "Linear progress indicator for upload, processing, and task completion states.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-progress/PfProgress.vue",
+        "docsRoute": "/components/progress"
+      }
+    },
+    {
       "name": "pf-radio-group",
       "type": "registry:component",
       "title": "PfRadioGroup",
@@ -462,6 +498,23 @@
       ],
       "meta": {
         "sourceEntry": "src/components/pf-sidebar/PfSidebar.vue"
+      }
+    },
+    {
+      "name": "pf-skeleton",
+      "type": "registry:component",
+      "title": "PfSkeleton",
+      "description": "Loading placeholder for text rows, cards, and avatar shapes.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-skeleton/PfSkeleton.vue",
+        "docsRoute": "/components/skeleton"
       }
     },
     {
