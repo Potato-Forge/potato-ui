@@ -51,7 +51,7 @@ Pf-UI **不是**传统的 `npm install` 运行时包。组件源码被**复制**
 
 ```
 pf-data-table
-  ├─ npm: @iconify/vue, @tanstack/vue-query, date-fns, vxe-table
+  ├─ npm: @iconify/vue, date-fns, vxe-table
   └─ registry:
       ├─ pf-form
       │   ├─ npm: @tanstack/vue-form, @tanstack/zod-form-adapter, zod

@@ -33,7 +33,7 @@ const usageCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <PfCode>pnpm dlx shadcn-vue@latest add &lt;registry-url&gt;/r/pf-breadcrumb.json</PfCode>
+      <PfCode>pnpm pf:add pf-breadcrumb --cwd ../your-app</PfCode>
     </section>
 
     <section class="section">
