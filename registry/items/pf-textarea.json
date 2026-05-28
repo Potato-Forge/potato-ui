@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-textarea",
+  "type": "registry:component",
+  "title": "PfTextarea",
+  "description": "Textarea wrapper for longer input with resize control and validation state.",
+  "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-textarea/PfTextarea.vue",
+    "docsRoute": "/components/textarea"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-textarea/PfTextarea.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-textarea/PfTextarea.vue"
+    },
+    {
+      "path": "src/components/pf-textarea/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-textarea/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-radio-group",
+  "type": "registry:component",
+  "title": "PfRadioGroup",
+  "description": "Radio option group for exclusive choices with optional descriptions and orientation control.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-radio-group/PfRadioGroup.vue",
+    "docsRoute": "/components/radio-group"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-radio-group/PfRadioGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-radio-group/PfRadioGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport type { PfRadioGroupProps } from '.'\n\nconst props = withDefaults(defineProps<PfRadioGroupProps>(), {\n  options: () => [],\n  orientation: 'vertical',\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n\nconst value = computed({\n  get: () => props.modelValue ?? '',\n  set: (next) => emit('update:modelValue', String(next)),\n})\n</script>\n\n<template>\n  <div\n    role=\"radiogroup\"\n    :class=\"\n      cn(\n        'flex gap-3',\n        orientation === 'horizontal' ? 'flex-row flex-wrap items-center' : 'flex-col',\n        props.class,\n      )\n    \"\n  >\n    <label\n      v-for=\"option in options\"\n      :key=\"String(option.value)\"\n      :class=\"\n        cn(\n          'flex min-w-0 items-start gap-2 text-sm text-foreground',\n          disabled || option.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',\n        )\n      \"\n    >\n      <input\n        v-model=\"value\"\n        type=\"radio\"\n        :name=\"name\"\n        :value=\"option.value\"\n        :disabled=\"disabled || option.disabled\"\n        class=\"mt-0.5 h-4 w-4 shrink-0 accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\"\n      />\n      <span class=\"grid min-w-0 gap-0.5\">\n        <span class=\"truncate leading-5\">{{ option.label }}</span>\n        <span v-if=\"option.description\" class=\"text-xs leading-4 text-muted-foreground\">\n          {{ option.description }}\n        </span>\n      </span>\n    </label>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-radio-group/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-radio-group/index.ts",
+      "content": "export { default as PfRadioGroup } from './PfRadioGroup.vue'\n\nexport type PfRadioOption = {\n  label: string\n  value: string | number\n  description?: string\n  disabled?: boolean\n}\n\nexport interface PfRadioGroupProps {\n  modelValue?: string | number\n  options?: PfRadioOption[]\n  name?: string\n  disabled?: boolean\n  orientation?: 'horizontal' | 'vertical'\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

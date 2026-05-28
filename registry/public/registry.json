@@ -292,6 +292,24 @@
       }
     },
     {
+      "name": "pf-input",
+      "type": "registry:component",
+      "title": "PfInput",
+      "description": "Native input wrapper with semantic tokens, sizes, invalid state, and v-model support.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-input/PfInput.vue",
+        "docsRoute": "/components/input"
+      }
+    },
+    {
       "name": "pf-loading",
       "type": "registry:component",
       "title": "PfLoading",
@@ -322,6 +340,23 @@
       }
     },
     {
+      "name": "pf-radio-group",
+      "type": "registry:component",
+      "title": "PfRadioGroup",
+      "description": "Radio option group for exclusive choices with optional descriptions and orientation control.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-radio-group/PfRadioGroup.vue",
+        "docsRoute": "/components/radio-group"
+      }
+    },
+    {
       "name": "pf-runtime-support",
       "type": "registry:lib",
       "title": "Pf Runtime Support",
@@ -336,6 +371,25 @@
       ],
       "meta": {
         "sourceEntry": "src/lib/utils.ts"
+      }
+    },
+    {
+      "name": "pf-select",
+      "type": "registry:component",
+      "title": "PfSelect",
+      "description": "Lightweight native select for common option lists without adding popup dependencies.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme",
+        "pf-icons"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-select/PfSelect.vue",
+        "docsRoute": "/components/select"
       }
     },
     {
@@ -388,6 +442,24 @@
       ],
       "meta": {
         "sourceEntry": "src/components/pf-text/PfText.vue"
+      }
+    },
+    {
+      "name": "pf-textarea",
+      "type": "registry:component",
+      "title": "PfTextarea",
+      "description": "Textarea wrapper for longer input with resize control and validation state.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-textarea/PfTextarea.vue",
+        "docsRoute": "/components/textarea"
       }
     },
     {

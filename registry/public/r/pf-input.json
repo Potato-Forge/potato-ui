@@ -1,0 +1,40 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-input",
+  "type": "registry:component",
+  "title": "PfInput",
+  "description": "Native input wrapper with semantic tokens, sizes, invalid state, and v-model support.",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-input/PfInput.vue",
+    "docsRoute": "/components/input"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-input/PfInput.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-input/PfInput.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { inputVariants } from '.'\nimport type { PfInputProps } from '.'\n\nconst props = withDefaults(defineProps<PfInputProps>(), {\n  type: 'text',\n  size: 'md',\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n\nconst value = computed({\n  get: () => props.modelValue ?? '',\n  set: (next) => emit('update:modelValue', String(next)),\n})\n</script>\n\n<template>\n  <input\n    v-model=\"value\"\n    :type=\"type\"\n    :placeholder=\"placeholder\"\n    :disabled=\"disabled\"\n    :readonly=\"readonly\"\n    :aria-invalid=\"invalid || undefined\"\n    :class=\"cn(inputVariants({ size, invalid }), props.class)\"\n  />\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-input/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-input/index.ts",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority'\n\nexport { default as PfInput } from './PfInput.vue'\n\nexport const inputVariants = cva(\n  'flex w-full min-w-0 rounded-md border border-input bg-background text-foreground shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',\n  {\n    variants: {\n      size: {\n        sm: 'h-8 px-2.5 text-sm',\n        md: 'h-9 px-3 text-sm',\n        lg: 'h-10 px-3.5 text-base',\n      },\n      invalid: {\n        true: 'border-error focus-visible:ring-error',\n        false: '',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n      invalid: false,\n    },\n  },\n)\n\nexport type InputVariants = VariantProps<typeof inputVariants>\n\nexport interface PfInputProps {\n  modelValue?: string | number\n  type?: string\n  placeholder?: string\n  disabled?: boolean\n  readonly?: boolean\n  invalid?: boolean\n  size?: InputVariants['size']\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

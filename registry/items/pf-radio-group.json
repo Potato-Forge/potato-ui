@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-radio-group",
+  "type": "registry:component",
+  "title": "PfRadioGroup",
+  "description": "Radio option group for exclusive choices with optional descriptions and orientation control.",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-radio-group/PfRadioGroup.vue",
+    "docsRoute": "/components/radio-group"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-radio-group/PfRadioGroup.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-radio-group/PfRadioGroup.vue"
+    },
+    {
+      "path": "src/components/pf-radio-group/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-radio-group/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

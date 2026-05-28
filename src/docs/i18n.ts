@@ -27,9 +27,13 @@ type MessageKey =
   | 'nav.help'
   | 'nav.iconPicker'
   | 'nav.img'
+  | 'nav.input'
   | 'nav.modal'
+  | 'nav.radioGroup'
+  | 'nav.select'
   | 'nav.sidebar'
   | 'nav.toast'
+  | 'nav.textarea'
   | 'nav.upload'
   | 'nav.dataTable'
   | 'nav.form'
@@ -276,6 +280,33 @@ type MessageKey =
   | 'switch.api.id'
   | 'switch.api.class'
   | 'switch.api.slot'
+  | 'input.description'
+  | 'input.placeholder'
+  | 'input.api.modelValue'
+  | 'input.api.type'
+  | 'input.api.size'
+  | 'input.api.invalid'
+  | 'input.api.class'
+  | 'textarea.description'
+  | 'textarea.placeholder'
+  | 'textarea.api.modelValue'
+  | 'textarea.api.rows'
+  | 'textarea.api.resize'
+  | 'textarea.api.invalid'
+  | 'textarea.api.class'
+  | 'select.description'
+  | 'select.placeholder'
+  | 'select.api.modelValue'
+  | 'select.api.options'
+  | 'select.api.placeholder'
+  | 'select.api.size'
+  | 'select.api.invalid'
+  | 'radioGroup.description'
+  | 'radioGroup.api.modelValue'
+  | 'radioGroup.api.options'
+  | 'radioGroup.api.name'
+  | 'radioGroup.api.orientation'
+  | 'radioGroup.api.disabled'
   | 'breadcrumb.description'
   | 'breadcrumb.home'
   | 'breadcrumb.components'
@@ -445,9 +476,13 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.help': { en: 'Help', zh: '帮助' },
   'nav.iconPicker': { en: 'Icon Picker', zh: '图标选择器' },
   'nav.img': { en: 'Img', zh: '图片' },
+  'nav.input': { en: 'Input', zh: '输入框' },
   'nav.modal': { en: 'Modal', zh: '模态框' },
+  'nav.radioGroup': { en: 'Radio Group', zh: '单选组' },
+  'nav.select': { en: 'Select', zh: '选择器' },
   'nav.sidebar': { en: 'Sidebar', zh: '侧边栏' },
   'nav.toast': { en: 'Toast', zh: '消息提示' },
+  'nav.textarea': { en: 'Textarea', zh: '文本域' },
   'nav.upload': { en: 'Upload', zh: '上传' },
   'nav.dataTable': { en: 'Data Table', zh: '数据表格' },
   'nav.form': { en: 'Form', zh: '表单' },
@@ -613,6 +648,45 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'switch.api.id': { en: 'HTML id attribute.', zh: 'HTML id 属性。' },
   'switch.api.class': { en: 'Additional CSS classes for the root element.', zh: '根元素额外的 CSS 类。' },
   'switch.api.slot': { en: 'Custom thumb content.', zh: '自定义滑块内容。' },
+  'input.description': {
+    en: 'Native input wrapper with semantic tokens, sizes, invalid state, and v-model support.',
+    zh: '原生输入框封装，支持语义 token、尺寸、校验态和 v-model。',
+  },
+  'input.placeholder': { en: 'Project name', zh: '项目名称' },
+  'input.api.modelValue': { en: 'Two-way bound input value.', zh: '双向绑定的输入值。' },
+  'input.api.type': { en: 'Native input type.', zh: '原生 input 类型。' },
+  'input.api.size': { en: 'Input height and text size.', zh: '输入框高度和字号。' },
+  'input.api.invalid': { en: 'Render validation error styling.', zh: '渲染校验错误样式。' },
+  'input.api.class': { en: 'Additional CSS classes.', zh: '额外 CSS 类。' },
+  'textarea.description': {
+    en: 'Textarea wrapper for longer input with resize control and validation state.',
+    zh: '用于长文本输入的文本域封装，支持 resize 控制和校验态。',
+  },
+  'textarea.placeholder': { en: 'Write release notes...', zh: '填写发布说明...' },
+  'textarea.api.modelValue': { en: 'Two-way bound textarea value.', zh: '双向绑定的文本域内容。' },
+  'textarea.api.rows': { en: 'Native visible row count.', zh: '原生可见行数。' },
+  'textarea.api.resize': { en: 'CSS resize behavior.', zh: 'CSS resize 行为。' },
+  'textarea.api.invalid': { en: 'Render validation error styling.', zh: '渲染校验错误样式。' },
+  'textarea.api.class': { en: 'Additional CSS classes.', zh: '额外 CSS 类。' },
+  'select.description': {
+    en: 'Lightweight native select for common option lists without adding popup dependencies.',
+    zh: '轻量原生选择器，用于常见选项列表，不增加弹层运行时依赖。',
+  },
+  'select.placeholder': { en: 'Select role', zh: '选择角色' },
+  'select.api.modelValue': { en: 'Two-way bound selected value.', zh: '双向绑定的选中值。' },
+  'select.api.options': { en: 'List of label/value options.', zh: 'label/value 选项列表。' },
+  'select.api.placeholder': { en: 'Disabled placeholder option.', zh: '禁用的占位选项。' },
+  'select.api.size': { en: 'Select height and text size.', zh: '选择器高度和字号。' },
+  'select.api.invalid': { en: 'Render validation error styling.', zh: '渲染校验错误样式。' },
+  'radioGroup.description': {
+    en: 'Radio option group for exclusive choices with optional descriptions and orientation control.',
+    zh: '用于互斥选择的单选组，支持选项描述和方向控制。',
+  },
+  'radioGroup.api.modelValue': { en: 'Two-way bound selected value.', zh: '双向绑定的选中值。' },
+  'radioGroup.api.options': { en: 'List of radio options.', zh: '单选项列表。' },
+  'radioGroup.api.name': { en: 'Native radio group name.', zh: '原生 radio 组 name。' },
+  'radioGroup.api.orientation': { en: 'Horizontal or vertical layout.', zh: '水平或垂直布局。' },
+  'radioGroup.api.disabled': { en: 'Disable every option.', zh: '禁用全部选项。' },
   'breadcrumb.description': {
     en: 'Breadcrumb navigation that wraps the ui/breadcrumb primitives for quick list-driven usage.',
     zh: '面包屑导航，封装 ui/breadcrumb 基元以便快速使用数组驱动。',

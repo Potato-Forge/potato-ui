@@ -14,10 +14,14 @@ import HelpPage from './docs/pages/HelpPage.vue'
 import IconPickerPage from './docs/pages/IconPickerPage.vue'
 import IconsPage from './docs/pages/IconsPage.vue'
 import ImgPage from './docs/pages/ImgPage.vue'
+import InputPage from './docs/pages/InputPage.vue'
 import LoadingPage from './docs/pages/LoadingPage.vue'
 import ModalPage from './docs/pages/ModalPage.vue'
+import RadioGroupPage from './docs/pages/RadioGroupPage.vue'
+import SelectPage from './docs/pages/SelectPage.vue'
 import SidebarPage from './docs/pages/SidebarPage.vue'
 import SwitchPage from './docs/pages/SwitchPage.vue'
+import TextareaPage from './docs/pages/TextareaPage.vue'
 import TextPage from './docs/pages/TextPage.vue'
 import ThemePage from './docs/pages/ThemePage.vue'
 import ToastPage from './docs/pages/ToastPage.vue'
@@ -43,10 +47,14 @@ const routes = {
   '/components/help': HelpPage,
   '/components/icon-picker': IconPickerPage,
   '/components/img': ImgPage,
+  '/components/input': InputPage,
   '/components/loading': LoadingPage,
   '/components/modal': ModalPage,
+  '/components/radio-group': RadioGroupPage,
+  '/components/select': SelectPage,
   '/components/sidebar': SidebarPage,
   '/components/switch': SwitchPage,
+  '/components/textarea': TextareaPage,
   '/components/text': TextPage,
   '/components/toast': ToastPage,
   '/components/tooltip': TooltipPage,
@@ -74,7 +82,11 @@ const navGroups = [
       { path: '/components/checkbox', label: 'nav.checkbox', subtitle: 'PfCheckbox' },
       { path: '/components/color-picker', label: 'nav.colorPicker', subtitle: 'PfColorPicker' },
       { path: '/components/icon-picker', label: 'nav.iconPicker', subtitle: 'PfIconPicker' },
+      { path: '/components/input', label: 'nav.input', subtitle: 'PfInput' },
+      { path: '/components/radio-group', label: 'nav.radioGroup', subtitle: 'PfRadioGroup' },
+      { path: '/components/select', label: 'nav.select', subtitle: 'PfSelect' },
       { path: '/components/switch', label: 'nav.switch', subtitle: 'PfSwitch' },
+      { path: '/components/textarea', label: 'nav.textarea', subtitle: 'PfTextarea' },
       { path: '/components/upload', label: 'nav.upload', subtitle: 'PfUpload' },
     ],
   },

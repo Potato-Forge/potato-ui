@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-select",
+  "type": "registry:component",
+  "title": "PfSelect",
+  "description": "Lightweight native select for common option lists without adding popup dependencies.",
+  "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-theme", "pf-icons"],
+  "meta": {
+    "sourceEntry": "src/components/pf-select/PfSelect.vue",
+    "docsRoute": "/components/select"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-select/PfSelect.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-select/PfSelect.vue"
+    },
+    {
+      "path": "src/components/pf-select/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-select/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}
