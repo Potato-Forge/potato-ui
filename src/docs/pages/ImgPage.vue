@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import PfImg from '@/components/pf-img/PfImg.vue'
 import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
+
+const previewEnabled = ref(true)
+const rounded = ref(true)
+const objectFit = ref<'cover' | 'contain' | 'fill' | 'none' | 'scale-down'>('cover')
+const aspectRatio = ref<'4/3' | '16/9' | '1/1'>('4/3')
+const demoImages = [
+  'https://picsum.photos/seed/pf-ui/400/300',
+  'https://picsum.photos/seed/pf-ui-gallery-1/400/300',
+  'https://picsum.photos/seed/pf-ui-gallery-2/400/300',
+]
 
 const usageCode = computed(() => dedent`
   <PfImg
@@ -33,17 +43,72 @@ const usageCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.preview') }}</h2>
-      <div class="preview" style="gap: 16px; flex-wrap: wrap;">
-        <div style="width: 200px; height: 150px;">
-          <PfImg
-            src="https://picsum.photos/seed/pf-ui/400/300"
-            alt="Demo image"
-            :preview="true"
-            aspect-ratio="4/3"
-            class="h-full w-full"
-          />
+      <div class="preview">
+        <div class="preview-panel">
+          <div class="preview-surface">
+            <div class="w-full max-w-[360px]">
+              <PfImg
+                :src="demoImages[0]"
+                alt="Demo image"
+                :preview="previewEnabled"
+                :preview-src-list="demoImages"
+                :aspect-ratio="aspectRatio"
+                :object-fit="objectFit"
+                :rounded="rounded"
+                class="w-full"
+              />
+            </div>
+          </div>
+
+          <div class="props-panel">
+            <div class="prop-control">
+              <label for="img-object-fit">{{ t('img.prop.objectFit') }}</label>
+              <select id="img-object-fit" v-model="objectFit">
+                <option value="cover">cover</option>
+                <option value="contain">contain</option>
+                <option value="fill">fill</option>
+                <option value="none">none</option>
+                <option value="scale-down">scale-down</option>
+              </select>
+            </div>
+
+            <div class="prop-control">
+              <label for="img-aspect-ratio">{{ t('img.prop.aspectRatio') }}</label>
+              <select id="img-aspect-ratio" v-model="aspectRatio">
+                <option value="4/3">4/3</option>
+                <option value="16/9">16/9</option>
+                <option value="1/1">1/1</option>
+              </select>
+            </div>
+
+            <div class="prop-control">
+              <span>{{ t('img.prop.options') }}</span>
+              <div class="toggle-row">
+                <button
+                  type="button"
+                  :class="{ active: previewEnabled }"
+                  @click="previewEnabled = !previewEnabled"
+                >
+                  {{ t('img.prop.preview') }}
+                </button>
+                <button
+                  type="button"
+                  :class="{ active: rounded }"
+                  @click="rounded = !rounded"
+                >
+                  {{ t('img.prop.rounded') }}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div style="width: 150px; height: 150px;">
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>{{ t('img.fallback') }}</h2>
+      <div class="preview">
+        <div class="h-[150px] w-[150px]">
           <PfImg
             src=""
             alt="Broken image"
@@ -83,7 +148,7 @@ const usageCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.dependencies') }}</h2>
-      <PfCode>v-viewer, viewerjs, clsx, tailwind-merge, pf-icons, pf-theme</PfCode>
+      <PfCode>viewerjs, clsx, tailwind-merge, pf-icons, pf-theme</PfCode>
     </section>
   </article>
 </template>

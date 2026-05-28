@@ -58,29 +58,54 @@ const routes = {
 
 const navGroups = [
   {
-    title: 'nav.components',
+    title: 'nav.general',
     links: [
       { path: '/components/button', label: 'nav.button' },
       { path: '/components/card', label: 'nav.card' },
-      { path: '/components/checkbox', label: 'nav.checkbox' },
-      { path: '/components/color-picker', label: 'nav.colorPicker' },
-      { path: '/components/config-provider', label: 'nav.configProvider' },
-      { path: '/components/data-table', label: 'nav.dataTable' },
       { path: '/components/divide', label: 'nav.divide' },
       { path: '/components/empty', label: 'nav.empty' },
-      { path: '/components/form', label: 'nav.form' },
-      { path: '/components/help', label: 'nav.help' },
-      { path: '/components/icon-picker', label: 'nav.iconPicker' },
-      { path: '/components/img', label: 'nav.img' },
       { path: '/components/loading', label: 'nav.loading' },
-      { path: '/components/modal', label: 'nav.modal' },
-      { path: '/components/sidebar', label: 'nav.sidebar' },
-      { path: '/components/switch', label: 'nav.switch' },
       { path: '/components/text', label: 'nav.text' },
+    ],
+  },
+  {
+    title: 'nav.dataEntry',
+    links: [
+      { path: '/components/checkbox', label: 'nav.checkbox' },
+      { path: '/components/color-picker', label: 'nav.colorPicker' },
+      { path: '/components/icon-picker', label: 'nav.iconPicker' },
+      { path: '/components/switch', label: 'nav.switch' },
+      { path: '/components/upload', label: 'nav.upload' },
+    ],
+  },
+  {
+    title: 'nav.feedback',
+    links: [
+      { path: '/components/help', label: 'nav.help' },
+      { path: '/components/modal', label: 'nav.modal' },
       { path: '/components/toast', label: 'nav.toast' },
       { path: '/components/tooltip', label: 'nav.tooltip' },
+    ],
+  },
+  {
+    title: 'nav.navigation',
+    links: [
+      { path: '/components/breadcrumb', label: 'nav.breadcrumb' },
+      { path: '/components/sidebar', label: 'nav.sidebar' },
       { path: '/components/tree', label: 'nav.tree' },
-      { path: '/components/upload', label: 'nav.upload' },
+    ],
+  },
+  {
+    title: 'nav.media',
+    links: [
+      { path: '/components/img', label: 'nav.img' },
+    ],
+  },
+  {
+    title: 'nav.pro',
+    links: [
+      { path: '/components/form', label: 'nav.form' },
+      { path: '/components/data-table', label: 'nav.dataTable' },
     ],
   },
   {

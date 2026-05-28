@@ -5,6 +5,12 @@ export type Locale = 'en' | 'zh'
 type MessageKey =
   | 'nav.components'
   | 'nav.foundation'
+  | 'nav.general'
+  | 'nav.dataEntry'
+  | 'nav.feedback'
+  | 'nav.navigation'
+  | 'nav.media'
+  | 'nav.pro'
   | 'nav.button'
   | 'nav.tooltip'
   | 'nav.tree'
@@ -91,6 +97,13 @@ type MessageKey =
   | 'colorPicker.default'
   | 'colorPicker.withSwatches'
   | 'colorPicker.hideContrast'
+  | 'colorPicker.playground'
+  | 'colorPicker.prop.format'
+  | 'colorPicker.prop.options'
+  | 'colorPicker.prop.swatches'
+  | 'colorPicker.prop.contrast'
+  | 'colorPicker.prop.defaultSwatches'
+  | 'colorPicker.prop.disabled'
   | 'colorPicker.api.modelValue'
   | 'colorPicker.api.format'
   | 'colorPicker.api.swatches'
@@ -113,6 +126,12 @@ type MessageKey =
   | 'iconPicker.api.slot'
   | 'img.loading'
   | 'img.error'
+  | 'img.fallback'
+  | 'img.prop.objectFit'
+  | 'img.prop.aspectRatio'
+  | 'img.prop.options'
+  | 'img.prop.preview'
+  | 'img.prop.rounded'
   | 'img.api.fallbackSrc'
   | 'img.api.preview'
   | 'img.api.previewSrcList'
@@ -404,6 +423,12 @@ type MessageKey =
 const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.components': { en: 'Components', zh: '组件' },
   'nav.foundation': { en: 'Foundation', zh: '基础' },
+  'nav.general': { en: 'General', zh: '通用' },
+  'nav.dataEntry': { en: 'Data Entry', zh: '数据录入' },
+  'nav.feedback': { en: 'Feedback', zh: '反馈' },
+  'nav.navigation': { en: 'Navigation', zh: '导航' },
+  'nav.media': { en: 'Media', zh: '媒体' },
+  'nav.pro': { en: 'Pro Components', zh: '复杂组件' },
   'nav.button': { en: 'Button', zh: '按钮' },
   'nav.tooltip': { en: 'Tooltip', zh: '提示' },
   'nav.tree': { en: 'Tree', zh: '树' },
@@ -776,6 +801,13 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'colorPicker.default': { en: 'Default', zh: '默认' },
   'colorPicker.withSwatches': { en: 'With custom swatches', zh: '带自定义色板' },
   'colorPicker.hideContrast': { en: 'Hide contrast ratio', zh: '隐藏对比度' },
+  'colorPicker.playground': { en: 'Props playground', zh: 'Props 预览' },
+  'colorPicker.prop.format': { en: 'Format', zh: '格式' },
+  'colorPicker.prop.options': { en: 'Options', zh: '选项' },
+  'colorPicker.prop.swatches': { en: 'Custom swatches', zh: '自定义色板' },
+  'colorPicker.prop.contrast': { en: 'Contrast ratio', zh: '对比度' },
+  'colorPicker.prop.defaultSwatches': { en: 'Default swatches', zh: '默认色板' },
+  'colorPicker.prop.disabled': { en: 'Disabled', zh: '禁用' },
   'colorPicker.api.modelValue': { en: 'HEX color string.', zh: 'HEX 颜色字符串。' },
   'colorPicker.api.format': { en: 'Display format: hex, hsl, or rgb.', zh: '显示格式：hex、hsl 或 rgb。' },
   'colorPicker.api.swatches': { en: 'Extra swatch colors.', zh: '额外的色板颜色。' },
@@ -798,6 +830,12 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'iconPicker.api.slot': { en: 'Custom trigger slot.', zh: '自定义触发器插槽。' },
   'img.loading': { en: 'Loading...', zh: '加载中...' },
   'img.error': { en: 'Failed to load', zh: '加载失败' },
+  'img.fallback': { en: 'Fallback', zh: '回退图' },
+  'img.prop.objectFit': { en: 'Object fit', zh: '对象适配' },
+  'img.prop.aspectRatio': { en: 'Aspect ratio', zh: '宽高比' },
+  'img.prop.options': { en: 'Options', zh: '选项' },
+  'img.prop.preview': { en: 'Preview', zh: '预览' },
+  'img.prop.rounded': { en: 'Rounded', zh: '圆角' },
   'img.api.fallbackSrc': { en: 'Fallback image URL when src fails.', zh: '加载失败时使用的回退图片地址。' },
   'img.api.preview': { en: 'Enable click-to-preview with viewerjs.', zh: '启用点击预览（使用 viewerjs）。' },
   'img.api.previewSrcList': { en: 'Additional preview images for gallery.', zh: '预览图库中的额外图片。' },
