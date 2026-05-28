@@ -24,6 +24,7 @@ import ToastPage from './docs/pages/ToastPage.vue'
 import TooltipPage from './docs/pages/TooltipPage.vue'
 import TreePage from './docs/pages/TreePage.vue'
 import UploadPage from './docs/pages/UploadPage.vue'
+import { PfToastProvider } from './components/pf-toast'
 import { locale, localeOptions, setLocale, t } from './docs/i18n'
 
 type ThemeMode = 'system' | 'light' | 'dark'
@@ -233,7 +234,9 @@ const page = computed(() => routes[currentPath.value as keyof typeof routes] ?? 
     </aside>
 
     <main class="docs-main">
-      <component :is="page" />
+      <PfToastProvider>
+        <component :is="page" />
+      </PfToastProvider>
     </main>
   </div>
 </template>

@@ -281,7 +281,8 @@
       "description": "PfImg source component migrated from potato-template.",
       "dependencies": [
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "viewerjs"
       ],
       "registryDependencies": [
         "pf-icons",

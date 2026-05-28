@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Viewer from 'viewerjs'
+import 'viewerjs/dist/viewer.css'
 import { cn } from '@/lib/utils'
 import type { PfImgProps } from './PfImg.types'
 
@@ -18,6 +20,7 @@ const props = withDefaults(defineProps<PfImgProps>(), {
 })
 
 const containerRef = ref<HTMLElement | null>(null)
+const viewerRef = ref<Viewer | null>(null)
 
 const activeSrc = ref('')
 const isLoading = ref(false)
@@ -72,6 +75,11 @@ const previewGalleryImages = computed(() => {
 })
 
 const canPreview = computed(() => props.preview && previewImages.value.length > 0)
+
+const destroyViewer = () => {
+  viewerRef.value?.destroy()
+  viewerRef.value = null
+}
 
 const blurFocusInsideViewer = () => {
   const active = document.activeElement as HTMLElement | null
@@ -128,12 +136,6 @@ const viewerOptions = computed(() => {
   }
 })
 
-const previewStartIndex = computed(() => {
-  if (!currentPreviewSrc.value) return 0
-  const index = previewImages.value.findIndex((item) => item === currentPreviewSrc.value)
-  return index >= 0 ? index : 0
-})
-
 const showPlaceholder = computed(() => isLoading.value && !hasError.value)
 
 const showError = computed(() => hasError.value)
@@ -175,17 +177,13 @@ const openPreview = () => {
     return
   }
 
-  const viewerHost = containerRef.value as HTMLElement & {
-    $viewer?: {
-      view: (index: number) => void
-    }
+  if (!viewerRef.value) {
+    viewerRef.value = new Viewer(containerRef.value, viewerOptions.value)
+  } else {
+    viewerRef.value.update()
   }
 
-  if (!viewerHost.$viewer) {
-    return
-  }
-
-  viewerHost.$viewer.view(previewStartIndex.value)
+  viewerRef.value.view(0)
 }
 
 const handleKeydown = (event: KeyboardEvent) => {
@@ -211,13 +209,24 @@ const wrapperClass = computed(() =>
 const imgClass = computed(() =>
   cn('h-full w-full select-none transition-opacity duration-200', props.imgClass),
 )
+
+watch(
+  () => [props.preview, activeSrc.value, props.previewSrcList, props.previewOptions],
+  () => {
+    destroyViewer()
+  },
+  { deep: true },
+)
+
+onBeforeUnmount(() => {
+  destroyViewer()
+})
 </script>
 
 <template>
   <div
     v-if="canPreview"
     ref="containerRef"
-    v-viewer="viewerOptions"
     :class="wrapperClass"
     :style="imageStyle"
     role="button"
