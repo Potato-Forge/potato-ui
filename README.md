@@ -78,6 +78,8 @@ registry/public/registry.json
 registry/public/r/<item-name>.json
 ```
 
+Release operations are documented in [docs/release.md](./docs/release.md).
+
 ## Component Registry
 
 The registry currently includes the full set of Pf components migrated from `potato-template`:

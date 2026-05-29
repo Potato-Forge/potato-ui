@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const REMOTE_REGISTRY = 'https://potato-forge.github.io/potato-ui'
+const REMOTE_REGISTRY = 'https://xby020.github.io/potato-ui'
 
 const cliRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const repoRoot = path.resolve(cliRoot, '..', '..')
@@ -21,7 +21,7 @@ const usage = () => {
 Examples:
   pnpm dlx @potato-ui/cli add pf-button
   pnpm dlx @potato-ui/cli add pf-form --cwd ./apps/web
-  pnpm dlx @potato-ui/cli add pf-button --registry https://potato-forge.github.io/potato-ui
+  pnpm dlx @potato-ui/cli add pf-button --registry https://xby020.github.io/potato-ui
 `)
 }
 

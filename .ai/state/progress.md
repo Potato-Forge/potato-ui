@@ -9,11 +9,12 @@
 | Foundation (theme) | ✅ 完成 | 100% |
 | Foundation (icons) | ✅ 完成 | 100% |
 | Registry 构建 | ✅ 完成 | 100% |
-| Registry 清单 | ✅ 完成 | 100% (28 items) |
+| Registry 清单 | ✅ 完成 | 100% (45 items) |
 | Registry 依赖链修复 | ✅ 完成 | pf-form + pf-data-table 补全 |
 | Registry 安装器 | ✅ 初版完成 | `pnpm dlx @potato-ui/cli add` 支持递归依赖与文件写入；`pnpm pf:add` 是本仓库本地 wrapper |
+| 发布链路 | ✅ 初版完成 | GitHub Actions 已覆盖 CI、tag release、GitHub Pages 部署、npm 发布 |
 | 文档站点框架 | ✅ 完成 | 100% |
-| 组件文档页面 | ✅ 完成 | 100% (24/24) |
+| 组件文档页面 | ✅ 完成 | 100% + 快速开始页 |
 | 文档导航分类 | ✅ 完成 | 按组件用途分组，Form/DataTable 单独复杂组件分类 |
 | 文档样例预览 | ✅ 完成 | ColorPicker/Img props playground + 预览容器尺寸兜底 |
 | 跨组件 import 修复 | ✅ 完成 | 100% (KI-010~015) |
@@ -22,7 +23,7 @@
 | 文档代码展示 | ✅ 完成 | PfCode 统一代码块 |
 | Registry 验证 | ⚠️ 部分完成 | `pf-button` 临时目录安装 smoke 通过；干净消费项目全量验证待做 |
 | 自动化测试 | ❌ 未开始 | 0% |
-| CI/CD | ❌ 未开始 | 0% |
+| CI/CD | ✅ 初版完成 | CI + tag release + Pages + npm publish |
 | AI 记忆层 | ✅ 完成 | 100% |
 | .ai vendor 分层 | ✅ 完成 | 通用协议层已落地 |
 | ai-memory-starter 抽离 | ✅ 完成 | 独立模板雏形已落地 |

@@ -1,6 +1,6 @@
 {
   "name": "@potato-ui/cli",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "CLI for installing Potato UI registry items into Vue 3 projects.",
   "type": "module",
   "bin": {
@@ -8,8 +8,21 @@
     "pf-ui": "bin/potato-ui.js"
   },
   "files": [
-    "bin"
+    "bin",
+    "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xby020/potato-ui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/xby020/potato-ui/issues"
+  },
+  "homepage": "https://xby020.github.io/potato-ui",
   "engines": {
     "node": ">=18.17"
   },

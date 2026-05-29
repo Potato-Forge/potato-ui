@@ -78,6 +78,8 @@ registry/public/registry.json
 registry/public/r/<item-name>.json
 ```
 
+发布流程见 [docs/release.md](./docs/release.md)。
+
 ## 组件注册表
 
 当前 registry 已包含从 `potato-template` 迁移而来的完整 Pf 组件集合：

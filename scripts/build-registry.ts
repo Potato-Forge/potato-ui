@@ -132,7 +132,7 @@ const build = async () => {
       {
         $schema: 'https://shadcn-vue.com/schema/registry.json',
         name: 'pf-ui',
-        homepage: 'https://github.com/potato-forge/potato-ui',
+        homepage: 'https://xby020.github.io/potato-ui',
         items: registryIndex,
       },
       null,

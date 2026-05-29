@@ -20,6 +20,8 @@
 
 - **CLI 包与快速开始文档完成** ✅ — 新增 `@potato-ui/cli` 包雏形，docs 安装命令改为 `pnpm dlx @potato-ui/cli add <item>`，新增 `/getting-started` 页面。
 
+- **GitHub Actions 发布链路完成** ✅ — 新增 CI 与 tag release workflow，发布时自动构建 registry/docs、部署 GitHub Pages、发布 `@potato-ui/cli` 到 npm。
+
 ## 后续方向
 
 Phase 2 候选任务（待人类决策）:
@@ -79,3 +81,8 @@ Phase 2 候选任务（待人类决策）:
   - 消费命令统一为 `pnpm dlx @potato-ui/cli add <item>`
   - 新增 `/getting-started` 页面与 README 快速开始说明
   - 审查通过：CLI dry-run、npm pack dry-run、`vue-tsc -b`、registry build、Vite build
+- ✅ 2026-05-29 GitHub Actions 发布链路:
+  - 新增 `.github/workflows/ci.yml` 和 `.github/workflows/release.yml`
+  - tag `v*` 触发 release，版本需匹配 `package.json` 和 `packages/cli/package.json`
+  - 自动部署 GitHub Pages，并通过 `NPM_TOKEN` 发布 `@potato-ui/cli`
+  - 新增 `docs/release.md`

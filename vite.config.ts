@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  base: process.env.VITE_BASE ?? '/',
   plugins: [
     Vue(),
     AutoImport({

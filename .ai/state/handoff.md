@@ -20,5 +20,6 @@
 - **复杂组件基础件回接**：`PfFormItem` 已接入 `PfInput`/`PfInputNumber`；`PfFormItemOptions` 已接入 `PfSelect`/`PfBadge`/`PfCheckbox`；`PfDataTable` 已接入可选 `PfPagination` 并将 drawer 容器切到 `PfDrawer`。新增 `PfInputNumber`、`PfDropdown`、`PfDrawer` 后 registry/public 为 42 items。`PfPopover` 暂未做，因为当前 `potato-ui` 与同级 `potato-template` 都没有现成 `ui/popover` 基元。
 - **Input 组合能力与 FormItem 控件里程碑**：`PfInput` 已支持 prefix/suffix slots、icon props、clearable；`.ai/core/conventions.md` 记录了新增表单型组件必须同步 PfForm type/renderer/registry/docs 的规则。新增 `PfCollapse`、`PfSlider`、`PfRate`，其中 `PfSlider`/`PfRate` 已接入 `PfFormItem` 的 `slider`/`rate` type；registry/public 为 45 items。
 - **CLI 包与快速开始文档**：`packages/cli` 提供 `@potato-ui/cli`，bin 为 `potato-ui` 和 `pf-ui`。消费侧文档统一为 `pnpm dlx @potato-ui/cli add <item>`；本仓库 `pnpm pf:add` 调同一 CLI 并优先读本地 `registry/public`。新增 `/getting-started` 页面说明前置条件、依赖安装和 UnoCSS preset 接入。
+- **GitHub Actions 发布链路**：`.github/workflows/ci.yml` 在 main push/PR 上验证；`.github/workflows/release.yml` 在 `v*` tag 上检查版本、构建 registry/docs、部署 GitHub Pages、发布 `packages/cli` 到 npm。当前默认 Pages/registry URL 是 `https://xby020.github.io/potato-ui`。发布前需要 GitHub Pages Source 设为 GitHub Actions，并配置 `NPM_TOKEN` secret；详细步骤见 `docs/release.md`。
 - 低优先级技术债：KI-002 Registry 实测、KI-004~008 类型/测试/CI/路由等。
 - `ai-memory-starter/` 已作为独立启动模板雏形，含通用模板、adapter、行为校正和初始化脚本；下一步可移出为独立仓库。
