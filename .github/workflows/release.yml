@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   id-token: write
@@ -41,8 +44,10 @@ jobs:
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           ROOT_VERSION="$(node -p "require('./package.json').version")"
           CLI_VERSION="$(node -p "require('./packages/cli/package.json').version")"
+          CLI_NAME="$(node -p "require('./packages/cli/package.json').name")"
           test "$TAG_VERSION" = "$ROOT_VERSION"
           test "$TAG_VERSION" = "$CLI_VERSION"
+          test "$CLI_NAME" = "@potato-forge/cli"
 
       - name: Typecheck
         run: pnpm typecheck
@@ -99,8 +104,10 @@ jobs:
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           ROOT_VERSION="$(node -p "require('./package.json').version")"
           CLI_VERSION="$(node -p "require('./packages/cli/package.json').version")"
+          CLI_NAME="$(node -p "require('./packages/cli/package.json').name")"
           test "$TAG_VERSION" = "$ROOT_VERSION"
           test "$TAG_VERSION" = "$CLI_VERSION"
+          test "$CLI_NAME" = "@potato-forge/cli"
 
       - name: Publish CLI
         working-directory: packages/cli

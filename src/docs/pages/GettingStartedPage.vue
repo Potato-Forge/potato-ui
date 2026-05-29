@@ -4,8 +4,8 @@ import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const installCode = computed(() => dedent`
-  pnpm dlx @potato-ui/cli add pf-button
-  pnpm dlx @potato-ui/cli add pf-form
+  pnpm dlx @potato-forge/cli add pf-button
+  pnpm dlx @potato-forge/cli add pf-form
 `)
 
 const localDevCode = computed(() => dedent`

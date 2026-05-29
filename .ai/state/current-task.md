@@ -18,13 +18,14 @@
 
 - **Input 组合能力与 FormItem 控件里程碑完成** ✅ — PfInput 支持 prefix/suffix/clearable；新增 PfCollapse、PfSlider、PfRate；PfForm 已接入 slider/rate type。
 
-- **CLI 包与快速开始文档完成** ✅ — 新增 `@potato-ui/cli` 包雏形，docs 安装命令改为 `pnpm dlx @potato-ui/cli add <item>`，新增 `/getting-started` 页面。
+- **CLI 包与快速开始文档完成** ✅ — 新增 `@potato-forge/cli` 包雏形，docs 安装命令改为 `pnpm dlx @potato-forge/cli add <item>`，新增 `/getting-started` 页面。
 
-- **GitHub Actions 发布链路完成** ✅ — 新增 CI 与 tag release workflow，发布时自动构建 registry/docs、部署 GitHub Pages、发布 `@potato-ui/cli` 到 npm。
+- **GitHub Actions 发布链路完成** ✅ — 新增 CI 与 tag release workflow，发布时自动构建 registry/docs、部署 GitHub Pages、发布 `@potato-forge/cli` 到 npm。
 
 ## 后续方向
 
 Phase 2 候选任务（待人类决策）:
+
 - 组件覆盖里程碑 3: 叠层/选择增强件（建议 PfDropdown、PfPopover、PfDrawer、PfProgress）
 - 组件覆盖里程碑 4: 叠层/选择增强件后续（建议评估 PfPopover 所需底层基元；当前没有现成 ui/popover）
 - 自动化测试 (Vitest + @vue/test-utils)
@@ -51,7 +52,7 @@ Phase 2 候选任务（待人类决策）:
   - docs 左侧菜单按通用/数据录入/反馈/导航/媒体/复杂组件/基础分类
   - PfColorPicker 与 PfImg 增加 props playground，预览区域补 min-height/overflow
   - PfDataTable 去除 @tanstack/vue-query 内建，改为 Promise request props
-  - 新增轻量 registry installer/CLI: `pnpm dlx @potato-ui/cli add <name>`；本仓库保留 `pnpm pf:add <name> --cwd <target>` 本地 wrapper
+  - 新增轻量 registry installer/CLI: `pnpm dlx @potato-forge/cli add <name>`；本仓库保留 `pnpm pf:add <name> --cwd <target>` 本地 wrapper
 - ✅ 2026-05-29 组件覆盖里程碑 1:
   - 新增 `PfInput`、`PfTextarea`、`PfSelect`、`PfRadioGroup`
   - 新增对应 docs 页面、导航入口、registry manifest/public payload
@@ -77,12 +78,12 @@ Phase 2 候选任务（待人类决策）:
   - `PfFormItem` 接入 `slider`、`rate` type，registryDependencies 同步更新
   - 审查通过：`vue-tsc -b`、registry build、Vite build
 - ✅ 2026-05-29 CLI 包与快速开始文档:
-  - 新增 `packages/cli`，提供 `@potato-ui/cli` 的 `potato-ui` / `pf-ui` bin
-  - 消费命令统一为 `pnpm dlx @potato-ui/cli add <item>`
+  - 新增 `packages/cli`，提供 `@potato-forge/cli` 的 `potato-ui` / `pf-ui` bin
+  - 消费命令统一为 `pnpm dlx @potato-forge/cli add <item>`
   - 新增 `/getting-started` 页面与 README 快速开始说明
   - 审查通过：CLI dry-run、npm pack dry-run、`vue-tsc -b`、registry build、Vite build
 - ✅ 2026-05-29 GitHub Actions 发布链路:
   - 新增 `.github/workflows/ci.yml` 和 `.github/workflows/release.yml`
   - tag `v*` 触发 release，版本需匹配 `package.json` 和 `packages/cli/package.json`
-  - 自动部署 GitHub Pages，并通过 `NPM_TOKEN` 发布 `@potato-ui/cli`
+  - 自动部署 GitHub Pages，并通过 `NPM_TOKEN` 发布 `@potato-forge/cli`
   - 新增 `docs/release.md`

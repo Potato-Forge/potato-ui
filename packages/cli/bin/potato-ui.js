@@ -19,9 +19,9 @@ const usage = () => {
   pf-ui add <name> [--cwd <target>] [--registry <url-or-path>] [--dry-run] [--force]
 
 Examples:
-  pnpm dlx @potato-ui/cli add pf-button
-  pnpm dlx @potato-ui/cli add pf-form --cwd ./apps/web
-  pnpm dlx @potato-ui/cli add pf-button --registry https://xby020.github.io/potato-ui
+  pnpm dlx @potato-forge/cli add pf-button
+  pnpm dlx @potato-forge/cli add pf-form --cwd ./apps/web
+  pnpm dlx @potato-forge/cli add pf-button --registry https://xby020.github.io/potato-ui
 `)
 }
 
@@ -92,11 +92,11 @@ const readItem = async (registry, name) => {
   const location = itemUrl(registry, name)
   const raw = isUrl(location)
     ? await fetch(location).then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to fetch ${location}: ${response.status} ${response.statusText}`)
-        }
-        return response.text()
-      })
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${location}: ${response.status} ${response.statusText}`)
+      }
+      return response.text()
+    })
     : await readFile(location, 'utf-8')
 
   return JSON.parse(raw)

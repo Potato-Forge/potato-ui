@@ -20,7 +20,7 @@ const usageCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <PfCode>pnpm dlx @potato-ui/cli add pf-badge</PfCode>
+      <PfCode>pnpm dlx @potato-forge/cli add pf-badge</PfCode>
     </section>
 
     <section class="section">

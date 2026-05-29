@@ -1,5 +1,5 @@
 {
-  "name": "@potato-ui/cli",
+  "name": "@potato-forge/cli",
   "version": "0.1.0",
   "description": "CLI for installing Potato UI registry items into Vue 3 projects.",
   "type": "module",
