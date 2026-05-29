@@ -3,7 +3,7 @@
   "name": "pf-input",
   "type": "registry:component",
   "title": "PfInput",
-  "description": "Native input wrapper with semantic tokens, sizes, invalid state, and v-model support.",
+  "description": "Native input wrapper with prefix/suffix slots, icons, clearable state, semantic tokens, sizes, and v-model support.",
   "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
   "registryDependencies": ["pf-theme"],
   "meta": {

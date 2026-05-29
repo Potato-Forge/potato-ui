@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 export { default as PfInput } from './PfInput.vue'
 
 export const inputVariants = cva(
-  'flex w-full min-w-0 rounded-md border border-input bg-background text-foreground shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',
+  'flex w-full min-w-0 items-center gap-2 rounded-md border border-input bg-background text-foreground shadow-sm transition-colors focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
   {
     variants: {
       size: {
@@ -12,7 +12,7 @@ export const inputVariants = cva(
         lg: 'h-10 px-3.5 text-base',
       },
       invalid: {
-        true: 'border-error focus-visible:ring-error',
+        true: 'border-error focus-within:ring-error',
         false: '',
       },
     },
@@ -32,6 +32,10 @@ export interface PfInputProps {
   disabled?: boolean
   readonly?: boolean
   invalid?: boolean
+  clearable?: boolean
+  prefixIcon?: string
+  suffixIcon?: string
   size?: InputVariants['size']
   class?: string
+  inputClass?: string
 }

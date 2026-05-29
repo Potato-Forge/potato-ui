@@ -5,9 +5,13 @@ import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const name = ref('Potato UI')
+const amount = ref('12.5')
 const usageCode = computed(() => dedent`
   <PfInput v-model="name" placeholder="Project name" />
-  <PfInput v-model="email" type="email" size="lg" />
+  <PfInput v-model="email" type="email" prefix-icon="i-tabler-mail" clearable />
+  <PfInput v-model="amount">
+    <template #suffix>百万</template>
+  </PfInput>
   <PfInput v-model="keyword" invalid placeholder="Invalid state" />
 `)
 </script>
@@ -28,8 +32,13 @@ const usageCode = computed(() => dedent`
       <h2>{{ t('section.preview') }}</h2>
       <div class="preview" style="align-items: stretch;">
         <div style="width: min(100%, 360px); display: grid; gap: 12px;">
-          <PfInput v-model="name" :placeholder="t('input.placeholder')" />
-          <PfInput type="email" placeholder="hello@potato.dev" size="lg" />
+          <PfInput v-model="name" :placeholder="t('input.placeholder')" clearable />
+          <PfInput type="email" placeholder="hello@potato.dev" prefix-icon="i-tabler-mail" size="lg" clearable />
+          <PfInput v-model="amount">
+            <template #suffix>
+              <span class="text-xs text-muted-foreground">{{ t('input.million') }}</span>
+            </template>
+          </PfInput>
           <PfInput placeholder="Invalid input" invalid />
         </div>
       </div>
@@ -49,6 +58,9 @@ const usageCode = computed(() => dedent`
           <tr><td>type</td><td>string</td><td>{{ t('input.api.type') }}</td></tr>
           <tr><td>size</td><td>sm | md | lg</td><td>{{ t('input.api.size') }}</td></tr>
           <tr><td>invalid</td><td>boolean</td><td>{{ t('input.api.invalid') }}</td></tr>
+          <tr><td>clearable</td><td>boolean</td><td>{{ t('input.api.clearable') }}</td></tr>
+          <tr><td>prefixIcon / suffixIcon</td><td>string</td><td>{{ t('input.api.icons') }}</td></tr>
+          <tr><td>prefix / suffix</td><td>slot</td><td>{{ t('input.api.slots') }}</td></tr>
           <tr><td>class</td><td>string</td><td>{{ t('input.api.class') }}</td></tr>
         </tbody>
       </table>

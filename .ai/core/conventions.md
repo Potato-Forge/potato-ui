@@ -76,6 +76,17 @@ export interface PfButtonProps {
 
 ## Registry 清单规范
 
+## FormItem 同步规则
+
+新增 Pf 组件时，如果它可能作为表单字段使用，必须同步评估并更新：
+
+- `src/components/pf-form/PfForm.types.ts`：新增或扩展 `PfFormConfigItem*` 的 `type` 联合类型。
+- `src/components/pf-form/components/PfFormItem.vue`：接入对应渲染分支，保持 readonly/disabled/error 行为一致。
+- `registry/items/pf-form.json`：补齐新增组件的 `registryDependencies`。
+- 相关 docs：在组件页或 Form/DataTable 页说明该组件已可作为 FormItem 类型使用。
+
+不要在 `PfFormItem` 内重复实现已经抽出的 Pf 基础组件；优先复用 `PfInput`、`PfSelect`、`PfCheckbox` 等现有 Pf 组件。
+
 每个 registry item JSON：
 
 ```json

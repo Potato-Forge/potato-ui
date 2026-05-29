@@ -292,10 +292,14 @@ type MessageKey =
   | 'switch.api.slot'
   | 'input.description'
   | 'input.placeholder'
+  | 'input.million'
   | 'input.api.modelValue'
   | 'input.api.type'
   | 'input.api.size'
   | 'input.api.invalid'
+  | 'input.api.clearable'
+  | 'input.api.icons'
+  | 'input.api.slots'
   | 'input.api.class'
   | 'inputNumber.description'
   | 'textarea.description'
@@ -724,10 +728,14 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
     zh: '原生输入框封装，支持语义 token、尺寸、校验态和 v-model。',
   },
   'input.placeholder': { en: 'Project name', zh: '项目名称' },
+  'input.million': { en: 'million', zh: '百万' },
   'input.api.modelValue': { en: 'Two-way bound input value.', zh: '双向绑定的输入值。' },
   'input.api.type': { en: 'Native input type.', zh: '原生 input 类型。' },
   'input.api.size': { en: 'Input height and text size.', zh: '输入框高度和字号。' },
   'input.api.invalid': { en: 'Render validation error styling.', zh: '渲染校验错误样式。' },
+  'input.api.clearable': { en: 'Show a clear button when the input has a value.', zh: '有值时显示清空按钮。' },
+  'input.api.icons': { en: 'UnoCSS icon class rendered in the prefix or suffix area.', zh: '在前缀或后缀区域渲染的 UnoCSS 图标类。' },
+  'input.api.slots': { en: 'Custom prefix and suffix content such as units.', zh: '自定义前后缀内容，例如单位。' },
   'input.api.class': { en: 'Additional CSS classes.', zh: '额外 CSS 类。' },
   'inputNumber.description': {
     en: 'Numeric input built from PfInput and PfButton, with min, max, and step controls.',
