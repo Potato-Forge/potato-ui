@@ -467,6 +467,7 @@ type MessageKey =
   | 'dataTable.api.formRules'
   | 'dataTable.api.hideActions'
   | 'dataTable.api.actionColumn'
+  | 'dataTable.api.pagination'
   | 'dataTable.api.autoFetch'
   | 'dataTable.api.emitQuery'
   | 'dataTable.api.emitCreated'
@@ -955,6 +956,7 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'dataTable.api.formRules': { en: 'Form validation rules for create/edit forms.', zh: '新增/编辑表单的校验规则。' },
   'dataTable.api.hideActions': { en: 'Hide individual CRUD action buttons.', zh: '单独隐藏增删改查操作按钮。' },
   'dataTable.api.actionColumn': { en: 'Configure the action column appearance.', zh: '配置操作列的外观。' },
+  'dataTable.api.pagination': { en: 'Enable client-side pagination and configure page size.', zh: '启用客户端分页并配置每页数量。' },
   'dataTable.api.autoFetch': { en: 'Auto-fetch on mount. Default: true.', zh: '挂载时自动拉取数据。默认：true。' },
   'dataTable.api.emitQuery': { en: 'Emitted when the query form is submitted.', zh: '查询表单提交时触发。' },
   'dataTable.api.emitCreated': { en: 'Emitted after a record is created.', zh: '记录创建后触发。' },

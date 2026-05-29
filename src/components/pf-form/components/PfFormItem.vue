@@ -3,10 +3,10 @@ import { format } from 'date-fns'
 import type { PfFormConfigItem } from '../PfForm.types'
 import type { PfUploadFileItem } from '@/components/pf-upload'
 import PfIconPicker from '@/components/pf-icon-picker/PfIconPicker.vue'
+import PfInput from '@/components/pf-input/PfInput.vue'
 import PfText from '@/components/pf-text/PfText.vue'
 import PfTooltip from '@/components/pf-tooltip/PfTooltip.vue'
 import PfUpload from '@/components/pf-upload/PfUpload.vue'
-import { Input } from '@/components/ui/input'
 import { FieldError } from '@/components/ui/field'
 
 import PfFormItemDatetime from './PfFormItemDatetime.vue'
@@ -88,6 +88,11 @@ const showCount = computed(() => {
   return props.config.type === 'text' && !props.config.readonly && !!maxLength.value
 })
 
+const textPlaceholder = computed(() => {
+  if (props.config.type !== 'text') return undefined
+  return (props.config as { config?: { placeholder?: string } }).config?.placeholder
+})
+
 const uploadModelValue = computed<PfUploadFileItem[]>(() => {
   if (!Array.isArray(props.modelValue)) return []
   return props.modelValue as PfUploadFileItem[]
@@ -117,12 +122,13 @@ const formatDateValue = (value: unknown, type: 'date' | 'time' | 'datetime') => 
       </template>
       <!-- write -->
       <template v-else>
-        <Input
-          :passive="false"
+        <PfInput
           :model-value="props.modelValue"
+          :disabled="config.disabled"
+          :placeholder="textPlaceholder"
           @blur="handleBlur"
           @update:model-value="handleChange"
-        ></Input>
+        />
       </template>
     </template>
 

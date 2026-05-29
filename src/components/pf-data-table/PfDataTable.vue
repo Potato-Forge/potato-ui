@@ -11,6 +11,7 @@ import PfCard from '@/components/pf-card/PfCard.vue'
 import PfEmpty from '@/components/pf-empty/PfEmpty.vue'
 import PfForm from '@/components/pf-form/PfForm.vue'
 import PfLoading from '@/components/pf-loading/PfLoading.vue'
+import PfPagination from '@/components/pf-pagination/PfPagination.vue'
 import { pfToast } from '@/components/pf-toast'
 import { usePfModal } from '@/components/pf-modal/usePfModal'
 import {
@@ -61,6 +62,8 @@ const props = withDefaults(
     hideEdit?: boolean
     hideDelete?: boolean
     actionColumn?: PfDataTableActionColumnConfig
+    pagination?: boolean
+    pageSize?: number
     /**
      * 是否在组件挂载后用 `defaultQuery` 自动拉取列表。
      * 设为 false 后用户必须显式点击"查询"按钮才会触发首次请求。
@@ -92,6 +95,8 @@ const props = withDefaults(
     hideEdit: false,
     hideDelete: false,
     actionColumn: () => ({}),
+    pagination: false,
+    pageSize: 10,
     autoFetch: true,
   },
 )
@@ -210,6 +215,23 @@ const rows = computed(() => {
 const tableRows = computed<Record<string, any>[]>(() => {
   return (rows.value || []).map((row) => ({ ...(row || {}) }))
 })
+
+const currentPage = ref(1)
+const effectivePageSize = computed(() => Math.max(1, props.pageSize))
+const showPagination = computed(() => props.pagination && tableRows.value.length > effectivePageSize.value)
+const pagedTableRows = computed(() => {
+  if (!props.pagination) return tableRows.value
+  const start = (currentPage.value - 1) * effectivePageSize.value
+  return tableRows.value.slice(start, start + effectivePageSize.value)
+})
+
+watch(
+  () => [tableRows.value.length, props.pageSize, props.pagination] as const,
+  () => {
+    const pageCount = Math.max(1, Math.ceil(tableRows.value.length / effectivePageSize.value))
+    if (currentPage.value > pageCount) currentPage.value = pageCount
+  },
+)
 
 const isTableLoading = computed(() => {
   return isListLoading.value || props.tableLoading
@@ -578,7 +600,7 @@ watch(
       <PfLoading :loading="isTableLoading" text="加载数据中...">
         <vxe-table
           class="pf-data-table-vxe"
-          :data="tableRows"
+          :data="pagedTableRows"
           :row-config="{ keyField: rowKey }"
           stripe
           border
@@ -644,6 +666,10 @@ watch(
         title="暂无数据"
         description="请调整查询条件后重试"
       />
+    </div>
+
+    <div v-if="showPagination" class="flex items-center justify-end">
+      <PfPagination v-model="currentPage" :total="tableRows.length" :page-size="effectivePageSize" />
     </div>
   </div>
 

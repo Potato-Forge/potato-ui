@@ -11,10 +11,12 @@ const seedUsers = [
   { id: 2, name: 'Bob', email: 'bob@example.com', role: 'editor', active: false },
   { id: 3, name: 'Charlie', email: 'charlie@example.com', role: 'viewer', active: true },
   { id: 4, name: 'Diana', email: 'diana@example.com', role: 'editor', active: true },
+  { id: 5, name: 'Eve', email: 'eve@example.com', role: 'admin', active: false },
+  { id: 6, name: 'Frank', email: 'frank@example.com', role: 'viewer', active: true },
 ]
 
 const users = ref(structuredClone(seedUsers))
-let nextId = 5
+let nextId = 7
 
 const delay = (ms = 300) => new Promise((r) => setTimeout(r, ms))
 
@@ -112,13 +114,15 @@ const usageCode = computed(() => dedent`
     :update-request="updateUser"
     :delete-request="deleteUser"
     :detail-request="getUserDetail"
+    pagination
+    :page-size="5"
     row-key="id"
   />
 `)
 
 const dependenciesCode = computed(() => dedent`
   vxe-table, @iconify/vue, date-fns,
-  pf-form, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives
+  pf-form, pf-pagination, pf-modal, pf-toast, pf-theme, pf-icons, pf-runtime-support, ui-primitives
 `)
 </script>
 
@@ -147,6 +151,8 @@ const dependenciesCode = computed(() => dedent`
           :detail-request="detail"
           row-key="id"
           container-mode="drawer"
+          pagination
+          :page-size="3"
         />
       </div>
     </section>
@@ -173,6 +179,7 @@ const dependenciesCode = computed(() => dedent`
           <tr><td>formRules</td><td>PfFormRules</td><td>{{ t('dataTable.api.formRules') }}</td></tr>
           <tr><td>hideCreate / hideEdit / hideDelete / hideDetail</td><td>boolean</td><td>{{ t('dataTable.api.hideActions') }}</td></tr>
           <tr><td>actionColumn</td><td>PfDataTableActionColumnConfig</td><td>{{ t('dataTable.api.actionColumn') }}</td></tr>
+          <tr><td>pagination / pageSize</td><td>boolean / number</td><td>{{ t('dataTable.api.pagination') }}</td></tr>
           <tr><td>autoFetch</td><td>boolean</td><td>{{ t('dataTable.api.autoFetch') }}</td></tr>
         </tbody>
       </table>

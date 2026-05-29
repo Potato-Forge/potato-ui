@@ -14,10 +14,13 @@
   ],
   "registryDependencies": [
     "pf-checkbox",
+    "pf-badge",
     "pf-date-picker",
     "pf-help",
     "pf-icon-picker",
+    "pf-input",
     "pf-icons",
+    "pf-select",
     "pf-runtime-support",
     "pf-switch",
     "pf-text",

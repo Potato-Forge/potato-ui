@@ -10,19 +10,22 @@ const props = withDefaults(defineProps<PfSelectProps>(), {
 })
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
+  'update:modelValue': [value: string | number]
 }>()
 
-const value = computed({
-  get: () => props.modelValue ?? '',
-  set: (next) => emit('update:modelValue', String(next)),
+const selectValue = computed({
+  get: () => (props.modelValue === undefined || props.modelValue === null ? '' : String(props.modelValue)),
+  set: (next) => {
+    const option = props.options.find((item) => String(item.value) === String(next))
+    emit('update:modelValue', option?.value ?? String(next))
+  },
 })
 </script>
 
 <template>
   <label class="relative block w-full min-w-0">
     <select
-      v-model="value"
+      v-model="selectValue"
       :disabled="disabled"
       :aria-invalid="invalid || undefined"
       :class="cn(selectVariants({ size, invalid }), props.class)"
@@ -31,7 +34,7 @@ const value = computed({
       <option
         v-for="option in options"
         :key="String(option.value)"
-        :value="option.value"
+        :value="String(option.value)"
         :disabled="option.disabled"
       >
         {{ option.label }}

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import type { PfFormSelectOption } from '../PfForm.types'
+import PfBadge from '@/components/pf-badge/PfBadge.vue'
+import PfCheckbox from '@/components/pf-checkbox/PfCheckbox.vue'
+import PfSelect from '@/components/pf-select/PfSelect.vue'
 
 const props = defineProps<{
   modelValue?: any
@@ -101,6 +104,10 @@ const hasValue = computed(() =>
   props.multiple ? (normalizedValue.value as any[]).length > 0 : normalizedValue.value !== null,
 )
 
+const canUseNativeSelect = computed(() => {
+  return !props.multiple && !props.searchable && (props.variant === 'combobox' || !props.variant)
+})
+
 const closeDropdown = () => {
   isOpen.value = false
   searchQuery.value = ''
@@ -130,8 +137,18 @@ onMounted(() => {
 </script>
 
 <template>
+  <PfSelect
+    v-if="canUseNativeSelect"
+    :model-value="props.modelValue"
+    :options="resolvedOptions"
+    :placeholder="props.placeholder"
+    :disabled="disabled || isLoadingOptions"
+    @update:model-value="(value) => { emit('update:modelValue', value); emit('blur') }"
+    @blur="emit('blur')"
+  />
+
   <!-- ── Combobox 变体 ─────────────────────────── -->
-  <div v-if="variant === 'combobox' || !variant" ref="containerRef" class="relative w-full">
+  <div v-else-if="variant === 'combobox' || !variant" ref="containerRef" class="relative w-full">
     <!-- 触发按钮 -->
     <button
       type="button"
@@ -153,10 +170,11 @@ onMounted(() => {
 
     <!-- 已选标签（多选时显示） -->
     <div v-if="multiple && (normalizedValue as any[]).length > 0" class="mt-1 flex flex-wrap gap-1">
-      <span
+      <PfBadge
         v-for="label in selectedLabels"
         :key="label"
-        class="inline-flex items-center gap-1 rounded bg-primary/10 px-2 py-0.5 text-xs text-primary"
+        type="primary"
+        variant="soft"
       >
         {{ label }}
         <Icon
@@ -164,7 +182,7 @@ onMounted(() => {
           class="h-3 w-3 cursor-pointer hover:text-destructive"
           @click.stop="toggleOption(resolvedOptions.find((o) => o.label === label)?.value)"
         />
-      </span>
+      </PfBadge>
     </div>
 
     <!-- 下拉列表 -->
@@ -259,13 +277,11 @@ onMounted(() => {
       class="flex cursor-pointer items-start gap-2 text-sm select-none"
       :class="opt.disabled ? 'cursor-not-allowed opacity-50' : ''"
     >
-      <span
-        class="grid place-content-center h-4 w-4 shrink-0 rounded-sm border border-primary transition-colors"
-        :class="isSelected(opt.value) ? 'bg-primary text-primary-foreground' : 'bg-background'"
-        @click="!opt.disabled && toggleOption(opt.value)"
-      >
-        <Icon v-if="isSelected(opt.value)" icon="tabler:check" class="h-3 w-3" />
-      </span>
+      <PfCheckbox
+        :model-value="isSelected(opt.value)"
+        :disabled="disabled || opt.disabled"
+        @update:model-value="!opt.disabled && toggleOption(opt.value)"
+      />
       <span class="min-w-0">
         <span class="block leading-4">{{ opt.label }}</span>
         <span v-if="opt.description" class="block text-xs text-muted-foreground leading-4">
