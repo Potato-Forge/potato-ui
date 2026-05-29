@@ -12,6 +12,7 @@ import PfEmpty from '@/components/pf-empty/PfEmpty.vue'
 import PfForm from '@/components/pf-form/PfForm.vue'
 import PfLoading from '@/components/pf-loading/PfLoading.vue'
 import PfPagination from '@/components/pf-pagination/PfPagination.vue'
+import PfDrawer from '@/components/pf-drawer/PfDrawer.vue'
 import { pfToast } from '@/components/pf-toast'
 import { usePfModal } from '@/components/pf-modal/usePfModal'
 import {
@@ -21,7 +22,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import PfDataTableDetail from './PfDataTableDetail.vue'
 import PfDataTableForm from './PfDataTableForm.vue'
 import PfDataTablePreviewValue from './PfDataTablePreviewValue.vue'
@@ -673,13 +673,17 @@ watch(
     </div>
   </div>
 
-  <Sheet v-if="containerMode === 'drawer'" v-model:open="opened">
-    <SheetContent side="right" class="w-full flex flex-col sm:max-w-2xl">
-      <SheetHeader class="shrink-0">
-        <SheetTitle>{{ panelTitle }}</SheetTitle>
-      </SheetHeader>
-
-      <div class="min-h-0 flex-1 overflow-auto py-4">
+  <PfDrawer
+    v-if="containerMode === 'drawer'"
+    v-model:open="opened"
+    side="right"
+    :title="panelTitle"
+    class="w-full flex flex-col sm:max-w-2xl"
+    @escape-key-down="preventPanelCloseWhenViewerOpen"
+    @pointer-down-outside="preventPanelCloseWhenViewerOpen"
+    @interact-outside="preventPanelCloseWhenViewerOpen"
+  >
+      <div class="py-4">
         <PfDataTableDetail
           v-if="panelMode === 'detail'"
           :columns="columns"
@@ -699,8 +703,7 @@ watch(
           @cancel="closePanel"
         />
       </div>
-    </SheetContent>
-  </Sheet>
+  </PfDrawer>
 
   <Dialog v-else v-model:open="opened">
     <DialogContent

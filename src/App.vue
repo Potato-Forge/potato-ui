@@ -11,6 +11,8 @@ import ColorPickerPage from './docs/pages/ColorPickerPage.vue'
 import ConfigProviderPage from './docs/pages/ConfigProviderPage.vue'
 import DataTablePage from './docs/pages/DataTablePage.vue'
 import DividePage from './docs/pages/DividePage.vue'
+import DrawerPage from './docs/pages/DrawerPage.vue'
+import DropdownPage from './docs/pages/DropdownPage.vue'
 import EmptyPage from './docs/pages/EmptyPage.vue'
 import FormPage from './docs/pages/FormPage.vue'
 import HelpPage from './docs/pages/HelpPage.vue'
@@ -18,6 +20,7 @@ import IconPickerPage from './docs/pages/IconPickerPage.vue'
 import IconsPage from './docs/pages/IconsPage.vue'
 import ImgPage from './docs/pages/ImgPage.vue'
 import InputPage from './docs/pages/InputPage.vue'
+import InputNumberPage from './docs/pages/InputNumberPage.vue'
 import LoadingPage from './docs/pages/LoadingPage.vue'
 import ModalPage from './docs/pages/ModalPage.vue'
 import PaginationPage from './docs/pages/PaginationPage.vue'
@@ -52,12 +55,15 @@ const routes = {
   '/components/config-provider': ConfigProviderPage,
   '/components/data-table': DataTablePage,
   '/components/divide': DividePage,
+  '/components/drawer': DrawerPage,
+  '/components/dropdown': DropdownPage,
   '/components/empty': EmptyPage,
   '/components/form': FormPage,
   '/components/help': HelpPage,
   '/components/icon-picker': IconPickerPage,
   '/components/img': ImgPage,
   '/components/input': InputPage,
+  '/components/input-number': InputNumberPage,
   '/components/loading': LoadingPage,
   '/components/modal': ModalPage,
   '/components/pagination': PaginationPage,
@@ -100,6 +106,7 @@ const navGroups = [
       { path: '/components/color-picker', label: 'nav.colorPicker', subtitle: 'PfColorPicker' },
       { path: '/components/icon-picker', label: 'nav.iconPicker', subtitle: 'PfIconPicker' },
       { path: '/components/input', label: 'nav.input', subtitle: 'PfInput' },
+      { path: '/components/input-number', label: 'nav.inputNumber', subtitle: 'PfInputNumber' },
       { path: '/components/radio-group', label: 'nav.radioGroup', subtitle: 'PfRadioGroup' },
       { path: '/components/select', label: 'nav.select', subtitle: 'PfSelect' },
       { path: '/components/switch', label: 'nav.switch', subtitle: 'PfSwitch' },
@@ -112,6 +119,8 @@ const navGroups = [
     links: [
       { path: '/components/help', label: 'nav.help', subtitle: 'PfHelp' },
       { path: '/components/alert', label: 'nav.alert', subtitle: 'PfAlert' },
+      { path: '/components/drawer', label: 'nav.drawer', subtitle: 'PfDrawer' },
+      { path: '/components/dropdown', label: 'nav.dropdown', subtitle: 'PfDropdown' },
       { path: '/components/modal', label: 'nav.modal', subtitle: 'PfModal' },
       { path: '/components/toast', label: 'nav.toast', subtitle: 'PfToast' },
       { path: '/components/tooltip', label: 'nav.tooltip', subtitle: 'PfTooltip' },

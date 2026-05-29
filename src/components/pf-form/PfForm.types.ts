@@ -127,6 +127,22 @@ export type PfFormConfigItemText<
   K extends keyof T & string = keyof T & string,
 > = PfFormConfigBase<T, K> & {
   type: 'text'
+  config?: {
+    placeholder?: string
+  }
+}
+
+export type PfFormConfigItemNumber<
+  T = Record<string, unknown>,
+  K extends keyof T & string = keyof T & string,
+> = PfFormConfigBase<T, K> & {
+  type: 'number'
+  config?: {
+    placeholder?: string
+    min?: number
+    max?: number
+    step?: number
+  }
 }
 
 /**
@@ -308,6 +324,7 @@ export type PfFormConfigItemUpload<
  */
 export type PfFormConfigItem<T = any> =
   | PfFormConfigItemText<T>
+  | PfFormConfigItemNumber<T>
   | PfFormConfigItemDatetime<T>
   | PfFormConfigItemDate<T>
   | PfFormConfigItemTime<T>

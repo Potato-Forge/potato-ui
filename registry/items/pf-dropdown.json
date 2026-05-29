@@ -1,0 +1,30 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-dropdown",
+  "type": "registry:component",
+  "title": "PfDropdown",
+  "description": "Action menu wrapper around the shared dropdown-menu primitives.",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["pf-button", "pf-icons", "pf-theme", "ui-primitives"],
+  "meta": {
+    "sourceEntry": "src/components/pf-dropdown/PfDropdown.vue",
+    "docsRoute": "/components/dropdown"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-dropdown/PfDropdown.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-dropdown/PfDropdown.vue"
+    },
+    {
+      "path": "src/components/pf-dropdown/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-dropdown/index.ts"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts"
+    }
+  ]
+}

@@ -12,6 +12,7 @@
   "registryDependencies": [
     "pf-button",
     "pf-card",
+    "pf-drawer",
     "pf-empty",
     "pf-form",
     "pf-icons",

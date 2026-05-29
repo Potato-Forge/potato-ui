@@ -189,6 +189,7 @@
       "registryDependencies": [
         "pf-button",
         "pf-card",
+        "pf-drawer",
         "pf-empty",
         "pf-form",
         "pf-icons",
@@ -237,6 +238,41 @@
       }
     },
     {
+      "name": "pf-drawer",
+      "type": "registry:component",
+      "title": "PfDrawer",
+      "description": "Side panel wrapper around the shared Sheet primitives, suitable for details and edit flows.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-drawer/PfDrawer.vue",
+        "docsRoute": "/components/drawer"
+      }
+    },
+    {
+      "name": "pf-dropdown",
+      "type": "registry:component",
+      "title": "PfDropdown",
+      "description": "Action menu wrapper around the shared dropdown-menu primitives.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-button",
+        "pf-icons",
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-dropdown/PfDropdown.vue",
+        "docsRoute": "/components/dropdown"
+      }
+    },
+    {
       "name": "pf-empty",
       "type": "registry:component",
       "title": "PfEmpty",
@@ -271,6 +307,7 @@
         "pf-help",
         "pf-icon-picker",
         "pf-input",
+        "pf-input-number",
         "pf-icons",
         "pf-select",
         "pf-runtime-support",
@@ -348,6 +385,23 @@
       ],
       "meta": {
         "sourceEntry": "src/components/pf-img/PfImg.vue"
+      }
+    },
+    {
+      "name": "pf-input-number",
+      "type": "registry:component",
+      "title": "PfInputNumber",
+      "description": "Numeric input built from PfInput and PfButton, with min, max, and step controls.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-button",
+        "pf-input",
+        "pf-icons",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-input-number/PfInputNumber.vue",
+        "docsRoute": "/components/input-number"
       }
     },
     {

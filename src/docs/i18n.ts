@@ -10,6 +10,8 @@ type MessageKey =
   | 'nav.foundation'
   | 'nav.general'
   | 'nav.dataEntry'
+  | 'nav.drawer'
+  | 'nav.dropdown'
   | 'nav.feedback'
   | 'nav.navigation'
   | 'nav.media'
@@ -31,6 +33,7 @@ type MessageKey =
   | 'nav.iconPicker'
   | 'nav.img'
   | 'nav.input'
+  | 'nav.inputNumber'
   | 'nav.modal'
   | 'nav.pagination'
   | 'nav.progress'
@@ -294,6 +297,7 @@ type MessageKey =
   | 'input.api.size'
   | 'input.api.invalid'
   | 'input.api.class'
+  | 'inputNumber.description'
   | 'textarea.description'
   | 'textarea.placeholder'
   | 'textarea.api.modelValue'
@@ -341,6 +345,12 @@ type MessageKey =
   | 'pagination.api.pageSize'
   | 'pagination.api.siblingCount'
   | 'pagination.api.change'
+  | 'dropdown.description'
+  | 'drawer.description'
+  | 'drawer.open'
+  | 'drawer.title'
+  | 'drawer.descriptionText'
+  | 'drawer.body'
   | 'progress.description'
   | 'progress.api.value'
   | 'progress.api.max'
@@ -510,6 +520,8 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.foundation': { en: 'Foundation', zh: '基础' },
   'nav.general': { en: 'General', zh: '通用' },
   'nav.dataEntry': { en: 'Data Entry', zh: '数据录入' },
+  'nav.drawer': { en: 'Drawer', zh: '抽屉' },
+  'nav.dropdown': { en: 'Dropdown', zh: '下拉菜单' },
   'nav.feedback': { en: 'Feedback', zh: '反馈' },
   'nav.navigation': { en: 'Navigation', zh: '导航' },
   'nav.media': { en: 'Media', zh: '媒体' },
@@ -531,6 +543,7 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.iconPicker': { en: 'Icon Picker', zh: '图标选择器' },
   'nav.img': { en: 'Img', zh: '图片' },
   'nav.input': { en: 'Input', zh: '输入框' },
+  'nav.inputNumber': { en: 'Input Number', zh: '数字输入' },
   'nav.modal': { en: 'Modal', zh: '模态框' },
   'nav.pagination': { en: 'Pagination', zh: '分页' },
   'nav.progress': { en: 'Progress', zh: '进度条' },
@@ -716,6 +729,10 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'input.api.size': { en: 'Input height and text size.', zh: '输入框高度和字号。' },
   'input.api.invalid': { en: 'Render validation error styling.', zh: '渲染校验错误样式。' },
   'input.api.class': { en: 'Additional CSS classes.', zh: '额外 CSS 类。' },
+  'inputNumber.description': {
+    en: 'Numeric input built from PfInput and PfButton, with min, max, and step controls.',
+    zh: '基于 PfInput 和 PfButton 的数字输入，支持最小值、最大值和步进控制。',
+  },
   'textarea.description': {
     en: 'Textarea wrapper for longer input with resize control and validation state.',
     zh: '用于长文本输入的文本域封装，支持 resize 控制和校验态。',
@@ -784,6 +801,18 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'pagination.api.pageSize': { en: 'Items per page.', zh: '每页条目数。' },
   'pagination.api.siblingCount': { en: 'Visible page buttons around current page.', zh: '当前页两侧可见页码数量。' },
   'pagination.api.change': { en: 'Emitted after page changes.', zh: '页码变化后触发。' },
+  'dropdown.description': {
+    en: 'Action menu wrapper around the shared dropdown-menu primitives.',
+    zh: '基于共享 dropdown-menu 基元封装的操作菜单。',
+  },
+  'drawer.description': {
+    en: 'Side panel wrapper around the shared Sheet primitives, suitable for details and edit flows.',
+    zh: '基于共享 Sheet 基元封装的侧边面板，适合详情和编辑流程。',
+  },
+  'drawer.open': { en: 'Open drawer', zh: '打开抽屉' },
+  'drawer.title': { en: 'Record details', zh: '记录详情' },
+  'drawer.descriptionText': { en: 'A focused side panel for secondary workflows.', zh: '用于次级流程的聚焦侧边面板。' },
+  'drawer.body': { en: 'Put form fields, detail previews, or contextual actions here.', zh: '这里可以放表单字段、详情预览或上下文操作。' },
   'progress.description': {
     en: 'Linear progress indicator for upload, processing, and task completion states.',
     zh: '线性进度指示器，用于上传、处理和任务完成状态。',

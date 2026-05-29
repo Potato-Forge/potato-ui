@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-drawer",
+  "type": "registry:component",
+  "title": "PfDrawer",
+  "description": "Side panel wrapper around the shared Sheet primitives, suitable for details and edit flows.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-drawer/PfDrawer.vue",
+    "docsRoute": "/components/drawer"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-drawer/PfDrawer.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-drawer/PfDrawer.vue",
+      "content": "<script setup lang=\"ts\">\nimport {\n  Sheet,\n  SheetContent,\n  SheetDescription,\n  SheetHeader,\n  SheetTitle,\n} from '@/components/ui/sheet'\nimport type { PfDrawerProps } from '.'\n\ndefineOptions({\n  inheritAttrs: false,\n})\n\nconst props = withDefaults(defineProps<PfDrawerProps>(), {\n  side: 'right',\n})\n\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <Sheet :open=\"open\" @update:open=\"emit('update:open', $event)\">\n    <SheetContent :side=\"side\" :class=\"props.class\" v-bind=\"$attrs\">\n      <SheetHeader v-if=\"title || description || $slots.header\">\n        <slot name=\"header\">\n          <SheetTitle v-if=\"title\">{{ title }}</SheetTitle>\n          <SheetDescription v-if=\"description\">{{ description }}</SheetDescription>\n        </slot>\n      </SheetHeader>\n      <div class=\"min-h-0 flex-1 overflow-auto\">\n        <slot />\n      </div>\n      <div v-if=\"$slots.footer\" class=\"mt-4 flex justify-end gap-2\">\n        <slot name=\"footer\" />\n      </div>\n    </SheetContent>\n  </Sheet>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-drawer/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-drawer/index.ts",
+      "content": "export { default as PfDrawer } from './PfDrawer.vue'\n\nexport interface PfDrawerProps {\n  open?: boolean\n  title?: string\n  description?: string\n  side?: 'top' | 'right' | 'bottom' | 'left'\n  class?: string\n}\n"
+    }
+  ]
+}

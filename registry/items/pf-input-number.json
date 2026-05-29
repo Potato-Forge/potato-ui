@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-input-number",
+  "type": "registry:component",
+  "title": "PfInputNumber",
+  "description": "Numeric input built from PfInput and PfButton, with min, max, and step controls.",
+  "dependencies": [],
+  "registryDependencies": ["pf-button", "pf-input", "pf-icons", "pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-input-number/PfInputNumber.vue",
+    "docsRoute": "/components/input-number"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-input-number/PfInputNumber.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-input-number/PfInputNumber.vue"
+    },
+    {
+      "path": "src/components/pf-input-number/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-input-number/index.ts"
+    }
+  ]
+}

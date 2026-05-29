@@ -1,0 +1,42 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-dropdown",
+  "type": "registry:component",
+  "title": "PfDropdown",
+  "description": "Action menu wrapper around the shared dropdown-menu primitives.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-button",
+    "pf-icons",
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-dropdown/PfDropdown.vue",
+    "docsRoute": "/components/dropdown"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-dropdown/PfDropdown.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-dropdown/PfDropdown.vue",
+      "content": "<script setup lang=\"ts\">\nimport PfButton from '@/components/pf-button/PfButton.vue'\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from '@/components/ui/dropdown-menu'\nimport { cn } from '@/lib/utils'\nimport type { PfDropdownProps } from '.'\n\nconst props = withDefaults(defineProps<PfDropdownProps>(), {\n  items: () => [],\n  label: 'More',\n  align: 'end',\n  side: 'bottom',\n})\n\nconst emit = defineEmits<{\n  select: [value: string]\n}>()\n</script>\n\n<template>\n  <DropdownMenu>\n    <DropdownMenuTrigger as-child>\n      <slot name=\"trigger\">\n        <PfButton type=\"button\" variant=\"outline\" :class=\"props.class\">\n          {{ label }}\n          <span class=\"i-tabler-chevron-down h-4 w-4\"></span>\n        </PfButton>\n      </slot>\n    </DropdownMenuTrigger>\n    <DropdownMenuContent :align=\"align\" :side=\"side\" class=\"min-w-40\">\n      <slot>\n        <DropdownMenuItem\n          v-for=\"item in items\"\n          :key=\"item.value\"\n          :disabled=\"item.disabled\"\n          :class=\"cn(item.danger && 'text-error focus:text-error')\"\n          @click=\"emit('select', item.value)\"\n        >\n          <span v-if=\"item.icon\" :class=\"cn(item.icon, 'h-4 w-4')\"></span>\n          <span>{{ item.label }}</span>\n        </DropdownMenuItem>\n      </slot>\n    </DropdownMenuContent>\n  </DropdownMenu>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-dropdown/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-dropdown/index.ts",
+      "content": "export { default as PfDropdown } from './PfDropdown.vue'\n\nexport type PfDropdownItem = {\n  label: string\n  value: string\n  icon?: string\n  disabled?: boolean\n  danger?: boolean\n}\n\nexport interface PfDropdownProps {\n  items?: PfDropdownItem[]\n  label?: string\n  align?: 'start' | 'center' | 'end'\n  side?: 'top' | 'right' | 'bottom' | 'left'\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

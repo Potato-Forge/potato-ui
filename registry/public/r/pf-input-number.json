@@ -1,0 +1,33 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-input-number",
+  "type": "registry:component",
+  "title": "PfInputNumber",
+  "description": "Numeric input built from PfInput and PfButton, with min, max, and step controls.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-button",
+    "pf-input",
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-input-number/PfInputNumber.vue",
+    "docsRoute": "/components/input-number"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-input-number/PfInputNumber.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-input-number/PfInputNumber.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport PfButton from '@/components/pf-button/PfButton.vue'\nimport PfInput from '@/components/pf-input/PfInput.vue'\nimport type { PfInputNumberProps } from '.'\n\nconst props = withDefaults(defineProps<PfInputNumberProps>(), {\n  step: 1,\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: number | null]\n}>()\n\nconst value = computed({\n  get: () => (props.modelValue === null || props.modelValue === undefined ? '' : props.modelValue),\n  set: (next) => {\n    if (next === '') {\n      emit('update:modelValue', null)\n      return\n    }\n    const parsed = Number(next)\n    if (!Number.isNaN(parsed)) emit('update:modelValue', clamp(parsed))\n  },\n})\n\nconst clamp = (next: number) => {\n  let value = next\n  if (props.min !== undefined) value = Math.max(props.min, value)\n  if (props.max !== undefined) value = Math.min(props.max, value)\n  return value\n}\n\nconst stepBy = (direction: 1 | -1) => {\n  const current = typeof props.modelValue === 'number' ? props.modelValue : 0\n  emit('update:modelValue', clamp(current + props.step * direction))\n}\n</script>\n\n<template>\n  <div class=\"flex w-full min-w-0 items-center gap-1\">\n    <PfButton\n      type=\"button\"\n      variant=\"outline\"\n      size=\"icon\"\n      :disabled=\"disabled || readonly\"\n      @click=\"stepBy(-1)\"\n    >\n      <span class=\"i-tabler-minus h-4 w-4\"></span>\n    </PfButton>\n    <PfInput\n      v-model=\"value\"\n      type=\"number\"\n      :min=\"min\"\n      :max=\"max\"\n      :step=\"step\"\n      :placeholder=\"placeholder\"\n      :disabled=\"disabled\"\n      :readonly=\"readonly\"\n      :class=\"props.class\"\n    />\n    <PfButton\n      type=\"button\"\n      variant=\"outline\"\n      size=\"icon\"\n      :disabled=\"disabled || readonly\"\n      @click=\"stepBy(1)\"\n    >\n      <span class=\"i-tabler-plus h-4 w-4\"></span>\n    </PfButton>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-input-number/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-input-number/index.ts",
+      "content": "export { default as PfInputNumber } from './PfInputNumber.vue'\n\nexport interface PfInputNumberProps {\n  modelValue?: number | null\n  min?: number\n  max?: number\n  step?: number\n  placeholder?: string\n  disabled?: boolean\n  readonly?: boolean\n  class?: string\n}\n"
+    }
+  ]
+}

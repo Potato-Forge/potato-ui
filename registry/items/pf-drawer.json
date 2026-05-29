@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-drawer",
+  "type": "registry:component",
+  "title": "PfDrawer",
+  "description": "Side panel wrapper around the shared Sheet primitives, suitable for details and edit flows.",
+  "dependencies": [],
+  "registryDependencies": ["pf-theme", "ui-primitives"],
+  "meta": {
+    "sourceEntry": "src/components/pf-drawer/PfDrawer.vue",
+    "docsRoute": "/components/drawer"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-drawer/PfDrawer.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-drawer/PfDrawer.vue"
+    },
+    {
+      "path": "src/components/pf-drawer/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-drawer/index.ts"
+    }
+  ]
+}
