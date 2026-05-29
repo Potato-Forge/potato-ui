@@ -13,5 +13,10 @@
   - 新增轻量安装脚本 `scripts/install-registry-item.ts`，本仓库命令为 `pnpm pf:add <name> --cwd <target>`；会递归 registryDependencies、写源码文件并提示 npm dependencies，不修改 Tailwind/shadcn 配置。
 - `.ai/vendor/` 已新增为项目无关协议层，记录通用入口、日志、隐私规范。
 - Agent 入口现在应保持薄钥匙：硬约束 + `.ai` 索引 + 完成协议。
+- **Docs 侧边栏双行导航**：每个 Pf 组件项在中文名下方增加了组件名字 subtitle（如 PfButton），方便在长列表中按英文名快速定位。Foundation 项无变化。
+- **组件覆盖里程碑 1**：已新增 `PfInput`、`PfTextarea`、`PfSelect`、`PfRadioGroup`；均为轻量源码分发组件，不新增运行时依赖。docs 路由和 registry/public 已刷新到 32 items。下一阶段建议补 `PfBadge/PfTag`、`PfAlert`、`PfTabs`、`PfPagination`。
+- **组件覆盖里程碑 2**：已新增 `PfBadge`、`PfAlert`、`PfTabs`、`PfPagination`；docs 路由和 registry/public 已刷新到 36 items。下一阶段建议补叠层/选择增强件：`PfDropdown`、`PfPopover`、`PfDrawer`、`PfProgress`。
+- **组件覆盖里程碑 3**：已新增 `PfProgress`、`PfSkeleton`、`PfAvatar`；docs 路由和 registry/public 已刷新到 39 items。下一阶段建议补叠层/选择增强件：`PfDropdown`、`PfPopover`、`PfDrawer`、`PfInputNumber`。
+- **复杂组件基础件回接**：`PfFormItem` 已接入 `PfInput`/`PfInputNumber`；`PfFormItemOptions` 已接入 `PfSelect`/`PfBadge`/`PfCheckbox`；`PfDataTable` 已接入可选 `PfPagination` 并将 drawer 容器切到 `PfDrawer`。新增 `PfInputNumber`、`PfDropdown`、`PfDrawer` 后 registry/public 为 42 items。`PfPopover` 暂未做，因为当前 `potato-ui` 与同级 `potato-template` 都没有现成 `ui/popover` 基元。
 - 低优先级技术债：KI-002 Registry 实测、KI-004~008 类型/测试/CI/路由等。
 - `ai-memory-starter/` 已作为独立启动模板雏形，含通用模板、adapter、行为校正和初始化脚本；下一步可移出为独立仓库。

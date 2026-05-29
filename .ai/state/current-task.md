@@ -6,9 +6,21 @@
 
 **AI 记忆层维护完成** ✅ — `.ai/vendor/` 通用协议层已从项目记忆中剥离，`ai-memory-starter/` 已作为独立启动模板雏形落地。
 
+- **Docs 侧边栏双行导航完成** ✅ — 每个 Pf 组件项中文名下方增加了组件名 subtitle（PfButton 等），Foundation 项不变。
+
+- **组件覆盖里程碑 1 完成** ✅ — 新增 PfInput、PfTextarea、PfSelect、PfRadioGroup，补齐 docs 与 registry。
+
+- **组件覆盖里程碑 2 完成** ✅ — 新增 PfBadge、PfAlert、PfTabs、PfPagination，补齐 docs 与 registry。
+
+- **组件覆盖里程碑 3 完成** ✅ — 新增 PfProgress、PfSkeleton、PfAvatar，补齐 docs 与 registry。
+
+- **复杂组件基础件回接完成** ✅ — PfForm/PfDataTable 已接入新抽出的 PfInput/PfSelect/PfBadge/PfPagination/PfDrawer 等组件，避免平行版本继续扩散。
+
 ## 后续方向
 
 Phase 2 候选任务（待人类决策）:
+- 组件覆盖里程碑 3: 叠层/选择增强件（建议 PfDropdown、PfPopover、PfDrawer、PfProgress）
+- 组件覆盖里程碑 4: 叠层/选择增强件后续（建议评估 PfPopover 所需底层基元；当前没有现成 ui/popover）
 - 自动化测试 (Vitest + @vue/test-utils)
 - CI/CD (GitHub Actions)
 - Registry 安装实测 (KI-002)
@@ -34,3 +46,21 @@ Phase 2 候选任务（待人类决策）:
   - PfColorPicker 与 PfImg 增加 props playground，预览区域补 min-height/overflow
   - PfDataTable 去除 @tanstack/vue-query 内建，改为 Promise request props
   - 新增轻量 registry installer: `pnpm pf:add <name> --cwd <target>`
+- ✅ 2026-05-29 组件覆盖里程碑 1:
+  - 新增 `PfInput`、`PfTextarea`、`PfSelect`、`PfRadioGroup`
+  - 新增对应 docs 页面、导航入口、registry manifest/public payload
+  - 审查通过：`vue-tsc -b`、registry build、Vite build
+- ✅ 2026-05-29 组件覆盖里程碑 2:
+  - 新增 `PfBadge`、`PfAlert`、`PfTabs`、`PfPagination`
+  - 新增对应 docs 页面、导航入口、registry manifest/public payload
+  - 审查通过：`vue-tsc -b`、registry build、Vite build
+- ✅ 2026-05-29 组件覆盖里程碑 3:
+  - 新增 `PfProgress`、`PfSkeleton`、`PfAvatar`
+  - 新增对应 docs 页面、导航入口、registry manifest/public payload
+  - 审查通过：`vue-tsc -b`、registry build、Vite build
+- ✅ 2026-05-29 复杂组件基础件回接与叠层里程碑:
+  - `PfFormItem` 接入 `PfInput`、`PfInputNumber`
+  - `PfFormItemOptions` 接入 `PfSelect`、`PfBadge`、`PfCheckbox`
+  - `PfDataTable` 接入可选 `PfPagination` 和 `PfDrawer`
+  - 新增 `PfInputNumber`、`PfDropdown`、`PfDrawer`
+  - 审查通过：`vue-tsc -b`、registry build、Vite build
