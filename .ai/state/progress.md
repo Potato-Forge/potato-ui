@@ -11,7 +11,7 @@
 | Registry 构建 | ✅ 完成 | 100% |
 | Registry 清单 | ✅ 完成 | 100% (28 items) |
 | Registry 依赖链修复 | ✅ 完成 | pf-form + pf-data-table 补全 |
-| Registry 安装器 | ✅ 初版完成 | `pnpm pf:add` 支持递归依赖与文件写入 |
+| Registry 安装器 | ✅ 初版完成 | `pnpm dlx @potato-ui/cli add` 支持递归依赖与文件写入；`pnpm pf:add` 是本仓库本地 wrapper |
 | 文档站点框架 | ✅ 完成 | 100% |
 | 组件文档页面 | ✅ 完成 | 100% (24/24) |
 | 文档导航分类 | ✅ 完成 | 按组件用途分组，Form/DataTable 单独复杂组件分类 |

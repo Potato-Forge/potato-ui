@@ -1,92 +1,94 @@
+#!/usr/bin/env node
+import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-type RegistryFile = {
-  path: string
-  type: string
-  target?: string
-  content: string
-}
+const REMOTE_REGISTRY = 'https://potato-forge.github.io/potato-ui'
 
-type RegistryItem = {
-  name: string
-  title?: string
-  dependencies?: string[]
-  devDependencies?: string[]
-  registryDependencies?: string[]
-  files: RegistryFile[]
-}
-
-type InstallOptions = {
-  cwd: string
-  registry: string
-  dryRun: boolean
-  force: boolean
-}
-
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const defaultRegistry = path.join(repoRoot, 'registry/public')
+const cliRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const repoRoot = path.resolve(cliRoot, '..', '..')
+const localRegistry = path.join(repoRoot, 'registry/public')
+const defaultRegistry = existsSync(path.join(localRegistry, 'registry.json'))
+  ? localRegistry
+  : REMOTE_REGISTRY
 
 const usage = () => {
   console.log(`Usage:
-  pnpm pf:add <name> [--cwd <target>] [--registry <url-or-path>] [--dry-run] [--force]
+  potato-ui add <name> [--cwd <target>] [--registry <url-or-path>] [--dry-run] [--force]
+  pf-ui add <name> [--cwd <target>] [--registry <url-or-path>] [--dry-run] [--force]
 
 Examples:
-  pnpm pf:add pf-button --cwd ../consumer-app
-  pnpm pf:add pf-form --cwd ../consumer-app --dry-run
-  pnpm pf:add pf-button --registry https://potato-forge.github.io/potato-ui
+  pnpm dlx @potato-ui/cli add pf-button
+  pnpm dlx @potato-ui/cli add pf-form --cwd ./apps/web
+  pnpm dlx @potato-ui/cli add pf-button --registry https://potato-forge.github.io/potato-ui
 `)
 }
 
 const parseArgs = () => {
   const args = process.argv.slice(2)
-  const command = args[0]
-  const name = args[1]
 
-  if (command !== 'add' || !name) {
+  if (args.includes('--help') || args.includes('-h')) {
     usage()
-    process.exit(command === '--help' || command === '-h' ? 0 : 1)
+    process.exit(0)
   }
 
-  const options: InstallOptions = {
+  const command = args[0]
+  if (command !== 'add') {
+    usage()
+    process.exit(1)
+  }
+
+  const options = {
     cwd: process.cwd(),
-    registry: defaultRegistry,
+    registry: process.env.POTATO_UI_REGISTRY || defaultRegistry,
     dryRun: false,
     force: false,
   }
+  let name = ''
 
-  for (let index = 2; index < args.length; index += 1) {
+  for (let index = 1; index < args.length; index += 1) {
     const arg = args[index]
 
     if (arg === '--cwd') {
-      options.cwd = path.resolve(args[++index] || '')
+      const value = args[++index]
+      if (!value) throw new Error('--cwd requires a value')
+      options.cwd = path.resolve(value)
     } else if (arg === '--registry') {
-      options.registry = args[++index] || defaultRegistry
+      const value = args[++index]
+      if (!value) throw new Error('--registry requires a value')
+      options.registry = value
     } else if (arg === '--dry-run') {
       options.dryRun = true
     } else if (arg === '--force') {
       options.force = true
+    } else if (!arg.startsWith('-') && !name) {
+      name = arg
     } else {
       throw new Error(`Unknown option: ${arg}`)
     }
   }
 
+  if (!name) {
+    usage()
+    process.exit(1)
+  }
+
   return { name, options }
 }
 
-const isUrl = (value: string) => /^https?:\/\//.test(value)
+const isUrl = (value) => /^https?:\/\//.test(value)
 
-const joinUrl = (base: string, pathname: string) =>
+const joinUrl = (base, pathname) =>
   `${base.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`
 
-const itemUrl = (registry: string, name: string) => {
+const itemUrl = (registry, name) => {
   if (name.startsWith('http')) return name
   if (isUrl(registry)) return joinUrl(registry, `r/${name}.json`)
   return path.join(registry, 'r', `${name}.json`)
 }
 
-const readItem = async (registry: string, name: string): Promise<RegistryItem> => {
+const readItem = async (registry, name) => {
   const location = itemUrl(registry, name)
   const raw = isUrl(location)
     ? await fetch(location).then((response) => {
@@ -97,15 +99,10 @@ const readItem = async (registry: string, name: string): Promise<RegistryItem> =
       })
     : await readFile(location, 'utf-8')
 
-  return JSON.parse(raw) as RegistryItem
+  return JSON.parse(raw)
 }
 
-const collectItems = async (
-  registry: string,
-  name: string,
-  seen = new Set<string>(),
-  ordered: RegistryItem[] = [],
-) => {
+const collectItems = async (registry, name, seen = new Set(), ordered = []) => {
   if (seen.has(name)) return ordered
   seen.add(name)
 
@@ -118,7 +115,7 @@ const collectItems = async (
   return ordered
 }
 
-const writeTargetFile = async (targetRoot: string, file: RegistryFile, options: InstallOptions) => {
+const writeTargetFile = async (targetRoot, file, options) => {
   const target = path.resolve(targetRoot, file.target || file.path)
   const relativeTarget = path.relative(targetRoot, target)
 
@@ -127,7 +124,7 @@ const writeTargetFile = async (targetRoot: string, file: RegistryFile, options: 
   }
 
   if (options.dryRun) {
-    return { target, action: 'dry-run' as const }
+    return { target, action: 'dry-run' }
   }
 
   const existing = await readFile(target, 'utf-8').catch(() => null)
@@ -137,17 +134,17 @@ const writeTargetFile = async (targetRoot: string, file: RegistryFile, options: 
 
   await mkdir(path.dirname(target), { recursive: true })
   await writeFile(target, file.content)
-  return { target, action: existing === file.content ? ('unchanged' as const) : ('written' as const) }
+  return { target, action: existing === file.content ? 'unchanged' : 'written' }
 }
 
 const main = async () => {
   const { name, options } = parseArgs()
   const targetRoot = path.resolve(options.cwd)
   const items = await collectItems(options.registry, name)
-  const dependencies = new Set<string>()
-  const devDependencies = new Set<string>()
-  const written: string[] = []
-  const unchanged: string[] = []
+  const dependencies = new Set()
+  const devDependencies = new Set()
+  const written = []
+  const unchanged = []
 
   for (const item of items) {
     item.dependencies?.forEach((dependency) => dependencies.add(dependency))
@@ -161,6 +158,7 @@ const main = async () => {
     }
   }
 
+  console.log(`Registry: ${options.registry}`)
   console.log(`Installed registry items: ${items.map((item) => item.name).join(', ')}`)
   console.log(`${options.dryRun ? 'Would write' : 'Wrote'} ${written.length} files.`)
   if (unchanged.length) console.log(`Unchanged ${unchanged.length} files.`)
@@ -174,7 +172,7 @@ const main = async () => {
   }
 }
 
-main().catch((error: unknown) => {
+main().catch((error) => {
   console.error(error)
   process.exitCode = 1
 })

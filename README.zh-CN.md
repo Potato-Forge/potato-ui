@@ -22,6 +22,17 @@ Pf-UI 并不以覆盖所有前端技术栈为目标。对仅 Tailwind 项目、E
 
 ## 快速开始
 
+在 Vue 3 + UnoCSS 项目中使用 CLI 安装组件：
+
+```bash
+pnpm dlx @potato-ui/cli add pf-button
+pnpm dlx @potato-ui/cli add pf-form
+```
+
+CLI 会把组件源码复制到你的应用中，递归包含 registry 依赖，并打印需要额外执行的 `pnpm add` 运行时依赖命令。使用方项目需要具备 Vue 3 SFC、UnoCSS、`@unocss/preset-wind4`、`@unocss/preset-icons` 和 `@/` alias。
+
+本仓库文档与 registry 开发：
+
 ```bash
 pnpm install
 pnpm dev
@@ -39,13 +50,26 @@ pnpm dev
 
 ```bash
 pnpm typecheck
-pnpm build
 pnpm registry:build
+pnpm build
 ```
 
 ## 分发方式
 
 Pf-UI 组件作为注册表项（registry items）进行分发。组件及其依赖被逻辑分组，以便轻松安装到使用方项目的源码目录中。
+
+消费项目安装命令：
+
+```bash
+pnpm dlx @potato-ui/cli add <item-name>
+```
+
+在本仓库内，开发快捷命令会用同一个 CLI 读取本地 registry 产物：
+
+```bash
+pnpm registry:build
+pnpm pf:add pf-button --cwd ../consumer-app
+```
 
 生成后的注册表（registry）产物存放在：
 

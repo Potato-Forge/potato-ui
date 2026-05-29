@@ -4,6 +4,8 @@ export type Locale = 'en' | 'zh'
 
 type MessageKey =
   | 'nav.components'
+  | 'nav.guide'
+  | 'nav.gettingStarted'
   | 'nav.alert'
   | 'nav.avatar'
   | 'nav.badge'
@@ -67,6 +69,21 @@ type MessageKey =
   | 'table.name'
   | 'table.type'
   | 'table.notes'
+  | 'gettingStarted.title'
+  | 'gettingStarted.description'
+  | 'gettingStarted.prerequisites'
+  | 'gettingStarted.prereq.vue'
+  | 'gettingStarted.prereq.unocss'
+  | 'gettingStarted.prereq.alias'
+  | 'gettingStarted.prereq.node'
+  | 'gettingStarted.install'
+  | 'gettingStarted.installText'
+  | 'gettingStarted.dependencies'
+  | 'gettingStarted.dependenciesText'
+  | 'gettingStarted.unocss'
+  | 'gettingStarted.unocssText'
+  | 'gettingStarted.localDev'
+  | 'gettingStarted.localDevText'
   | 'button.description'
   | 'button.primary'
   | 'button.success'
@@ -538,6 +555,8 @@ type MessageKey =
 
 const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.components': { en: 'Components', zh: '组件' },
+  'nav.guide': { en: 'Guide', zh: '指南' },
+  'nav.gettingStarted': { en: 'Getting Started', zh: '快速开始' },
   'nav.alert': { en: 'Alert', zh: '警告提示' },
   'nav.avatar': { en: 'Avatar', zh: '头像' },
   'nav.badge': { en: 'Badge', zh: '徽标' },
@@ -601,6 +620,36 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'table.name': { en: 'Name', zh: '名称' },
   'table.type': { en: 'Type', zh: '类型' },
   'table.notes': { en: 'Notes', zh: '说明' },
+  'gettingStarted.title': { en: 'Getting Started', zh: '快速开始' },
+  'gettingStarted.description': {
+    en: 'Install Potato UI components as source files with the CLI, then keep them under your app control.',
+    zh: '通过 CLI 将 Potato UI 组件以源码形式安装到项目中，然后由你的应用自行持有和演进。',
+  },
+  'gettingStarted.prerequisites': { en: 'Prerequisites', zh: '前置条件' },
+  'gettingStarted.prereq.vue': { en: 'A Vue SFC app, usually Vite based.', zh: 'Vue SFC 应用，通常基于 Vite。' },
+  'gettingStarted.prereq.unocss': { en: 'Use preset-wind4 plus Pf theme and icon presets.', zh: '使用 preset-wind4，并接入 Pf 主题和图标 preset。' },
+  'gettingStarted.prereq.alias': { en: 'Components import through @/ paths.', zh: '组件内部使用 @/ 路径导入。' },
+  'gettingStarted.prereq.node': { en: 'Node 18.17 or newer for the CLI and fetch API.', zh: 'CLI 需要 Node 18.17 或更高版本。' },
+  'gettingStarted.install': { en: 'Install Components', zh: '安装组件' },
+  'gettingStarted.installText': {
+    en: 'Use pnpm dlx to run the published CLI without adding it to your project dependencies.',
+    zh: '使用 pnpm dlx 运行已发布的 CLI，无需提前把 CLI 安装进项目依赖。',
+  },
+  'gettingStarted.dependencies': { en: 'Install NPM Dependencies', zh: '安装 NPM 依赖' },
+  'gettingStarted.dependenciesText': {
+    en: 'After copying source files, the CLI prints the pnpm add commands required by the selected registry items.',
+    zh: '源码复制完成后，CLI 会打印当前组件需要执行的 pnpm add 依赖安装命令。',
+  },
+  'gettingStarted.unocss': { en: 'Configure UnoCSS', zh: '配置 UnoCSS' },
+  'gettingStarted.unocssText': {
+    en: 'The theme and icon registry items copy local presets into src/foundations; wire them in your UnoCSS config.',
+    zh: 'theme 和 icons registry item 会把本地 preset 复制到 src/foundations；需要在 UnoCSS 配置中接入。',
+  },
+  'gettingStarted.localDev': { en: 'Local Registry Development', zh: '本地 Registry 开发' },
+  'gettingStarted.localDevText': {
+    en: 'Inside the potato-ui repo, pnpm pf:add uses the local registry/public output so component changes can be smoke tested before publishing.',
+    zh: '在 potato-ui 仓库内，pnpm pf:add 会使用本地 registry/public 产物，便于发布前做安装冒烟验证。',
+  },
   'button.description': {
     en: 'Pf-owned button source with semantic variants, sizes, icon support, and prefix/suffix slots.',
     zh: 'Pf 自有按钮源码，支持语义变体、尺寸、图标以及前后缀插槽。',

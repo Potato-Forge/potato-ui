@@ -16,6 +16,7 @@ import DrawerPage from './docs/pages/DrawerPage.vue'
 import DropdownPage from './docs/pages/DropdownPage.vue'
 import EmptyPage from './docs/pages/EmptyPage.vue'
 import FormPage from './docs/pages/FormPage.vue'
+import GettingStartedPage from './docs/pages/GettingStartedPage.vue'
 import HelpPage from './docs/pages/HelpPage.vue'
 import IconPickerPage from './docs/pages/IconPickerPage.vue'
 import IconsPage from './docs/pages/IconsPage.vue'
@@ -47,6 +48,8 @@ import { locale, localeOptions, setLocale, t } from './docs/i18n'
 type ThemeMode = 'system' | 'light' | 'dark'
 
 const routes = {
+  '/': GettingStartedPage,
+  '/getting-started': GettingStartedPage,
   '/components/alert': AlertPage,
   '/components/avatar': AvatarPage,
   '/components/badge': BadgePage,
@@ -91,6 +94,12 @@ const routes = {
 } as const
 
 const navGroups = [
+  {
+    title: 'nav.guide',
+    links: [
+      { path: '/getting-started', label: 'nav.gettingStarted', subtitle: 'CLI' },
+    ],
+  },
   {
     title: 'nav.general',
     links: [
@@ -252,13 +261,13 @@ const navigate = (path: string) => {
   currentPath.value = path
 }
 
-const page = computed(() => routes[currentPath.value as keyof typeof routes] ?? ButtonPage)
+const page = computed(() => routes[currentPath.value as keyof typeof routes] ?? GettingStartedPage)
 </script>
 
 <template>
   <div class="docs-shell">
     <aside class="docs-sidebar">
-      <a class="brand" href="/components/button" @click.prevent="navigate('/components/button')">
+      <a class="brand" href="/getting-started" @click.prevent="navigate('/getting-started')">
         <span class="i-pf-logo brand-mark"></span>
         <span>Pf-UI</span>
       </a>
@@ -300,7 +309,7 @@ const page = computed(() => routes[currentPath.value as keyof typeof routes] ?? 
             v-for="link in group.links"
             :key="link.path"
             type="button"
-            :class="{ active: currentPath === link.path }"
+            :class="{ active: currentPath === link.path || (currentPath === '/' && link.path === '/getting-started') }"
             @click="navigate(link.path)"
           >
             <span class="nav-label">{{ t(link.label) }}</span>

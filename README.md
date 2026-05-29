@@ -22,6 +22,17 @@ Pf-UI does not aim to support every frontend stack. Compatibility with Tailwind-
 
 ## Quick Start
 
+Use the CLI in a Vue 3 + UnoCSS project:
+
+```bash
+pnpm dlx @potato-ui/cli add pf-button
+pnpm dlx @potato-ui/cli add pf-form
+```
+
+The CLI copies source files into your app, recursively includes registry dependencies, and prints any `pnpm add` commands needed for runtime packages. It expects a Vue 3 SFC project with UnoCSS, `@unocss/preset-wind4`, `@unocss/preset-icons`, and an `@/` alias.
+
+For local documentation and registry development:
+
 ```bash
 pnpm install
 pnpm dev
@@ -39,13 +50,26 @@ Build and verify the project:
 
 ```bash
 pnpm typecheck
-pnpm build
 pnpm registry:build
+pnpm build
 ```
 
 ## Distribution
 
 Pf-UI components are distributed as registry items. The components and their required `npm` dependencies are grouped logically so they can be easily installed into a consuming project's source tree.
+
+The install command for consumers is:
+
+```bash
+pnpm dlx @potato-ui/cli add <item-name>
+```
+
+Inside this repository, the development shortcut uses the same CLI against the local registry output:
+
+```bash
+pnpm registry:build
+pnpm pf:add pf-button --cwd ../consumer-app
+```
 
 Generated registry payloads are emitted to:
 

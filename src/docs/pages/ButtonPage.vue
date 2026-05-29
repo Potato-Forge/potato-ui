@@ -12,7 +12,7 @@ import { t } from '../i18n'
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <PfCode>pnpm pf:add pf-button --cwd ../your-app</PfCode>
+      <PfCode>pnpm dlx @potato-ui/cli add pf-button</PfCode>
     </section>
 
     <section class="section">

@@ -22,7 +22,7 @@ const usageCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <PfCode>pnpm pf:add pf-theme --cwd ../your-app</PfCode>
+      <PfCode>pnpm dlx @potato-ui/cli add pf-theme</PfCode>
     </section>
 
     <section class="section">

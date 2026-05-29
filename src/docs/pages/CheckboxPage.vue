@@ -24,7 +24,7 @@ const usageCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <PfCode>pnpm pf:add pf-checkbox --cwd ../your-app</PfCode>
+      <PfCode>pnpm dlx @potato-ui/cli add pf-checkbox</PfCode>
     </section>
 
     <section class="section">

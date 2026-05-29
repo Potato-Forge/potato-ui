@@ -94,7 +94,7 @@ const dependenciesCode = computed(() => dedent`
 
     <section class="section">
       <h2>{{ t('section.installation') }}</h2>
-      <PfCode>pnpm pf:add pf-form --cwd ../your-app</PfCode>
+      <PfCode>pnpm dlx @potato-ui/cli add pf-form</PfCode>
     </section>
 
     <section class="section">
