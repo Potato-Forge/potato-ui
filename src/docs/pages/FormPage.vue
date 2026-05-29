@@ -21,6 +21,8 @@ const demoConfig = [
       ],
     },
   },
+  { name: 'Priority', key: 'priority', type: 'slider' as const, default: 50, config: { showValue: true } },
+  { name: 'Score', key: 'score', type: 'rate' as const, default: 3, config: { clearable: true } },
   { name: 'Active', key: 'active', type: 'toggle' as const, default: true },
   { name: 'Birthday', key: 'birthday', type: 'date' as const },
 ]
@@ -41,6 +43,10 @@ const usageExampleCode = computed(() => dedent`
       rules: { pattern: { value: /^[\w.-]+@[\w.-]+\.\w+$/, message: '邮箱格式不正确' } } },
     { name: 'Role', key: 'role', type: 'options',
       config: { options: [{ label: 'Admin', value: 'admin' }] } },
+    { name: 'Priority', key: 'priority', type: 'slider',
+      default: 50, config: { showValue: true } },
+    { name: 'Score', key: 'score', type: 'rate',
+      default: 3, config: { clearable: true } },
     { name: 'Active', key: 'active', type: 'toggle', default: true },
     { name: 'Birthday', key: 'birthday', type: 'date' },
   ]
@@ -74,7 +80,7 @@ const formRulesCode = computed(() => dedent`
 const dependenciesCode = computed(() => dedent`
   @tanstack/vue-form, @tanstack/zod-form-adapter, zod,
   @vuepic/vue-datepicker, date-fns, @iconify/vue,
-  pf-checkbox, pf-switch, pf-help, pf-upload,
+  pf-checkbox, pf-rate, pf-slider, pf-switch, pf-help, pf-upload,
   pf-icons, pf-runtime-support, pf-theme
 `)
 </script>
@@ -122,6 +128,9 @@ const dependenciesCode = computed(() => dedent`
         <thead><tr><th>type</th><th>{{ t('formPage.type.component') }}</th><th>{{ t('formPage.type.config') }}</th></tr></thead>
         <tbody>
           <tr><td>text</td><td>{{ t('formPage.type.textDesc') }}</td><td>{{ t('formPage.type.textConfig') }}</td></tr>
+          <tr><td>number</td><td>PfInputNumber</td><td>placeholder, min, max, step</td></tr>
+          <tr><td>slider</td><td>PfSlider</td><td>min, max, step, showValue</td></tr>
+          <tr><td>rate</td><td>PfRate</td><td>count, clearable</td></tr>
           <tr><td>datetime / date / time</td><td>@vuepic/vue-datepicker</td><td>format, range, rangeTransform</td></tr>
           <tr><td>options</td><td>{{ t('formPage.type.optionsDesc') }}</td><td>multiple, variant (combobox/checkbox), options, optionsFn, searchable</td></tr>
           <tr><td>toggle</td><td>PfSwitch / PfCheckbox</td><td>variant (switch/checkbox), trueValue, falseValue</td></tr>

@@ -18,5 +18,6 @@
 - **组件覆盖里程碑 2**：已新增 `PfBadge`、`PfAlert`、`PfTabs`、`PfPagination`；docs 路由和 registry/public 已刷新到 36 items。下一阶段建议补叠层/选择增强件：`PfDropdown`、`PfPopover`、`PfDrawer`、`PfProgress`。
 - **组件覆盖里程碑 3**：已新增 `PfProgress`、`PfSkeleton`、`PfAvatar`；docs 路由和 registry/public 已刷新到 39 items。下一阶段建议补叠层/选择增强件：`PfDropdown`、`PfPopover`、`PfDrawer`、`PfInputNumber`。
 - **复杂组件基础件回接**：`PfFormItem` 已接入 `PfInput`/`PfInputNumber`；`PfFormItemOptions` 已接入 `PfSelect`/`PfBadge`/`PfCheckbox`；`PfDataTable` 已接入可选 `PfPagination` 并将 drawer 容器切到 `PfDrawer`。新增 `PfInputNumber`、`PfDropdown`、`PfDrawer` 后 registry/public 为 42 items。`PfPopover` 暂未做，因为当前 `potato-ui` 与同级 `potato-template` 都没有现成 `ui/popover` 基元。
+- **Input 组合能力与 FormItem 控件里程碑**：`PfInput` 已支持 prefix/suffix slots、icon props、clearable；`.ai/core/conventions.md` 记录了新增表单型组件必须同步 PfForm type/renderer/registry/docs 的规则。新增 `PfCollapse`、`PfSlider`、`PfRate`，其中 `PfSlider`/`PfRate` 已接入 `PfFormItem` 的 `slider`/`rate` type；registry/public 为 45 items。
 - 低优先级技术债：KI-002 Registry 实测、KI-004~008 类型/测试/CI/路由等。
 - `ai-memory-starter/` 已作为独立启动模板雏形，含通用模板、adapter、行为校正和初始化脚本；下一步可移出为独立仓库。

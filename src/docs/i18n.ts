@@ -27,6 +27,7 @@ type MessageKey =
   | 'nav.switch'
   | 'nav.breadcrumb'
   | 'nav.checkbox'
+  | 'nav.collapse'
   | 'nav.colorPicker'
   | 'nav.configProvider'
   | 'nav.help'
@@ -38,8 +39,10 @@ type MessageKey =
   | 'nav.pagination'
   | 'nav.progress'
   | 'nav.radioGroup'
+  | 'nav.rate'
   | 'nav.select'
   | 'nav.sidebar'
+  | 'nav.slider'
   | 'nav.skeleton'
   | 'nav.toast'
   | 'nav.tabs'
@@ -78,6 +81,14 @@ type MessageKey =
   | 'button.api.size'
   | 'button.api.icon'
   | 'button.api.slots'
+  | 'collapse.description'
+  | 'collapse.previewTitle'
+  | 'collapse.previewDescription'
+  | 'collapse.previewBody'
+  | 'collapse.api.modelValue'
+  | 'collapse.api.text'
+  | 'collapse.api.size'
+  | 'collapse.api.slots'
   | 'tooltip.description'
   | 'tooltip.copyHint'
   | 'tooltip.hoverMe'
@@ -302,6 +313,15 @@ type MessageKey =
   | 'input.api.slots'
   | 'input.api.class'
   | 'inputNumber.description'
+  | 'slider.description'
+  | 'slider.api.modelValue'
+  | 'slider.api.range'
+  | 'slider.api.step'
+  | 'slider.api.showValue'
+  | 'rate.description'
+  | 'rate.api.modelValue'
+  | 'rate.api.count'
+  | 'rate.api.clearable'
   | 'textarea.description'
   | 'textarea.placeholder'
   | 'textarea.api.modelValue'
@@ -541,6 +561,7 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.switch': { en: 'Switch', zh: '开关' },
   'nav.breadcrumb': { en: 'Breadcrumb', zh: '面包屑' },
   'nav.checkbox': { en: 'Checkbox', zh: '多选框' },
+  'nav.collapse': { en: 'Collapse', zh: '折叠面板' },
   'nav.colorPicker': { en: 'Color Picker', zh: '颜色选择器' },
   'nav.configProvider': { en: 'Config Provider', zh: '全局配置' },
   'nav.help': { en: 'Help', zh: '帮助' },
@@ -552,8 +573,10 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'nav.pagination': { en: 'Pagination', zh: '分页' },
   'nav.progress': { en: 'Progress', zh: '进度条' },
   'nav.radioGroup': { en: 'Radio Group', zh: '单选组' },
+  'nav.rate': { en: 'Rate', zh: '评分' },
   'nav.select': { en: 'Select', zh: '选择器' },
   'nav.sidebar': { en: 'Sidebar', zh: '侧边栏' },
+  'nav.slider': { en: 'Slider', zh: '滑块' },
   'nav.skeleton': { en: 'Skeleton', zh: '骨架屏' },
   'nav.toast': { en: 'Toast', zh: '消息提示' },
   'nav.tabs': { en: 'Tabs', zh: '标签页' },
@@ -595,6 +618,17 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
   'button.api.size': { en: 'Button dimensions.', zh: '按钮尺寸。' },
   'button.api.icon': { en: 'UnoCSS icon class rendered before default slot.', zh: '默认插槽前渲染的 UnoCSS 图标类。' },
   'button.api.slots': { en: 'Flexible content placement.', zh: '灵活放置按钮内容。' },
+  'collapse.description': {
+    en: 'Collapsible content panel for secondary sections, advanced filters, and compact disclosure areas.',
+    zh: '用于次级区块、高级筛选和紧凑展开区域的折叠面板。',
+  },
+  'collapse.previewTitle': { en: 'Advanced filters', zh: '高级筛选' },
+  'collapse.previewDescription': { en: 'Optional query fields', zh: '可选查询字段' },
+  'collapse.previewBody': { en: 'Put secondary content here.', zh: '这里放置次级内容。' },
+  'collapse.api.modelValue': { en: 'Two-way bound open state.', zh: '双向绑定的展开状态。' },
+  'collapse.api.text': { en: 'Header title and supporting description.', zh: '头部标题和辅助描述。' },
+  'collapse.api.size': { en: 'Panel density and padding size.', zh: '面板密度和内边距尺寸。' },
+  'collapse.api.slots': { en: 'Custom title, description, and body content.', zh: '自定义标题、描述和主体内容。' },
   'tooltip.description': {
     en: 'Tooltip component and plugin exports backed by vue-tippy and tippy.js.',
     zh: '基于 vue-tippy 和 tippy.js 的提示组件与插件导出。',
@@ -741,6 +775,21 @@ const messages: Record<MessageKey, Record<Locale, string>> = {
     en: 'Numeric input built from PfInput and PfButton, with min, max, and step controls.',
     zh: '基于 PfInput 和 PfButton 的数字输入，支持最小值、最大值和步进控制。',
   },
+  'slider.description': {
+    en: 'Range slider for numeric form values, filters, and adjustable settings.',
+    zh: '用于数字表单值、筛选和可调设置的范围滑块。',
+  },
+  'slider.api.modelValue': { en: 'Two-way bound numeric value.', zh: '双向绑定的数字值。' },
+  'slider.api.range': { en: 'Lower and upper bounds.', zh: '最小值和最大值边界。' },
+  'slider.api.step': { en: 'Value increment between slider stops.', zh: '滑块每次移动的步进值。' },
+  'slider.api.showValue': { en: 'Show the current value next to the track.', zh: '在轨道旁显示当前值。' },
+  'rate.description': {
+    en: 'Star rating control for scores, reviews, and preference input.',
+    zh: '用于评分、评价和偏好输入的星级评分组件。',
+  },
+  'rate.api.modelValue': { en: 'Two-way bound rating value.', zh: '双向绑定的评分值。' },
+  'rate.api.count': { en: 'Number of rating items.', zh: '评分项数量。' },
+  'rate.api.clearable': { en: 'Click the selected rating again to clear it.', zh: '再次点击已选评分时清空。' },
   'textarea.description': {
     en: 'Textarea wrapper for longer input with resize control and validation state.',
     zh: '用于长文本输入的文本域封装，支持 resize 控制和校验态。',

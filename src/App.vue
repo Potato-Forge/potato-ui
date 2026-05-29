@@ -7,6 +7,7 @@ import BreadcrumbPage from './docs/pages/BreadcrumbPage.vue'
 import ButtonPage from './docs/pages/ButtonPage.vue'
 import CardPage from './docs/pages/CardPage.vue'
 import CheckboxPage from './docs/pages/CheckboxPage.vue'
+import CollapsePage from './docs/pages/CollapsePage.vue'
 import ColorPickerPage from './docs/pages/ColorPickerPage.vue'
 import ConfigProviderPage from './docs/pages/ConfigProviderPage.vue'
 import DataTablePage from './docs/pages/DataTablePage.vue'
@@ -26,8 +27,10 @@ import ModalPage from './docs/pages/ModalPage.vue'
 import PaginationPage from './docs/pages/PaginationPage.vue'
 import ProgressPage from './docs/pages/ProgressPage.vue'
 import RadioGroupPage from './docs/pages/RadioGroupPage.vue'
+import RatePage from './docs/pages/RatePage.vue'
 import SelectPage from './docs/pages/SelectPage.vue'
 import SidebarPage from './docs/pages/SidebarPage.vue'
+import SliderPage from './docs/pages/SliderPage.vue'
 import SkeletonPage from './docs/pages/SkeletonPage.vue'
 import SwitchPage from './docs/pages/SwitchPage.vue'
 import TabsPage from './docs/pages/TabsPage.vue'
@@ -51,6 +54,7 @@ const routes = {
   '/components/button': ButtonPage,
   '/components/card': CardPage,
   '/components/checkbox': CheckboxPage,
+  '/components/collapse': CollapsePage,
   '/components/color-picker': ColorPickerPage,
   '/components/config-provider': ConfigProviderPage,
   '/components/data-table': DataTablePage,
@@ -69,8 +73,10 @@ const routes = {
   '/components/pagination': PaginationPage,
   '/components/progress': ProgressPage,
   '/components/radio-group': RadioGroupPage,
+  '/components/rate': RatePage,
   '/components/select': SelectPage,
   '/components/sidebar': SidebarPage,
+  '/components/slider': SliderPage,
   '/components/skeleton': SkeletonPage,
   '/components/switch': SwitchPage,
   '/components/tabs': TabsPage,
@@ -91,6 +97,7 @@ const navGroups = [
       { path: '/components/button', label: 'nav.button', subtitle: 'PfButton' },
       { path: '/components/badge', label: 'nav.badge', subtitle: 'PfBadge' },
       { path: '/components/card', label: 'nav.card', subtitle: 'PfCard' },
+      { path: '/components/collapse', label: 'nav.collapse', subtitle: 'PfCollapse' },
       { path: '/components/divide', label: 'nav.divide', subtitle: 'PfDivide' },
       { path: '/components/empty', label: 'nav.empty', subtitle: 'PfEmpty' },
       { path: '/components/loading', label: 'nav.loading', subtitle: 'PfLoading' },
@@ -108,7 +115,9 @@ const navGroups = [
       { path: '/components/input', label: 'nav.input', subtitle: 'PfInput' },
       { path: '/components/input-number', label: 'nav.inputNumber', subtitle: 'PfInputNumber' },
       { path: '/components/radio-group', label: 'nav.radioGroup', subtitle: 'PfRadioGroup' },
+      { path: '/components/rate', label: 'nav.rate', subtitle: 'PfRate' },
       { path: '/components/select', label: 'nav.select', subtitle: 'PfSelect' },
+      { path: '/components/slider', label: 'nav.slider', subtitle: 'PfSlider' },
       { path: '/components/switch', label: 'nav.switch', subtitle: 'PfSwitch' },
       { path: '/components/textarea', label: 'nav.textarea', subtitle: 'PfTextarea' },
       { path: '/components/upload', label: 'nav.upload', subtitle: 'PfUpload' },

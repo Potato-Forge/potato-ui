@@ -1,0 +1,43 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-collapse",
+  "type": "registry:component",
+  "title": "PfCollapse",
+  "description": "Collapsible content panel for secondary sections, advanced filters, and compact disclosure areas.",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "reka-ui",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme",
+    "ui-primitives"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-collapse/PfCollapse.vue",
+    "docsRoute": "/components/collapse"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-collapse/PfCollapse.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-collapse/PfCollapse.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'\nimport { collapseVariants } from '.'\nimport type { PfCollapseProps } from '.'\n\nconst props = withDefaults(defineProps<PfCollapseProps>(), {\n  defaultOpen: false,\n  size: 'md',\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: boolean]\n}>()\n\nconst open = computed({\n  get: () => props.modelValue ?? props.defaultOpen,\n  set: (value) => emit('update:modelValue', value),\n})\n</script>\n\n<template>\n  <Collapsible v-model:open=\"open\" :disabled=\"disabled\" :class=\"cn(collapseVariants({ size }), props.class)\">\n    <CollapsibleTrigger\n      class=\"flex w-full items-center justify-between gap-3 px-[var(--pf-collapse-px)] py-[var(--pf-collapse-py)] text-left transition-colors hover:bg-muted/60 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n    >\n      <span class=\"min-w-0\">\n        <span v-if=\"$slots.title || title\" class=\"block truncate font-medium\">\n          <slot name=\"title\">{{ title }}</slot>\n        </span>\n        <span\n          v-if=\"$slots.description || description\"\n          class=\"mt-1 block truncate text-xs text-muted-foreground\"\n        >\n          <slot name=\"description\">{{ description }}</slot>\n        </span>\n      </span>\n      <span\n        class=\"i-tabler-chevron-down h-4 w-4 shrink-0 text-muted-foreground transition-transform data-[open=true]:rotate-180\"\n        :data-open=\"open\"\n        aria-hidden=\"true\"\n      ></span>\n    </CollapsibleTrigger>\n    <CollapsibleContent>\n      <div class=\"border-t border-border px-[var(--pf-collapse-px)] py-[var(--pf-collapse-py)] text-sm text-muted-foreground\">\n        <slot />\n      </div>\n    </CollapsibleContent>\n  </Collapsible>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-collapse/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-collapse/index.ts",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority'\n\nexport { default as PfCollapse } from './PfCollapse.vue'\n\nexport const collapseVariants = cva('rounded-md border border-border bg-card text-card-foreground', {\n  variants: {\n    size: {\n      sm: '[--pf-collapse-px:0.75rem] [--pf-collapse-py:0.5rem] text-sm',\n      md: '[--pf-collapse-px:1rem] [--pf-collapse-py:0.75rem] text-sm',\n      lg: '[--pf-collapse-px:1.25rem] [--pf-collapse-py:1rem] text-base',\n    },\n  },\n  defaultVariants: {\n    size: 'md',\n  },\n})\n\nexport type CollapseVariants = VariantProps<typeof collapseVariants>\n\nexport interface PfCollapseProps {\n  modelValue?: boolean\n  defaultOpen?: boolean\n  title?: string\n  description?: string\n  disabled?: boolean\n  size?: CollapseVariants['size']\n  class?: string\n}\n"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "type": "registry:file",
+      "target": "src/lib/utils.ts",
+      "content": "import type { ClassValue } from 'clsx'\nimport { clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\n/**\n * 去除多行字符串的公共前导空白。\n * 类似 Python textwrap.dedent，用于保持 template literal 中代码块的整洁缩进。\n *\n * @example\n * dedent`\n *   import { ref } from 'vue'\n *   const count = ref(0)\n * `\n * // => \"import { ref } from 'vue'\\nconst count = ref(0)\"\n */\nexport function dedent(strings: TemplateStringsArray, ...values: unknown[]): string {\n  const raw = String.raw({ raw: strings }, ...values)\n  return dedentStr(raw)\n}\n\n/**\n * 去除普通字符串的公共前导空白。\n * 用于处理已经构建好的代码字符串。\n */\nexport function dedentStr(raw: string): string {\n  const lines = raw.split('\\n')\n\n  // 跳过首尾空行\n  let start = 0\n  let end = lines.length\n  while (start < end && (lines[start] ?? '').trim() === '') start++\n  while (end > start && (lines[end - 1] ?? '').trim() === '') end--\n  const contentLines = lines.slice(start, end)\n\n  if (contentLines.length === 0) return raw.trim()\n\n  const minIndent = contentLines.reduce((min, line) => {\n    const m = /^(\\s*)/.exec(line)\n    const indent = m?.[1]?.length ?? 0\n    return Math.min(min, indent)\n  }, Infinity)\n\n  if (minIndent === Infinity || minIndent === 0) {\n    return contentLines.join('\\n').trimEnd()\n  }\n\n  const dedented = contentLines\n    .map((line) => (line.length >= minIndent ? line.slice(minIndent) : line))\n    .join('\\n')\n\n  return dedented.trimEnd()\n}\n"
+    }
+  ]
+}

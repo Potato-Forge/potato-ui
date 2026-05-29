@@ -145,6 +145,30 @@ export type PfFormConfigItemNumber<
   }
 }
 
+export type PfFormConfigItemSlider<
+  T = Record<string, unknown>,
+  K extends keyof T & string = keyof T & string,
+> = PfFormConfigBase<T, K> & {
+  type: 'slider'
+  config?: {
+    min?: number
+    max?: number
+    step?: number
+    showValue?: boolean
+  }
+}
+
+export type PfFormConfigItemRate<
+  T = Record<string, unknown>,
+  K extends keyof T & string = keyof T & string,
+> = PfFormConfigBase<T, K> & {
+  type: 'rate'
+  config?: {
+    count?: number
+    clearable?: boolean
+  }
+}
+
 /**
  * 日期时间类型
  */
@@ -325,6 +349,8 @@ export type PfFormConfigItemUpload<
 export type PfFormConfigItem<T = any> =
   | PfFormConfigItemText<T>
   | PfFormConfigItemNumber<T>
+  | PfFormConfigItemSlider<T>
+  | PfFormConfigItemRate<T>
   | PfFormConfigItemDatetime<T>
   | PfFormConfigItemDate<T>
   | PfFormConfigItemTime<T>

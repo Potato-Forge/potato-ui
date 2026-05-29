@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-rate",
+  "type": "registry:component",
+  "title": "PfRate",
+  "description": "Rating control for scores, preference feedback, and lightweight evaluation fields.",
+  "dependencies": [],
+  "registryDependencies": ["pf-icons", "pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-rate/PfRate.vue",
+    "docsRoute": "/components/rate"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-rate/PfRate.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-rate/PfRate.vue"
+    },
+    {
+      "path": "src/components/pf-rate/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-rate/index.ts"
+    }
+  ]
+}

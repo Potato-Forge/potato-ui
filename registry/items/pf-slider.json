@@ -1,0 +1,25 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-slider",
+  "type": "registry:component",
+  "title": "PfSlider",
+  "description": "Range slider for numeric form values, filters, and adjustable settings.",
+  "dependencies": [],
+  "registryDependencies": ["pf-theme"],
+  "meta": {
+    "sourceEntry": "src/components/pf-slider/PfSlider.vue",
+    "docsRoute": "/components/slider"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-slider/PfSlider.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-slider/PfSlider.vue"
+    },
+    {
+      "path": "src/components/pf-slider/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-slider/index.ts"
+    }
+  ]
+}

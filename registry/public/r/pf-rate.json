@@ -1,0 +1,31 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "pf-rate",
+  "type": "registry:component",
+  "title": "PfRate",
+  "description": "Rating control for scores, preference feedback, and lightweight evaluation fields.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "pf-icons",
+    "pf-theme"
+  ],
+  "meta": {
+    "sourceEntry": "src/components/pf-rate/PfRate.vue",
+    "docsRoute": "/components/rate"
+  },
+  "files": [
+    {
+      "path": "src/components/pf-rate/PfRate.vue",
+      "type": "registry:component",
+      "target": "src/components/pf-rate/PfRate.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, ref } from 'vue'\nimport { cn } from '@/lib/utils'\nimport type { PfRateProps } from '.'\n\nconst props = withDefaults(defineProps<PfRateProps>(), {\n  modelValue: 0,\n  count: 5,\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: number | null]\n}>()\n\nconst hoverValue = ref<number | null>(null)\nconst activeValue = computed(() => hoverValue.value ?? props.modelValue ?? 0)\nconst isReadonly = computed(() => props.disabled || props.readonly)\n\nconst rateItems = computed(() => Array.from({ length: Math.max(0, props.count) }, (_, index) => index + 1))\n\nconst updateValue = (next: number) => {\n  if (isReadonly.value) return\n  if (props.clearable && props.modelValue === next) {\n    emit('update:modelValue', null)\n    return\n  }\n  emit('update:modelValue', next)\n}\n</script>\n\n<template>\n  <div\n    :class=\"cn('inline-flex min-w-0 items-center gap-1', props.class)\"\n    @mouseleave=\"hoverValue = null\"\n  >\n    <button\n      v-for=\"item in rateItems\"\n      :key=\"item\"\n      type=\"button\"\n      class=\"inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50\"\n      :class=\"item <= activeValue ? 'text-warning' : 'hover:text-warning'\"\n      :disabled=\"disabled\"\n      :aria-label=\"`${item} / ${count}`\"\n      @mouseenter=\"!isReadonly && (hoverValue = item)\"\n      @click=\"updateValue(item)\"\n    >\n      <span\n        class=\"h-5 w-5\"\n        :class=\"item <= activeValue ? 'i-tabler-star-filled' : 'i-tabler-star'\"\n      ></span>\n    </button>\n  </div>\n</template>\n"
+    },
+    {
+      "path": "src/components/pf-rate/index.ts",
+      "type": "registry:file",
+      "target": "src/components/pf-rate/index.ts",
+      "content": "export { default as PfRate } from './PfRate.vue'\n\nexport interface PfRateProps {\n  modelValue?: number | null\n  count?: number\n  disabled?: boolean\n  readonly?: boolean\n  clearable?: boolean\n  class?: string\n}\n"
+    }
+  ]
+}

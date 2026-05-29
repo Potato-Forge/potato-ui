@@ -16,6 +16,8 @@
 
 - **复杂组件基础件回接完成** ✅ — PfForm/PfDataTable 已接入新抽出的 PfInput/PfSelect/PfBadge/PfPagination/PfDrawer 等组件，避免平行版本继续扩散。
 
+- **Input 组合能力与 FormItem 控件里程碑完成** ✅ — PfInput 支持 prefix/suffix/clearable；新增 PfCollapse、PfSlider、PfRate；PfForm 已接入 slider/rate type。
+
 ## 后续方向
 
 Phase 2 候选任务（待人类决策）:
@@ -63,4 +65,10 @@ Phase 2 候选任务（待人类决策）:
   - `PfFormItemOptions` 接入 `PfSelect`、`PfBadge`、`PfCheckbox`
   - `PfDataTable` 接入可选 `PfPagination` 和 `PfDrawer`
   - 新增 `PfInputNumber`、`PfDropdown`、`PfDrawer`
+  - 审查通过：`vue-tsc -b`、registry build、Vite build
+- ✅ 2026-05-29 Input 组合能力与 FormItem 控件里程碑:
+  - `PfInput` 支持 `prefix` / `suffix` 插槽、icon props、clearable
+  - `.ai/core/conventions.md` 新增 FormItem 同步规则
+  - 新增 `PfCollapse`、`PfSlider`、`PfRate`
+  - `PfFormItem` 接入 `slider`、`rate` type，registryDependencies 同步更新
   - 审查通过：`vue-tsc -b`、registry build、Vite build

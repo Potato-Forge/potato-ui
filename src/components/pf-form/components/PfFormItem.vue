@@ -5,6 +5,8 @@ import type { PfUploadFileItem } from '@/components/pf-upload'
 import PfIconPicker from '@/components/pf-icon-picker/PfIconPicker.vue'
 import PfInput from '@/components/pf-input/PfInput.vue'
 import PfInputNumber from '@/components/pf-input-number/PfInputNumber.vue'
+import PfRate from '@/components/pf-rate/PfRate.vue'
+import PfSlider from '@/components/pf-slider/PfSlider.vue'
 import PfText from '@/components/pf-text/PfText.vue'
 import PfTooltip from '@/components/pf-tooltip/PfTooltip.vue'
 import PfUpload from '@/components/pf-upload/PfUpload.vue'
@@ -147,6 +149,40 @@ const formatDateValue = (value: unknown, type: 'date' | 'time' | 'datetime') => 
           :max="config.config?.max"
           :step="config.config?.step"
           @update:model-value="handleChange"
+        />
+      </template>
+    </template>
+
+    <!-- type:slider -->
+    <template v-else-if="config.type === 'slider'">
+      <template v-if="config.readonly">
+        <pf-form-item-text>{{ props.modelValue }}</pf-form-item-text>
+      </template>
+      <template v-else>
+        <PfSlider
+          :model-value="props.modelValue"
+          :disabled="config.disabled"
+          :min="config.config?.min"
+          :max="config.config?.max"
+          :step="config.config?.step"
+          :show-value="config.config?.showValue"
+          @update:model-value="handleChangeAndBlur"
+        />
+      </template>
+    </template>
+
+    <!-- type:rate -->
+    <template v-else-if="config.type === 'rate'">
+      <template v-if="config.readonly">
+        <pf-form-item-text>{{ props.modelValue }}</pf-form-item-text>
+      </template>
+      <template v-else>
+        <PfRate
+          :model-value="props.modelValue"
+          :disabled="config.disabled"
+          :count="config.config?.count"
+          :clearable="config.config?.clearable"
+          @update:model-value="handleChangeAndBlur"
         />
       </template>
     </template>

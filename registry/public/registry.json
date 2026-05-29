@@ -146,6 +146,27 @@
       }
     },
     {
+      "name": "pf-collapse",
+      "type": "registry:component",
+      "title": "PfCollapse",
+      "description": "Collapsible content panel for secondary sections, advanced filters, and compact disclosure areas.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "reka-ui",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme",
+        "ui-primitives"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-collapse/PfCollapse.vue",
+        "docsRoute": "/components/collapse"
+      }
+    },
+    {
       "name": "pf-color-picker",
       "type": "registry:component",
       "title": "PfColorPicker",
@@ -309,7 +330,9 @@
         "pf-input",
         "pf-input-number",
         "pf-icons",
+        "pf-rate",
         "pf-select",
+        "pf-slider",
         "pf-runtime-support",
         "pf-switch",
         "pf-text",
@@ -506,6 +529,21 @@
       }
     },
     {
+      "name": "pf-rate",
+      "type": "registry:component",
+      "title": "PfRate",
+      "description": "Rating control for scores, preference feedback, and lightweight evaluation fields.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-icons",
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-rate/PfRate.vue",
+        "docsRoute": "/components/rate"
+      }
+    },
+    {
       "name": "pf-runtime-support",
       "type": "registry:lib",
       "title": "Pf Runtime Support",
@@ -573,6 +611,20 @@
       "meta": {
         "sourceEntry": "src/components/pf-skeleton/PfSkeleton.vue",
         "docsRoute": "/components/skeleton"
+      }
+    },
+    {
+      "name": "pf-slider",
+      "type": "registry:component",
+      "title": "PfSlider",
+      "description": "Range slider for numeric form values, filters, and adjustable settings.",
+      "dependencies": [],
+      "registryDependencies": [
+        "pf-theme"
+      ],
+      "meta": {
+        "sourceEntry": "src/components/pf-slider/PfSlider.vue",
+        "docsRoute": "/components/slider"
       }
     },
     {
