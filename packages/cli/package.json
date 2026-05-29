@@ -16,13 +16,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xby020/potato-ui.git",
+    "url": "git+https://github.com/Potato-Forge/potato-ui.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/xby020/potato-ui/issues"
+    "url": "https://github.com/Potato-Forge/potato-ui/issues"
   },
-  "homepage": "https://xby020.github.io/potato-ui",
+  "homepage": "https://potato-forge.github.io/potato-ui",
   "engines": {
     "node": ">=18.17"
   },
