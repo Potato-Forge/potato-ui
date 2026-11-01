@@ -22,9 +22,12 @@ const usageCode = computed(() => dedent`
     <section class="section">
       <h2>{{ t('section.preview') }}</h2>
       <div class="preview">
-        <span class="i-tabler-search text-8 text-primary"></span>
-        <span class="i-tabler-chevron-right text-8 text-success"></span>
-        <span class="i-pf-logo text-8 text-primary"></span>
+        <!-- 图标尺寸用 size-* 而不是 text-*：Wind4 的 text-* 只接受字号档位，
+             `text-8` 不是合法档位、不生成任何 CSS，图标会退回各自固有尺寸
+             （自定义 SVG 因此按 viewBox 撑开）。 -->
+        <span class="i-tabler-search size-8 text-primary"></span>
+        <span class="i-tabler-chevron-right size-8 text-success"></span>
+        <span class="i-pf-logo size-8 text-primary"></span>
       </div>
     </section>
 

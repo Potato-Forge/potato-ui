@@ -1,3 +1,13 @@
+# pnpm 11 起，`package.json` 的 `pnpm` 字段不再被读取，配置统一放在本文件。
+
+# rolldown-vite 通过 npm: 协议别名接管 vite（原 package.json 的 pnpm.overrides，
+# 不迁移的话 `vite` 的别名会静默失效，实际装回上游 vite）。
+overrides:
+  vite: npm:rolldown-vite@7.2.5
+
+# 允许运行安装脚本的依赖。
+# 键名是 `allowBuilds`（映射，值为是否放行），不是 `allowedBuilds`（数组）。
+# 这两个依赖的构建脚本刻意关闭：项目不依赖它们的 postinstall 产物。
 allowBuilds:
   esbuild: false
   vue-demi: false

@@ -12,7 +12,7 @@ export const buttonVariants = cva(
       variant: {
         default: '',
         destructive:
-          'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+          'bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
           'border bg-background shadow-xs dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
         secondary: 'border',
@@ -65,7 +65,7 @@ export const buttonVariants = cva(
         variant: 'outline',
         type: 'warning',
         class:
-          'text-warning border-warning/35 hover:bg-warning/12 hover:text-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/30',
+          'text-warning-subtle-foreground border-warning/35 hover:bg-warning/12 hover:text-warning-subtle-foreground focus-visible:ring-warning/20 dark:focus-visible:ring-warning/30',
       },
       {
         variant: 'outline',
@@ -95,7 +95,7 @@ export const buttonVariants = cva(
         variant: 'secondary',
         type: 'warning',
         class:
-          'bg-warning/16 text-warning border-warning/18 hover:bg-warning/24 focus-visible:ring-warning/20 dark:bg-warning/24 dark:border-warning/20 dark:hover:bg-warning/32',
+          'bg-warning/16 text-warning-subtle-foreground border-warning/18 hover:bg-warning/24 focus-visible:ring-warning/20 dark:bg-warning/24 dark:border-warning/20 dark:hover:bg-warning/32',
       },
       {
         variant: 'secondary',
@@ -106,12 +106,12 @@ export const buttonVariants = cva(
       { variant: 'ghost', type: 'primary', class: 'text-primary hover:bg-primary/12 hover:text-primary' },
       { variant: 'ghost', type: 'success', class: 'text-success hover:bg-success/12 hover:text-success' },
       { variant: 'ghost', type: 'info', class: 'text-info hover:bg-info/12 hover:text-info' },
-      { variant: 'ghost', type: 'warning', class: 'text-warning hover:bg-warning/12 hover:text-warning' },
+      { variant: 'ghost', type: 'warning', class: 'text-warning-subtle-foreground hover:bg-warning/12 hover:text-warning-subtle-foreground' },
       { variant: 'ghost', type: 'error', class: 'text-error hover:bg-error/12 hover:text-error' },
       { variant: 'link', type: 'primary', class: 'text-primary' },
       { variant: 'link', type: 'success', class: 'text-success' },
       { variant: 'link', type: 'info', class: 'text-info' },
-      { variant: 'link', type: 'warning', class: 'text-warning' },
+      { variant: 'link', type: 'warning', class: 'text-warning-subtle-foreground' },
       { variant: 'link', type: 'error', class: 'text-error' },
     ],
     defaultVariants: {

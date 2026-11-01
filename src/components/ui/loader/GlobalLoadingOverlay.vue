@@ -35,12 +35,12 @@ const letters = 'LOADING'.split('')
   display: grid;
   place-items: center;
   backdrop-filter: blur(4px);
-  background: hsl(var(--background) / 0.82);
+  background: color-mix(in srgb, var(--background) 82%, transparent);
   transition: background-color 0.3s ease;
 }
 
 .dark .global-loading-overlay {
-  background: hsl(var(--background) / 0.96);
+  background: color-mix(in srgb, var(--background) 96%, transparent);
 }
 </style>
 

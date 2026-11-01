@@ -9,7 +9,7 @@ export const alertVariants = cva(
       type: {
         info: 'border-info/30 bg-info/10 text-info',
         success: 'border-success/30 bg-success/10 text-success',
-        warning: 'border-warning/30 bg-warning/10 text-warning',
+        warning: 'border-warning/30 bg-warning/10 text-warning-subtle-foreground',
         error: 'border-error/30 bg-error/10 text-error',
       },
     },

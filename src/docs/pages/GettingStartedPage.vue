@@ -16,11 +16,12 @@ const localDevCode = computed(() => dedent`
 const unoCode = computed(() => dedent`
   import { defineConfig, transformerDirectives, transformerVariantGroup } from 'unocss'
   import presetWind4 from '@unocss/preset-wind4'
+  import { presetPotato } from '@potato-forge/ui/preset'
   import { createPfIconsPreset } from './src/foundations/pf-icons'
-  import { createPfThemePreset } from './src/foundations/pf-theme'
+  import { createPfCompatPreset } from './src/foundations/pf-compat'
 
   export default defineConfig({
-    presets: [presetWind4(), createPfThemePreset(), createPfIconsPreset()],
+    presets: [presetWind4(), presetPotato(), createPfCompatPreset(), createPfIconsPreset()],
     transformers: [transformerDirectives(), transformerVariantGroup()],
     content: {
       pipeline: {

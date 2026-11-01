@@ -701,12 +701,24 @@
       "name": "pf-theme",
       "type": "registry:style",
       "title": "Pf Theme",
-      "description": "Pf semantic theme tokens, dark mode variables, radius tokens, and UnoCSS shortcuts.",
-      "dependencies": [],
+      "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item only maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens.",
+      "dependencies": [
+        "@potato-forge/ui@alpha"
+      ],
       "registryDependencies": [],
       "meta": {
-        "sourceEntry": "src/foundations/pf-theme/index.ts",
-        "docsRoute": "/foundation/theme"
+        "sourceEntry": "src/foundations/pf-compat/index.ts",
+        "docsRoute": "/foundation/theme",
+        "requires": {
+          "npm": [
+            "@potato-forge/ui@alpha"
+          ],
+          "unoPresets": [
+            "presetWind4()",
+            "presetPotato()",
+            "createPfCompatPreset()"
+          ]
+        }
       }
     },
     {

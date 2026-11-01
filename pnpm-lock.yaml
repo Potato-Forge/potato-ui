@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  vite: npm:rolldown-vite@7.2.5
+
 importers:
 
   .:
@@ -14,6 +17,9 @@ importers:
       '@iconify/vue':
         specifier: ^5.0.0
         version: 5.0.1(vue@3.5.34(typescript@5.9.3))
+      '@potato-forge/ui':
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(unocss@66.6.8(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(rolldown-vite@7.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.22.3)))
       '@radix-icons/vue':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.34(typescript@5.9.3))
@@ -530,6 +536,11 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@potato-forge/ui@0.1.0-alpha.2':
+    resolution: {integrity: sha512-jNYTLTdY1G8FFCx/Crtqjh16dn5x/NZbhk8aw7VsU9ndzt6ACxA2m6ttIOSQrkQZjJ9ubq4MJzp3zMIIj784eA==}
+    peerDependencies:
+      unocss: '>=66.0.0'
 
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
@@ -1861,6 +1872,10 @@ snapshots:
   '@polka/url@1.0.0-next.29': {}
 
   '@popperjs/core@2.11.8': {}
+
+  '@potato-forge/ui@0.1.0-alpha.2(unocss@66.6.8(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(rolldown-vite@7.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.22.3)))':
+    dependencies:
+      unocss: 66.6.8(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(rolldown-vite@7.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.22.3))
 
   '@quansync/fs@1.0.0':
     dependencies:

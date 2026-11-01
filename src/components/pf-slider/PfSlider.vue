@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { cn } from '@/lib/utils'
 import { sliderVariants } from '.'
 import type { PfSliderProps } from '.'
@@ -36,12 +36,31 @@ const displayValue = computed(() => {
 
 const interactive = computed(() => !props.disabled && !props.readonly)
 
+/**
+ * 拖拽中必须关闭 transition。
+ *
+ * 滑块轨道宽度与滑块位置都绑定在 `percent` 上，而原生 range 的 `input`
+ * 会随指针连续触发。若每一帧都套着 200ms 的过渡，视觉位置就会始终落后于
+ * 指针，表现为「拖拽发黏、有延迟」。松手后恢复过渡，让点击轨道的跳转仍然平滑。
+ */
+const isDragging = ref(false)
+
+const startDrag = () => {
+  if (!interactive.value) return
+  isDragging.value = true
+}
+
+const endDrag = () => {
+  isDragging.value = false
+}
+
 const updateValue = (event: Event) => {
   if (!interactive.value) return
   emit('update:modelValue', Number((event.target as HTMLInputElement).value))
 }
 
 const commitValue = (event: Event) => {
+  isDragging.value = false
   if (!interactive.value) return
   emit('change', Number((event.target as HTMLInputElement).value))
 }
@@ -59,12 +78,14 @@ const commitValue = (event: Event) => {
         class="absolute left-0 right-0 top-1/2 h-[var(--pf-slider-track)] -translate-y-1/2 overflow-hidden rounded-full bg-muted"
       >
         <div
-          class="h-full rounded-full bg-primary transition-[width]"
+          class="h-full rounded-full bg-primary"
+          :class="isDragging ? '' : 'transition-[width]'"
           :style="{ width: `${percent}%` }"
         ></div>
       </div>
       <div
-        class="pointer-events-none absolute top-1/2 h-[var(--pf-slider-thumb)] w-[var(--pf-slider-thumb)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary bg-background shadow-sm ring-offset-background transition-[left,box-shadow]"
+        class="pointer-events-none absolute top-1/2 h-[var(--pf-slider-thumb)] w-[var(--pf-slider-thumb)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary bg-background shadow-sm ring-offset-background"
+        :class="isDragging ? '' : 'transition-[left,box-shadow]'"
         :style="{ left: `${percent}%` }"
       ></div>
       <input
@@ -78,8 +99,13 @@ const commitValue = (event: Event) => {
         :aria-valuenow="value"
         :aria-valuemin="min"
         :aria-valuemax="normalizedMax"
+        @pointerdown="startDrag"
+        @keydown="startDrag"
         @input="updateValue"
         @change="commitValue"
+        @pointerup="endDrag"
+        @pointercancel="endDrag"
+        @blur="endDrag"
       />
     </div>
   </div>

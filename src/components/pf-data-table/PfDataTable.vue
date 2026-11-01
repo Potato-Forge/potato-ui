@@ -745,15 +745,15 @@ watch(
 
 <style>
 .pf-data-table-vxe {
-  --vxe-ui-layout-background-color: hsl(var(--background));
-  --vxe-ui-table-header-background-color: hsl(var(--accent));
-  --vxe-ui-table-border-color: hsl(var(--border));
-  --vxe-ui-table-row-hover-background-color: hsl(var(--muted));
-  --vxe-ui-table-row-striped-background-color: hsl(var(--secondary));
-  --vxe-ui-table-row-hover-striped-background-color: hsl(var(--muted));
-  --vxe-ui-table-row-current-background-color: hsl(var(--selected));
-  --vxe-ui-table-row-hover-current-background-color: hsl(var(--selected));
-  --vxe-ui-font-color: hsl(var(--foreground));
-  --vxe-ui-font-primary-color: hsl(var(--primary));
+  --vxe-ui-layout-background-color: var(--background);
+  --vxe-ui-table-header-background-color: var(--accent);
+  --vxe-ui-table-border-color: var(--border);
+  --vxe-ui-table-row-hover-background-color: var(--muted);
+  --vxe-ui-table-row-striped-background-color: var(--secondary);
+  --vxe-ui-table-row-hover-striped-background-color: var(--muted);
+  --vxe-ui-table-row-current-background-color: var(--selected);
+  --vxe-ui-table-row-hover-current-background-color: var(--selected);
+  --vxe-ui-font-color: var(--foreground);
+  --vxe-ui-font-primary-color: var(--primary);
 }
 </style>

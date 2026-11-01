@@ -108,7 +108,7 @@ const dependenciesCode = computed(() => dedent`
           :on-change="handleChange"
         />
       </div>
-      <div v-if="submitted" style="margin-top: 16px; padding: 12px; background: hsl(var(--muted)); border-radius: 8px;" class="text-sm">
+      <div v-if="submitted" style="margin-top: 16px; padding: 12px; background: var(--muted); border-radius: 8px;" class="text-sm">
         <strong>Submitted:</strong>
         <pre style="margin: 4px 0 0; font-size: 11px;">{{ JSON.stringify(submitted, null, 2) }}</pre>
       </div>

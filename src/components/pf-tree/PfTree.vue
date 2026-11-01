@@ -197,7 +197,7 @@ defineExpose({
 .pf-tree .tree-vline,
 .pf-tree .tree-hline {
   position: absolute;
-  background: hsl(var(--border));
+  background: var(--border);
 }
 
 .pf-tree .tree-vline {
@@ -234,7 +234,7 @@ defineExpose({
   left: 0;
   right: 0;
   top: -1px;
-  border-top: 2px solid hsl(var(--primary));
+  border-top: 2px solid var(--primary);
 }
 
 .pf-tree-drop-indicator-v {
@@ -242,7 +242,7 @@ defineExpose({
   left: 0;
   top: -9px;
   height: 10px;
-  border-left: 2px solid hsl(var(--primary));
+  border-left: 2px solid var(--primary);
 }
 
 @keyframes tree-row-in {

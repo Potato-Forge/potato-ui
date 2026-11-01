@@ -231,13 +231,13 @@ const formatActionPreviewValue = (value: Date | Date[] | null | undefined) => {
   block-size: 2.25rem;
   inline-size: 100%;
   border-radius: calc(var(--radius) - 2px);
-  border: 1px solid hsl(var(--input));
+  border: 1px solid var(--input);
   background: transparent;
   padding: 0.25rem 1.875rem 0.25rem 0.75rem;
   font-family: inherit;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: hsl(var(--foreground));
+  color: var(--foreground);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 }
 
@@ -246,14 +246,14 @@ const formatActionPreviewValue = (value: Date | Date[] | null | undefined) => {
 }
 
 :deep(.dp__input::placeholder) {
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
 }
 
 :deep(.dp__input_focus),
 :deep(.dp__input:focus) {
   outline: none;
-  border-color: hsl(var(--ring));
-  box-shadow: 0 0 0 1px hsl(var(--ring));
+  border-color: var(--ring);
+  box-shadow: 0 0 0 1px var(--ring);
 }
 
 :deep(.dp__input:disabled) {
@@ -267,39 +267,39 @@ const formatActionPreviewValue = (value: Date | Date[] | null | undefined) => {
 
 :deep(.dp__theme_light),
 :deep(.dp__theme_dark) {
-  --dp-background-color: hsl(var(--card));
-  --dp-text-color: hsl(var(--foreground));
-  --dp-hover-color: hsl(var(--accent));
-  --dp-hover-text-color: hsl(var(--accent-foreground));
-  --dp-primary-color: hsl(var(--primary));
-  --dp-primary-disabled-color: hsl(var(--selected));
-  --dp-primary-text-color: hsl(var(--primary-foreground));
-  --dp-secondary-color: hsl(var(--border));
-  --dp-border-color: hsl(var(--border));
-  --dp-menu-border-color: hsl(var(--border));
-  --dp-border-color-hover: hsl(var(--ring));
-  --dp-border-color-focus: hsl(var(--ring));
-  --dp-disabled-color: hsl(var(--muted));
-  --dp-disabled-color-text: hsl(var(--muted-foreground));
-  --dp-scroll-bar-background: hsl(var(--muted));
-  --dp-scroll-bar-color: hsl(var(--muted-foreground));
-  --dp-success-color: hsl(var(--success));
-  --dp-success-color-disabled: hsl(var(--success) / 0.6);
-  --dp-icon-color: hsl(var(--muted-foreground));
-  --dp-danger-color: hsl(var(--destructive));
-  --dp-marker-color: hsl(var(--destructive));
-  --dp-tooltip-color: hsl(var(--popover));
-  --dp-highlight-color: hsl(var(--selected) / 0.5);
-  --dp-range-between-dates-background-color: hsl(var(--selected));
-  --dp-range-between-dates-text-color: hsl(var(--selected-foreground));
-  --dp-range-between-border-color: hsl(var(--selected));
+  --dp-background-color: var(--card);
+  --dp-text-color: var(--foreground);
+  --dp-hover-color: var(--accent);
+  --dp-hover-text-color: var(--accent-foreground);
+  --dp-primary-color: var(--primary);
+  --dp-primary-disabled-color: var(--selected);
+  --dp-primary-text-color: var(--primary-foreground);
+  --dp-secondary-color: var(--border);
+  --dp-border-color: var(--border);
+  --dp-menu-border-color: var(--border);
+  --dp-border-color-hover: var(--ring);
+  --dp-border-color-focus: var(--ring);
+  --dp-disabled-color: var(--muted);
+  --dp-disabled-color-text: var(--muted-foreground);
+  --dp-scroll-bar-background: var(--muted);
+  --dp-scroll-bar-color: var(--muted-foreground);
+  --dp-success-color: var(--success);
+  --dp-success-color-disabled: color-mix(in srgb, var(--success) 60%, transparent);
+  --dp-icon-color: var(--muted-foreground);
+  --dp-danger-color: var(--destructive);
+  --dp-marker-color: var(--destructive);
+  --dp-tooltip-color: var(--popover);
+  --dp-highlight-color: color-mix(in srgb, var(--selected) 50%, transparent);
+  --dp-range-between-dates-background-color: var(--selected);
+  --dp-range-between-dates-text-color: var(--selected-foreground);
+  --dp-range-between-border-color: var(--selected);
   --dp-border-radius: calc(var(--radius) - 2px);
   --dp-cell-border-radius: calc(var(--radius) - 4px);
   --dp-font-size: 0.875rem;
 }
 
 :deep(.dp__menu) {
-  border-color: hsl(var(--border));
+  border-color: var(--border);
   box-shadow:
     0 10px 15px -3px rgb(0 0 0 / 10%),
     0 4px 6px -4px rgb(0 0 0 / 10%);
@@ -307,13 +307,13 @@ const formatActionPreviewValue = (value: Date | Date[] | null | undefined) => {
 
 :deep(.dp__action_select) {
   border-radius: calc(var(--radius) - 4px);
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
 :deep(.dp__action_cancel) {
-  border-color: hsl(var(--border));
+  border-color: var(--border);
   border-radius: calc(var(--radius) - 4px);
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
 }
 </style>

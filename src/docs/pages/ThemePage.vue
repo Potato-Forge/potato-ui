@@ -4,11 +4,17 @@ import { dedent } from '@/lib/utils'
 import { t } from '../i18n'
 
 const usageCode = computed(() => dedent`
+  # 主题真源在 potato-design
+  pnpm add @potato-forge/ui@alpha
+
+  # uno.config.ts
+  import { defineConfig } from 'unocss'
   import presetWind4 from '@unocss/preset-wind4'
-  import { createPfThemePreset } from '@/foundations/pf-theme'
+  import { presetPotato } from '@potato-forge/ui/preset'
+  import { createPfCompatPreset } from './src/foundations/pf-compat'
 
   export default defineConfig({
-    presets: [presetWind4(), createPfThemePreset()],
+    presets: [presetWind4(), presetPotato(), createPfCompatPreset()],
   })
 `)
 </script>

@@ -316,7 +316,7 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
         <PfButton variant="outline" :disabled="props.disabled" class="justify-between min-w-40">
           <template #prefix>
             <span
-              class="h-4 w-4 rounded-full border border-border shadow-[inset_0_1px_1px_hsl(var(--foreground)/0.08)]"
+              class="h-4 w-4 rounded-full border border-border shadow-[inset_0_1px_1px_color-mix(in srgb, var(--foreground) 8%, transparent)]"
               :style="{ backgroundColor: currentValue.hex }"
             ></span>
           </template>
@@ -447,7 +447,7 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
 
         <div
           v-if="!props.hideContrastRatio"
-          class="rounded-xl border border-border bg-muted/35 px-3 py-3"
+          class="@container/pf-contrast rounded-xl border border-border bg-muted/35 px-3 py-3"
         >
           <div class="mb-2 flex items-center gap-2">
             <pf-text as="p" class="font-medium mb-0">对比度参考</pf-text>
@@ -462,7 +462,11 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
             </PfHelp>
           </div>
 
-          <div class="grid gap-3 md:grid-cols-2">
+          <!-- 用容器查询而不是 md: 视口断点。这个面板在 360px 宽的 popover 里，
+               而 md: 判断的是浏览器宽度——桌面端必然命中，于是两块内容被强行
+               挤进各约 170px 的列里，文字与徽标全部换行错位。容器查询看的是
+               面板自身宽度，popover 变宽时才分两列。 -->
+          <div class="grid gap-3 @md/pf-contrast:grid-cols-2">
             <div class="rounded-lg border border-border bg-background px-3 py-3">
               <div class="mb-2 flex items-center gap-3">
                 <div
@@ -539,7 +543,7 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
   height: 0.9rem;
   border-radius: 9999px;
   appearance: none;
-  border: 1px solid hsl(var(--border));
+  border: 1px solid var(--border);
 }
 
 .pf-color-picker-range::-webkit-slider-thumb {
@@ -548,7 +552,7 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
   height: 1rem;
   border-radius: 9999px;
   border: 2px solid white;
-  background: hsl(var(--foreground));
+  background: var(--foreground);
   box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18);
 }
 
@@ -557,7 +561,7 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
   height: 1rem;
   border-radius: 9999px;
   border: 2px solid white;
-  background: hsl(var(--foreground));
+  background: var(--foreground);
   box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18);
 }
 
@@ -565,15 +569,15 @@ function getRelativeLuminance(color: PfColorPickerRgb) {
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  border: 1px solid hsl(var(--border));
+  border: 1px solid var(--border);
   padding: 0.125rem 0.5rem;
   font-size: 0.75rem;
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
 }
 
 .pf-color-badge-pass {
   border-color: transparent;
-  background: color-mix(in srgb, hsl(var(--success)) 18%, transparent);
-  color: hsl(var(--success));
+  background: color-mix(in srgb, var(--success) 18%, transparent);
+  color: var(--success);
 }
 </style>

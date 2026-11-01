@@ -1,0 +1,32 @@
+/**
+ * 应用外壳（app shell）视觉。
+ *
+ * 这是 potato-ui 自己的选择，不属于 design：
+ * design 只规定 `background` / `surface` 等语义色的含义，不规定「页面要不要一层
+ * 由左上角泛光 + 纵向渐变组成的壳」。因此它留在这里，而不是回提进 potato-design。
+ *
+ * 全部取值都来自 design 的语义 token（经 pf-compat 别名解析），没有硬编码颜色。
+ */
+html,
+body,
+#app {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 3.5%, transparent), transparent 28%),
+    linear-gradient(
+      180deg,
+      var(--app-shell) 0%,
+      var(--background) 55%,
+      var(--content-muted) 100%
+    );
+  color: var(--foreground);
+}
+
+body {
+  margin: 0;
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -24,3 +24,9 @@
 - **pnpm 发布前自动化**：根 `package.json` 新增 `release:sync-version` 与 `release:check-version`，分别用于同步 root/CLI 版本与校验 tag/版本/CLI scope 一致性。建议发布前先执行 `pnpm release:sync-version <version>` 和 `pnpm release:check-version <version>`。
 - 低优先级技术债：KI-002 Registry 实测、KI-004~008 类型/测试/CI/路由等。
 - `ai-memory-starter/` 已作为独立启动模板雏形，含通用模板、adapter、行为校正和初始化脚本；下一步可移出为独立仓库。
+- **2026-11-01 主题接入 potato-design（P0 完成）**：
+  - 主题真源迁移到 `@potato-forge/ui@alpha`。`uno.config.ts` = `presetWind4() + presetPotato() + createPfCompatPreset() + createPfIconsPreset()`。
+  - 新增 `src/foundations/pf-compat/`（`index.ts` 历史 token 别名层 + `app-shell.css` 应用外壳渐变）；**已删除** `src/foundations/pf-theme/`。
+  - 改写约定：颜色一律用 `var(--pd-color-x)`，**不要**再包 `hsl()`（design 是 OKLCH，包了就是无效 CSS）；透明度用 `color-mix(...)`。
+  - 安装依赖必须写 `@potato-forge/ui@alpha`（`latest` tag 仍是 0.0.1-alpha.1，无 presetPotato）。
+  - 待办：P1 组件层归一（已无 hsl 残留，剩余是逐页目视验收）、P4 品牌色覆盖接入 `theme-settings.ts`。

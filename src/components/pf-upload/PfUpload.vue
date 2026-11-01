@@ -630,7 +630,7 @@ onBeforeUnmount(() => {
               class="inline-flex size-8 items-center justify-center rounded hover:bg-muted"
               @click="retryUpload(item.id)"
             >
-              <div class="i-tabler-refresh text-base text-warning"></div>
+              <div class="i-tabler-refresh text-base text-warning-subtle-foreground"></div>
             </button>
 
             <button

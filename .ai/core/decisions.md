@@ -118,4 +118,24 @@
 
 ---
 
-*格式: D<序号> | 最后更新: 2026-05-21*
+*格式: D<序号> | 最后更新: 2026-11-01*
+
+## D011: 主题真源收敛到 potato-design
+
+**决策**: potato-ui 不再自持主题 preset。颜色/排版/圆角/阴影/动效全部来自 `@potato-forge/ui`，本地只保留 `src/foundations/pf-compat/` 这一层「历史 token 名 → design 语义 token」的别名映射。
+
+**理由**:
+- 两套主题各自维护会漂移；改主题需要同步多个项目。
+- 兼容层让 41 个 Pf 组件与 20 个 ui 原语**零改动**，同时主题只有一个真源。
+- 别名是纯映射、不含发明：每一行都能说出对应的 design token 语义。
+
+**后果**:
+- design 的颜色是完整 OKLCH 值，**禁止** `hsl(var(--pd-color-x))` 包装（无效 CSS，整条声明被丢弃）；需要透明度用 `color-mix(in srgb, var(--pd-color-x) N%, transparent)`。
+- `@potato-forge/ui` 的 npm `latest` tag 停在旧版，安装必须写 `@alpha`，registry 依赖声明也据此写成 `@potato-forge/ui@alpha`。
+- 圆角阶梯随 design 变化（`rounded-md` 6→8px），属于已接受的视觉调整。
+- design 无 sidebar 语义组，`sidebar-*` 由兼容层就近映射；若未来 design 引入 sidebar token，兼容层应改为直连。
+- 品牌色定制（6 预设 + 自定义 hex）保留在 potato-ui 侧，作为 design 之上的运行时覆盖。
+
+---
+
+*格式: D<序号> | 最后更新: 2026-11-01*

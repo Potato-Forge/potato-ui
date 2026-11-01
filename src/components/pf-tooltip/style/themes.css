@@ -1,12 +1,56 @@
+/**
+ * PfTooltip 主题。
+ *
+ * 此前这里把 `foreground` 当背景、`background` 当文字——深浅完全颠倒。
+ * 亮色下 foreground 是深字色，于是 tooltip 变成一块深色方块，与页面其余
+ * 浮层（modal、dropdown 都用 popover 系列）不一致。
+ *
+ * design 对浮层已有明确语义：`popover` 是「脱离文档流的浮层表面」，
+ * `popover-foreground` 是「浮层内的默认文字」，因此这里直接采用。
+ * 箭头必须单独上色：tippy 的箭头是独立 DOM 节点，不会继承 box 的背景。
+ */
 .tippy-box[data-theme~='pf-tooltip'] {
-  background: hsl(var(--foreground));
-  color: hsl(var(--background));
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 14px 32px hsl(var(--foreground) / 0.16);
+  background: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--foreground) 12%, transparent);
 }
 
 .tippy-box[data-theme~='pf-tooltip'] > .tippy-content {
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+/* 箭头：tippy 按 placement 给箭头加 data-placement，四向都要覆盖。 */
+.tippy-box[data-theme~='pf-tooltip'] > .tippy-arrow {
+  color: var(--popover);
+}
+
+/* 有边框时箭头内部会露出边框色，沿箭头描边补齐。 */
+.tippy-box[data-theme~='pf-tooltip'] > .tippy-arrow::before {
+  content: '';
+  position: absolute;
+  border: 1px solid var(--border);
+  border-radius: 1px;
+}
+
+.tippy-box[data-theme~='pf-tooltip'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+.tippy-box[data-theme~='pf-tooltip'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+
+.tippy-box[data-theme~='pf-tooltip'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tippy-box[data-theme~='pf-tooltip'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: transparent;
+  border-top-color: transparent;
 }
