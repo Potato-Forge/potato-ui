@@ -139,3 +139,27 @@
 ---
 
 *格式: D<序号> | 最后更新: 2026-11-01*
+
+## D012: 开发期以 link 协议联调 potato-design
+
+**决策**: potato-ui 的 `@potato-forge/ui` 依赖当前使用 `link:../potato-design/packages/ui`，
+直接消费 design 仓库的本地构建产物，而非 npm 上的 `0.1.0-alpha.2`。
+
+**理由**:
+- design 的主题修正（warning 拆分、accent 亮暗同色相、暗色 primary 亮青、input 柔化）
+  尚未发布到 npm，`alpha.2` 里仍是旧值，用旧包无法验收视觉改动。
+- `file:` 协议是**复制快照**，design 重新构建后不会同步；只有 `link:` 是软链，
+  改完 design 构建一次即可在 potato-ui 看到效果。
+
+**后果**:
+- 成员或 CI 拉取仓库后需先 `pnpm --filter @potato-forge/ui build`（在 potato-design 下），
+  否则 `dist` 缺失导致安装/启动失败。
+- 发布版或对外分发时必须把依赖改回真实版本号（如 `0.1.0-alpha.3`），
+  **不可**把 `link:` 提交进发布产物。
+- link 联调时两侧 `@unocss/core` 版本可能不一致，`Preset` 泛型会被 TS 视为不同标识；
+  `createPfThemePresets()` 已对此加类型断言，只影响类型检查，运行时对象结构相同。
+- 恢复正式依赖的前提：design 发布新 alpha 后，把依赖改回版本号并重新 install。
+
+---
+
+*格式: D<序号> | 最后更新: 2026-11-01*

@@ -30,3 +30,9 @@
   - 改写约定：颜色一律用 `var(--pd-color-x)`，**不要**再包 `hsl()`（design 是 OKLCH，包了就是无效 CSS）；透明度用 `color-mix(...)`。
   - 安装依赖必须写 `@potato-forge/ui@alpha`（`latest` tag 仍是 0.0.1-alpha.1，无 presetPotato）。
   - 待办：P1 组件层归一（已无 hsl 残留，剩余是逐页目视验收）、P4 品牌色覆盖接入 `theme-settings.ts`。
+- **2026-11-01 第二轮修复（tooltip/toast/rate/动效）**：
+  - tooltip 箭头恢复：只能靠 `.tippy-arrow` 的 `color` 驱动，**禁止**给 `::before` 加 border（会覆盖 tippy 画三角形的 8px border）。
+  - toast 副标题：sonner 自带 `[data-description]{color:rgb(63,63,63)}` 优先级高于工具类，必须 `!text-inherit`；`toastOptions` 已提到 setup 内（模板表达式不能写注释）。
+  - PfRate 星星用 `text-warning`（图形填充用实心色），不是 `-subtle-foreground`（那是文字色）。
+  - 按钮 `transition-all` → `transition-colors duration-fast`；input 的 box-shadow 纳入过渡，focus 外框不再瞬现。
+  - **当前依赖是 `link:../potato-design/packages/ui`（D012）**：验收态，发布前必须改回版本号。
