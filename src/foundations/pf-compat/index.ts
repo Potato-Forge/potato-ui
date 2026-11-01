@@ -123,7 +123,12 @@ export function createPfCompatPreset(): Preset {
  *
  * 顺序有意义：`presetPotato()` 先落 design token 与元素默认值，
  * `createPfCompatPreset()` 再补历史别名。
+ *
+ * `presetPotato()` 需要一次类型断言：`@potato-forge/ui` 把 `@unocss/core` 作为
+ * peerDependency，其 `Preset` 泛型在跨包实例化时会被 TypeScript 视为不同标识
+ * （典型场景是本地 `link:` 联调时两边 core 版本不完全一致）。运行时对象结构完全
+ * 相同，这里只影响类型检查，不影响生成结果。
  */
 export function createPfThemePresets(): Preset[] {
-  return [presetPotato(), createPfCompatPreset()]
+  return [presetPotato() as Preset, createPfCompatPreset()]
 }

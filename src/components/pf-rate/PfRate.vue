@@ -38,7 +38,7 @@ const updateValue = (next: number) => {
       :key="item"
       type="button"
       class="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-      :class="item <= activeValue ? 'text-warning-subtle-foreground' : 'hover:text-warning-subtle-foreground'"
+      :class="item <= activeValue ? 'text-warning' : 'hover:text-warning'"
       :disabled="disabled"
       :aria-label="`${item} / ${count}`"
       @mouseenter="!isReadonly && (hoverValue = item)"
