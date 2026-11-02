@@ -163,3 +163,30 @@
 ---
 
 *格式: D<序号> | 最后更新: 2026-11-01*
+
+## D013: 自建浮层动画 preset，不引入 tailwindcss-animate
+
+**决策**: 在 `src/foundations/pf-animate/` 自建 UnoCSS preset，实现浮层进出场所需的
+14 个类（`animate-in/out`、`fade-*`、`zoom-*`、`slide-*`）。
+
+**背景**: drawer / modal / dropdown / select 一直写着 `animate-in`、
+`slide-in-from-right` 这类 **tailwindcss-animate** 的类名，但本项目用 UnoCSS，
+既没装该插件也无等价实现——这些类一个都不生成 CSS，导致所有浮层瞬间出现、
+瞬间消失，长期没有任何过渡。
+
+**为什么不直接装 tw-animate-css**: 它是给 Tailwind v4 的 `@theme` 与 `--tw-*`
+变量体系用的，在 UnoCSS 下拿不到那套变量，行为不可预期。
+
+**机制**: 与 tailwindcss-animate 一致——`animate-in/out` 挂 keyframes，
+`fade-*`/`zoom-*`/`slide-*` 只设 CSS 变量（`--pf-enter-*`），由 keyframes 读取，
+因此可任意组合（淡入 + 右滑 + 缩放）。时长与缓动复用 design 的动效 Token，
+并优先读 `--un-duration`/`--un-ease`，使组件上已有的 `duration-*` 工具类能直接
+控制动画时长（此前 `data-[state=open]:duration-500` 写的是 transition-duration，
+对 animation 无效，属于死代码，接上 `--un-duration` 后才真正生效）。
+
+**后果**: 新增浮层时继续用这套类名即可，`slide-in-from-*` 支持任意值写法
+（如 `slide-in-from-top-[48%]`）。已内置 `prefers-reduced-motion` 降级。
+
+---
+
+*格式: D<序号> | 最后更新: 2026-11-02*
