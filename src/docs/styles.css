@@ -1,7 +1,7 @@
 .docs-shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: 264px minmax(0, 1fr);
 }
 
 .docs-sidebar {
@@ -9,10 +9,36 @@
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  /* 滚动条默认由系统绘制：亮色下是一条粗灰槽，与整体视觉割裂。
+     改为细条 + 主题色，并在悬停时才加深；轨道保持透明，不额外占视觉宽度。 */
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 28%, transparent) transparent;
   padding: 24px 18px;
   border-right: 1px solid var(--border);
   background: color-mix(in srgb, var(--content-surface) 82%, transparent);
   backdrop-filter: blur(18px);
+}
+
+/* WebKit 系（Chrome / Safari / Edge）需要单独声明，scrollbar-width 不生效。 */
+.docs-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.docs-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--muted-foreground) 26%, transparent);
+}
+
+.docs-sidebar:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted-foreground) 45%, transparent);
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--muted-foreground) 60%, transparent);
 }
 
 .brand {
@@ -96,6 +122,13 @@
   padding-bottom: 16px;
 }
 
+/* 分组内的条目需要自己的纵向间距。此前相邻 button 直接贴合，
+   两个 hover 背景会连成一片，看不出是独立条目。 */
+.nav-stack section {
+  display: grid;
+  gap: 2px;
+}
+
 .nav-stack h2 {
   margin: 0 0 8px;
   color: var(--muted-foreground);
@@ -112,13 +145,17 @@
   justify-content: center;
   align-items: flex-start;
   gap: 1px;
-  padding: 4px 10px;
+  padding: 5px 10px;
   border: 0;
   border-radius: 6px;
   background: transparent;
   color: var(--foreground);
   text-align: left;
   cursor: pointer;
+  /* hover 底色与文字同步过渡，避免瞬时跳变 */
+  transition:
+    background-color var(--pd-duration-fast) var(--pd-ease-standard),
+    color var(--pd-duration-fast) var(--pd-ease-standard);
 }
 
 .nav-label {
@@ -134,19 +171,31 @@
   line-height: 1.2;
 }
 
-.nav-stack button:hover,
-.nav-stack button.active {
+/* hover 用轻量中性底，active 额外加品牌色文字，让「当前页」一眼可辨。
+   两者若共用同一底色，滚动列表里会分不清哪个是当前页。 */
+.nav-stack button:hover {
   background: var(--selected);
   color: var(--selected-foreground);
 }
 
+.nav-stack button.active {
+  background: var(--selected);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.nav-stack button.active .nav-subtitle {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
 .docs-main {
   min-width: 0;
-  padding: 48px clamp(20px, 6vw, 72px);
+  padding: 40px clamp(20px, 5vw, 64px) 72px;
 }
 
 .page {
-  max-width: 1040px;
+  max-width: 1160px;
 }
 
 .page-header {
@@ -155,8 +204,9 @@
 
 .page-header h1 {
   margin: 0 0 10px;
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .page-header p {
@@ -168,7 +218,7 @@
 }
 
 .section {
-  margin-top: 36px;
+  margin-top: 44px;
 }
 
 .section h2 {
@@ -186,7 +236,7 @@
   overflow: auto;
   padding: 24px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--pd-radius-lg);
   background: var(--content-surface);
 }
 

@@ -6,7 +6,7 @@ export { PfButton }
 export { default as default } from './PfButton.vue'
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors duration-fast ease-standard disabled:pointer-events-auto disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors duration-normal ease-standard disabled:pointer-events-auto disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
@@ -103,11 +103,11 @@ export const buttonVariants = cva(
         class:
           'bg-error/16 text-error border-error/18 hover:bg-error/24 focus-visible:ring-error/20 dark:bg-error/24 dark:border-error/20 dark:hover:bg-error/32',
       },
-      { variant: 'ghost', type: 'primary', class: 'text-primary hover:bg-primary/12 hover:text-primary' },
-      { variant: 'ghost', type: 'success', class: 'text-success hover:bg-success/12 hover:text-success' },
-      { variant: 'ghost', type: 'info', class: 'text-info hover:bg-info/12 hover:text-info' },
-      { variant: 'ghost', type: 'warning', class: 'text-warning-subtle-foreground hover:bg-warning/12 hover:text-warning-subtle-foreground' },
-      { variant: 'ghost', type: 'error', class: 'text-error hover:bg-error/12 hover:text-error' },
+      { variant: 'ghost', type: 'primary', class: 'text-primary-strong hover:bg-primary/18 hover:text-primary-strong' },
+      { variant: 'ghost', type: 'success', class: 'text-success-subtle-foreground hover:bg-success/18 hover:text-success-subtle-foreground' },
+      { variant: 'ghost', type: 'info', class: 'text-info-subtle-foreground hover:bg-info/18 hover:text-info-subtle-foreground' },
+      { variant: 'ghost', type: 'warning', class: 'text-warning-subtle-foreground hover:bg-warning/18 hover:text-warning-subtle-foreground' },
+      { variant: 'ghost', type: 'error', class: 'text-error-subtle-foreground hover:bg-error/18 hover:text-error-subtle-foreground' },
       { variant: 'link', type: 'primary', class: 'text-primary' },
       { variant: 'link', type: 'success', class: 'text-success' },
       { variant: 'link', type: 'info', class: 'text-info' },
