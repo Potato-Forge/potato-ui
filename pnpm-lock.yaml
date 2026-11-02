@@ -6,9 +6,6 @@ importers:
   .:
     configDependencies: {}
     packageManagerDependencies:
-      '@pnpm/exe':
-        specifier: 12.16.1
-        version: 12.16.1
       pnpm:
         specifier: 12.16.1
         version: 12.16.1
@@ -92,11 +89,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@pnpm/exe@12.16.1':
-    resolution: {integrity: sha512-Opsh2R7IuFY3ekd0C282Tmzgr5hiSlKMOv05/3dJXUrrp5NbmjC1Cm5PCFsa8xsiXY7z4oSkI4Qof1LjTkgAJg==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   pnpm@12.16.1:
     resolution: {integrity: sha512-CR0d7nknV1Zhsl2rPCrjHK/BxU1rce1qZgDPDByxBDSkR+rhQBXxsj4ua+3u1535SpMuIWTSgyKA3OP7MvZW0Q==}
     engines: {node: '>=18'}
@@ -146,23 +138,6 @@ snapshots:
   '@pnpm/exe.win32-x64@12.16.1':
     optional: true
 
-  '@pnpm/exe@12.16.1':
-    optionalDependencies:
-      '@pnpm/exe.android-arm64': 12.16.1
-      '@pnpm/exe.android-x64': 12.16.1
-      '@pnpm/exe.darwin-arm64': 12.16.1
-      '@pnpm/exe.darwin-x64': 12.16.1
-      '@pnpm/exe.freebsd-x64': 12.16.1
-      '@pnpm/exe.linux-arm64': 12.16.1
-      '@pnpm/exe.linux-arm64-musl': 12.16.1
-      '@pnpm/exe.linux-ppc64': 12.16.1
-      '@pnpm/exe.linux-riscv64': 12.16.1
-      '@pnpm/exe.linux-s390x': 12.16.1
-      '@pnpm/exe.linux-x64': 12.16.1
-      '@pnpm/exe.linux-x64-musl': 12.16.1
-      '@pnpm/exe.win32-arm64': 12.16.1
-      '@pnpm/exe.win32-x64': 12.16.1
-
   pnpm@12.16.1:
     optionalDependencies:
       '@pnpm/exe.android-arm64': 12.16.1
@@ -201,8 +176,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.1(vue@3.5.34(typescript@5.9.3))
       '@potato-forge/ui':
-        specifier: link:../potato-design/packages/ui
-        version: link:../potato-design/packages/ui
+        specifier: 0.1.0-alpha.4
+        version: 0.1.0-alpha.4(unocss@66.12.0(@oxc-project/types@0.153.0)(cac@7.1.0)(rolldown-vite@7.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.22.3))(srvx@1.0.8))
       '@radix-icons/vue':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.34(typescript@5.9.3))
@@ -714,6 +689,11 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@potato-forge/ui@0.1.0-alpha.4':
+    resolution: {integrity: sha512-XltgGPT3A+xowIoXDhL//WiHhIm7RSat9qFyKo9hTJCRU3o11t1gdesbQb7qOKEEj36UfBwXqX5XpQS5gkGiaQ==}
+    peerDependencies:
+      unocss: '>=66.0.0'
 
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
@@ -2091,6 +2071,10 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@potato-forge/ui@0.1.0-alpha.4(unocss@66.12.0(@oxc-project/types@0.153.0)(cac@7.1.0)(rolldown-vite@7.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.22.3))(srvx@1.0.8))':
+    dependencies:
+      unocss: 66.12.0(@oxc-project/types@0.153.0)(cac@7.1.0)(rolldown-vite@7.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.22.3))(srvx@1.0.8)
+
   '@quansync/fs@1.0.0':
     dependencies:
       quansync: 1.0.0
@@ -2989,7 +2973,7 @@ snapshots:
       picomatch: 4.0.4
       postcss: 8.5.15
       rolldown: 1.0.0-beta.50(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.12.4
       fsevents: 2.3.3

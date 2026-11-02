@@ -11,3 +11,6 @@ overrides:
 allowBuilds:
   esbuild: false
   vue-demi: false
+
+minimumReleaseAgeExclude:
+  - '@potato-forge/ui@0.1.0-alpha.4'
