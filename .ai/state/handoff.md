@@ -36,3 +36,9 @@
   - PfRate 星星用 `text-warning`（图形填充用实心色），不是 `-subtle-foreground`（那是文字色）。
   - 按钮 `transition-all` → `transition-colors duration-fast`；input 的 box-shadow 纳入过渡，focus 外框不再瞬现。
   - **当前依赖是 `link:../potato-design/packages/ui`（D012）**：验收态，发布前必须改回版本号。
+- **2026-11-02 发布前准备（alpha.4）**：
+  - design 已 bump 到 `0.1.0-alpha.4`，CHANGELOG 覆盖三轮主题修正，`check-release.mjs` 通过。
+  - **待 npm 登录 + 2FA 批准**：`npm login` → `node scripts/stage-release.mjs v0.1.0-alpha.4` → `npm stage approve <id> -y`。
+  - potato-ui 依赖已改回 `0.1.0-alpha.4`，**发布前 `pnpm install` 会 404**（预期）。
+  - `registry/items/pf-theme.json` 已把 `pf-animate` 纳入分发（drawer/modal 依赖它）。
+  - 完整清单见 `potato-design/docs/release-alpha.4.md`。

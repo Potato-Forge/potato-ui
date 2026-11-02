@@ -3,7 +3,7 @@
   "name": "pf-theme",
   "type": "registry:style",
   "title": "Pf Theme",
-  "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item only maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens.",
+  "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens, and ships the overlay animation preset.",
   "dependencies": [
     "@potato-forge/ui@alpha"
   ],
@@ -19,7 +19,8 @@
       "unoPresets": [
         "presetWind4()",
         "presetPotato()",
-        "createPfCompatPreset()"
+        "createPfCompatPreset()",
+        "createPfAnimatePreset()"
       ]
     }
   },
@@ -35,6 +36,12 @@
       "type": "registry:file",
       "target": "src/foundations/pf-compat/app-shell.css",
       "content": "/**\n * 应用外壳（app shell）视觉。\n *\n * 这是 potato-ui 自己的选择，不属于 design：\n * design 只规定 `background` / `surface` 等语义色的含义，不规定「页面要不要一层\n * 由左上角泛光 + 纵向渐变组成的壳」。因此它留在这里，而不是回提进 potato-design。\n *\n * 全部取值都来自 design 的语义 token（经 pf-compat 别名解析），没有硬编码颜色。\n */\nhtml,\nbody,\n#app {\n  min-height: 100%;\n  background:\n    radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 3.5%, transparent), transparent 28%),\n    linear-gradient(\n      180deg,\n      var(--app-shell) 0%,\n      var(--background) 55%,\n      var(--content-muted) 100%\n    );\n  color: var(--foreground);\n}\n\nbody {\n  margin: 0;\n  background-attachment: fixed;\n}\n\n* {\n  box-sizing: border-box;\n}\n"
+    },
+    {
+      "path": "src/foundations/pf-animate/index.ts",
+      "type": "registry:file",
+      "target": "src/foundations/pf-animate/index.ts",
+      "content": "import type { Preset } from 'unocss'\n\n/**\n * 浮层进出场动画。\n *\n * 背景：项目里 drawer / modal / dropdown / select 都写了 `animate-in`、\n * `slide-in-from-right`、`fade-in-0` 这一套类名，但它们是 **tailwindcss-animate**\n * 插件的产物。本项目用的是 UnoCSS，既没装该插件也没有等价实现，这些类名\n * 一个都不会生成 CSS —— 结果是所有浮层瞬间出现、瞬间消失，没有任何过渡。\n *\n * 为什么不直接引入 `tw-animate-css`：它是给 Tailwind v4 的 `@theme` 与\n * `--tw-*` 变量体系用的，在 UnoCSS 下拿不到那套变量，行为不可预期。\n * 这里只需要 14 个类，自建一套最小实现更可控，也便于复用 design 的动效 Token。\n *\n * 机制与 tailwindcss-animate 一致：\n * - `animate-in` / `animate-out` 只负责挂上 keyframes；\n * - `fade-*` / `zoom-*` / `slide-*` 不写死样式，而是设置 CSS 变量，\n *   由 keyframes 读取。这样它们可以任意组合（淡入 + 右滑 + 缩放）。\n */\n\n/** 动画时长与缓动取自 design 的动效 Token，保证全站节奏一致。\n *\n * 时长优先读 `--un-duration`：这样组件上已有的 `duration-*` 工具类\n * （它写的是 `--un-duration`）也能直接控制动画时长，无需另造一套变量。\n * 注意 `duration-*` 同时会写 `transition-duration`，但那只影响 transition，\n * 对 animation 无效——所以此前 `data-[state=open]:duration-500` 一直是死代码，\n * 接上 `--un-duration` 之后它才真正生效。\n */\nconst DURATION = 'var(--un-duration, var(--pd-duration-normal, 200ms))'\nconst EASE = 'var(--un-ease, var(--pd-ease-standard, cubic-bezier(0.2, 0, 0, 1)))'\n\nconst keyframes = `\n@keyframes pf-enter {\n  from {\n    opacity: var(--pf-enter-opacity, 1);\n    transform:\n      translate3d(var(--pf-enter-translate-x, 0), var(--pf-enter-translate-y, 0), 0)\n      scale3d(var(--pf-enter-scale, 1), var(--pf-enter-scale, 1), var(--pf-enter-scale, 1));\n  }\n  to {\n    opacity: 1;\n    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);\n  }\n}\n\n@keyframes pf-exit {\n  from {\n    opacity: 1;\n    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);\n  }\n  to {\n    opacity: var(--pf-exit-opacity, 1);\n    transform:\n      translate3d(var(--pf-exit-translate-x, 0), var(--pf-exit-translate-y, 0), 0)\n      scale3d(var(--pf-exit-scale, 1), var(--pf-exit-scale, 1), var(--pf-exit-scale, 1));\n  }\n}\n`\n\n/**\n * 需要减少动效的用户：系统开了「减弱动态效果」时不做位移与缩放，\n * 只保留极短的淡入淡出，避免前庭不适。\n */\nconst reducedMotion = `\n@media (prefers-reduced-motion: reduce) {\n  [data-state='open'],\n  [data-state='closed'] {\n    animation-duration: 0.01ms !important;\n  }\n}\n`\n\nexport function createPfAnimatePreset(): Preset {\n  return {\n    name: 'pf-animate',\n    preflights: [\n      {\n        layer: 'theme',\n        getCSS: () => `${keyframes}\\n${reducedMotion}`,\n      },\n    ],\n    rules: [\n      [\n        'animate-in',\n        {\n          animation: `pf-enter ${DURATION} ${EASE} both`,\n        },\n      ],\n      [\n        'animate-out',\n        {\n          animation: `pf-exit ${DURATION} ${EASE} both`,\n        },\n      ],\n\n      // 透明度：数字后缀是百分比，fade-in-0 即从全透明开始。\n      [/^fade-in-(\\d+)$/, ([, v]) => ({ '--pf-enter-opacity': String(Number(v) / 100) })],\n      [/^fade-out-(\\d+)$/, ([, v]) => ({ '--pf-exit-opacity': String(Number(v) / 100) })],\n\n      // 缩放：95 表示从 95% 开始，不是 95 倍。\n      [/^zoom-in-(\\d+)$/, ([, v]) => ({ '--pf-enter-scale': String(Number(v) / 100) })],\n      [/^zoom-out-(\\d+)$/, ([, v]) => ({ '--pf-exit-scale': String(Number(v) / 100) })],\n\n      // 位移：默认整格滑动（相对自身尺寸 100%）；也支持任意值，\n      // 例如 DialogContent 用的 `slide-in-from-top-[48%]`。\n      [/^slide-in-from-(top|bottom|left|right)(?:-\\[(.+)\\])?$/, ([, dir, v]) => {\n        const axis = dir === 'top' || dir === 'bottom' ? 'y' : 'x'\n        const raw = v ?? '100%'\n        // top / left 是从负向进来\n        const negative = dir === 'top' || dir === 'left'\n        const value = negative\n          ? (raw.startsWith('-') ? raw.slice(1) : `-${raw}`)\n          : raw\n        return { [`--pf-enter-translate-${axis}`]: value }\n      }],\n      [/^slide-out-to-(top|bottom|left|right)(?:-\\[(.+)\\])?$/, ([, dir, v]) => {\n        const axis = dir === 'top' || dir === 'bottom' ? 'y' : 'x'\n        const raw = v ?? '100%'\n        const negative = dir === 'top' || dir === 'left'\n        const value = negative\n          ? (raw.startsWith('-') ? raw.slice(1) : `-${raw}`)\n          : raw\n        return { [`--pf-exit-translate-${axis}`]: value }\n      }],\n    ],\n  }\n}\n"
     }
   ]
 }

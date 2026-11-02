@@ -19,9 +19,17 @@ const unoCode = computed(() => dedent`
   import { presetPotato } from '@potato-forge/ui/preset'
   import { createPfIconsPreset } from './src/foundations/pf-icons'
   import { createPfCompatPreset } from './src/foundations/pf-compat'
+  import { createPfAnimatePreset } from './src/foundations/pf-animate'
 
   export default defineConfig({
-    presets: [presetWind4(), presetPotato(), createPfCompatPreset(), createPfIconsPreset()],
+    presets: [
+      presetWind4(),
+      presetPotato(),
+      createPfCompatPreset(),
+      // 浮层进出场动画（drawer / modal / dropdown / select）
+      createPfAnimatePreset(),
+      createPfIconsPreset(),
+    ],
     transformers: [transformerDirectives(), transformerVariantGroup()],
     content: {
       pipeline: {

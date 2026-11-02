@@ -3,7 +3,7 @@
   "name": "pf-theme",
   "type": "registry:style",
   "title": "Pf Theme",
-  "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item only maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens.",
+  "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens, and ships the overlay animation preset.",
   "dependencies": ["@potato-forge/ui@alpha"],
   "registryDependencies": [],
   "meta": {
@@ -11,7 +11,12 @@
     "docsRoute": "/foundation/theme",
     "requires": {
       "npm": ["@potato-forge/ui@alpha"],
-      "unoPresets": ["presetWind4()", "presetPotato()", "createPfCompatPreset()"]
+      "unoPresets": [
+        "presetWind4()",
+        "presetPotato()",
+        "createPfCompatPreset()",
+        "createPfAnimatePreset()"
+      ]
     }
   },
   "files": [
@@ -24,6 +29,11 @@
       "path": "src/foundations/pf-compat/app-shell.css",
       "type": "registry:file",
       "target": "src/foundations/pf-compat/app-shell.css"
+    },
+    {
+      "path": "src/foundations/pf-animate/index.ts",
+      "type": "registry:file",
+      "target": "src/foundations/pf-animate/index.ts"
     }
   ]
 }

@@ -12,9 +12,15 @@ const usageCode = computed(() => dedent`
   import presetWind4 from '@unocss/preset-wind4'
   import { presetPotato } from '@potato-forge/ui/preset'
   import { createPfCompatPreset } from './src/foundations/pf-compat'
+  import { createPfAnimatePreset } from './src/foundations/pf-animate'
 
   export default defineConfig({
-    presets: [presetWind4(), presetPotato(), createPfCompatPreset()],
+    presets: [
+      presetWind4(),
+      presetPotato(),
+      createPfCompatPreset(),
+      createPfAnimatePreset(),
+    ],
   })
 `)
 </script>

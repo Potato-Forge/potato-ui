@@ -701,7 +701,7 @@
       "name": "pf-theme",
       "type": "registry:style",
       "title": "Pf Theme",
-      "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item only maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens.",
+      "description": "Thin compatibility layer over the Potato Design System. Theme tokens, typography, radius, shadow and motion all come from @potato-forge/ui; this item maps Potato UI's historical token names (destructive, sidebar-*, selected, risk) onto design semantic tokens, and ships the overlay animation preset.",
       "dependencies": [
         "@potato-forge/ui@alpha"
       ],
@@ -716,7 +716,8 @@
           "unoPresets": [
             "presetWind4()",
             "presetPotato()",
-            "createPfCompatPreset()"
+            "createPfCompatPreset()",
+            "createPfAnimatePreset()"
           ]
         }
       }
